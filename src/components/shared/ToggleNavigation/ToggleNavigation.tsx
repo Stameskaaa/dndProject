@@ -6,7 +6,8 @@ import { useDimensions } from './use-dimensions';
 
 const sidebar: Variants = {
   open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+    clipPath: `circle(${height * 2 + 200}px at calc(100% - 40px) 40px)`,
+    boxShadow: 'md',
     transition: {
       type: 'spring',
       stiffness: 20,
@@ -14,13 +15,24 @@ const sidebar: Variants = {
     },
   }),
   closed: {
-    clipPath: 'circle(30px at 40px 40px)',
+    clipPath: 'circle(30px at calc(100% - 40px) 40px)',
     transition: {
       delay: 0.5,
       type: 'spring',
       stiffness: 400,
       damping: 40,
     },
+  },
+};
+
+const shadowVariants: Variants = {
+  open: {
+    boxShadow: '-4px 0 6px rgba(0,0,0,0.5)',
+    transition: { duration: 0.3 },
+  },
+  closed: {
+    boxShadow: 'none',
+    transition: { duration: 1.5 },
   },
 };
 
@@ -31,12 +43,15 @@ export const ToggleNavigation = () => {
 
   return (
     <motion.nav
-      className="relative right-[100px] max-w-[310px] h-screen overflow-hidden"
+      className={`absolute top-0 right-0 max-w-[310px] w-[300px] h-screen overflow-hidden  ${
+        isOpen ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}
       initial={false}
       animate={isOpen ? 'open' : 'closed'}
       custom={height}
+      variants={shadowVariants}
       ref={containerRef}>
-      <motion.div className="absolute inset-0 width-[300px] bg-brand-400" variants={sidebar} />
+      <motion.div className="absolute bottom-0 h-full w-[300px] bg-brand-400" variants={sidebar} />
       <Navigation />
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>

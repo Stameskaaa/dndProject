@@ -28,7 +28,7 @@ export const MenuItem = ({ i }: { i: number }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}>
       <div className="w-[40px] h-[40px] rounded-full flex mr-[20px]" style={style} />
-      <div className="rounded-[5px] w-[200px] h-[200px] flex-1" style={style} />
+      <div className="rounded-[5px] w-[200px] h-[20px] flex-1" style={style} />
     </motion.li>
   );
 };

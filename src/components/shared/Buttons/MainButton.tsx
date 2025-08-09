@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export const MainButton = () => {
   return (
-    <div className="z-10 relative inline-block group overflow-visible mt-[300px]">
+    <div className="relative inline-block group overflow-visible mt-[300px]">
       <motion.div
         className="absolute inset-0 rounded-lg blur-md 
                bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 

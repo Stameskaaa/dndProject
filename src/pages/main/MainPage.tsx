@@ -13,12 +13,17 @@ export const MainPage = () => {
     <>
       {/* <StarsBackground className="finisher-header w-full h-[1400px] flex items-center justify-center">
       </StarsBackground> */}
-      <MainButton />
+      <Section screen={true} className="flex justify-center flex-col items-center">
+        <Text size="xl">Pisyapopa</Text>
+        <MainButton />
+      </Section>
 
       <FixedWidthSection>
         <Carousel />
 
-        <Section className="flex items-center justify-center flex-col h-full min-h-[calc(100vh-52px)]">
+        <Section
+          screen={true}
+          className="flex items-center justify-center flex-col h-full min-h-[calc(100vh-52px)]">
           <Text size="3xl" gradient="blue-orange" className="text-center">
             О нас
           </Text>
@@ -26,7 +31,7 @@ export const MainPage = () => {
           <ExpandingCard />
         </Section>
 
-        <Section className="py-10">
+        <Section screen={true} className="py-10">
           <Text className="text-center mb-8" size="3xl" gradient="blue-orange">
             Часто задаваемые вопросы
           </Text>
