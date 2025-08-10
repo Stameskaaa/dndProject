@@ -1,3 +1,4 @@
+import { defaultPaddings } from '@/constants/paddings';
 import classNames from 'classnames';
 import type { HTMLAttributes } from 'react';
 
@@ -17,8 +18,9 @@ export const FixedWidthSection: React.FC<FixedWidthSectionProps> = ({
     <section
       {...props}
       className={classNames(
-        'w-full max-w-[var(--width-max-container)] px-2 sm:px-3 md:px-4 lg:px-9',
-        screen ? 'h-screen' : '',
+        'w-full max-w-[var(--width-max-container)]',
+        defaultPaddings,
+        screen ? 'min-h-screen' : '',
         className,
       )}>
       {children}

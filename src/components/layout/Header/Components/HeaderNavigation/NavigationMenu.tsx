@@ -33,14 +33,19 @@ export const menuItems = [
     ],
     src: 'https://sun9-70.userapi.com/s/v1/ig2/HWXLgbx1js068DVYzg-7aba0KgTDV_MUiQ33hBuCxtYQARbusnBqv2VII2f-VwV5gk_imTS4f8ZtZsoKQpx85gPC.jpg?quality=95&as=32x46,48x69,72x103,108x155,160x229,240x343,360x515,480x687,540x773,640x916,720x1030,1062x1520&from=bu&cs=1062x0',
   },
+  {
+    title: 'Для теста',
+    content: [{ title: 'Рассы', href: '/races' }],
+    src: 'https://sun9-70.userapi.com/s/v1/ig2/HWXLgbx1js068DVYzg-7aba0KgTDV_MUiQ33hBuCxtYQARbusnBqv2VII2f-VwV5gk_imTS4f8ZtZsoKQpx85gPC.jpg?quality=95&as=32x46,48x69,72x103,108x155,160x229,240x343,360x515,480x687,540x773,640x916,720x1030,1062x1520&from=bu&cs=1062x0',
+  },
 ];
 
 export const HeaderNavigation = () => {
   return (
     <NavigationMenu.Root skipDelayDuration={500} className={styles.Root}>
       <NavigationMenu.List className={classNames(styles.MenuList, 'flex items-center gap-3.5')}>
-        {menuItems.map(({ title, content, src }) => (
-          <NavigationMenu.Item>
+        {menuItems.map(({ title, content, src }, i) => (
+          <NavigationMenu.Item key={i}>
             <NavigationMenu.Trigger
               className={classNames(
                 styles.Trigger,
@@ -59,16 +64,7 @@ export const HeaderNavigation = () => {
                 'h-full w-full shadow-2xl/50 shadow-black border-none flex gap-2',
               )}>
               <React.Fragment key={src}>
-                <div
-                  className="relative w-[250px] min-h-full border-none overflow-hidden"
-                  style={{
-                    backgroundImage: `
-                    linear-gradient(to left, #1c2224 0%, rgba(28, 34, 36, 0.8) 60%, rgba(28, 34, 36, 0) 100%)`,
-                    outline: 'none',
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                  }}>
+                <div className="relative w-[250px] min-h-full border-none overflow-hidden">
                   <img src={src} alt="" className="w-auto h-full object-cover" />
                   <div
                     className="absolute inset-0"
@@ -81,8 +77,8 @@ export const HeaderNavigation = () => {
                 <div
                   style={{ overscrollBehavior: 'contain' }}
                   className="flex gap-2 flex-col w-full py-3 pr-3  overflow-auto">
-                  {content.map(({ title, href }) => (
-                    <NavigationMenu.Link asChild>
+                  {content.map(({ title, href }, i) => (
+                    <NavigationMenu.Link key={i} asChild>
                       <Link
                         className="py-2 px-3 hover:bg-brand-300 rounded-md transition-color duration-300"
                         to={href}>
@@ -106,7 +102,7 @@ export const HeaderNavigation = () => {
         <NavigationMenu.Viewport
           className={classNames(
             styles.Viewport,
-            'bg-brand-400 rounded-md !w-[500px] min-h-[380px] shadow-2xl/50 shadow-black border-none !mt-2.5 flex gap-2 z-10',
+            'bg-brand-400 rounded-md !min-w-[500px] min-h-[380px] shadow-2xl/50 shadow-black border-none !mt-2.5 flex gap-2 z-10',
           )}
         />
       </div>

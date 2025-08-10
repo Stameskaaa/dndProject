@@ -11,6 +11,8 @@ export const ImageTopCard = ({
   title: String;
   text: string;
 }) => {
+  const MotionCard = motion.create(Card);
+
   return (
     <MotionCard
       whileHover={{
@@ -42,5 +44,3 @@ export const ImageTopCard = ({
     </MotionCard>
   );
 };
-
-const MotionCard = motion(Card);

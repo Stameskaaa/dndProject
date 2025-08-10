@@ -2,6 +2,9 @@ import { Outlet } from 'react-router-dom';
 import type { RouterConfig } from './helpers';
 import { MainPage } from '../pages/main/MainPage';
 import { UIPage } from '@/pages/ui/ui';
+import { Text } from '@/components/shared/Typography/Text';
+import { RacesPage } from '@/pages/races/RacesPage';
+import { RaceCharacterPage } from '@/pages/raceCharacter/RaceCharacterPage';
 
 export const routesAuth: RouterConfig[] = [
   {
@@ -35,6 +38,16 @@ export const routes: RouterConfig[] = [
       {
         path: 'about',
         element: <div>about</div>,
+      },
+    ],
+  },
+  {
+    path: '/races',
+    element: <RacesPage />,
+    children: [
+      {
+        path: ':id',
+        element: <RaceCharacterPage />,
       },
     ],
   },

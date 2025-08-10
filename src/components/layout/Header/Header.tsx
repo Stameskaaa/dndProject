@@ -4,6 +4,9 @@ import { HeaderTitle } from './Components/HeaderTitle';
 import { HeaderNavigation } from './Components/HeaderNavigation/NavigationMenu';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { ToggleNavigation } from '@/components/shared/ToggleNavigation/ToggleNavigation';
+import classNames from 'classnames';
+import { defaultPaddings } from '@/constants/paddings';
+import { HeaderHeight } from '@/constants/heights';
 
 export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean; title: string }) {
   const width = useWindowWidth();
@@ -21,11 +24,15 @@ export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean
 
   return (
     <motion.div
-      className={
-        `z-1 flex w-full transition-all p-4 sticky top-0 duration-500` +
-        (isScrolled ? ' bg-brand-400 shadow-md' : '')
-      }>
-      <div className="flex items-center w-full max-w-[var(--width-max-container)] justify-between mx-auto">
+      className={classNames(
+        `z-1 flex w-full transition-all py-4 sticky top-0 duration-500 justify-center h-${HeaderHeight}`,
+        isScrolled ? ' bg-brand-400 shadow-xl ' : '',
+      )}>
+      <div
+        className={classNames(
+          'flex items-center w-full max-w-[var(--width-max-container)] justify-between',
+          defaultPaddings,
+        )}>
         <div className="grid items-center w-[400px] h-[40px] relative">
           <HeaderTitle titleAnimate={titleAnimate} isScrolled={isScrolled} title={title} />
         </div>

@@ -64,23 +64,27 @@ body,
   background-color: #1c2224;
 }
 
-html {
+* {
   ::-webkit-scrollbar {
-    width: 8px;
-    background-color: transparent;
+    width: 4px !important;
+    background-color: transparent !important;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 4px;
+    background-color: transparent !important;
+    border-radius: 4px !important;
   }
 
-  scrollbar-color: #2f3b3b #1c2224;
-  scrollbar-width: thin;
+  scrollbar-color: #2f3b3b #1c2224 !important;
+  scrollbar-width: thin !important;
+}
+
+html,
+body {
+  scrollbar-gutter: stable !important;
 }
 
 body {
-  scrollbar-gutter: stable;
   background-attachment: fixed;
   min-height: 100vh;
   font-family: 'Nunito', system-ui;

@@ -14,7 +14,7 @@ export const MainPage = () => {
       {/* <StarsBackground className="finisher-header w-full h-[1400px] flex items-center justify-center">
       </StarsBackground> */}
       <Section screen={true} className="flex justify-center flex-col items-center">
-        <Text size="xl">Pisyapopa</Text>
+        <Text size="xl">Screen</Text>
         <MainButton />
       </Section>
 
@@ -27,11 +27,10 @@ export const MainPage = () => {
           <Text size="3xl" gradient="blue-orange" className="text-center">
             О нас
           </Text>
-
           <ExpandingCard />
         </Section>
 
-        <Section screen={true} className="py-10">
+        <Section screen={true}>
           <Text className="text-center mb-8" size="3xl" gradient="blue-orange">
             Часто задаваемые вопросы
           </Text>

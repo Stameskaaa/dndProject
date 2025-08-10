@@ -8,31 +8,42 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  type DialogRootProps,
 } from '@/components/ui/dialog';
+import { Text } from '../Typography/Text';
+import type { ReactNode } from 'react';
 
-export function ModalDialog() {
+interface ModalDialogProps {
+  button?: ReactNode;
+  rootProps?: DialogRootProps;
+  children?: ReactNode;
+}
+
+export const ModalDialog: React.FC<ModalDialogProps> = ({ button, rootProps, children }) => {
   return (
-    <Dialog>
-      <form>
-        <DialogTrigger asChild>
-          <Button variant="outline">Open Dialog</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re done.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4"></div>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-            <Button type="submit">Save changes</Button>
-          </DialogFooter>
-        </DialogContent>
-      </form>
+    <Dialog {...rootProps}>
+      {button && <DialogTrigger asChild>{button}</DialogTrigger>}
+      <DialogContent className="bg-brand-200 border-none h-[60%] w-[35%] !max-w-none">
+        <DialogHeader className="h-full">
+          <DialogTitle>
+            <Text size="3xl" gradient="blue-orange">
+              Миша сын пидора
+            </Text>
+          </DialogTitle>
+          <DialogDescription>
+            <Text color="text-secondary" size="lg">
+              Вы платите за полную хуйню не ведитесь на это
+            </Text>
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4 overflow-auto h-full">{children}</div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button type="submit">Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
     </Dialog>
   );
-}
+};
