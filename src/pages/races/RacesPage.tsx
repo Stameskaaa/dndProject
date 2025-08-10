@@ -1,10 +1,10 @@
 import { HoverZoomCard } from '@/components/shared/Cards/HoverZoomCard/HoverZoomCard';
 import { ModalDialog } from '@/components/shared/ModalDialog/ModalDialog';
-import { FixedWidthSection } from '@/components/shared/Sections/FixedWidthSection';
+import { PageWithModal } from '@/components/shared/PageWIthModal/PageWIthModal';
 import { Text } from '@/components/shared/Typography/Text';
 import { Input } from '@/components/ui/input';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -27,7 +27,7 @@ export const RacesPage = () => {
   const navigate = useNavigate();
 
   return (
-    <FixedWidthSection screen={true} className="flex gap-6">
+    <PageWithModal>
       <div className="flex flex-1 flex-col gap-8">
         <Text size="4xl">Расы и происхождения</Text>
         <div className="w-full flex gap-3 items-center">
@@ -54,7 +54,6 @@ export const RacesPage = () => {
           </motion.div>
         </AnimatePresence>
       </div>
-      <Outlet />
-    </FixedWidthSection>
+    </PageWithModal>
   );
 };

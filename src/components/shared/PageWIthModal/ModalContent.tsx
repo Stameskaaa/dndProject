@@ -3,13 +3,13 @@ import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { DropdownIndex, HeaderHeight, ModalIndex } from '@/constants/heights';
 
 const defaultContentClass =
   'rounded-lg h-full max-h-[100%] bg-brand-400 flex-1 shadow-2xl shadow-black w-full';
 
-export const RaceCharacterPage = () => {
+export const ModalContent = ({ children }: { children: ReactNode }) => {
   const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
   const width = useWindowWidth();
   const navigate = useNavigate();
@@ -67,12 +67,14 @@ export const RaceCharacterPage = () => {
           <div className={classNames(defaultContentClass, isModal ? 'absolute' : '')}>
             <Button onClick={() => navigate(newPath)}>Назад</Button>
             <Button onClick={() => setModal(!modal)}>На фулл</Button>
+            {children}
           </div>
         </motion.div>
       </AnimatePresence>
       {!isModal && <div ref={placeholder} className="flex-1 relative z-0" />}
       {isModal && (
         <motion.div
+          onClick={() => setModal(false)}
           initial={{
             opacity: 0,
           }}
