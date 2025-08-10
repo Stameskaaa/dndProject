@@ -6,7 +6,7 @@ import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { ToggleNavigation } from '@/components/shared/ToggleNavigation/ToggleNavigation';
 import classNames from 'classnames';
 import { defaultPaddings } from '@/constants/paddings';
-import { HeaderHeight } from '@/constants/heights';
+import { HeaderHeight, HeaderIndex } from '@/constants/heights';
 
 export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean; title: string }) {
   const width = useWindowWidth();
@@ -24,9 +24,10 @@ export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean
 
   return (
     <motion.div
+      style={{ zIndex: HeaderIndex }}
       className={classNames(
         `z-1 flex w-full transition-all py-4 sticky top-0 duration-500 justify-center h-${HeaderHeight}`,
-        isScrolled ? ' bg-brand-400 shadow-xl ' : '',
+        isScrolled ? ' bg-brand-400 shadow-xl' : '',
       )}>
       <div
         className={classNames(
