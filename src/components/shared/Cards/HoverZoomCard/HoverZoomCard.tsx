@@ -14,7 +14,7 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
         ref={ref}
         onClick={onClick}
         {...props}
-        className="relative cursor-pointer group w-full bg-brand-400 shadow-2xl shadow-black h-[160px] rounded-lg flex flex-col justify-between">
+        className="relative cursor-pointer group w-full bg-brand-400 shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between">
         <div className="absolute right-0 h-full max-w-full rounded-lg z-0 overflow-hidden">
           <img
             src={src}

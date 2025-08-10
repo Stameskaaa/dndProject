@@ -24,9 +24,9 @@ export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean
 
   return (
     <motion.div
-      style={{ zIndex: HeaderIndex }}
+      style={{ zIndex: HeaderIndex, height: HeaderHeight }}
       className={classNames(
-        `z-1 flex w-full transition-all py-4 sticky top-0 duration-500 justify-center h-${HeaderHeight}`,
+        `z-1 flex w-full transition-all py-4 sticky top-0 duration-500 justify-center`,
         isScrolled ? ' bg-brand-400 shadow-xl' : '',
       )}>
       <div

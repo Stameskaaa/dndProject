@@ -3,7 +3,10 @@ import { ModalDialog } from '@/components/shared/ModalDialog/ModalDialog';
 import { PageWithModal } from '@/components/shared/PageWIthModal/PageWIthModal';
 import { Text } from '@/components/shared/Typography/Text';
 import { Input } from '@/components/ui/input';
+import { HeaderHeight } from '@/constants/heights';
+import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const containerVariants = {
@@ -25,17 +28,37 @@ const data = Array.from({ length: 10 }, (_, i) => ({ key: i }));
 
 export const RacesPage = () => {
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 10;
+      setIsScrolled(scrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <PageWithModal>
       <div className="flex flex-1 flex-col gap-8">
-        <Text size="4xl">Расы и происхождения</Text>
-        <div className="w-full flex gap-3 items-center">
-          <Input placeholder="Поиск ..." className="flex-1" />
-          <div className="max-w-content">
-            <ModalDialog />
+        <motion.div
+          style={{ top: HeaderHeight, zIndex: 1 }}
+          className={classNames(`flex flex-col gap-4 sticky !py-3 bg-brand-500`)}
+          // TODO обдумать
+          animate={{
+            padding: isScrolled ? '0 20px 20px 20px' : '0px',
+            borderRadius: `0 0 10px 10px`,
+          }}
+          transition={{ duration: 0.3 }}>
+          <Text size="4xl">Расы и происхождения</Text>
+          <div className="w-full flex gap-3 items-center">
+            <Input placeholder="Поиск ..." className="flex-1" />
+            <div className="max-w-content">
+              <ModalDialog />
+            </div>
           </div>
-        </div>
+        </motion.div>
         <AnimatePresence>
           <motion.div
             key={'asd'}
