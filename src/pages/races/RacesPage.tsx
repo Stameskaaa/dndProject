@@ -6,8 +6,11 @@ import { Input } from '@/components/ui/input';
 import { HeaderHeight } from '@/constants/heights';
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useScroll } from './hooks';
+import { useGetRaceListQuery } from '@/features/races/api';
+import { CubeLoader } from '@/components/shared/Loader/CubeLoader';
+import { Button } from '@/components/ui/button';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -24,20 +27,16 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, scale: 1 },
 };
 const MotionHoverZoomCard = motion.create(HoverZoomCard);
-const data = Array.from({ length: 10 }, (_, i) => ({ key: i }));
 
 export const RacesPage = () => {
+  const isScrolled = useScroll();
   const navigate = useNavigate();
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY > 10;
-      setIsScrolled(scrolled);
-    };
+  const { id } = useParams();
+  const { isLoading, data: raceList } = useGetRaceListQuery();
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  if (isLoading) {
+    return <CubeLoader />;
+  }
 
   return (
     <PageWithModal>
@@ -55,7 +54,7 @@ export const RacesPage = () => {
           <div className="w-full flex gap-3 items-center">
             <Input placeholder="Поиск ..." className="flex-1" />
             <div className="max-w-content">
-              <ModalDialog />
+              <ModalDialog button={<Button>фильтры</Button>} />
             </div>
           </div>
         </motion.div>
@@ -66,12 +65,16 @@ export const RacesPage = () => {
             initial="hidden"
             animate="visible"
             className="w-full grid gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] justify-items-center">
-            {data.map(({ key }) => (
+            {raceList?.map(({ id: raceId, name, description, src }) => (
               <MotionHoverZoomCard
-                key={key}
+                active={Number(id) === raceId}
+                key={raceId}
+                name={name}
+                src={src}
+                description={description}
                 variants={cardVariants}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                onClick={() => navigate(`${key}`)}
+                onClick={() => navigate(`${raceId}`)}
               />
             ))}
           </motion.div>

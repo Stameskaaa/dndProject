@@ -1,15 +1,14 @@
-import { Button } from '@/components/ui/button';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { cloneElement, useEffect, useRef, useState, type ReactElement } from 'react';
 import { DropdownIndex, HeaderHeight, ModalIndex } from '@/constants/heights';
 
 const defaultContentClass =
   'rounded-lg h-full max-h-[100%] bg-brand-400 flex-1 shadow-2xl shadow-black w-full';
 
-export const ModalContent = ({ children }: { children: ReactNode }) => {
+export const ModalContent = ({ children }: { children: ReactElement<any> }) => {
   const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
   const width = useWindowWidth();
   const navigate = useNavigate();
@@ -57,7 +56,7 @@ export const ModalContent = ({ children }: { children: ReactNode }) => {
             width: isModal ? 'calc(100% - 40px)' : coords.width,
           }}
           exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
           style={{
             top: HeaderHeight + 20,
             height: `calc(100vh - ${HeaderHeight + 40}px)`,
@@ -65,9 +64,11 @@ export const ModalContent = ({ children }: { children: ReactNode }) => {
           }}
           className={`fixed rounded-lg `}>
           <div className={classNames(defaultContentClass, isModal ? 'absolute' : '')}>
-            <Button onClick={() => navigate(newPath)}>Назад</Button>
-            <Button onClick={() => setModal(!modal)}>На фулл</Button>
-            {children}
+            {cloneElement(children, {
+              closeModal: () => navigate(newPath),
+              fullModal: () => setModal((prev) => !prev),
+              isModal,
+            })}
           </div>
         </motion.div>
       </AnimatePresence>

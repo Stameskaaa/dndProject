@@ -1,17 +1,14 @@
 import { StrictMode } from 'react';
-import { createContext } from 'react';
+import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
-import { baseStore } from './store/baseStore.ts';
-
-type BaseStoreType = typeof baseStore;
-export const RootStoreContext = createContext<{ baseStore: BaseStoreType }>({ baseStore });
+import { store } from './store/store.ts';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RootStoreContext.Provider value={{ baseStore }}>
+    <Provider store={store}>
       <App />
-    </RootStoreContext.Provider>
+    </Provider>
   </StrictMode>,
 );

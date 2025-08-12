@@ -2,7 +2,6 @@ import { CardList } from './components/CardList';
 import { Carousel } from './components/Carousel';
 import { MainButton } from '../../components/shared/Buttons/MainButton';
 import { Section } from '@/components/shared/Sections/Section';
-import { StarsBackground } from '@/components/shared/Background/StarsBackground';
 import { ExpandingCard } from '@/components/shared/Cards/ExpandingCard/ExpandingCard';
 import { FixedWidthSection } from '@/components/shared/Sections/FixedWidthSection';
 import { FAQ } from '@/components/shared/FAQ/FAQ';

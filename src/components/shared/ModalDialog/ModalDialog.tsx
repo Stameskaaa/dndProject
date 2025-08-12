@@ -27,12 +27,12 @@ export const ModalDialog: React.FC<ModalDialogProps> = ({ button, rootProps, chi
         <DialogHeader className="h-full">
           <DialogTitle>
             <Text size="3xl" gradient="blue-orange">
-              Миша сын пидора
+              Modal
             </Text>
           </DialogTitle>
           <DialogDescription>
             <Text color="text-secondary" size="lg">
-              Вы платите за полную хуйню не ведитесь на это
+              descr
             </Text>
           </DialogDescription>
         </DialogHeader>

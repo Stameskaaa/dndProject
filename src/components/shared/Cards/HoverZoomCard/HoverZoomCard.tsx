@@ -1,23 +1,31 @@
 import { forwardRef } from 'react';
 import { Text } from '../../Typography/Text';
-import src from '../../../../assets/bg2.jpg';
+import defaultSrsc from '../../../../assets/bg2.jpg';
+import classNames from 'classnames';
 
 interface HoverZoomCardProps {
-  animateIndex?: number;
+  name: string;
+  description: string;
+  src: string;
+  active: boolean;
   onClick: () => void;
+  animateIndex?: number;
 }
 
 export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
-  ({ onClick, ...props }, ref) => {
+  ({ onClick, name, description, active, src, ...props }, ref) => {
     return (
       <div
         ref={ref}
         onClick={onClick}
         {...props}
-        className="relative cursor-pointer group w-full bg-brand-400 shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between">
+        className={classNames(
+          active ? '!border-brand-100 ' : '',
+          'relative cursor-pointer group w-full border border-transparent transition-colors bg-brand-400 shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between',
+        )}>
         <div className="absolute right-0 h-full max-w-full rounded-lg z-0 overflow-hidden">
           <img
-            src={src}
+            src={src || defaultSrsc}
             alt=""
             className="w-auto h-full object-cover group-hover:scale-110 duration-400"
           />
@@ -30,8 +38,8 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
         </div>
         <div className="z-0 p-4 h-full">
           <span className="flex flex-col gap-1">
-            <Text color="text-primary">Авен</Text>
-            <Text color="text-muted">Долина гурван гол</Text>
+            <Text color="text-primary">{name}</Text>
+            <Text color="text-muted">{description}</Text>
           </span>
         </div>
       </div>
