@@ -1,16 +1,16 @@
-import { HoverZoomCard } from '@/components/shared/Cards/HoverZoomCard/HoverZoomCard';
-import { ModalDialog } from '@/components/shared/ModalDialog/ModalDialog';
-import { PageWithModal } from '@/components/shared/PageWIthModal/PageWIthModal';
-import { Text } from '@/components/shared/Typography/Text';
-import { Input } from '@/components/ui/input';
-import { HeaderHeight } from '@/constants/heights';
-import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
+import classNames from 'classnames';
 import { useScroll } from './hooks';
 import { useGetRaceListQuery } from '@/features/races/api';
+import { HoverZoomCard } from '@/components/shared/Cards/HoverZoomCard/HoverZoomCard';
+import { PageWithModal } from '@/components/shared/PageWIthModal/PageWIthModal';
+import { ModalDialog } from '@/components/shared/ModalDialog/ModalDialog';
 import { CubeLoader } from '@/components/shared/Loader/CubeLoader';
+import { Text } from '@/components/shared/Typography/Text';
+import { HeaderHeight } from '@/constants/heights';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const containerVariants = {
   hidden: { opacity: 0 },
