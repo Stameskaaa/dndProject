@@ -1,7 +1,16 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
-import { cloneElement, useEffect, useId, useRef, useState, type ReactElement } from 'react';
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type ReactElement,
+} from 'react';
 import { useScrollLock } from '@/features/scroll/useScrollLock';
 import { HeaderHeight } from '@/constants/heights';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
@@ -79,12 +88,16 @@ export const SectionModalContent = ({ children }: { children: ReactElement<any> 
             transition: 'left 0.3s ease, width 0.3s ease',
           }}
           className={classNames(defaultContentClass)}>
-          {cloneElement(children, {
-            closeModal: () => navigate(newPath),
-            fullModal: () => setModal((prev) => !prev),
-            isModalLocked,
-            isModal,
-          })}
+          {Children.map(children, (child) =>
+            isValidElement(child)
+              ? cloneElement(child as ReactElement<any>, {
+                  closeModal: () => navigate(newPath),
+                  fullModal: () => setModal((prev) => !prev),
+                  isModalLocked,
+                  isModal,
+                })
+              : child,
+          )}
         </motion.div>
       </AnimatePresence>
 

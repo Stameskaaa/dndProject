@@ -1,5 +1,5 @@
 import { CarouselCompoent } from '@/components/wrappers/media/carousel/Carousel';
-import { Section } from '@/components/wrappers/sections/Section';
+import { Section } from '@/components/wrappers/sections/section/Section';
 import { Text } from '@/components/wrappers/typography/Text';
 
 export const Carousel = () => {

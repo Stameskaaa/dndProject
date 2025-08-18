@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { LucideArrowDown } from 'lucide-react';
 import styles from './NavigationMenu.module.css';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { Text } from '@/components/shared/Typography/Text';
+import { Text } from '@/components/wrappers/typography/Text';
 
 export const menuItems = [
   {

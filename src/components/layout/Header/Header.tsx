@@ -6,11 +6,12 @@ import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { ToggleNavigation } from '@/components/wrappers/navigation/toggleNavigation/ToggleNavigation';
 import classNames from 'classnames';
 import { defaultPaddings } from '@/constants/paddings';
-import { HeaderHeight, HeaderIndex } from '@/constants/heights';
+import { HeaderHeight } from '@/constants/heights';
+import { HeaderIndex } from '@/constants/zIndex';
 
 export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean; title: string }) {
-  const width = useWindowWidth();
   const [isScrolled, setIsScrolled] = useState(false);
+  const width = useWindowWidth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +27,7 @@ export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean
     <motion.div
       style={{ zIndex: HeaderIndex, height: HeaderHeight }}
       className={classNames(
-        `z-1 flex w-full transition-all py-4 sticky top-0 duration-500 justify-center`,
+        `z-1 flex w-full transition-all py-4 sticky top-0 duration-200 justify-center`,
         isScrolled ? ' bg-brand-400 shadow-xl' : '',
       )}>
       <div

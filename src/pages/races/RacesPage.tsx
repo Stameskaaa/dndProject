@@ -33,10 +33,6 @@ export const RacesPage = () => {
   const { id } = useParams();
   const { isLoading, data: raceList } = useGetRaceListQuery();
 
-  if (isLoading) {
-    return <CubeLoader />;
-  }
-
   return (
     <SectionModal>
       <div className="flex flex-1 flex-col gap-8">
@@ -58,25 +54,29 @@ export const RacesPage = () => {
           </div>
         </motion.div>
         <AnimatePresence>
-          <motion.div
-            key={'asd'}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="w-full grid gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] justify-items-center">
-            {raceList?.map(({ id: raceId, name, description, src }) => (
-              <MotionHoverZoomCard
-                active={Number(id) === raceId}
-                key={raceId}
-                name={name}
-                src={src}
-                description={description}
-                variants={cardVariants}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                onClick={() => navigate(`${raceId}`)}
-              />
-            ))}
-          </motion.div>
+          {isLoading ? (
+            <CubeLoader className="m-auto" />
+          ) : (
+            <motion.div
+              key={'asd'}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="w-full grid gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] justify-items-center">
+              {raceList?.map(({ id: raceId, name, description, src }) => (
+                <MotionHoverZoomCard
+                  active={Number(id) === raceId}
+                  key={raceId}
+                  name={name}
+                  src={src}
+                  description={description}
+                  variants={cardVariants}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  onClick={() => navigate(`${raceId}`)}
+                />
+              ))}
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </SectionModal>

@@ -1,5 +1,5 @@
 import { BackgroundImageCard } from '@/components/wrappers/cards/backgroundImageCard/BackgroundImageCard';
-import { Section } from '@/components/wrappers/sections/Section';
+import { Section } from '@/components/wrappers/sections/section/Section';
 import { motion } from 'framer-motion';
 
 export const CardList = () => {

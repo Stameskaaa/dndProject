@@ -1,11 +1,10 @@
 import { CardList } from './components/CardList';
 import { Carousel } from './components/Carousel';
 import { MainButton } from '../../components/wrappers/buttons/mainButton/MainButton';
-import { Section } from '@/components/wrappers/sections/Section';
 import { ExpandingCard } from '@/components/wrappers/cards/expandingCard/ExpandingCard';
-import { FixedWidthSection } from '@/components/wrappers/sections/FixedWidthSection';
 import { FAQ } from '@/components/wrappers/sections/FAQ/FAQ';
 import { Text } from '@/components/wrappers/typography/Text';
+import { Section } from '@/components/wrappers/sections/section/Section';
 
 export const MainPage = () => {
   return (
@@ -16,7 +15,7 @@ export const MainPage = () => {
         <MainButton />
       </Section>
 
-      <FixedWidthSection>
+      <Section fixedWidth={true}>
         <Carousel />
 
         <Section
@@ -36,7 +35,7 @@ export const MainPage = () => {
           </Text>
           <FAQ />
         </Section>
-      </FixedWidthSection>
+      </Section>
     </>
   );
 };

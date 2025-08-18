@@ -1,9 +1,17 @@
+import {
+  cloneElement,
+  useState,
+  type FC,
+  type ReactElement,
+  type ReactNode,
+  Children,
+  isValidElement,
+} from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { cloneElement, useState, type FC, type ReactElement, type ReactNode } from 'react';
 
 interface ModalDialogProps {
   button?: ReactNode;
-  children?: ReactElement<any>;
+  children?: ReactNode;
 }
 
 export const ModalWindow: FC<ModalDialogProps> = ({ button, children }) => {
@@ -20,7 +28,9 @@ export const ModalWindow: FC<ModalDialogProps> = ({ button, children }) => {
         setOpen={setOpen}
         open={open}
         className="bg-brand-400 border-none h-[60%] w-[35%] !max-w-none">
-        {children && cloneElement(children, { setOpen })}
+        {Children.map(children, (child) =>
+          isValidElement(child) ? cloneElement(child as ReactElement<any>, { setOpen }) : child,
+        )}
       </DialogContent>
     </Dialog>
   );

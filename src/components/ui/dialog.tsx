@@ -3,8 +3,8 @@ import { cn } from '@/lib/utils';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { AnimatePresence, motion, type HTMLMotionProps } from 'framer-motion';
 import { useScrollLock } from '@/features/scroll/useScrollLock';
-import { ModalIndex } from '@/constants/heights';
 import { Blanket } from '../wrappers/background/blanket/Blanket';
+import { ModalIndex } from '@/constants/zIndex';
 
 export type DialogRootProps = ComponentProps<typeof DialogPrimitive.Root>;
 
