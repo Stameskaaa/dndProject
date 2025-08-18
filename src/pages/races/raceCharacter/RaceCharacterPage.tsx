@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { Text } from '@/components/shared/Typography/Text';
-import { ModalContent } from '@/components/shared/PageWIthModal/ModalContent';
-import { useGetRaceByIdQuery } from '@/features/races/api';
-import { CubeLoader } from '@/components/shared/Loader/CubeLoader';
-import { Tabs } from '@/components/shared/Tabs/Tabs';
-import { Button } from '@/components/ui/button';
 import { ChevronsLeftRight, ChevronsRightLeft, X } from 'lucide-react';
+import { useGetRaceByIdQuery } from '@/features/races/api';
+import { Button } from '@/components/ui/button';
+import { Tabs } from '@/components/wrappers/navigation/tabs/Tabs';
+import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader';
+import { SectionModalContent } from '@/components/wrappers/sections/SectionModal/SectionModalContent';
+import { Text } from '@/components/wrappers/typography/Text';
 
 interface RaceCharacterPageProps {
   isModal?: boolean;
@@ -122,8 +122,8 @@ export const RaceCharacterPage = () => {
   };
 
   return (
-    <ModalContent>
+    <SectionModalContent>
       <Content />
-    </ModalContent>
+    </SectionModalContent>
   );
 };

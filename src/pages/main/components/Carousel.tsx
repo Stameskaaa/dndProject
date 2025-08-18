@@ -1,6 +1,6 @@
-import { CarouselCompoent } from '@/components/shared/Carousel/Carousel';
-import { Section } from '@/components/shared/Sections/Section';
-import { Text } from '@/components/shared/Typography/Text';
+import { CarouselCompoent } from '@/components/wrappers/media/carousel/Carousel';
+import { Section } from '@/components/wrappers/sections/Section';
+import { Text } from '@/components/wrappers/typography/Text';
 
 export const Carousel = () => {
   return (

@@ -1,12 +1,11 @@
 import { CardList } from './components/CardList';
 import { Carousel } from './components/Carousel';
-import { MainButton } from '../../components/shared/Buttons/MainButton';
-import { Section } from '@/components/shared/Sections/Section';
-import { ExpandingCard } from '@/components/shared/Cards/ExpandingCard/ExpandingCard';
-import { FixedWidthSection } from '@/components/shared/Sections/FixedWidthSection';
-import { FAQ } from '@/components/shared/FAQ/FAQ';
-import { Text } from '@/components/shared/Typography/Text';
-import { StarsBackground } from '@/components/shared/Background/StarsBackground';
+import { MainButton } from '../../components/wrappers/buttons/mainButton/MainButton';
+import { Section } from '@/components/wrappers/sections/Section';
+import { ExpandingCard } from '@/components/wrappers/cards/expandingCard/ExpandingCard';
+import { FixedWidthSection } from '@/components/wrappers/sections/FixedWidthSection';
+import { FAQ } from '@/components/wrappers/sections/FAQ/FAQ';
+import { Text } from '@/components/wrappers/typography/Text';
 
 export const MainPage = () => {
   return (

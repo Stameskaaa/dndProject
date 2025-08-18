@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { HeaderTitle } from './Components/HeaderTitle';
 import { HeaderNavigation } from './Components/HeaderNavigation/NavigationMenu';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
-import { ToggleNavigation } from '@/components/shared/ToggleNavigation/ToggleNavigation';
+import { ToggleNavigation } from '@/components/wrappers/navigation/toggleNavigation/ToggleNavigation';
 import classNames from 'classnames';
 import { defaultPaddings } from '@/constants/paddings';
 import { HeaderHeight, HeaderIndex } from '@/constants/heights';

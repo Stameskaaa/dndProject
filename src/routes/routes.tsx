@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import type { RouterConfig } from './helpers';
 import { MainPage } from '../pages/main/MainPage';
-import { UIPage } from '@/pages/ui/ui';
 import { RacesPage } from '@/pages/races/RacesPage';
 import { RaceCharacterPage } from '@/pages/races/raceCharacter/RaceCharacterPage';
 
@@ -53,10 +52,6 @@ export const routes: RouterConfig[] = [
   {
     path: '/character/classes',
     element: <div>/character/classes </div>,
-  },
-  {
-    path: '/ui',
-    element: <UIPage />,
   },
   {
     path: '*',

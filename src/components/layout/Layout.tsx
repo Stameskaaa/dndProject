@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from './Header/Header';
-import { Section } from '../shared/Sections/Section';
-import { WavesFooter } from '../shared/WavesFooter/WavesFooter';
 import { AnimatePresence } from 'framer-motion';
+import { Header } from './Header/Header';
+import { WavesFooter } from './footer/WavesFooter';
+import { Section } from '../wrappers/sections/Section';
 
 export const Layout = () => {
   return (

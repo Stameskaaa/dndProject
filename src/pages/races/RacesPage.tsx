@@ -3,14 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { useScroll } from './hooks';
 import { useGetRaceListQuery } from '@/features/races/api';
-import { HoverZoomCard } from '@/components/shared/Cards/HoverZoomCard/HoverZoomCard';
-import { PageWithModal } from '@/components/shared/PageWIthModal/PageWIthModal';
-import { ModalDialog } from '@/components/shared/ModalDialog/ModalDialog';
-import { CubeLoader } from '@/components/shared/Loader/CubeLoader';
-import { Text } from '@/components/shared/Typography/Text';
+import { HoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
+import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader';
 import { HeaderHeight } from '@/constants/heights';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { RaceFilters } from './raceFilters/RaceFilters';
+import { SectionModal } from '@/components/wrappers/sections/SectionModal/SectionModal';
+import { Text } from '@/components/wrappers/typography/Text';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -39,7 +38,7 @@ export const RacesPage = () => {
   }
 
   return (
-    <PageWithModal>
+    <SectionModal>
       <div className="flex flex-1 flex-col gap-8">
         <motion.div
           style={{ top: HeaderHeight, zIndex: 1 }}
@@ -54,7 +53,7 @@ export const RacesPage = () => {
           <div className="w-full flex gap-3 items-center">
             <Input placeholder="Поиск ..." className="flex-1" />
             <div className="max-w-content">
-              <ModalDialog button={<Button>фильтры</Button>} />
+              <RaceFilters />
             </div>
           </div>
         </motion.div>
@@ -80,6 +79,6 @@ export const RacesPage = () => {
           </motion.div>
         </AnimatePresence>
       </div>
-    </PageWithModal>
+    </SectionModal>
   );
 };
