@@ -5,46 +5,13 @@ import { LucideArrowDown } from 'lucide-react';
 import styles from './NavigationMenu.module.css';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Text } from '@/components/wrappers/typography/Text';
-
-export const menuItems = [
-  {
-    title: 'О клубе',
-    content: [
-      { title: 'Что такое D&D', href: '/docs' },
-      { title: 'Уникальность клуба', href: '/docs/installation' },
-      { title: 'Мероприятия', href: '/docs/installation' },
-      { title: 'Для новых игроков', href: '/docs/installation' },
-    ],
-    src: 'https://sun9-44.userapi.com/s/v1/ig2/Cmd1CC138WveJUjSujFu0BOd3M8Y6U4BL8X5DoW4PLKEe0cirjt7Y3clUV05VdrHyVeXcl9rYay5FF7YIKbFumLz.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,960x960&from=bu&cs=960x0',
-  },
-  {
-    title: 'Миры',
-    content: [{ title: 'Долина Гурван-Гол', href: '/docs/primitives/alert-dialog' }],
-    src: 'https://sun9-29.userapi.com/s/v1/ig2/W5VMwVk-5lnf0EG7H-4fMcV2VIWqF-G6Dctu1ADv24pTaWLnSg6UcFCITu-bZQpYcM0aWGbIOWTcbQoIeNxUslVH.jpg?quality=95&as=32x38,48x57,72x86,108x129,160x191,240x287,360x430,480x574,540x645,640x765,720x860,1080x1290,1170x1398&from=bu&cs=1170x0',
-  },
-  {
-    title: 'Всё для игры',
-    content: [
-      { title: 'Правила клуба', href: '/docs/primitives/alert-dialog' },
-      { title: 'Правила D&D', href: '/docs/primitives/alert-dialog' },
-      { title: 'Домашние правила', href: '/docs/primitives/alert-dialog' },
-      { title: 'Персонаж', href: '/docs/primitives/alert-dialog' },
-      { title: 'Избранное', href: '/docs/primitives/alert-dialog' },
-    ],
-    src: 'https://sun9-70.userapi.com/s/v1/ig2/HWXLgbx1js068DVYzg-7aba0KgTDV_MUiQ33hBuCxtYQARbusnBqv2VII2f-VwV5gk_imTS4f8ZtZsoKQpx85gPC.jpg?quality=95&as=32x46,48x69,72x103,108x155,160x229,240x343,360x515,480x687,540x773,640x916,720x1030,1062x1520&from=bu&cs=1062x0',
-  },
-  {
-    title: 'Для теста',
-    content: [{ title: 'Рассы', href: '/races' }],
-    src: 'https://sun9-70.userapi.com/s/v1/ig2/HWXLgbx1js068DVYzg-7aba0KgTDV_MUiQ33hBuCxtYQARbusnBqv2VII2f-VwV5gk_imTS4f8ZtZsoKQpx85gPC.jpg?quality=95&as=32x46,48x69,72x103,108x155,160x229,240x343,360x515,480x687,540x773,640x916,720x1030,1062x1520&from=bu&cs=1062x0',
-  },
-];
+import { NAVIGATION_ITEMS } from '@/routes/routes';
 
 export const HeaderNavigation = () => {
   return (
     <NavigationMenu.Root skipDelayDuration={500} className={styles.Root}>
       <NavigationMenu.List className={classNames(styles.MenuList, 'flex items-center gap-3.5')}>
-        {menuItems.map(({ title, content, src }, i) => (
+        {NAVIGATION_ITEMS.map(({ title, content, src }, i) => (
           <NavigationMenu.Item key={i}>
             <NavigationMenu.Trigger
               className={classNames(

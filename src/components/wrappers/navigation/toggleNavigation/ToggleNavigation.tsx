@@ -3,6 +3,7 @@ import { motion, useCycle, type Variants } from 'framer-motion';
 import { Navigation } from './Navigation';
 import { MenuToggle } from './MenuToggle';
 import { useDimensions } from './use-dimensions';
+import classNames from 'classnames';
 
 const sidebar: Variants = {
   open: (height = 1000) => ({
@@ -15,7 +16,7 @@ const sidebar: Variants = {
     },
   }),
   closed: {
-    clipPath: 'circle(30px at calc(100% - 40px) 40px)',
+    clipPath: 'circle(25px at calc(100% - 40px) 40px)',
     transition: {
       delay: 0.5,
       type: 'spring',
@@ -51,7 +52,10 @@ export const ToggleNavigation = () => {
       custom={height}
       variants={shadowVariants}
       ref={containerRef}>
-      <motion.div className="absolute bottom-0 h-full w-[300px] bg-brand-400" variants={sidebar} />
+      <motion.div
+        className={classNames('absolute bottom-0 h-full w-[300px] bg-brand-400')}
+        variants={sidebar}
+      />
       <Navigation />
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>
