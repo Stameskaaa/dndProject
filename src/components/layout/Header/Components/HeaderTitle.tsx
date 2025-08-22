@@ -1,27 +1,43 @@
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type RefObject } from 'react';
 
 interface HeaderTitleProps {
   title: string;
+  parentRef: RefObject<HTMLDivElement | null>;
   isScrolled?: boolean;
+}
+
+interface Positions {
+  start: { top: number; left: number };
 }
 
 const debounceMs = 50;
 
-export const HeaderTitle = ({ title, isScrolled }: HeaderTitleProps) => {
+export const AnimatedHeaderTitle = ({ title, parentRef, isScrolled }: HeaderTitleProps) => {
   const controls = useAnimation();
-  const [centerPos, setCenterPos] = useState({
-    top: window.innerHeight / 2,
-    left: window.innerWidth / 2,
+  const [positions, setPositions] = useState<Positions>({
+    start: { top: 0, left: 0 },
   });
+
   const [debouncedScrolled, setDebouncedScrolled] = useState(isScrolled);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const handleResize = () =>
-      setCenterPos({ top: window.innerHeight / 2, left: window.innerWidth / 2 });
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const calculatePositions = () => {
+      let start = { top: 0, left: 0 };
+      if (parentRef.current) {
+        const rect = parentRef.current.getBoundingClientRect();
+        start = {
+          top: rect.top + rect.height / 2,
+          left: rect.left,
+        };
+      }
+      setPositions({ start });
+    };
+
+    calculatePositions();
+    window.addEventListener('resize', calculatePositions);
+    return () => window.removeEventListener('resize', calculatePositions);
   }, []);
 
   useEffect(() => {
@@ -31,11 +47,11 @@ export const HeaderTitle = ({ title, isScrolled }: HeaderTitleProps) => {
 
   useEffect(() => {
     const config = {
-      top: debouncedScrolled ? 0 : centerPos.top,
-      left: debouncedScrolled ? 0 : centerPos.left,
+      top: debouncedScrolled ? positions.start.top : window.innerHeight / 2,
+      left: debouncedScrolled ? positions.start.left : window.innerWidth / 2,
       scale: debouncedScrolled ? 0.5 : 1,
       x: debouncedScrolled ? 0 : '-50%',
-      y: debouncedScrolled ? 0 : '-50%',
+      y: '-50%',
       transition: { duration: 0.3, ease: 'easeInOut' },
     };
 
@@ -45,19 +61,32 @@ export const HeaderTitle = ({ title, isScrolled }: HeaderTitleProps) => {
     } else {
       controls.start(config as any);
     }
-  }, [debouncedScrolled, centerPos, controls, mounted]);
+  }, [debouncedScrolled, positions, controls, mounted]);
 
   return (
     <motion.h1
       initial={false}
       animate={controls}
       style={{
-        fontSize: 60,
+        fontFamily: 'Cinzel',
+        whiteSpace: 'pre-wrap',
+        transformOrigin: 'left',
+      }}
+      className="text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-4xl md:text-5xl ">
+      {title}
+    </motion.h1>
+  );
+};
+
+export const HeaderTitle = ({ title }: { title: string }) => {
+  return (
+    <h1
+      style={{
         fontFamily: 'Cinzel',
         whiteSpace: 'pre-wrap',
       }}
-      className="text-center leading-[50px] w-max absolute bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent">
+      className="text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-2xl md:text-3xl">
       {title}
-    </motion.h1>
+    </h1>
   );
 };

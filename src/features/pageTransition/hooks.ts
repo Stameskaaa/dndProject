@@ -1,33 +1,11 @@
-import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { useEffect } from 'react';
-import { setSection } from './pageTransitionSlice';
-import { useNavigate } from 'react-router-dom';
-import { MIN_SHOW_TIMER } from './constants';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { setPageTransitionDuration } from './pageTransitionSlice';
 
 export function usePageTransitionLoading(isLoading: boolean) {
-  const data = useAppSelector((state) => state.pageTransition);
   const dispatch = useAppDispatch();
-  console.log(data);
-
   useEffect(() => {
-    dispatch(setSection({ type: 'loading', value: isLoading }));
-  }, [isLoading, dispatch]);
+    dispatch(setPageTransitionDuration(isLoading));
+  }, [isLoading]);
   return null;
-}
-
-export function useDelayedNavigatePage() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  function delayedNavigate(path: string) {
-    dispatch(setSection({ type: 'timer', value: true }));
-    setTimeout(() => {
-      navigate(path);
-      dispatch(setSection({ type: 'timer', value: false }));
-    }, MIN_SHOW_TIMER);
-  }
-
-  return {
-    delayedNavigate,
-  };
 }

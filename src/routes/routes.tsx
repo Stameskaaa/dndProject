@@ -1,9 +1,12 @@
-import type { RouterConfig } from './helpers';
 import { MainPage } from '../pages/main/MainPage';
 import { CharacterPage } from '@/pages/character/CharacterPage';
 import { CHARACTER_NAVIGATION, EVENTS_NAVIGATION, NEW_PLAYER_NAVIGATION } from './nestedRoutes';
+import { createBrowserRouter, type NonIndexRouteObject, type RouteObject } from 'react-router-dom';
+import { Layout } from '@/components/layout/Layout';
+import { delayLoader } from './helpers';
+import { SHOW_TRANSITION } from '@/features/pageTransition/constants';
 
-export const routesAuth: RouterConfig[] = [
+export const ROUTES_AUTH: RouteObject[] = [
   {
     path: '/login',
     element: <div>login</div>,
@@ -17,6 +20,7 @@ export const routesAuth: RouterConfig[] = [
     element: <div>registration</div>,
   },
 ];
+// TODO должны быть реализованы с полем private обернуть дло createBrowserRouter
 
 export const NAVIGATION_ITEMS = [
   {
@@ -47,73 +51,93 @@ export const NAVIGATION_ITEMS = [
   },
 ];
 
-export const ROUTES: RouterConfig[] = [
+const routesWrapper = (routes: RouteObject[]): RouteObject[] => {
+  return routes.map((value) => {
+    const loader = delayLoader(SHOW_TRANSITION * 1000);
+    if ('index' in value && value.index === true) {
+      return { ...value, loader };
+    } else {
+      const nonIndex = value as NonIndexRouteObject;
+      const children = nonIndex.children ? routesWrapper(nonIndex.children) : undefined;
+      return { ...nonIndex, children, loader };
+    }
+  });
+};
+export const ROUTES: RouteObject[] = [
   {
     path: '/',
-    element: <MainPage />,
+    element: <Layout />,
+    children: [
+      { path: '', element: <MainPage /> },
+
+      // ABOUT
+      {
+        path: 'about',
+        element: <div>Что такое D&D</div>,
+
+        children: [
+          {
+            path: 'uniqueness',
+            element: <div>Уникальность клуба</div>,
+          },
+          { path: 'events', element: <div>Мероприятия</div> },
+          {
+            path: 'new-players',
+            element: <div>Для новых игроков</div>,
+          },
+          ...NEW_PLAYER_NAVIGATION.map(({ relativePath, element }) => ({
+            path: relativePath,
+            element,
+          })),
+        ],
+      },
+
+      // WORLDS
+      {
+        path: 'worlds',
+        element: <div>Миры</div>,
+        children: [
+          {
+            path: 'gurvan-gol',
+            element: <div>Долина Гурван-Гол</div>,
+            children: NEW_PLAYER_NAVIGATION.map(({ relativePath, element }) => ({
+              path: relativePath,
+              element,
+            })),
+          },
+        ],
+      },
+
+      {
+        path: 'game/club-rules',
+        element: <div>Правила клуба</div>,
+      },
+      {
+        path: 'game/dnd-rules',
+        element: <div>Правила D&D</div>,
+      },
+      { path: 'game/character', element: <CharacterPage /> },
+      ...CHARACTER_NAVIGATION.map(({ relativePath, element, children }) => ({
+        path: `game/character/${relativePath}`,
+        element,
+        children,
+      })),
+      {
+        path: 'game/home-rules',
+        element: <div>Домашние правила ToH</div>,
+      },
+      {
+        path: 'game/favorites',
+        element: <div>Избранное</div>,
+      },
+    ],
   },
-  // ABOUT
-  {
-    path: '/about',
-    element: <div>Что такое D&D</div>,
-  },
-  {
-    path: '/about/uniqueness',
-    element: <div>Уникальность клуба</div>,
-  },
-  {
-    path: '/about/events',
-    element: <div>Мероприятия</div>,
-  },
-  ...EVENTS_NAVIGATION.map(({ fullPath, element }) => ({
-    path: fullPath,
-    element,
-  })),
-  {
-    path: '/about/new-players',
-    element: <div>Для новых игроков</div>,
-  },
-  ...NEW_PLAYER_NAVIGATION.map(({ fullPath, element }) => ({
-    path: fullPath,
-    element,
-  })),
-  // WORLDS
-  {
-    path: '/worlds/gurvan-gol',
-    element: <div>Долина Гурван-Гол</div>,
-  },
-  ...NEW_PLAYER_NAVIGATION.map(({ relativePath, element }) => ({
-    path: `/worlds/gurvan-gol/${relativePath}`,
-    element,
-  })),
-  // GAME
-  {
-    path: '/game/club-rules',
-    element: <div>Правила клуба</div>,
-  },
-  {
-    path: '/game/dnd-rules',
-    element: <div>Правила D&D</div>,
-  },
-  {
-    path: '/game/character',
-    element: <CharacterPage />,
-  },
-  ...CHARACTER_NAVIGATION.map(({ fullPath, element, children }) => ({
-    path: fullPath,
-    element,
-    children,
-  })),
-  {
-    path: '/game/home-rules',
-    element: <div>Домашние правила ToH</div>,
-  },
-  {
-    path: '/game/favorites',
-    element: <div>Избранное</div>,
-  },
+
   {
     path: '*',
     element: <div style={{ height: '100vh' }}>not found</div>,
   },
 ];
+
+export const router = createBrowserRouter(routesWrapper(ROUTES));
+// export const authRoutes = createBrowserRouter(ROUTES_AUTH);

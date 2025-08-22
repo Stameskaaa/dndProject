@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { HeaderTitle } from './Components/HeaderTitle';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatedHeaderTitle, HeaderTitle } from './Components/HeaderTitle';
 import { HeaderNavigation } from './Components/HeaderNavigation/NavigationMenu';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { ToggleNavigation } from '@/components/wrappers/navigation/toggleNavigation/ToggleNavigation';
@@ -11,6 +11,7 @@ import { HeaderIndex } from '@/constants/zIndex';
 
 export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean; title: string }) {
   const [isScrolled, setIsScrolled] = useState<boolean | null>(null);
+  const headerRef = useRef<null | HTMLDivElement>(null);
   const width = useWindowWidth();
 
   useEffect(() => {
@@ -36,8 +37,14 @@ export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean
           'flex items-center w-full max-w-[var(--width-max-container)] justify-between',
           defaultPaddings,
         )}>
-        <div className="grid items-center w-[230px] h-[40px] relative">
-          {isScrolled !== null && <HeaderTitle isScrolled={isScrolled} title={title} />}
+        <div ref={headerRef} className="grid items-center w-[230px] h-[40px]">
+          {isScrolled !== null &&
+            headerRef.current &&
+            (titleAnimate ? (
+              <AnimatedHeaderTitle parentRef={headerRef} isScrolled={!!isScrolled} title={title} />
+            ) : (
+              <HeaderTitle title={title} />
+            ))}
         </div>
 
         {width > 1024 ? (

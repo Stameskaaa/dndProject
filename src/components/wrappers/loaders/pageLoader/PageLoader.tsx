@@ -1,31 +1,29 @@
-import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useScrollLock } from '@/features/scroll/hooks';
 import { SHOW_TRANSITION } from '@/features/pageTransition/constants';
-import { setSection } from '@/features/pageTransition/pageTransitionSlice';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { PageLoaderIndex } from '@/constants/zIndex';
 import { CubeLoader } from '../cubeLoader/CubeLoader';
-import { TransitionTimer } from '../../sections/sectionTransition/TransitionTimer';
+import { useNavigation } from 'react-router-dom';
 
 export const PageLoader = () => {
-  const dispatch = useDispatch();
-  const { sectionLoading, sectionTimer } = useAppSelector((state) => state.pageTransition);
+  const navigation = useNavigation();
+  const { sectionLoading } = useAppSelector((state) => state.pageTransition);
   const [firstMount, setFirstMount] = useState(true);
-  const showPageTransition = firstMount || sectionTimer || sectionLoading;
+  const showPageTransition = navigation.state === 'loading' || sectionLoading || firstMount;
   useScrollLock('SectionLoader', showPageTransition);
 
   useEffect(() => {
-    dispatch(setSection({ type: 'timer', value: true }));
-    setFirstMount(false);
+    setTimeout(() => {
+      setFirstMount(false);
+    }, SHOW_TRANSITION * 1000);
   }, []);
 
   return (
     <AnimatePresence>
       {showPageTransition && (
         <>
-          <TransitionTimer />
           <motion.div
             style={{ zIndex: PageLoaderIndex }}
             initial={{ y: firstMount ? 0 : '100%' }}
