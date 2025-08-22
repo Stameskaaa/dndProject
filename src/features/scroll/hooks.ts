@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { addBlocker, removeBlocker } from './scrollSlice';
 import { useAppDispatch } from '@/hooks/reduxHooks';
+import { addBlocker, removeBlocker } from '@/features/scroll/scrollSlice';
 
 export const useScrollLock = (id: string, enabled = true) => {
   const dispatch = useAppDispatch();

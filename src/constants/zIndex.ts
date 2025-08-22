@@ -2,3 +2,4 @@ export const HeaderIndex = 100;
 export const SidePanelIndex = 100;
 export const DropdownIndex = 10;
 export const ModalIndex = 500;
+export const PageLoaderIndex = 1000;

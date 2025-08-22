@@ -4,7 +4,7 @@ import { useGetRaceByIdQuery } from '@/features/races/api';
 import { Button } from '@/components/ui/button';
 import { Tabs } from '@/components/wrappers/navigation/tabs/Tabs';
 import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader';
-import { SectionModalContent } from '@/components/wrappers/sections/SectionModal/SectionModalContent';
+import { SectionModalContent } from '@/components/wrappers/sections/sectionModal/SectionModalContent';
 import { Text } from '@/components/wrappers/typography/Text';
 
 interface RaceCharacterPageProps {

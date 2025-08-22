@@ -8,8 +8,9 @@ import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader'
 import { HeaderHeight } from '@/constants/heights';
 import { Input } from '@/components/ui/input';
 import { RaceFilters } from './raceFilters/RaceFilters';
-import { SectionModal } from '@/components/wrappers/sections/SectionModal/SectionModal';
+import { SectionModal } from '@/components/wrappers/sections/sectionModal/SectionModal';
 import { Text } from '@/components/wrappers/typography/Text';
+import { usePageTransitionLoading } from '@/features/pageTransition/hooks';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,6 +33,7 @@ export const RacesPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { isLoading, data: raceList } = useGetRaceListQuery();
+  usePageTransitionLoading(isLoading);
 
   return (
     <SectionModal>

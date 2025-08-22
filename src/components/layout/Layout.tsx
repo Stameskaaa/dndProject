@@ -3,6 +3,8 @@ import { AnimatePresence } from 'framer-motion';
 import { Header } from './Header/Header';
 import { WavesFooter } from './footer/WavesFooter';
 import { Section } from '../wrappers/sections/section/Section';
+import { PageLoader } from '../wrappers/loaders/pageLoader/PageLoader';
+import { useState } from 'react';
 
 export const Layout = () => {
   return (
@@ -11,7 +13,7 @@ export const Layout = () => {
       <AnimatePresence>
         <Outlet />
       </AnimatePresence>
-
+      <PageLoader />
       <WavesFooter />
     </Section>
   );

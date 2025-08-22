@@ -1,13 +1,15 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 import { LucideArrowDown } from 'lucide-react';
 import styles from './NavigationMenu.module.css';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Text } from '@/components/wrappers/typography/Text';
 import { NAVIGATION_ITEMS } from '@/routes/routes';
+import { useDelayedNavigatePage } from '@/features/pageTransition/hooks';
 
 export const HeaderNavigation = () => {
+  const { delayedNavigate } = useDelayedNavigatePage();
+
   return (
     <NavigationMenu.Root skipDelayDuration={500} className={styles.Root}>
       <NavigationMenu.List className={classNames(styles.MenuList, 'flex items-center gap-3.5')}>
@@ -46,12 +48,12 @@ export const HeaderNavigation = () => {
                   className="flex gap-2 flex-col w-full py-3 pr-3  overflow-auto">
                   {content.map(({ title, href }, i) => (
                     <NavigationMenu.Link key={i} asChild>
-                      <Link
-                        className="py-2 px-3 hover:bg-brand-300 rounded-md transition-color duration-300"
-                        to={href}>
+                      <div
+                        onClick={() => delayedNavigate(href)}
+                        className="py-2 px-3 hover:bg-brand-300 rounded-md transition-color duration-300 cursor-pointer">
                         <Text color="accent-200">{title}</Text>
                         <Text className="text-text-secondary">{title}</Text>
-                      </Link>
+                      </div>
                     </NavigationMenu.Link>
                   ))}
                 </div>

@@ -1,6 +1,3 @@
-import classNames from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import {
   Children,
   cloneElement,
@@ -11,7 +8,10 @@ import {
   useState,
   type ReactElement,
 } from 'react';
-import { useScrollLock } from '@/features/scroll/useScrollLock';
+import classNames from 'classnames';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
+import { useScrollLock } from '@/features/scroll/hooks';
 import { HeaderHeight } from '@/constants/heights';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { Blanket } from '../../background/blanket/Blanket';
