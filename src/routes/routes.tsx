@@ -51,9 +51,13 @@ export const NAVIGATION_ITEMS = [
   },
 ];
 
+const loaderRoutes = ['/', '/game', 'game/character', 'game/character/races'];
+
 const routesWrapper = (routes: RouteObject[]): RouteObject[] => {
   return routes.map((value) => {
-    const loader = delayLoader(SHOW_TRANSITION * 1000);
+    const loader = loaderRoutes.includes(value?.path || '')
+      ? delayLoader(SHOW_TRANSITION * 1000)
+      : undefined;
     if ('index' in value && value.index === true) {
       return { ...value, loader };
     } else {
@@ -66,9 +70,9 @@ const routesWrapper = (routes: RouteObject[]): RouteObject[] => {
 export const ROUTES: RouteObject[] = [
   {
     path: '/',
-    element: <Layout />,
+    element: <Layout key="layout" />,
     children: [
-      { path: '', element: <MainPage /> },
+      { path: '', element: <MainPage key="mainpage" /> },
 
       // ABOUT
       {
@@ -135,9 +139,14 @@ export const ROUTES: RouteObject[] = [
 
   {
     path: '*',
-    element: <div style={{ height: '100vh' }}>not found</div>,
+    element: (
+      <div key="not-found" style={{ height: '100vh' }}>
+        not found
+      </div>
+    ),
   },
 ];
 
 export const router = createBrowserRouter(routesWrapper(ROUTES));
+
 // export const authRoutes = createBrowserRouter(ROUTES_AUTH);

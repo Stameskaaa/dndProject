@@ -15,7 +15,7 @@ export const Layout = () => {
     <Section paddingX="empty" screen={true} className="bg-brand-500 flex flex-col items-center">
       <Header titleAnimate={shouldAnimate} title="Time of heroes" />
       <AnimatePresence>
-        <PageLoader />
+        <PageLoader key="loader" />
         <Outlet />
       </AnimatePresence>
       <WavesFooter />

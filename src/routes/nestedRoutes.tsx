@@ -1,5 +1,5 @@
-import { RaceCharacterPage } from '@/pages/races/raceCharacter/RaceCharacterPage';
-import { RacesPage } from '@/pages/races/RacesPage';
+import { RaceCharacterPage } from '@/pages/character/races/raceCharacter/RaceCharacterPage';
+import { RacesPage } from '@/pages/character/races/RacesPage';
 
 export const NEW_PLAYER_NAVIGATION = [
   {
