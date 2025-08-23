@@ -1,32 +1,19 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
-import { useScroll } from './hooks';
+import { motion } from 'framer-motion';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useGetRaceListQuery } from '@/features/races/api';
-import { HoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
-import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader';
-import { HeaderHeight } from '@/constants/heights';
-import { Input } from '@/components/ui/input';
-import { RaceFilters } from './raceFilters/RaceFilters';
-import { SectionModal } from '@/components/wrappers/sections/sectionModal/SectionModal';
-import { Text } from '@/components/wrappers/typography/Text';
 import { usePageTransitionLoading } from '@/features/pageTransition/hooks';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 10, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1 },
-};
-const MotionHoverZoomCard = motion.create(HoverZoomCard);
+import { useScroll } from './hooks';
+import { Input } from '@/components/ui/input';
+import { HeaderHeight } from '@/constants/heights';
+import { RaceFilters } from './raceFilters/RaceFilters';
+import { Text } from '@/components/wrappers/typography/Text';
+import { SectionModal } from '@/components/wrappers/sections/sectionModal/SectionModal';
+import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import {
+  cardVariants,
+  MotionHoverZoomCard,
+} from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 
 export const RacesPage = () => {
   const isScrolled = useScroll();
@@ -55,31 +42,21 @@ export const RacesPage = () => {
             </div>
           </div>
         </motion.div>
-        <AnimatePresence>
-          {isLoading ? (
-            <CubeLoader className="m-auto" />
-          ) : (
-            <motion.div
-              key={'asd'}
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="w-full grid gap-4 grid-cols-[repeat(auto-fit,minmax(250px,1fr))] justify-items-center">
-              {raceList?.map(({ id: raceId, name, description, src }) => (
-                <MotionHoverZoomCard
-                  active={Number(id) === raceId}
-                  key={raceId}
-                  name={name}
-                  src={src}
-                  description={description}
-                  variants={cardVariants}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  onClick={() => navigate(`${raceId}`)}
-                />
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <AnimatedGridList isLoading={isLoading}>
+          {/* TODO когда будут все подобные страницы вынести в компонент AnimatedGridList */}
+          {raceList?.map(({ id: raceId, name, description, src }) => (
+            <MotionHoverZoomCard
+              active={Number(id) === raceId}
+              key={raceId}
+              name={name}
+              src={src}
+              description={description}
+              variants={cardVariants}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              onClick={() => navigate(`${raceId}`)}
+            />
+          ))}
+        </AnimatedGridList>
       </div>
     </SectionModal>
   );

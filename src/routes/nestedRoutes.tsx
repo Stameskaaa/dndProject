@@ -1,3 +1,4 @@
+import { ClassesPage } from '@/pages/character/classes/ClassesPage';
 import { RaceCharacterPage } from '@/pages/character/races/raceCharacter/RaceCharacterPage';
 import { RacesPage } from '@/pages/character/races/RacesPage';
 
@@ -83,7 +84,7 @@ export const CHARACTER_NAVIGATION = [
     title: 'Классы',
     relativePath: 'classes',
     fullPath: '/game/character/classes',
-    element: <div>useful</div>,
+    element: <ClassesPage />,
   },
   {
     id: 'races',

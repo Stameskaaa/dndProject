@@ -25,7 +25,7 @@ export const ModalWindow: FC<ModalDialogProps> = ({ button, children }) => {
         </DialogTrigger>
       )}
       <DialogContent
-        setOpen={setOpen}
+        setopen={setOpen}
         open={open}
         className="bg-brand-400 border-none h-[60%] w-[35%] !max-w-none">
         {Children.map(children, (child) =>

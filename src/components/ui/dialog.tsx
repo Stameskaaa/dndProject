@@ -25,10 +25,10 @@ function DialogClose({ ...props }: ComponentProps<typeof DialogPrimitive.Close>)
 
 type MotionDivProps = HTMLMotionProps<'div'> & {
   open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setopen: Dispatch<SetStateAction<boolean>>;
 };
 
-function DialogContent({ className, children, open, setOpen, ...props }: MotionDivProps) {
+function DialogContent({ className, children, open, setopen, ...props }: MotionDivProps) {
   const id = useId();
   useScrollLock(id, open);
 
@@ -38,7 +38,7 @@ function DialogContent({ className, children, open, setOpen, ...props }: MotionD
         <DialogPortal forceMount key="modal" data-slot="dialog-portal">
           <Blanket
             duration={0.2}
-            onClick={() => setOpen(false)}
+            onClick={() => setopen(false)}
             key="blanket"
             style={{ zIndex: ModalIndex - 1 }}
           />

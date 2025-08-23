@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import { Text } from '../../Typography/Text';
-import defaultSrsc from '../../../../assets/bg2.jpg';
+import { motion } from 'framer-motion';
 import classNames from 'classnames';
+import { Text } from '../../typography/Text';
 
 interface HoverZoomCardProps {
   name: string;
@@ -24,11 +24,13 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
           'relative cursor-pointer group w-full border border-transparent transition-colors bg-brand-400 shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between',
         )}>
         <div className="absolute right-0 h-full max-w-full rounded-lg z-0 overflow-hidden">
-          <img
-            src={src || defaultSrsc}
-            alt=""
-            className="w-auto h-full object-cover group-hover:scale-110 duration-400"
-          />
+          {src && (
+            <img
+              src={src}
+              alt=""
+              className="w-auto h-full object-cover group-hover:scale-110 duration-400"
+            />
+          )}
           <div
             className="absolute inset-0"
             style={{
@@ -48,3 +50,11 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
 );
 
 HoverZoomCard.displayName = 'HoverZoomCard';
+
+export const MotionHoverZoomCard = motion.create(HoverZoomCard);
+
+// TODO переиспользовать
+export const cardVariants = {
+  hidden: { opacity: 0, y: 10, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+};

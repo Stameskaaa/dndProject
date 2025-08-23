@@ -9,7 +9,7 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
 export const HeaderNavigation = () => {
   return (
-    <NavigationMenu.Root skipDelayDuration={500} className={styles.Root}>
+    <NavigationMenu.Root className={classNames(styles.Root, '!justify-end')}>
       <NavigationMenu.List className={classNames(styles.MenuList, 'flex items-center gap-3.5')}>
         {NAVIGATION_ITEMS.map(({ title, content, src }, i) => (
           <NavigationMenu.Item key={i}>

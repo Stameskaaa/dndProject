@@ -310,5 +310,767 @@
       "alignment": "Хаотично-нейтральный",
       "languages": ["Общий", "Ифритский"]
     }
+  ],
+  "classes": [
+    {
+      "name": "Бард",
+      "key": 1,
+      "description": "Вызывая магию через музыку, танцы и стихи, Бард является экспертом...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": [
+            "Использование заклинаний",
+            "Дополнительные заклинания",
+            "Вдохновение барда (x6)"
+          ],
+          "knownSpells": 2,
+          "spellSlots": 4,
+          "spellSlotLevels": [2, 4, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Мастер на все руки", "Песнь отдыха (x6)", "Магическое вдохновение"],
+          "knownSpells": 2,
+          "spellSlots": 5,
+          "spellSlotLevels": [2, 5, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Харизма",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Ловкость", "Харизма"],
+        "skills": "Выберите любые 3",
+        "weapons": "Простое оружие",
+        "instruments": "Выберите 3 музыкальных инструмента",
+        "armor": "Лёгкие доспехи",
+        "startingEquipment": [
+          "Вариант A: Кожаный доспех, 2 кинжала, Лёгкий арбалет...",
+          "Вариант B: Кожаный доспех, 2 дубинки, Песенник..."
+        ]
+      }
+    },
+    {
+      "name": "Воин",
+      "key": 2,
+
+      "description": "Мастер боя и защиты, Воин обладает силой и выносливостью...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Боевой стиль", "Защита"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Второе дыхание", "Атака дважды"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Сила",
+        "hitDice": "k10 за каждый уровень",
+        "savingThrows": ["Сила", "Выносливость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Все виды оружия",
+        "instruments": "Нет",
+        "armor": "Все доспехи",
+        "startingEquipment": [
+          "Вариант A: Длинный меч, Щит, Кожаный доспех",
+          "Вариант B: Боевой топор, Кольчуга"
+        ]
+      }
+    },
+    {
+      "name": "Маг",
+      "key": 3,
+
+      "description": "Владеет силами арканической магии, специализируется на заклинаниях...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Изучение заклинаний", "Магический снаряд"],
+          "knownSpells": 3,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Чтение магических книг", "Защитное заклинание"],
+          "knownSpells": 4,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Интеллект",
+        "hitDice": "k6 за каждый уровень",
+        "savingThrows": ["Интеллект", "Мудрость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": ["Вариант A: Посох, Книга заклинаний", "Вариант B: Жезл, Мантия"]
+      }
+    },
+    {
+      "name": "Разбойник",
+      "key": 4,
+
+      "description": "Ловкий и скрытный, мастер скрытности и хитрых атак...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Скрытность", "Воровство"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Атака с тыла", "Ловкость рук"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Ловкость",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Ловкость", "Интеллект"],
+        "skills": "Выберите любые 4",
+        "weapons": "Простое и лёгкое оружие",
+        "instruments": "Нет",
+        "armor": "Лёгкие доспехи",
+        "startingEquipment": [
+          "Вариант A: Кинжал, Арбалет",
+          "Вариант B: Меч короткий, Набор для взлома"
+        ]
+      }
+    },
+    {
+      "name": "Жрец",
+      "key": 5,
+
+      "description": "Использует божественную магию для исцеления и защиты...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Божественное вмешательство", "Исцеление"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Аура защиты", "Молитва силы"],
+          "knownSpells": 3,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Мудрость",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Мудрость", "Харизма"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Средние доспехи",
+        "startingEquipment": [
+          "Вариант A: Молот, Щит, Священные символы",
+          "Вариант B: Посох, Мантия, Священные символы"
+        ]
+      }
+    },
+    {
+      "name": "Паладин",
+      "key": 6,
+
+      "description": "Защитник добра, сочетает боевые навыки и божественные заклинания...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Божественное чувство", "Божественный удар"],
+          "knownSpells": 1,
+          "spellSlots": 1,
+          "spellSlotLevels": [1, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Священное оружие", "Защита союзников"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Харизма",
+        "hitDice": "k10 за каждый уровень",
+        "savingThrows": ["Мудрость", "Харизма"],
+        "skills": "Выберите любые 2",
+        "weapons": "Все виды оружия",
+        "instruments": "Нет",
+        "armor": "Все доспехи",
+        "startingEquipment": [
+          "Вариант A: Меч, Щит, Доспехи",
+          "Вариант B: Молот, Кольчуга, Священный символ"
+        ]
+      }
+    },
+    {
+      "name": "Следопыт",
+      "key": 7,
+
+      "description": "Мастер выживания, дальнего боя и отслеживания целей...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Следопытство", "Боевая подготовка"],
+          "knownSpells": 1,
+          "spellSlots": 1,
+          "spellSlotLevels": [1, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Ловкость выживания", "Второе дыхание"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Ловкость",
+        "hitDice": "k10 за каждый уровень",
+        "savingThrows": ["Сила", "Ловкость"],
+        "skills": "Выберите любые 3",
+        "weapons": "Дальнее и простое оружие",
+        "instruments": "Нет",
+        "armor": "Лёгкие и средние доспехи",
+        "startingEquipment": [
+          "Вариант A: Лук, Меч, Кожаный доспех",
+          "Вариант B: Дубина, Арбалет, Щит"
+        ]
+      }
+    },
+    {
+      "name": "Друид",
+      "key": 8,
+
+      "description": "Маг природы, умеет превращаться в животных и использовать заклинания стихий...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Природная магия", "Смена формы"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Защитная магия", "Природная связь"],
+          "knownSpells": 3,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Мудрость",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Интеллект", "Мудрость"],
+        "skills": "Выберите любые 3",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Лёгкие и средние доспехи",
+        "startingEquipment": [
+          "Вариант A: Посох, Скатка для трав, Кожаный доспех",
+          "Вариант B: Жезл, Магическая книга, Мантия"
+        ]
+      }
+    },
+    {
+      "name": "Монах",
+      "key": 9,
+
+      "description": "Искусный боец без оружия, использует силу духа и тело...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Боевые искусства", "Неуязвимость"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Скорость движения", "Маневренность"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Ловкость",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Сила", "Ловкость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие и без оружия",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": [
+          "Вариант A: Посох, Набор для путешествий",
+          "Вариант B: Боевые перчатки, Кожаный пояс"
+        ]
+      }
+    },
+    {
+      "name": "Колдун",
+      "key": 10,
+
+      "description": "Использует врождённую магическую силу, контролирует хаотические заклинания...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Магическая энергия", "Всплеск силы"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Контроль стихии", "Заклинание хаоса"],
+          "knownSpells": 3,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Харизма",
+        "hitDice": "k6 за каждый уровень",
+        "savingThrows": ["Харизма", "Конституция"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": ["Вариант A: Жезл, Книга заклинаний", "Вариант B: Посох, Мантия"]
+      }
+    },
+    {
+      "name": "Колдун-покровитель",
+      "key": 11,
+      "description": "Заключил договор с могущественным существом, получает магию через покровителя...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Договор с покровителем", "Заклинания покровителя"],
+          "knownSpells": 2,
+          "spellSlots": 1,
+          "spellSlotLevels": [1, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Темная сделка", "Заклинание проклятия"],
+          "knownSpells": 3,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Харизма",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Сила", "Харизма"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Лёгкие доспехи",
+        "startingEquipment": ["Вариант A: Жезл, Книга заклинаний", "Вариант B: Посох, Талисман"]
+      }
+    },
+    {
+      "name": "Варвар",
+      "key": 12,
+      "description": "Сильный и свирепый боец, полагается на ярость в бою...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Ярость", "Безбашенная атака"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Неукротимая сила", "Боевая стойкость"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Сила",
+        "hitDice": "k12 за каждый уровень",
+        "savingThrows": ["Сила", "Выносливость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Все виды оружия",
+        "instruments": "Нет",
+        "armor": "Лёгкие и средние доспехи",
+        "startingEquipment": ["Вариант A: Двуручный топор, Щит", "Вариант B: Длинный меч, Кольчуга"]
+      }
+    },
+    {
+      "name": "Следопыт-охотник",
+      "key": 13,
+      "description": "Специалист дальнего боя и выживания в дикой природе...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Ловкость цели", "Следопытство"],
+          "knownSpells": 1,
+          "spellSlots": 1,
+          "spellSlotLevels": [1, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Мастер лука", "Выживание в дикой природе"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Ловкость",
+        "hitDice": "k10 за каждый уровень",
+        "savingThrows": ["Сила", "Ловкость"],
+        "skills": "Выберите любые 3",
+        "weapons": "Простое и дальнее оружие",
+        "instruments": "Нет",
+        "armor": "Лёгкие и средние доспехи",
+        "startingEquipment": [
+          "Вариант A: Лук, Кинжал, Кожаный доспех",
+          "Вариант B: Арбалет, Меч, Щит"
+        ]
+      }
+    },
+    {
+      "name": "Монах-тень",
+      "key": 14,
+      "description": "Искусный боец без оружия, использует скрытность и ловкость...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Боевые искусства", "Скрытность"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Ускорение", "Маневренность"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Ловкость",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Сила", "Ловкость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие и без оружия",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": [
+          "Вариант A: Посох, Кожаный пояс",
+          "Вариант B: Боевые перчатки, Набор для путешествий"
+        ]
+      }
+    },
+    {
+      "name": "Заклинатель стихий",
+      "key": 15,
+      "description": "Мастер магии стихии, способный управлять огнём, водой и ветром...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Заклинания стихии", "Магический снаряд"],
+          "knownSpells": 3,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Контроль стихии", "Защитное заклинание"],
+          "knownSpells": 4,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Интеллект",
+        "hitDice": "k6 за каждый уровень",
+        "savingThrows": ["Интеллект", "Мудрость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": ["Вариант A: Жезл, Книга заклинаний", "Вариант B: Посох, Мантия"]
+      }
+    },
+    {
+      "name": "Жрец света",
+      "key": 16,
+      "description": "Священник света, исцеляет союзников и уничтожает тьму...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Исцеление", "Божественный свет"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Аура защиты", "Божественная мощь"],
+          "knownSpells": 3,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Мудрость",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Мудрость", "Харизма"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Средние доспехи",
+        "startingEquipment": [
+          "Вариант A: Молот, Щит, Священные символы",
+          "Вариант B: Посох, Мантия, Символ"
+        ]
+      }
+    },
+    {
+      "name": "Темный маг",
+      "key": 17,
+      "description": "Колдун, использующий запрещённую магию для контроля и разрушения...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Темная магия", "Проклятие"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Манипуляция энергией", "Заклинание разрушения"],
+          "knownSpells": 3,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Интеллект",
+        "hitDice": "k6 за каждый уровень",
+        "savingThrows": ["Интеллект", "Харизма"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": ["Вариант A: Жезл, Книга тайн", "Вариант B: Посох, Мантия"]
+      }
+    },
+    {
+      "name": "Берсерк",
+      "key": 18,
+      "description": "Воин, который теряет контроль и превращается в яростного бойца...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Ярость берсерка", "Неистовство"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Боевое безумие", "Сопротивление боли"],
+          "knownSpells": 0,
+          "spellSlots": 0,
+          "spellSlotLevels": [null, null, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Сила",
+        "hitDice": "k12 за каждый уровень",
+        "savingThrows": ["Сила", "Выносливость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Все виды оружия",
+        "instruments": "Нет",
+        "armor": "Лёгкие и средние доспехи",
+        "startingEquipment": ["Вариант A: Двуручный топор, Щит", "Вариант B: Меч длинный, Кольчуга"]
+      }
+    },
+    {
+      "name": "Пиромант",
+      "key": 19,
+      "description": "Маг огня, поджигает врагов и управляет огненной стихией...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Огненный шар", "Пламя"],
+          "knownSpells": 2,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Вспышка огня", "Защитное пламя"],
+          "knownSpells": 3,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Интеллект",
+        "hitDice": "k6 за каждый уровень",
+        "savingThrows": ["Интеллект", "Мудрость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": ["Вариант A: Жезл, Книга заклинаний", "Вариант B: Посох, Мантия"]
+      }
+    },
+    {
+      "name": "Вестник тьмы",
+      "key": 20,
+      "description": "Колдун с силой тьмы, навлекает страх и разрушение на врагов...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Тёмное касание", "Страх"],
+          "knownSpells": 2,
+          "spellSlots": 1,
+          "spellSlotLevels": [1, null, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Заклинание ужаса", "Тёмная магия"],
+          "knownSpells": 3,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Харизма",
+        "hitDice": "k8 за каждый уровень",
+        "savingThrows": ["Сила", "Харизма"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Лёгкие доспехи",
+        "startingEquipment": ["Вариант A: Жезл, Талисман", "Вариант B: Посох, Тёмный амулет"]
+      }
+    },
+    {
+      "name": "Элементалист",
+      "key": 21,
+      "description": "Маг, способный управлять стихиями природы: огонь, вода, земля, воздух...",
+      "src": "",
+      "levelTable": [
+        {
+          "level": 1,
+          "masteryBonus": 2,
+          "abilities": ["Магия стихий", "Малое заклинание"],
+          "knownSpells": 3,
+          "spellSlots": 2,
+          "spellSlotLevels": [1, 1, null, null, null, null, null, null, null]
+        },
+        {
+          "level": 2,
+          "masteryBonus": 2,
+          "abilities": ["Контроль стихии", "Стихийный взрыв"],
+          "knownSpells": 4,
+          "spellSlots": 3,
+          "spellSlotLevels": [1, 2, null, null, null, null, null, null, null]
+        }
+      ],
+      "features": {
+        "mainCharacteristic": "Интеллект",
+        "hitDice": "k6 за каждый уровень",
+        "savingThrows": ["Интеллект", "Мудрость"],
+        "skills": "Выберите любые 2",
+        "weapons": "Простое оружие",
+        "instruments": "Нет",
+        "armor": "Нет",
+        "startingEquipment": ["Вариант A: Жезл, Книга заклинаний", "Вариант B: Посох, Мантия"]
+      }
+    }
   ]
 }
