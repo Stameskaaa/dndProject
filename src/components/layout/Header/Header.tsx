@@ -43,7 +43,7 @@ export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean
             (titleAnimate ? (
               <AnimatedHeaderTitle parentRef={headerRef} isScrolled={!!isScrolled} title={title} />
             ) : (
-              <HeaderTitle title={title} />
+              <HeaderTitle>{title}</HeaderTitle>
             ))}
         </div>
 

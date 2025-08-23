@@ -1,4 +1,5 @@
-import { motion, useAnimation } from 'framer-motion';
+import classNames from 'classnames';
+import { motion, useAnimation, type HTMLMotionProps } from 'framer-motion';
 import { useEffect, useState, type RefObject } from 'react';
 
 interface HeaderTitleProps {
@@ -64,29 +65,47 @@ export const AnimatedHeaderTitle = ({ title, parentRef, isScrolled }: HeaderTitl
   }, [debouncedScrolled, positions, controls, mounted]);
 
   return (
-    <motion.h1
+    <HeaderTitle
+      className="text-4xl md:text-5xl"
+      style={{ transformOrigin: 'left' }}
       initial={false}
-      animate={controls}
-      style={{
-        fontFamily: 'Cinzel',
-        whiteSpace: 'pre-wrap',
-        transformOrigin: 'left',
-      }}
-      className="text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-4xl md:text-5xl ">
+      animate={controls}>
       {title}
-    </motion.h1>
+    </HeaderTitle>
+    // <motion.h1
+    //   initial={false}
+    //   animate={controls}
+    //   style={{
+    //     fontFamily: 'Cinzel',
+    //     whiteSpace: 'pre-wrap',
+    //     transformOrigin: 'left',
+    //   }}
+    //   className="text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-4xl md:text-5xl ">
+    //   {title}
+    // </motion.h1>
   );
 };
 
-export const HeaderTitle = ({ title }: { title: string }) => {
+interface TitleProps extends HTMLMotionProps<'h1'> {
+  children: string;
+}
+
+export const HeaderTitle: React.FC<TitleProps> = ({ children, ...props }) => {
   return (
-    <h1
+    <motion.h1
+      {...props}
       style={{
-        fontFamily: 'Cinzel',
-        whiteSpace: 'pre-wrap',
+        ...{
+          fontFamily: 'Cinzel',
+          whiteSpace: 'pre-wrap',
+        },
+        ...props?.style,
       }}
-      className="text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-2xl md:text-3xl">
-      {title}
-    </h1>
+      className={classNames(
+        'text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-2xl md:text-3xl',
+        props?.className,
+      )}>
+      {children}
+    </motion.h1>
   );
 };
