@@ -7,6 +7,7 @@ import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindo
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 import { useGetClassesListQuery } from '@/features/classes/api';
 import { Text } from '@/components/wrappers/typography/Text';
+import { ClassModalContent } from './ClassModalContent';
 
 export const ClassesPage = () => {
   const { isLoading, data: raceList } = useGetClassesListQuery();
@@ -27,7 +28,9 @@ export const ClassesPage = () => {
                 variants={cardVariants}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               />
-            }></ModalWindow>
+            }>
+            <ClassModalContent />
+          </ModalWindow>
         ))}
       </AnimatedGridList>
     </Section>
