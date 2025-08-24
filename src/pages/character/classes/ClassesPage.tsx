@@ -1,4 +1,3 @@
-import { useGetRaceListQuery } from '@/features/races/api';
 import {
   cardVariants,
   MotionHoverZoomCard,
@@ -6,20 +5,22 @@ import {
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import { useGetClassesListQuery } from '@/features/classes/api';
+import { Text } from '@/components/wrappers/typography/Text';
 
 export const ClassesPage = () => {
-  const { isLoading, data: raceList } = useGetRaceListQuery();
+  const { isLoading, data: raceList } = useGetClassesListQuery();
 
   return (
     <Section fixedWidth screen>
+      <Text size="4xl">Классы</Text>
       <AnimatedGridList isLoading={isLoading}>
         {/* TODO когда будут все подобные страницы вынести в компонент AnimatedGridList */}
-
-        {raceList?.map(({ id: raceId, name, description, src }) => (
+        {raceList?.map(({ id, name, description, src }) => (
           <ModalWindow
+            key={id}
             button={
               <MotionHoverZoomCard
-                key={raceId}
                 name={name}
                 src={src}
                 description={description}

@@ -6,7 +6,7 @@ import { CHARACTER_NAVIGATION } from '@/routes/nestedRoutes';
 export const CharacterPage = () => {
   return (
     <Section screen>
-      CharacterPage
+      <Text size="4xl">Расы и происхождения</Text>
       {CHARACTER_NAVIGATION.map(({ title, fullPath }) => (
         <Link key={title} to={fullPath}>
           <Text>{title}</Text>
