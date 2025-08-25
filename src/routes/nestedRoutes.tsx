@@ -122,7 +122,7 @@ export const CHARACTER_NAVIGATION = [
     element: <SpellsPage />,
   },
   {
-    id: 'spells',
+    id: 'spellsId',
     title: 'Заклинания',
     relativePath: 'spells/:id',
     fullPath: '/game/character/spells/:id',

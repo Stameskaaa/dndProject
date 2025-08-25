@@ -1,207 +1,39 @@
 import { SpellCard } from '@/components/wrappers/cards/spellCard/SpellCard';
+import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
+import { SpellModal } from '@/components/wrappers/modals/spellModal/SpellModal';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { Text } from '@/components/wrappers/typography/Text';
+import { useGetSpellsListQuery } from '@/features/spells/api';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export const spellsMock: SpellCard[] = [
-  {
-    id: 'acid_splash_001',
-    name: 'Брызги кислоты',
-    level: 0,
-    school: 'Conjuration',
-    classes: ['Волшебник', 'Чародей'],
-    casting_time: '1 действие',
-    range: '18 метров',
-    components: ['V', 'S'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Метает пузырь кислоты, который брызжет на одно или два существа.',
-    icon: 'icons/acid_splash.svg',
-    levelColorKey: 'cantrip',
-  },
-  {
-    id: 'fireball_002',
-    name: 'Огненный шар',
-    level: 3,
-    school: 'Evocation',
-    classes: ['Волшебник', 'Чародей'],
-    casting_time: '1 действие',
-    range: '45 метров',
-    components: ['V', 'S', 'M'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Яркая вспышка энергии взрывается огнем в выбранной точке.',
-    icon: 'icons/fireball.svg',
-    levelColorKey: 'level3',
-  },
-  {
-    id: 'cure_wounds_003',
-    name: 'Исцеление ран',
-    level: 1,
-    school: 'Evocation',
-    classes: ['Жрец', 'Друид', 'Бард'],
-    casting_time: '1 действие',
-    range: 'Прикосновение',
-    components: ['V', 'S'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Исцеляет выбранное существо.',
-    icon: 'icons/cure_wounds.svg',
-    levelColorKey: 'level1',
-  },
-  {
-    id: 'mage_hand_004',
-    name: 'Рука мага',
-    level: 0,
-    school: 'Conjuration',
-    classes: ['Волшебник', 'Чародей', 'Колдун'],
-    casting_time: '1 действие',
-    range: '9 метров',
-    components: ['V', 'S'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Создает спектральную руку для манипуляции предметами.',
-    icon: 'icons/mage_hand.svg',
-    levelColorKey: 'cantrip',
-  },
-  {
-    id: 'shield_005',
-    name: 'Щит',
-    level: 1,
-    school: 'Abjuration',
-    classes: ['Волшебник', 'Чародей'],
-    casting_time: '1 реакция',
-    range: 'Себя',
-    components: ['V', 'S'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Невидимый барьер дает +5 к КЗ до начала вашего следующего хода.',
-    icon: 'icons/shield.svg',
-    levelColorKey: 'level1',
-  },
-  {
-    id: 'misty_step_006',
-    name: 'Туманный шаг',
-    level: 2,
-    school: 'Conjuration',
-    classes: ['Чародей', 'Колдун', 'Волшебник'],
-    casting_time: '1 бонусное действие',
-    range: '9 метров',
-    components: ['V'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Временно окутан туманом, телепортируется на короткое расстояние.',
-    icon: 'icons/misty_step.svg',
-    levelColorKey: 'level2',
-  },
-  {
-    id: 'eldritch_blast_007',
-    name: 'Взрыв колдовства',
-    level: 0,
-    school: 'Evocation',
-    classes: ['Колдун'],
-    casting_time: '1 действие',
-    range: '36 метров',
-    components: ['V', 'S'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Луч энергии летит к существу, нанося урон.',
-    icon: 'icons/eldritch_blast.svg',
-    levelColorKey: 'cantrip',
-  },
-  {
-    id: 'detect_magic_008',
-    name: 'Обнаружение магии',
-    level: 1,
-    school: 'Divination',
-    classes: ['Жрец', 'Друид', 'Волшебник'],
-    casting_time: '1 действие',
-    range: 'Себя (радиус 9 метров)',
-    components: ['V', 'S'],
-    concentration: true,
-    ritual: true,
-    short_desc: 'Чувствует присутствие магии в радиусе 9 метров.',
-    icon: 'icons/detect_magic.svg',
-    levelColorKey: 'level1',
-  },
-  {
-    id: 'polymorph_009',
-    name: 'Превращение',
-    level: 4,
-    school: 'Transmutation',
-    classes: ['Волшебник', 'Друид'],
-    casting_time: '1 действие',
-    range: '30 метров',
-    components: ['V', 'S', 'M'],
-    concentration: true,
-    ritual: false,
-    short_desc: 'Превращает существо в другое существо.',
-    icon: 'icons/polymorph.svg',
-    levelColorKey: 'level4',
-  },
-  {
-    id: 'phantasmal_force_010',
-    name: 'Фантомная сила',
-    level: 2,
-    school: 'Illusion',
-    classes: ['Волшебник'],
-    casting_time: '1 действие',
-    range: '18 метров',
-    components: ['V', 'S'],
-    concentration: true,
-    ritual: false,
-    short_desc: 'Создает иллюзию, которая причиняет психический урон.',
-    icon: 'icons/phantasmal_force.svg',
-    levelColorKey: 'level2',
-  },
-  {
-    id: 'blight_011',
-    name: 'Увядание',
-    level: 4,
-    school: 'Necromancy',
-    classes: ['Друид', 'Колдун'],
-    casting_time: '1 действие',
-    range: '36 метров',
-    components: ['V', 'S'],
-    concentration: false,
-    ritual: false,
-    short_desc: 'Вызывает увядание растений или наносит урон существам.',
-    icon: 'icons/blight.svg',
-    levelColorKey: 'level4',
-  },
-  {
-    id: 'dominate_person_012',
-    name: 'Подчинение личности',
-    level: 5,
-    school: 'Enchantment',
-    classes: ['Волшебник', 'Колдун'],
-    casting_time: '1 действие',
-    range: '36 метров',
-    components: ['V', 'S'],
-    concentration: true,
-    ritual: false,
-    short_desc: 'Контролирует разум существа на короткое время.',
-    icon: 'icons/dominate_person.svg',
-    levelColorKey: 'level5',
-  },
-];
-
 export const SpellsPage = () => {
+  const { data, isLoading } = useGetSpellsListQuery();
   const navigate = useNavigate();
   const { id } = useParams();
 
   return (
     <Section fixedWidth screen>
       <Text size="4xl">Заклинания</Text>
-      <div className="grid grid-cols-4 gap-4">
-        {spellsMock.map((data) => (
-          <SpellCard key={data.id} onClick={() => navigate(`${data.id}`)} data={data} />
-        ))}
-      </div>
-      <ModalWindow setOpen={() => navigate('/game/character/spells')} open={!!id}>
-        test
-      </ModalWindow>
+      {isLoading ? (
+        <CubeLoader />
+      ) : (
+        <>
+          {' '}
+          <div className="grid grid-cols-4 gap-4">
+            {/* TODO в хелперы вынести проверку массива */}
+            {data &&
+              data.length > 0 &&
+              data.map((data) => (
+                <SpellCard key={data.id} onClick={() => navigate(`${data.id}`)} data={data} />
+              ))}
+          </div>
+          {/* TODO ПЕРЕНЕСТИ В OUTLET */}
+          <ModalWindow setOpen={() => navigate('/game/character/spells')} open={!!id}>
+            <SpellModal />
+          </ModalWindow>{' '}
+        </>
+      )}
     </Section>
   );
 };

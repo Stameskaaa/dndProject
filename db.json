@@ -1063,5 +1063,177 @@
         "startingEquipment": ["Вариант A: Жезл, Книга заклинаний", "Вариант B: Посох, Мантия"]
       }
     }
+  ],
+  "spells": [
+    {
+      "id": 1,
+      "name": "Брызги кислоты",
+      "level": 0,
+      "school": "Conjuration",
+      "classes": ["Волшебник", "Чародей"],
+      "casting_time": "1 действие",
+      "range": "18 метров",
+      "components": { "V": true, "S": true, "M": false, "material": null },
+      "duration": "Instantaneous",
+      "concentration": false,
+      "ritual": false,
+      "damage": {
+        "type": "Acid",
+        "dice": "1d6",
+        "scales_with_level": { "1": "1d6", "5": "2d6", "11": "3d6", "17": "4d6" }
+      },
+      "area": "Цель одно существо в пределах диапазона; может перескочить на второе существо в пределах 1.5 м",
+      "higher_level_text": "Урон увеличивается на 5, 11 и 17 уровнях.",
+      "full_description": "Метает пузырь кислоты. Выберите одно существо в пределах диапазона или два существа в пределах 1.5 метров друг от друга. Цель должна совершить спасбросок Ловкости или получить 1d6 урона кислотой, при успехе — половину.",
+      "examples": [
+        "Используется для добивания слабых врагов.",
+        "Синергирует с контролем зоны, чтобы поразить двух скопленных врагов."
+      ],
+      "tags": ["damage", "ranged", "cantrip", "acid"],
+      "source": { "book": "PHB", "page": 242 },
+      "srd": true,
+      "icon": "icons/acid_splash.svg",
+      "art_url": "https://.../acid_splash_art.jpg",
+      "notes": "Подходит для ранних уровней; отсутствие концентрации позволяет комбинировать."
+    },
+    {
+      "id": 2,
+      "name": "Огненный шар",
+      "level": 3,
+      "school": "Evocation",
+      "classes": ["Волшебник", "Чародей"],
+      "casting_time": "1 действие",
+      "range": "45 метров",
+      "components": { "V": true, "S": true, "M": true, "material": "порох" },
+      "duration": "Instantaneous",
+      "concentration": false,
+      "ritual": false,
+      "damage": {
+        "type": "Fire",
+        "dice": "8d6",
+        "scales_with_level": { "4": "9d6", "5": "10d6", "6": "11d6", "7": "12d6" }
+      },
+      "area": "Сфера радиусом 6 метров",
+      "higher_level_text": "Каждый уровень выше 3 увеличивает урон на 1d6.",
+      "full_description": "Яркая вспышка энергии взрывается огнем в выбранной точке. Каждое существо в радиусе 6 метров должно совершить спасбросок Ловкости или получить полный урон, при успехе — половину.",
+      "examples": [
+        "Эффективно против скоплений врагов.",
+        "Можно комбинировать с эффектами контроля поля."
+      ],
+      "tags": ["damage", "area", "fire"],
+      "source": { "book": "PHB", "page": 241 },
+      "srd": true,
+      "icon": "icons/fireball.svg",
+      "art_url": "https://.../fireball_art.jpg",
+      "notes": "Один из самых мощных заклинаний 3 уровня."
+    },
+    {
+      "id": 3,
+      "name": "Исцеление ран",
+      "level": 1,
+      "school": "Evocation",
+      "classes": ["Жрец", "Друид", "Бард"],
+      "casting_time": "1 действие",
+      "range": "Прикосновение",
+      "components": { "V": true, "S": true, "M": false, "material": null },
+      "duration": "Instantaneous",
+      "concentration": false,
+      "ritual": false,
+      "full_description": "Исцеляет выбранное существо. Восстанавливает 1d8 + модификатор заклинателя здоровья.",
+      "examples": [
+        "Исцеляет союзников после боя.",
+        "Используется для поддержания группы на длинных экспедициях."
+      ],
+      "tags": ["healing", "touch"],
+      "source": { "book": "PHB", "page": 241 },
+      "srd": true,
+      "icon": "icons/cure_wounds.svg",
+      "notes": "Очень полезно для начинающих персонажей."
+    },
+    {
+      "id": 4,
+      "name": "Рука мага",
+      "level": 0,
+      "school": "Conjuration",
+      "classes": ["Волшебник", "Чародей", "Колдун"],
+      "casting_time": "1 действие",
+      "range": "9 метров",
+      "components": { "V": true, "S": true, "M": false, "material": null },
+      "duration": "1 минута",
+      "concentration": false,
+      "ritual": false,
+      "full_description": "Создает спектральную руку для манипуляции предметами на расстоянии.",
+      "examples": [
+        "Используется для активации рычагов на расстоянии.",
+        "Можно перемещать лёгкие предметы."
+      ],
+      "tags": ["utility", "cantrip"],
+      "source": { "book": "PHB", "page": 242 },
+      "srd": true,
+      "icon": "icons/mage_hand.svg",
+      "notes": "Полезно для взаимодействия с окружением без риска."
+    },
+    {
+      "id": 5,
+      "name": "Щит",
+      "level": 1,
+      "school": "Abjuration",
+      "classes": ["Волшебник", "Чародей"],
+      "casting_time": "1 реакция",
+      "range": "Себя",
+      "components": { "V": true, "S": true, "M": false, "material": null },
+      "duration": "1 раунд",
+      "concentration": false,
+      "ritual": false,
+      "full_description": "Невидимый барьер дает +5 к КЗ до начала вашего следующего хода.",
+      "tags": ["defense", "reaction"],
+      "source": { "book": "PHB", "page": 242 },
+      "srd": true,
+      "icon": "icons/shield.svg",
+      "notes": "Очень мощная защита на короткое время."
+    },
+    {
+      "id": 6,
+      "name": "Туманный шаг",
+      "level": 2,
+      "school": "Conjuration",
+      "classes": ["Чародей", "Колдун", "Волшебник"],
+      "casting_time": "1 бонусное действие",
+      "range": "9 метров",
+      "components": { "V": true, "S": false, "M": false, "material": null },
+      "duration": "Instantaneous",
+      "concentration": false,
+      "ritual": false,
+      "full_description": "Временно окутан туманом, телепортируется на короткое расстояние.",
+      "tags": ["movement", "bonus action"],
+      "source": { "book": "PHB", "page": 242 },
+      "srd": true,
+      "icon": "icons/misty_step.svg",
+      "notes": "Позволяет быстро перемещаться вне боя."
+    },
+    {
+      "id": 7,
+      "name": "Взрыв колдовства",
+      "level": 0,
+      "school": "Evocation",
+      "classes": ["Колдун"],
+      "casting_time": "1 действие",
+      "range": "36 метров",
+      "components": { "V": true, "S": true, "M": false, "material": null },
+      "duration": "Instantaneous",
+      "concentration": false,
+      "ritual": false,
+      "damage": {
+        "type": "Force",
+        "dice": "1d10",
+        "scales_with_level": { "1": "1d10", "5": "2d10", "11": "3d10", "17": "4d10" }
+      },
+      "full_description": "Луч энергии летит к существу, нанося урон.",
+      "tags": ["damage", "ranged", "cantrip", "force"],
+      "source": { "book": "PHB", "page": 242 },
+      "srd": true,
+      "icon": "icons/eldritch_blast.svg",
+      "notes": "Основной атакующий кантрип Колдуна."
+    }
   ]
 }

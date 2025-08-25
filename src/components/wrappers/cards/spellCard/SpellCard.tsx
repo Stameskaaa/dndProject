@@ -1,37 +1,11 @@
-import { motion } from 'framer-motion';
 import { Wand } from 'lucide-react';
+import classNames from 'classnames';
+import { motion } from 'framer-motion';
+import type { SpellCardType } from '@/features/spells/types';
 import { Text } from '../../typography/Text';
 import styles from './SpellCard.module.css';
-import classNames from 'classnames';
 
-export interface SpellCard {
-  id: string; // "acid_splash_001"
-  name: string; // "Acid Splash"
-  level: number; // 0
-  school: string; // "Conjuration"
-  classes: string[]; // ["Wizard", "Sorcerer"]
-  casting_time: string; // "1 Action"
-  range: string; // "60 feet"
-  components: string[]; // ["V","S"]
-  concentration: boolean; // false
-  ritual: boolean; // false
-  short_desc: string; // "Hurl a bubble of acid..."
-  icon: string; // "icons/acid_splash.svg"
-  levelColorKey: string; // "cantrip"
-}
-
-const schoolColors: Record<string, string> = {
-  Abjuration: '#5A9BD5', // голубой — защита
-  Conjuration: '#7DA86F', // зелёный — призыв
-  Divination: '#D4B72B', // золотой — видение
-  Enchantment: '#A166B9', // фиолетовый — очарование
-  Evocation: '#E06B4C', // оранжево-красный — атака
-  Illusion: '#874C9C', // тёмно-фиолетовый — иллюзия
-  Necromancy: '#546E7A', // серо-синий — смерть
-  Transmutation: '#E68B3C', // оранжевый — превращения
-};
-
-export const SpellCard = ({ data, onClick }: { data: SpellCard; onClick?: () => void }) => {
+export const SpellCard = ({ data, onClick }: { data: SpellCardType; onClick?: () => void }) => {
   const {
     name,
     level,
@@ -84,7 +58,10 @@ export const SpellCard = ({ data, onClick }: { data: SpellCard; onClick?: () => 
         <Text color="text-primary" size="sm" className="leading-5">
           Компоненты:{' '}
           <Text as="span" color="text-muted">
-            {components?.join(', ')}
+            {components &&
+              Object.entries(components)
+                ?.map(([key, value]) => (value ? key : '-'))
+                .join(', ')}
           </Text>
         </Text>
         {concentration && (

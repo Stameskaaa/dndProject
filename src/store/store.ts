@@ -3,16 +3,21 @@ import { racesApi } from '@/features/races/api';
 import { classesApi } from '@/features/classes/api';
 import scrollLockReducer from '@/features/scroll/scrollSlice';
 import pageTransitionReducer from '@/features/pageTransition/pageTransitionSlice';
+import { spellsApi } from '@/features/spells/api';
 
 export const store = configureStore({
   reducer: {
     [racesApi.reducerPath]: racesApi.reducer,
     [classesApi.reducerPath]: classesApi.reducer,
+    [spellsApi.reducerPath]: spellsApi.reducer,
     scrollLock: scrollLockReducer,
     pageTransition: pageTransitionReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(racesApi.middleware).concat(classesApi.middleware),
+    getDefaultMiddleware()
+      .concat(racesApi.middleware)
+      .concat(classesApi.middleware)
+      .concat(spellsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
