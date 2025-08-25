@@ -2,10 +2,10 @@ import { useParams } from 'react-router-dom';
 import { ChevronsLeftRight, ChevronsRightLeft, X } from 'lucide-react';
 import { useGetRaceByIdQuery } from '@/features/races/api';
 import { Button } from '@/components/ui/button';
+import { Text } from '@/components/wrappers/typography/Text';
 import { Tabs } from '@/components/wrappers/navigation/tabs/Tabs';
 import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader';
 import { SectionModalContent } from '@/components/wrappers/sections/sectionModal/SectionModalContent';
-import { Text } from '@/components/wrappers/typography/Text';
 
 interface RaceCharacterPageProps {
   isModal?: boolean;
@@ -26,7 +26,7 @@ export const RaceCharacterPage = () => {
           <Button size="sm" variant="tonal" onClick={fullModal}>
             {isModal ? <ChevronsRightLeft /> : <ChevronsLeftRight />}
           </Button>
-          <Text size="lg">Возрожденный</Text>
+          <Text size="lg">{data?.name}</Text>
           <Button size="sm" variant="tonal" onClick={closeModal}>
             <X />
           </Button>
@@ -34,86 +34,31 @@ export const RaceCharacterPage = () => {
 
         <Tabs
           defaultTabId={1}
-          activeColor="red"
+          activeColor="bg-brand-300"
           className="max-w-[800px] m-0 !mr-auto"
           items={[
             {
               id: 1,
               title: 'Описание',
-              cardContent: (
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. v
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores. Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores.
-                </Text>
-              ),
-              color: 'red',
+              cardContent: <Text>{data?.description}</Text>,
             },
             {
-              id: '2',
+              id: 2,
               title: 'Игровые особенности',
-              cardContent: (
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores.
-                </Text>
-              ),
-              color: 'red',
+              cardContent: <Text>{data?.features?.join(` `)}</Text>,
             },
             {
-              id: '3',
+              id: 3,
               title: 'История',
               cardContent: (
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores.
-                </Text>
+                <>
+                  {Object.entries(data?.stats || {}).map(([key, value]) => (
+                    <div key={key} className="flex gap-3">
+                      <Text weight="bold">{key}: </Text> <Text>{value}</Text>
+                    </div>
+                  ))}
+                </>
               ),
-              color: 'red',
-            },
-            {
-              id: '4',
-              title: 'Стандартные имена',
-              cardContent: (
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores ratione
-                  numquam quae illo, inventore porro nam dolorum, explicabo facilis similique
-                  cupiditate in? Nemo corrupti, excepturi molestias dolor temporibus maiores.
-                </Text>
-              ),
-              color: 'red',
             },
           ]}
         />

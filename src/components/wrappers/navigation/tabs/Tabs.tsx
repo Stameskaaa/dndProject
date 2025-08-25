@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import type { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import classNames from 'classnames';
 
 interface TabItem {
   id: string | number;
@@ -9,7 +10,7 @@ interface TabItem {
   icon?: LucideIcon;
   content?: React.ReactNode;
   cardContent?: React.ReactNode;
-  color: string;
+  color?: string;
 }
 
 const WaveformPath = () => (
@@ -262,7 +263,7 @@ export function Tabs({
 
   const handleTabClick = (tabId: string) => {
     const currentIndex = items.findIndex((item) => item.id == selected);
-    const newIndex = items.findIndex((item) => item.id === tabId);
+    const newIndex = items.findIndex((item) => item.id == tabId);
     setDirection(newIndex > currentIndex ? 1 : -1);
     setSelected(tabId);
     onChange?.(tabId);
@@ -306,7 +307,9 @@ export function Tabs({
           style={{ height: 'calc(100% - 8px)', top: '4px' }}
         />
 
-        <div className="grid grid-cols-4 w-full gap-1 relative z-[2] ">
+        <div
+          style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+          className={classNames('grid w-full gap-1 relative z-[2]')}>
           {items.map((item) => {
             const isSelected = selected == item.id;
 
@@ -327,10 +330,10 @@ export function Tabs({
                 onKeyDown={(e) => handleKeyDown(e, String(item.id))}
                 className={cn(
                   'relative cursor-pointer flex items-center justify-center gap-0.5 rounded-lg px-2 py-1.5',
-                  'text-sm font-medium  transition-all duration-300',
+                  'text-sm font-medium  transition-all duration-300 hover:text-accent-100',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                   'truncate',
-                  isSelected ? 'text-text-primary' : 'text-text-secondary hover:bg-brand-100',
+                  isSelected ? 'text-text-primary' : 'text-text-secondary',
                 )}>
                 <span className="truncate">{item.title}</span>
               </motion.button>

@@ -8,6 +8,7 @@ import { Section } from '@/components/wrappers/sections/section/Section';
 import { AnimatedHeaderTitle, HeaderTitle } from './Components/HeaderTitle';
 import { HeaderNavigation } from './Components/HeaderNavigation/NavigationMenu';
 import { ToggleNavigation } from '@/components/wrappers/navigation/toggleNavigation/ToggleNavigation';
+import ScrollProgress from '@/components/wrappers/scrollProgress/ScrollProgress';
 
 export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean; title: string }) {
   const [isScrolled, setIsScrolled] = useState<boolean | null>(null);
@@ -33,6 +34,7 @@ export function Header({ titleAnimate = false, title }: { titleAnimate?: boolean
         isScrolled ? 'bg-brand-400 shadow-xl' : '',
       )}>
       <Section fixedWidth={true} className="flex items-center justify-between">
+        <ScrollProgress />
         <div ref={headerRef} className="grid items-center w-[230px] h-[40px]">
           {isScrolled !== null &&
             headerRef.current &&
