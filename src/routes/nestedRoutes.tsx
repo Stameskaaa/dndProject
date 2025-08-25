@@ -1,6 +1,7 @@
 import { ClassesPage } from '@/pages/character/classes/ClassesPage';
 import { RaceCharacterPage } from '@/pages/character/races/raceCharacter/RaceCharacterPage';
 import { RacesPage } from '@/pages/character/races/RacesPage';
+import { SpellsPage } from '@/pages/character/spells/SpellsPage';
 
 export const NEW_PLAYER_NAVIGATION = [
   {
@@ -118,7 +119,14 @@ export const CHARACTER_NAVIGATION = [
     title: 'Заклинания',
     relativePath: 'spells',
     fullPath: '/game/character/spells',
-    element: <div>useful</div>,
+    element: <SpellsPage />,
+  },
+  {
+    id: 'spells',
+    title: 'Заклинания',
+    relativePath: 'spells/:id',
+    fullPath: '/game/character/spells/:id',
+    element: <SpellsPage />,
   },
 ];
 

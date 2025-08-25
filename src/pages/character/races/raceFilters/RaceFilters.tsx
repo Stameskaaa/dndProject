@@ -11,7 +11,7 @@ import { Text } from '@/components/wrappers/typography/Text';
 
 export const RaceFilters = () => {
   return (
-    <ModalWindow button={<Button>фильтры</Button>}>
+    <ModalWindow buttonTrigger={<Button>фильтры</Button>}>
       <DialogHeader className="h-full">
         <DialogTitle>
           <Text size="3xl" gradient="blue-orange">

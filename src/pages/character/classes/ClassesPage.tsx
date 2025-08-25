@@ -20,7 +20,7 @@ export const ClassesPage = () => {
         {raceList?.map(({ id, name, description, src }) => (
           <ModalWindow
             key={id}
-            button={
+            buttonTrigger={
               <MotionHoverZoomCard
                 name={name}
                 src={src}

@@ -19,17 +19,20 @@ export const Text: React.FC<TypographyProps> = forwardRef<any, TypographyProps>(
       weight = 'normal',
       font = 'Nunito',
       className = '',
+      maxCount,
     },
     ref,
   ) => {
     const Tag = as;
     const colorClass = gradient === 'none' ? colorMap[color] : '';
     const gradientClass = gradientMap[gradient];
+    const maxCountClass = maxCount ? `line-clamp-${maxCount}` : '';
 
     return (
       <Tag
         ref={ref}
-        className={`${sizeMap[size]} ${weightMap[weight]} ${fontMap[font]} ${colorClass} ${gradientClass} ${className}`}>
+        className={`${sizeMap[size]} ${weightMap[weight]} ${fontMap[font]} ${colorClass} ${gradientClass} ${maxCountClass} ${className}`}
+        style={maxCount ? { WebkitLineClamp: maxCount } : undefined}>
         {children}
       </Tag>
     );

@@ -1,10 +1,10 @@
 import { cn } from '@/lib/utils';
+import { useId, type ComponentProps } from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { AnimatePresence, motion, type HTMLMotionProps } from 'framer-motion';
-import { useId, type ComponentProps, type Dispatch, type SetStateAction } from 'react';
 import { useScrollLock } from '@/features/scroll/hooks';
-import { Blanket } from '../wrappers/background/blanket/Blanket';
 import { ModalIndex } from '@/constants/zIndex';
+import { Blanket } from '../wrappers/background/blanket/Blanket';
 
 export type DialogRootProps = ComponentProps<typeof DialogPrimitive.Root>;
 
@@ -25,7 +25,7 @@ function DialogClose({ ...props }: ComponentProps<typeof DialogPrimitive.Close>)
 
 type MotionDivProps = HTMLMotionProps<'div'> & {
   open: boolean;
-  setopen: Dispatch<SetStateAction<boolean>>;
+  setopen: (state: boolean) => void;
 };
 
 function DialogContent({ className, children, open, setopen, ...props }: MotionDivProps) {

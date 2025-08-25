@@ -63,4 +63,5 @@ export type TypographyProps = {
   weight?: Weight;
   font?: Font;
   className?: string;
+  maxCount?: number;
 };

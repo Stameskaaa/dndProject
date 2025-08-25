@@ -1,0 +1,67 @@
+.card {
+  position: relative;
+  z-index: 1;
+}
+
+.card::before {
+  position: absolute;
+  content: '';
+  inset: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  padding: 0.9px;
+  border-radius: 0.7rem;
+  overflow: visible;
+  background: #f7ba2b;
+  background: var(--background);
+  filter: blur(34.5px);
+  background: #f7ba2b;
+  background: var(--background);
+  transition: opacity 0.5s;
+  opacity: 0.06;
+}
+
+.card:active::before {
+  opacity: 1;
+}
+
+.card:hover::before {
+  opacity: 0.2;
+}
+
+.card.abjuration::before {
+  --background: linear-gradient(to right, #13b37f 0%, #11a3c8 100%);
+}
+
+.card.conjuration::before {
+  --background: linear-gradient(to right, #4caf50 0%, #81c784 100%);
+}
+
+.card.enchantment::before {
+  --background: linear-gradient(to right, #6a1b9a 0%, #9c27b0 100%);
+}
+
+.card.necromancy::before {
+  --background: linear-gradient(to right, #2e3b55 0%, #4a6073 100%);
+}
+
+.card.divination::before {
+  --background: linear-gradient(to right, #29b6f6 0%, #81d4fa 100%);
+}
+
+.card.transmutation::before {
+  --background: linear-gradient(to right, #ffb74d 0%, #ffd54f 100%);
+}
+
+.card.curse::before {
+  --background: linear-gradient(to right, #e53935 0%, #ef5350 100%);
+}
+
+.card.illusion::before {
+  --background: linear-gradient(to right, #ab47bc 0%, #ce93d8 100%);
+}
+
+.card.evocation::before {
+  --background: linear-gradient(to right, #ff8c42 0%, #ff5e62 100%);
+}
