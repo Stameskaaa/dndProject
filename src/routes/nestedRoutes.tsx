@@ -1,5 +1,5 @@
 import { ClassesPage } from '@/pages/character/classes/ClassesPage';
-import { RaceCharacterPage } from '@/pages/character/races/raceCharacter/RaceCharacterPage';
+import { RaceCharacterPage } from '@/pages/character/races/components/raceCharacter/RaceCharacterPage';
 import { RacesPage } from '@/pages/character/races/RacesPage';
 import { SpellsPage } from '@/pages/character/spells/SpellsPage';
 

@@ -1,11 +1,10 @@
-import { forwardRef } from 'react';
-import { motion } from 'framer-motion';
 import classNames from 'classnames';
-import { Text } from '../../typography/Text';
+import { motion } from 'framer-motion';
+import { forwardRef, type ReactNode } from 'react';
 
 interface HoverZoomCardProps {
-  name: string;
-  description: string;
+  title: ReactNode;
+  description: ReactNode;
   src: string;
   active: boolean;
   onClick: () => void;
@@ -13,14 +12,14 @@ interface HoverZoomCardProps {
 }
 
 export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
-  ({ onClick, name, description, active, src, ...props }, ref) => {
+  ({ onClick, title, description, active, src, ...props }, ref) => {
     return (
       <div
         ref={ref}
         onClick={onClick}
         {...props}
         className={classNames(
-          active ? '!border-brand-100 ' : '',
+          active ? '!border-brand-100 border-2' : '',
           'relative cursor-pointer group w-full border border-transparent transition-colors bg-brand-400 shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between',
         )}>
         <div className="absolute right-0 h-full max-w-full rounded-lg z-0 overflow-hidden">
@@ -38,11 +37,9 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
             }}
           />
         </div>
-        <div className="z-0 p-4 h-full">
-          <span className="flex flex-col gap-1">
-            <Text color="text-primary">{name}</Text>
-            <Text color="text-muted">{description}</Text>
-          </span>
+        <div className="z-0 p-4 h-full flex flex-col gap-1">
+          {title}
+          {description}
         </div>
       </div>
     );

@@ -1,24 +1,18 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useGetRaceListQuery } from '@/features/races/api';
 import { usePageTransitionLoading } from '@/features/pageTransition/hooks';
 import { useScroll } from './hooks';
 import { Input } from '@/components/ui/input';
 import { HeaderHeight } from '@/constants/heights';
-import { RaceFilters } from './raceFilters/RaceFilters';
+import { RaceCard } from './components/raceCard/RaceCard';
 import { Text } from '@/components/wrappers/typography/Text';
+import { RaceFilters } from './components/raceFilters/RaceFilters';
 import { SectionModal } from '@/components/wrappers/sections/sectionModal/SectionModal';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import {
-  cardVariants,
-  MotionHoverZoomCard,
-} from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 
 export const RacesPage = () => {
   const isScrolled = useScroll();
-  const navigate = useNavigate();
-  const { id } = useParams();
   const { isLoading, data: raceList } = useGetRaceListQuery();
   usePageTransitionLoading(isLoading);
 
@@ -44,17 +38,8 @@ export const RacesPage = () => {
         </motion.div>
         <AnimatedGridList isLoading={isLoading}>
           {/* TODO когда будут все подобные страницы вынести в компонент AnimatedGridList */}
-          {raceList?.map(({ id: raceId, name, description, src }) => (
-            <MotionHoverZoomCard
-              active={Number(id) === raceId}
-              key={raceId}
-              name={name}
-              src={src}
-              description={description}
-              variants={cardVariants}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              onClick={() => navigate(`${raceId}`)}
-            />
+          {raceList?.map((data) => (
+            <RaceCard key={data.id} raceData={data} />
           ))}
         </AnimatedGridList>
       </div>

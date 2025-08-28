@@ -9,7 +9,7 @@ export const racesApi = createApi({
     getRaceList: builder.query<Race[], void>({
       query: () => 'races',
     }),
-    getRaceById: builder.query<Race, { id: number }>({
+    getRaceById: builder.query<Race, { id: string }>({
       query: ({ id }) => `races/${id}`,
     }),
   }),

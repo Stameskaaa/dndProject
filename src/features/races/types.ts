@@ -1,15 +1,17 @@
+export interface RaceFeature {
+  type: string;
+  size: string;
+  speed: string;
+  md_content: string;
+}
+
 export interface Race {
-  id: number;
+  id: string;
   name: string;
-  description: string;
   src: string;
-  stats: {
-    strength: number;
-    dexterity: number;
-    constitution: number;
-    intelligence: number;
-    wisdom: number;
-    charisma: number;
-  };
-  features: string[];
+  worlds: { id: string; name: string }[];
+  description: string;
+  full_description: string;
+  features: RaceFeature;
+  history: string;
 }
