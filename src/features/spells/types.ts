@@ -2,60 +2,25 @@ export interface SpellDataType {
   id: string;
   name: string;
   level: number;
-  school: string;
-  classes: string[];
-  casting_time: string;
-  range: string;
-  components: {
-    V: boolean;
-    S: boolean;
-    M: boolean;
-    material: string | null;
-  };
+  school_id: SpellSchool['id'];
+  castingTime: string;
   duration: string;
-  concentration: boolean;
-  ritual: boolean;
-  save?: string;
-  attack_roll?: boolean;
-  damage?: {
-    type: string;
-    dice: string;
-    scales_with_level?: Record<number, string>;
-  };
-  area?: string;
-  higher_level_text?: string;
+  distance: string;
+  components_list: SpellComponent['id'][];
+  description: string;
+  classes: { id: string; name: string }[];
   full_description: string;
-  examples?: string[];
-  tags?: string[];
-  source?: {
-    book: string;
-    page: number;
-  };
-  srd?: boolean;
-  icon?: string;
-  art_url?: string;
-  notes?: string;
 }
 
-// EXTENDS типы скорее всего сходятся
-
-export interface SpellCardType {
+export interface SpellComponent {
   id: string;
   name: string;
-  level: number;
-  school: string;
-  classes: string[];
-  casting_time: string;
-  range: string;
-  components: {
-    V: boolean;
-    S: boolean;
-    M: boolean;
-    material: string | null;
-  };
-  concentration: boolean;
-  ritual: boolean;
-  short_desc: string;
-  icon: string;
-  levelColorKey: string;
+  description: string;
+}
+
+export interface SpellSchool {
+  id: string;
+  title: string;
+  color: string;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
 }

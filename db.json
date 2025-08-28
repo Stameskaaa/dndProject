@@ -1066,174 +1066,299 @@
   ],
   "spells": [
     {
-      "id": 1,
-      "name": "Брызги кислоты",
-      "level": 0,
-      "school": "Conjuration",
-      "classes": ["Волшебник", "Чародей"],
-      "casting_time": "1 действие",
-      "range": "18 метров",
-      "components": { "V": true, "S": true, "M": false, "material": null },
-      "duration": "Instantaneous",
-      "concentration": false,
-      "ritual": false,
-      "damage": {
-        "type": "Acid",
-        "dice": "1d6",
-        "scales_with_level": { "1": "1d6", "5": "2d6", "11": "3d6", "17": "4d6" }
-      },
-      "area": "Цель одно существо в пределах диапазона; может перескочить на второе существо в пределах 1.5 м",
-      "higher_level_text": "Урон увеличивается на 5, 11 и 17 уровнях.",
-      "full_description": "Метает пузырь кислоты. Выберите одно существо в пределах диапазона или два существа в пределах 1.5 метров друг от друга. Цель должна совершить спасбросок Ловкости или получить 1d6 урона кислотой, при успехе — половину.",
-      "examples": [
-        "Используется для добивания слабых врагов.",
-        "Синергирует с контролем зоны, чтобы поразить двух скопленных врагов."
-      ],
-      "tags": ["damage", "ranged", "cantrip", "acid"],
-      "source": { "book": "PHB", "page": 242 },
-      "srd": true,
-      "icon": "icons/acid_splash.svg",
-      "art_url": "https://.../acid_splash_art.jpg",
-      "notes": "Подходит для ранних уровней; отсутствие концентрации позволяет комбинировать."
-    },
-    {
-      "id": 2,
+      "id": "fireball",
+      "distance": "1 metr",
       "name": "Огненный шар",
-      "level": 3,
-      "school": "Evocation",
-      "classes": ["Волшебник", "Чародей"],
-      "casting_time": "1 действие",
-      "range": "45 метров",
-      "components": { "V": true, "S": true, "M": true, "material": "порох" },
-      "duration": "Instantaneous",
-      "concentration": false,
-      "ritual": false,
-      "damage": {
-        "type": "Fire",
-        "dice": "8d6",
-        "scales_with_level": { "4": "9d6", "5": "10d6", "6": "11d6", "7": "12d6" }
-      },
-      "area": "Сфера радиусом 6 метров",
-      "higher_level_text": "Каждый уровень выше 3 увеличивает урон на 1d6.",
-      "full_description": "Яркая вспышка энергии взрывается огнем в выбранной точке. Каждое существо в радиусе 6 метров должно совершить спасбросок Ловкости или получить полный урон, при успехе — половину.",
-      "examples": [
-        "Эффективно против скоплений врагов.",
-        "Можно комбинировать с эффектами контроля поля."
+      "level": "3",
+      "school_id": "evocation",
+      "castingTime": "1 действие",
+      "duration": "Мгновенно",
+      "components_list": ["verbal", "material", "somatic"],
+      "description": "Взорвать область огнем, нанося урон.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "sorcerer", "name": "Чародей" }
       ],
-      "tags": ["damage", "area", "fire"],
-      "source": { "book": "PHB", "page": 241 },
-      "srd": true,
-      "icon": "icons/fireball.svg",
-      "art_url": "https://.../fireball_art.jpg",
-      "notes": "Один из самых мощных заклинаний 3 уровня."
+      "full_description": "Создаёт мощный шар огня, который взрывается в выбранной точке, нанося 8d6 урона огнём."
     },
     {
-      "id": 3,
-      "name": "Исцеление ран",
-      "level": 1,
-      "school": "Evocation",
-      "classes": ["Жрец", "Друид", "Бард"],
-      "casting_time": "1 действие",
-      "range": "Прикосновение",
-      "components": { "V": true, "S": true, "M": false, "material": null },
-      "duration": "Instantaneous",
-      "concentration": false,
-      "ritual": false,
-      "full_description": "Исцеляет выбранное существо. Восстанавливает 1d8 + модификатор заклинателя здоровья.",
-      "examples": [
-        "Исцеляет союзников после боя.",
-        "Используется для поддержания группы на длинных экспедициях."
+      "id": "magic_missile",
+      "distance": "1 metr",
+      "name": "Волшебная стрела",
+      "level": "1",
+      "school_id": "evocation",
+      "castingTime": "1 действие",
+      "duration": "Мгновенно",
+      "components_list": ["verbal"],
+      "description": "Создаёт магические стрелы, которые попадают точно в цель.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "sorcerer", "name": "Чародей" }
       ],
-      "tags": ["healing", "touch"],
-      "source": { "book": "PHB", "page": 241 },
-      "srd": true,
-      "icon": "icons/cure_wounds.svg",
-      "notes": "Очень полезно для начинающих персонажей."
+      "full_description": "Каждая стрела наносит 1d4+1 урона и автоматически поражает цель."
     },
     {
-      "id": 4,
-      "name": "Рука мага",
-      "level": 0,
-      "school": "Conjuration",
-      "classes": ["Волшебник", "Чародей", "Колдун"],
-      "casting_time": "1 действие",
-      "range": "9 метров",
-      "components": { "V": true, "S": true, "M": false, "material": null },
-      "duration": "1 минута",
-      "concentration": false,
-      "ritual": false,
-      "full_description": "Создает спектральную руку для манипуляции предметами на расстоянии.",
-      "examples": [
-        "Используется для активации рычагов на расстоянии.",
-        "Можно перемещать лёгкие предметы."
-      ],
-      "tags": ["utility", "cantrip"],
-      "source": { "book": "PHB", "page": 242 },
-      "srd": true,
-      "icon": "icons/mage_hand.svg",
-      "notes": "Полезно для взаимодействия с окружением без риска."
-    },
-    {
-      "id": 5,
+      "id": "shield",
+      "distance": "1 metr",
       "name": "Щит",
-      "level": 1,
-      "school": "Abjuration",
-      "classes": ["Волшебник", "Чародей"],
-      "casting_time": "1 реакция",
-      "range": "Себя",
-      "components": { "V": true, "S": true, "M": false, "material": null },
+      "level": "1",
+      "school_id": "abjuration",
+      "castingTime": "реакция",
       "duration": "1 раунд",
-      "concentration": false,
-      "ritual": false,
-      "full_description": "Невидимый барьер дает +5 к КЗ до начала вашего следующего хода.",
-      "tags": ["defense", "reaction"],
-      "source": { "book": "PHB", "page": 242 },
-      "srd": true,
-      "icon": "icons/shield.svg",
-      "notes": "Очень мощная защита на короткое время."
+      "components_list": ["verbal"],
+      "description": "Добавляет бонус к КД.",
+      "classes": [{ "id": "wizard", "name": "Маг" }],
+      "full_description": "При наложении увеличивает класс брони на +5 до начала следующего хода."
     },
     {
-      "id": 6,
-      "name": "Туманный шаг",
-      "level": 2,
-      "school": "Conjuration",
-      "classes": ["Чародей", "Колдун", "Волшебник"],
-      "casting_time": "1 бонусное действие",
-      "range": "9 метров",
-      "components": { "V": true, "S": false, "M": false, "material": null },
-      "duration": "Instantaneous",
-      "concentration": false,
-      "ritual": false,
-      "full_description": "Временно окутан туманом, телепортируется на короткое расстояние.",
-      "tags": ["movement", "bonus action"],
-      "source": { "book": "PHB", "page": 242 },
-      "srd": true,
-      "icon": "icons/misty_step.svg",
-      "notes": "Позволяет быстро перемещаться вне боя."
+      "id": "mage_armor",
+      "distance": "1 metr",
+      "name": "Магическая броня",
+      "level": "1",
+      "school_id": "abjuration",
+      "castingTime": "1 действие",
+      "duration": "8 часов",
+      "components_list": ["verbal"],
+      "description": "Создаёт магическую защиту.",
+      "classes": [{ "id": "wizard", "name": "Маг" }],
+      "full_description": "Если цель не носит броню, её КД становится равной 13 + модификатор Ловкости."
     },
     {
-      "id": 7,
-      "name": "Взрыв колдовства",
-      "level": 0,
-      "school": "Evocation",
-      "classes": ["Колдун"],
-      "casting_time": "1 действие",
-      "range": "36 метров",
-      "components": { "V": true, "S": true, "M": false, "material": null },
-      "duration": "Instantaneous",
-      "concentration": false,
-      "ritual": false,
-      "damage": {
-        "type": "Force",
-        "dice": "1d10",
-        "scales_with_level": { "1": "1d10", "5": "2d10", "11": "3d10", "17": "4d10" }
-      },
-      "full_description": "Луч энергии летит к существу, нанося урон.",
-      "tags": ["damage", "ranged", "cantrip", "force"],
-      "source": { "book": "PHB", "page": 242 },
-      "srd": true,
-      "icon": "icons/eldritch_blast.svg",
-      "notes": "Основной атакующий кантрип Колдуна."
+      "id": "invisibility",
+      "distance": "1 metr",
+      "name": "Невидимость",
+      "level": "2",
+      "school_id": "illusion",
+      "castingTime": "1 действие",
+      "duration": "1 час",
+      "components_list": ["verbal"],
+      "description": "Сделать цель невидимой.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "bard", "name": "Бард" }
+      ],
+      "full_description": "Любое существо или объект становится невидимым до конца заклинания или до атаки/заклинания."
+    },
+    {
+      "id": "mirror_image",
+      "distance": "1 metr",
+      "name": "Зеркальное отражение",
+      "level": "2",
+      "school_id": "illusion",
+      "castingTime": "1 действие",
+      "duration": "1 минута",
+      "components_list": ["verbal"],
+      "description": "Создаёт иллюзорные копии для защиты.",
+      "classes": [{ "id": "wizard", "name": "Маг" }],
+      "full_description": "Появляются 3 иллюзорные копии, которые сбивают атаки врагов."
+    },
+    {
+      "id": "fire_shield",
+      "distance": "1 metr",
+      "name": "Огненный щит",
+      "level": "4",
+      "school_id": "evocation",
+      "castingTime": "1 действие",
+      "duration": "10 минут",
+      "components_list": ["verbal"],
+      "description": "Окружает заклинателя огненной аурой.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "sorcerer", "name": "Чародей" }
+      ],
+      "full_description": "Наносит урон всем, кто атакует заклинателя в ближнем бою."
+    },
+    {
+      "id": "polymorph",
+      "distance": "1 metr",
+      "name": "Превращение",
+      "level": "4",
+      "school_id": "transmutation",
+      "castingTime": "1 действие",
+      "duration": "1 час",
+      "components_list": ["verbal"],
+      "description": "Превращает существо в другое.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "druid", "name": "Друид" }
+      ],
+      "full_description": "Цель превращается в выбранное животное с ограничениями по CR и размеру."
+    },
+    {
+      "id": "fly",
+      "distance": "1 metr",
+      "name": "Полёт",
+      "level": "3",
+      "school_id": "transmutation",
+      "castingTime": "1 действие",
+      "duration": "10 минут",
+      "components_list": ["verbal"],
+      "description": "Даёт способность летать.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "druid", "name": "Друид" }
+      ],
+      "full_description": "Цель получает скорость полёта 60 футов на время действия заклинания."
+    },
+    {
+      "id": "healing_word",
+      "distance": "1 metr",
+      "name": "Слово исцеления",
+      "level": "1",
+      "school_id": "evocation",
+      "castingTime": "1 бонусное действие",
+      "duration": "Мгновенно",
+      "components_list": ["verbal"],
+      "description": "Восстанавливает немного здоровья союзнику.",
+      "classes": [
+        { "id": "cleric", "name": "Жрец" },
+        { "id": "bard", "name": "Бард" }
+      ],
+      "full_description": "Цель получает 1d4 + модификатор заклинателя к HP."
+    },
+    {
+      "id": "cure_wounds",
+      "distance": "1 metr",
+      "name": "Исцеляющее прикосновение",
+      "level": "1",
+      "school_id": "evocation",
+      "castingTime": "1 действие",
+      "duration": "Мгновенно",
+      "components_list": ["verbal"],
+      "description": "Восстанавливает здоровье союзнику через прикосновение.",
+      "classes": [
+        { "id": "cleric", "name": "Жрец" },
+        { "id": "druid", "name": "Друид" }
+      ],
+      "full_description": "Цель получает 1d8 + модификатор заклинателя к HP."
+    },
+    {
+      "id": "lightning_bolt",
+      "distance": "1 metr",
+      "name": "Молния",
+      "level": "3",
+      "school_id": "evocation",
+      "castingTime": "1 действие",
+      "duration": "Мгновенно",
+      "components_list": ["verbal"],
+      "description": "Создаёт мощный разряд молнии.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "sorcerer", "name": "Чародей" }
+      ],
+      "full_description": "Линия молнии 100 футов наносит 8d6 урона электричеством."
+    },
+    {
+      "id": "detect_magic",
+      "distance": "1 metr",
+      "name": "Обнаружение магии",
+      "level": "1",
+      "school_id": "divination",
+      "castingTime": "1 действие",
+      "duration": "10 минут",
+      "components_list": ["verbal"],
+      "description": "Позволяет видеть магические эффекты.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "cleric", "name": "Жрец" }
+      ],
+      "full_description": "Находящиеся поблизости магические эффекты становятся видимыми."
+    },
+    {
+      "id": "dispel_magic",
+      "distance": "1 metr",
+      "name": "Развеяние магии",
+      "level": "3",
+      "school_id": "abjuration",
+      "castingTime": "1 действие",
+      "duration": "Мгновенно",
+      "components_list": ["verbal"],
+      "description": "Снимает магические эффекты.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "cleric", "name": "Жрец" }
+      ],
+      "full_description": "Разрушает заклинания и магические эффекты с уровня заклинателя или ниже."
+    },
+    {
+      "id": "sleep",
+      "distance": "1 metr",
+      "name": "Сон",
+      "level": "1",
+      "school_id": "conjuration",
+      "castingTime": "1 действие",
+      "duration": "1 минута",
+      "components_list": ["verbal"],
+      "description": "Усыпляет слабых существ в радиусе.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "bard", "name": "Бард" }
+      ],
+      "full_description": "Существо или несколько существ погружаются в сон, пока суммарное количество хитов не достигнет лимита."
+    },
+    {
+      "id": "hold_person",
+      "distance": "1 metr",
+      "name": "Сковать человека",
+      "level": "2",
+      "school_id": "enchantment",
+      "castingTime": "1 действие",
+      "duration": "1 минута",
+      "components_list": ["verbal"],
+      "description": "Парализует гуманоидов.",
+      "classes": [
+        { "id": "cleric", "name": "Жрец" },
+        { "id": "wizard", "name": "Маг" }
+      ],
+      "full_description": "Цель становится парализованной, пока заклинание действует или не проходит спасбросок."
+    },
+    {
+      "id": "darkness",
+      "distance": "1 metr",
+      "name": "Тьма",
+      "level": "2",
+      "school_id": "evocation",
+      "castingTime": "1 действие",
+      "duration": "10 минут",
+      "components_list": ["verbal"],
+      "description": "Создаёт область магической тьмы.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "sorcerer", "name": "Чародей" }
+      ],
+      "full_description": "Область радиусом 15 футов окутана магической тьмой, видимость блокируется полностью."
+    },
+    {
+      "id": "blur",
+      "distance": "1 metr",
+      "name": "Размытие",
+      "level": "2",
+      "school_id": "illusion",
+      "castingTime": "1 действие",
+      "duration": "1 минута",
+      "components_list": ["verbal"],
+      "description": "Делает заклинателя размытым и труднее поражаемым.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "sorcerer", "name": "Чародей" }
+      ],
+      "full_description": "Атаки по заклинателю совершаются с помехой, вероятность промаха увеличена."
+    },
+    {
+      "id": "counterspell",
+      "distance": "1 metr",
+      "name": "Контрзаклинание",
+      "level": "3",
+      "school_id": "necromancy",
+      "castingTime": "реакция",
+      "duration": "Мгновенно",
+      "components_list": ["verbal"],
+      "description": "Прерывает чужое заклинание.",
+      "classes": [
+        { "id": "wizard", "name": "Маг" },
+        { "id": "sorcerer", "name": "Чародей" }
+      ],
+      "full_description": "Если заклинание сопоставимо по уровню, оно полностью отменяется; иначе выполняется проверка."
     }
   ]
 }

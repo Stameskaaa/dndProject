@@ -8,9 +8,11 @@ import {
   isValidElement,
 } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import classNames from 'classnames';
 
 interface ModalDialogProps {
   buttonTrigger?: ReactNode;
+  contentStyles?: string;
   children?: ReactNode;
   open?: boolean;
   setOpen?: (state: boolean) => void;
@@ -19,6 +21,7 @@ interface ModalDialogProps {
 export const ModalWindow: FC<ModalDialogProps> = ({
   buttonTrigger,
   children,
+  contentStyles,
   open: externalOpen,
   setOpen: externalSetOpen,
 }) => {
@@ -27,6 +30,7 @@ export const ModalWindow: FC<ModalDialogProps> = ({
   const open = externalOpen ?? internalOpen;
   const setOpen = externalSetOpen ?? setInternalOpen;
 
+  // TODO Можно на esc поставить закрытие
   return (
     <Dialog>
       {buttonTrigger && (
@@ -37,7 +41,10 @@ export const ModalWindow: FC<ModalDialogProps> = ({
       <DialogContent
         open={open}
         setopen={setOpen}
-        className="bg-brand-400 border-none h-[60%] w-[35%] !max-w-none">
+        className={classNames(
+          'bg-brand-400 border-none h-[60%] w-[35%] !max-w-none',
+          contentStyles,
+        )}>
         {Children.map(children, (child) =>
           isValidElement(child) ? cloneElement(child as ReactElement<any>, { setOpen }) : child,
         )}
