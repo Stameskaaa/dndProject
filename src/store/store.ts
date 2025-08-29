@@ -1,3 +1,4 @@
+import { originsApi } from './../features/origin/api';
 import { configureStore } from '@reduxjs/toolkit';
 import { racesApi } from '@/features/races/api';
 import { classesApi } from '@/features/classes/api';
@@ -10,6 +11,7 @@ export const store = configureStore({
     [racesApi.reducerPath]: racesApi.reducer,
     [classesApi.reducerPath]: classesApi.reducer,
     [spellsApi.reducerPath]: spellsApi.reducer,
+    [originsApi.reducerPath]: originsApi.reducer,
     scrollLock: scrollLockReducer,
     pageTransition: pageTransitionReducer,
   },
@@ -17,7 +19,8 @@ export const store = configureStore({
     getDefaultMiddleware()
       .concat(racesApi.middleware)
       .concat(classesApi.middleware)
-      .concat(spellsApi.middleware),
+      .concat(spellsApi.middleware)
+      .concat(originsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

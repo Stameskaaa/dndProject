@@ -6,12 +6,16 @@ import { CHARACTER_NAVIGATION } from '@/routes/nestedRoutes';
 export const CharacterPage = () => {
   return (
     <Section screen>
-      <Text size="4xl">Расы и происхождения</Text>
-      {CHARACTER_NAVIGATION.map(({ title, fullPath }) => (
-        <Link key={title} to={fullPath}>
-          <Text>{title}</Text>
-        </Link>
-      ))}
+      <Text size="4xl">Расы</Text>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+        {CHARACTER_NAVIGATION.map(({ title, fullPath }, i) => (
+          <Link key={`${title}${i}`} to={fullPath}>
+            <div className="w-[140px] h-[100px] bg-brand-200 rounded-2xl">
+              <Text>{title}</Text>
+            </div>
+          </Link>
+        ))}
+      </div>
     </Section>
   );
 };

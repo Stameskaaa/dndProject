@@ -14,13 +14,19 @@ interface RaceCharacterPageProps {
   isModal?: boolean;
   closeModal?: () => {};
   fullModal?: () => {};
+  isModalLocked?: boolean;
 }
 
 export const RaceCharacterPage = () => {
   const { id } = useParams();
   const { isLoading, data } = useGetRaceByIdQuery({ id: id! }, { skip: !id });
 
-  const Content: React.FC<RaceCharacterPageProps> = ({ closeModal, fullModal, isModal }) => {
+  const Content: React.FC<RaceCharacterPageProps> = ({
+    closeModal,
+    fullModal,
+    isModal,
+    isModalLocked,
+  }) => {
     return isLoading ? (
       <CubeLoader />
     ) : (
@@ -30,9 +36,13 @@ export const RaceCharacterPage = () => {
         ) : (
           <>
             <div className="flex p-1 bg-brand-400 shadow-md shadow-black rounded-md  items-center gap-4 absolute left-10 top-[-18px]">
-              <Button size="sm" variant="tonal" onClick={fullModal}>
-                {isModal ? <Shrink /> : <Expand />}
-              </Button>
+              {!isModalLocked ? (
+                <Button size="sm" variant="tonal" onClick={fullModal}>
+                  {isModal ? <Shrink /> : <Expand />}
+                </Button>
+              ) : (
+                <div />
+              )}
               <Text size="lg">{data?.name}</Text>
               <Button size="sm" variant="tonal" onClick={closeModal}>
                 <X />

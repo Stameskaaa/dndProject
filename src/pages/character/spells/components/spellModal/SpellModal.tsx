@@ -14,6 +14,7 @@ export const SpellModal = ({
   spellData?: SpellDataType[];
   setOpen?: (state: boolean) => {};
 }) => {
+  // TODO ПРИНИМАЕТ ТОЛЬКО АЙДИ БЕЗ МАССИВА
   const { id: paramsId } = useParams();
   const currentSpell = spellData?.find(({ id }) => id == paramsId);
 

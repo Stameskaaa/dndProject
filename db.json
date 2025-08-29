@@ -1198,5 +1198,133 @@
       ],
       "full_description": "Если заклинание сопоставимо по уровню, оно полностью отменяется; иначе выполняется проверка."
     }
+  ],
+  "origins": [
+    {
+      "id": "human_standard",
+      "name": "Человек",
+      "src": "",
+      "characteristic": { "id": "strength", "name": "Сила" },
+      "feats": {
+        "name": "Вдохновение",
+        "description": "Дополнительная черта для навыков.",
+        "wolds": {
+          "id": "faerun",
+          "name": "Фаэрун",
+          "description": "Большой континент с множеством стран."
+        },
+        "type": "racial"
+      },
+      "skills": {
+        "id": "persuasion",
+        "name": "Убеждение",
+        "description": "Умение влиять на других."
+      },
+      "toolSkills": {
+        "id": "artisan_tools",
+        "description": "Владение инструментами ремесленника."
+      },
+      "equipment": ["sword", "Длинный меч"],
+      "md_content": "Описание происхождения человека.",
+      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+    },
+    {
+      "id": "elf_high",
+      "name": "Высший Эльф",
+      "src": "",
+      "characteristic": { "id": "dexterity", "name": "Ловкость" },
+      "feats": {
+        "name": "Темное зрение",
+        "description": "Видит в темноте на расстоянии 60 футов.",
+        "wolds": {
+          "id": "faerun",
+          "name": "Фаэрун",
+          "description": "Большой континент с множеством стран."
+        },
+        "type": "racial"
+      },
+      "skills": { "id": "arcana", "name": "Магия", "description": "Знания в области магии." },
+      "toolSkills": {
+        "id": "musical_instrument",
+        "description": "Владение музыкальными инструментами."
+      },
+      "equipment": ["bow", "Длинный лук"],
+      "md_content": "Описание происхождения высшего эльфа.",
+      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+    },
+    {
+      "id": "dwarf_mountain",
+      "name": "Горный Дварф",
+      "src": "",
+      "characteristic": { "id": "constitution", "name": "Телосложение" },
+      "feats": {
+        "name": "Темное зрение",
+        "description": "Видит в темноте на расстоянии 60 футов.",
+        "wolds": {
+          "id": "faerun",
+          "name": "Фаэрун",
+          "description": "Большой континент с множеством стран."
+        },
+        "type": "racial"
+      },
+      "skills": { "id": "history", "name": "История", "description": "Знания о прошлом." },
+      "toolSkills": { "id": "smith_tools", "description": "Владение кузнечными инструментами." },
+      "equipment": ["axe", "Боевой топор"],
+      "md_content": "Описание происхождения горного дварфа.",
+      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+    },
+    {
+      "id": "halfling_lightfoot",
+      "name": "Халфлинг Легконогий",
+      "src": "",
+      "characteristic": { "id": "dexterity", "name": "Ловкость" },
+      "feats": {
+        "name": "Скрытность",
+        "description": "Легко прячется и незаметен.",
+        "wolds": {
+          "id": "faerun",
+          "name": "Фаэрун",
+          "description": "Большой континент с множеством стран."
+        },
+        "type": "racial"
+      },
+      "skills": {
+        "id": "stealth",
+        "name": "Скрытность",
+        "description": "Умение оставаться незамеченным."
+      },
+      "toolSkills": { "id": "thieves_tools", "description": "Владение инструментами вора." },
+      "equipment": ["dagger", "Кинжал"],
+      "md_content": "Описание происхождения халфлинга.",
+      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+    },
+    {
+      "id": "dragonborn",
+      "name": "Драконорожденный",
+      "src": "https://i.pinimg.com/1200x/a7/61/4b/a7614b6b8c09948f965951f18b5261be.jpg",
+      "characteristic": { "id": "strength", "name": "Сила" },
+      "feats": {
+        "name": "Дыхание дракона",
+        "description": "Выдыхает огонь или другой элемент.",
+        "wolds": {
+          "id": "faerun",
+          "name": "Фаэрун",
+          "description": "Большой континент с множеством стран."
+        },
+        "type": "racial"
+      },
+      "skills": {
+        "id": "intimidation",
+        "name": "Запугивание",
+        "description": "Умение внушать страх."
+      },
+      "toolSkills": {
+        "id": "artisan_tools",
+        "description": "Владение инструментами ремесленника."
+      },
+      "equipment": ["spear", "Копьё"],
+      "md_content": "Описание происхождения драконорожденного.",
+      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+    }
   ]
 }

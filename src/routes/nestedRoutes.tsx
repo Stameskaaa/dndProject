@@ -1,4 +1,5 @@
 import { ClassesPage } from '@/pages/character/classes/ClassesPage';
+import { OriginPage } from '@/pages/character/origin/OriginPage';
 import { RaceCharacterPage } from '@/pages/character/races/components/raceCharacter/RaceCharacterPage';
 import { RacesPage } from '@/pages/character/races/RacesPage';
 import { SpellsPage } from '@/pages/character/spells/SpellsPage';
@@ -105,7 +106,14 @@ export const CHARACTER_NAVIGATION = [
     title: 'Происхождения',
     relativePath: 'origins',
     fullPath: '/game/character/origins',
-    element: <div>useful</div>,
+    element: <OriginPage />,
+  },
+  {
+    id: 'originsId',
+    title: 'Происхождение',
+    relativePath: 'origins/:id',
+    fullPath: '/game/character/origins:id',
+    element: <OriginPage />,
   },
   {
     id: 'traits',
@@ -123,7 +131,7 @@ export const CHARACTER_NAVIGATION = [
   },
   {
     id: 'spellsId',
-    title: 'Заклинания',
+    title: 'Заклинание',
     relativePath: 'spells/:id',
     fullPath: '/game/character/spells/:id',
     element: <SpellsPage />,

@@ -42,7 +42,7 @@ export const ModalWindow: FC<ModalDialogProps> = ({
         open={open}
         setopen={setOpen}
         className={classNames(
-          'bg-brand-400 border-none h-[60%] w-[35%] !max-w-none',
+          'bg-brand-400 border-none h-[60%] w-[400px] !max-w-none',
           contentStyles,
         )}>
         {Children.map(children, (child) =>

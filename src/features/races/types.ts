@@ -1,3 +1,5 @@
+import type { World } from '../types';
+
 export interface RaceFeature {
   type: string;
   size: string;
@@ -9,7 +11,7 @@ export interface Race {
   id: string;
   name: string;
   src: string;
-  worlds: { id: string; name: string }[];
+  worlds: World[];
   description: string;
   full_description: string;
   features: RaceFeature;
