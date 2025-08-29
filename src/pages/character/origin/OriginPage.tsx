@@ -27,7 +27,7 @@ export const OriginPage = () => {
         contentStyles="w-full !max-w-[600px]"
         setOpen={() => navigate('/game/character/origins')}
         open={!!id}>
-        <OriginModal originData={originData} />
+        <OriginModal />
       </ModalWindow>
     </Section>
   );

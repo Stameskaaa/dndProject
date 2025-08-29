@@ -31,7 +31,7 @@ export const RaceFeatures = ({ features }: { features?: Race['features'] }) => {
   return (
     <div>
       <Description />
-      <Separator className="bg-brand-100 mb-[12px] mt-[22px]" />
+      <Separator />
       <MarkDownText>{features.md_content}</MarkDownText>
     </div>
   );

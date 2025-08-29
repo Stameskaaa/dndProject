@@ -3,6 +3,7 @@ import { OriginPage } from '@/pages/character/origin/OriginPage';
 import { RaceCharacterPage } from '@/pages/character/races/components/raceCharacter/RaceCharacterPage';
 import { RacesPage } from '@/pages/character/races/RacesPage';
 import { SpellsPage } from '@/pages/character/spells/SpellsPage';
+import { TraitsPage } from '@/pages/character/traits/TraitsPage';
 
 export const NEW_PLAYER_NAVIGATION = [
   {
@@ -120,7 +121,7 @@ export const CHARACTER_NAVIGATION = [
     title: 'Черты',
     relativePath: 'traits',
     fullPath: '/game/character/traits',
-    element: <div>useful</div>,
+    element: <TraitsPage />,
   },
   {
     id: 'spells',

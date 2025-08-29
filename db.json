@@ -1204,127 +1204,485 @@
       "id": "human_standard",
       "name": "Человек",
       "src": "",
-      "characteristic": { "id": "strength", "name": "Сила" },
-      "feats": {
-        "name": "Вдохновение",
-        "description": "Дополнительная черта для навыков.",
-        "wolds": {
-          "id": "faerun",
-          "name": "Фаэрун",
-          "description": "Большой континент с множеством стран."
-        },
-        "type": "racial"
-      },
-      "skills": {
-        "id": "persuasion",
-        "name": "Убеждение",
-        "description": "Умение влиять на других."
-      },
-      "toolSkills": {
-        "id": "artisan_tools",
-        "description": "Владение инструментами ремесленника."
-      },
+      "characteristic": [{ "id": "strength", "name": "Сила" }],
+      "feats": [
+        {
+          "name": "Вдохновение",
+          "description": "Дополнительная черта для навыков.",
+          "wolds": {
+            "id": "faerun",
+            "name": "Фаэрун",
+            "description": "Большой континент с множеством стран."
+          },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "persuasion", "name": "Убеждение", "description": "Умение влиять на других." }
+      ],
+      "toolSkills": [
+        { "id": "artisan_tools", "description": "Владение инструментами ремесленника." }
+      ],
       "equipment": ["sword", "Длинный меч"],
-      "md_content": "Описание происхождения человека.",
-      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+      "md_content": "Описание происхождения человека."
     },
     {
       "id": "elf_high",
       "name": "Высший Эльф",
       "src": "",
-      "characteristic": { "id": "dexterity", "name": "Ловкость" },
-      "feats": {
-        "name": "Темное зрение",
-        "description": "Видит в темноте на расстоянии 60 футов.",
-        "wolds": {
-          "id": "faerun",
-          "name": "Фаэрун",
-          "description": "Большой континент с множеством стран."
-        },
-        "type": "racial"
-      },
-      "skills": { "id": "arcana", "name": "Магия", "description": "Знания в области магии." },
-      "toolSkills": {
-        "id": "musical_instrument",
-        "description": "Владение музыкальными инструментами."
-      },
+      "characteristic": [{ "id": "dexterity", "name": "Ловкость" }],
+      "feats": [
+        {
+          "name": "Темное зрение",
+          "description": "Видит в темноте на расстоянии 60 футов.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [{ "id": "arcana", "name": "Магия", "description": "Знания в области магии." }],
+      "toolSkills": [
+        { "id": "musical_instrument", "description": "Владение музыкальными инструментами." }
+      ],
       "equipment": ["bow", "Длинный лук"],
-      "md_content": "Описание происхождения высшего эльфа.",
-      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+      "md_content": "Описание происхождения высшего эльфа."
     },
     {
       "id": "dwarf_mountain",
       "name": "Горный Дварф",
       "src": "",
-      "characteristic": { "id": "constitution", "name": "Телосложение" },
-      "feats": {
-        "name": "Темное зрение",
-        "description": "Видит в темноте на расстоянии 60 футов.",
-        "wolds": {
-          "id": "faerun",
-          "name": "Фаэрун",
-          "description": "Большой континент с множеством стран."
-        },
-        "type": "racial"
-      },
-      "skills": { "id": "history", "name": "История", "description": "Знания о прошлом." },
-      "toolSkills": { "id": "smith_tools", "description": "Владение кузнечными инструментами." },
+      "characteristic": [{ "id": "constitution", "name": "Телосложение" }],
+      "feats": [
+        {
+          "name": "Темное зрение",
+          "description": "Видит в темноте на расстоянии 60 футов.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [{ "id": "history", "name": "История", "description": "Знания о прошлом." }],
+      "toolSkills": [{ "id": "smith_tools", "description": "Владение кузнечными инструментами." }],
       "equipment": ["axe", "Боевой топор"],
-      "md_content": "Описание происхождения горного дварфа.",
-      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+      "md_content": "Описание происхождения горного дварфа."
     },
     {
       "id": "halfling_lightfoot",
       "name": "Халфлинг Легконогий",
       "src": "",
-      "characteristic": { "id": "dexterity", "name": "Ловкость" },
-      "feats": {
-        "name": "Скрытность",
-        "description": "Легко прячется и незаметен.",
-        "wolds": {
-          "id": "faerun",
-          "name": "Фаэрун",
-          "description": "Большой континент с множеством стран."
-        },
-        "type": "racial"
-      },
-      "skills": {
-        "id": "stealth",
-        "name": "Скрытность",
-        "description": "Умение оставаться незамеченным."
-      },
-      "toolSkills": { "id": "thieves_tools", "description": "Владение инструментами вора." },
+      "characteristic": [{ "id": "dexterity", "name": "Ловкость" }],
+      "feats": [
+        {
+          "name": "Скрытность",
+          "description": "Легко прячется и незаметен.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "stealth", "name": "Скрытность", "description": "Умение оставаться незамеченным." }
+      ],
+      "toolSkills": [{ "id": "thieves_tools", "description": "Владение инструментами вора." }],
       "equipment": ["dagger", "Кинжал"],
-      "md_content": "Описание происхождения халфлинга.",
-      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+      "md_content": "Описание происхождения халфлинга."
     },
     {
       "id": "dragonborn",
       "name": "Драконорожденный",
-      "src": "https://i.pinimg.com/1200x/a7/61/4b/a7614b6b8c09948f965951f18b5261be.jpg",
-      "characteristic": { "id": "strength", "name": "Сила" },
-      "feats": {
-        "name": "Дыхание дракона",
-        "description": "Выдыхает огонь или другой элемент.",
-        "wolds": {
-          "id": "faerun",
-          "name": "Фаэрун",
-          "description": "Большой континент с множеством стран."
-        },
-        "type": "racial"
-      },
-      "skills": {
-        "id": "intimidation",
-        "name": "Запугивание",
-        "description": "Умение внушать страх."
-      },
-      "toolSkills": {
-        "id": "artisan_tools",
-        "description": "Владение инструментами ремесленника."
-      },
+      "src": "",
+      "characteristic": [{ "id": "strength", "name": "Сила" }],
+      "feats": [
+        {
+          "name": "Дыхание дракона",
+          "description": "Выдыхает огонь или другой элемент.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "intimidation", "name": "Запугивание", "description": "Умение внушать страх." }
+      ],
+      "toolSkills": [
+        { "id": "artisan_tools", "description": "Владение инструментами ремесленника." }
+      ],
       "equipment": ["spear", "Копьё"],
-      "md_content": "Описание происхождения драконорожденного.",
-      "worlds": [{ "id": "faerun", "name": "Фаэрун" }]
+      "md_content": "Описание происхождения драконорожденного."
+    },
+    {
+      "id": "gnome_forest",
+      "name": "Лесной Гном",
+      "src": "",
+      "characteristic": [{ "id": "intelligence", "name": "Интеллект" }],
+      "feats": [
+        {
+          "name": "Наблюдательность",
+          "description": "Лучше замечает скрытые детали.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "nature", "name": "Природа", "description": "Знания о растениях и животных." }
+      ],
+      "toolSkills": [
+        { "id": "herbalism_tools", "description": "Владение инструментами травника." }
+      ],
+      "equipment": ["dagger", "Кинжал"],
+      "md_content": "Описание происхождения лесного гнома."
+    },
+    {
+      "id": "orc_warrior",
+      "name": "Орк Воин",
+      "src": "",
+      "characteristic": [{ "id": "strength", "name": "Сила" }],
+      "feats": [
+        {
+          "name": "Ярость",
+          "description": "Повышает силу на короткое время.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "athletics", "name": "Атлетика", "description": "Физические упражнения и сила." }
+      ],
+      "toolSkills": [{ "id": "smith_tools", "description": "Владение кузнечными инструментами." }],
+      "equipment": ["axe", "Боевой топор"],
+      "md_content": "Описание происхождения орка."
+    },
+    {
+      "id": "tiefling",
+      "name": "Тифлинг",
+      "src": "",
+      "characteristic": [{ "id": "charisma", "name": "Харизма" }],
+      "feats": [
+        {
+          "name": "Темное зрение",
+          "description": "Видит в темноте.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "deception", "name": "Обман", "description": "Умение вводить в заблуждение." }
+      ],
+      "toolSkills": [{ "id": "disguise_kit", "description": "Владение набором для маскировки." }],
+      "equipment": ["dagger", "Кинжал"],
+      "md_content": "Описание происхождения тифлинга."
+    },
+    {
+      "id": "half_orc",
+      "name": "Полуорк",
+      "src": "",
+      "characteristic": [{ "id": "strength", "name": "Сила" }],
+      "feats": [
+        {
+          "name": "Выносливость",
+          "description": "Повышает здоровье на короткое время.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "intimidation", "name": "Запугивание", "description": "Умение внушать страх." }
+      ],
+      "toolSkills": [
+        { "id": "artisan_tools", "description": "Владение инструментами ремесленника." }
+      ],
+      "equipment": ["axe", "Боевой топор"],
+      "md_content": "Описание происхождения полуорка."
+    },
+    {
+      "id": "aasimar",
+      "name": "Аасимар",
+      "src": "",
+      "characteristic": [{ "id": "charisma", "name": "Харизма" }],
+      "feats": [
+        {
+          "name": "Божественное наследие",
+          "description": "Получает бонус к исцелению.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "religion", "name": "Религия", "description": "Знания о божественных существах." }
+      ],
+      "toolSkills": [{ "id": "holy_symbol", "description": "Владение священным символом." }],
+      "equipment": ["mace", "Булавa"],
+      "md_content": "Описание происхождения аасимара."
+    },
+    {
+      "id": "gnome_rock",
+      "name": "Каменный Гном",
+      "src": "",
+      "characteristic": [{ "id": "intelligence", "name": "Интеллект" }],
+      "feats": [
+        {
+          "name": "Изобретательность",
+          "description": "Создает мелкие устройства.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "investigation", "name": "Расследование", "description": "Умение находить улики." }
+      ],
+      "toolSkills": [
+        { "id": "tinker_tools", "description": "Владение инструментами изобретателя." }
+      ],
+      "equipment": ["hammer", "Молоток"],
+      "md_content": "Описание происхождения каменного гнома."
+    },
+    {
+      "id": "elf_wood",
+      "name": "Лесной Эльф",
+      "src": "",
+      "characteristic": [{ "id": "dexterity", "name": "Ловкость" }],
+      "feats": [
+        {
+          "name": "Маскировка",
+          "description": "Легко скрывается в лесу.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "nature", "name": "Природа", "description": "Знания о растениях и животных." }
+      ],
+      "toolSkills": [
+        { "id": "herbalism_tools", "description": "Владение инструментами травника." }
+      ],
+      "equipment": ["bow", "Лук"],
+      "md_content": "Описание происхождения лесного эльфа."
+    },
+    {
+      "id": "orc_shaman",
+      "name": "Орк Шаман",
+      "src": "",
+      "characteristic": [{ "id": "wisdom", "name": "Мудрость" }],
+      "feats": [
+        {
+          "name": "Духовная связь",
+          "description": "Общение с духами.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [{ "id": "medicine", "name": "Медицина", "description": "Знание исцеления ран." }],
+      "toolSkills": [
+        { "id": "herbalism_tools", "description": "Владение инструментами травника." }
+      ],
+      "equipment": ["staff", "Посох"],
+      "md_content": "Описание происхождения орк шамана."
+    },
+    {
+      "id": "halfling_stout",
+      "name": "Халфлинг Стойкий",
+      "src": "",
+      "characteristic": [{ "id": "constitution", "name": "Телосложение" }],
+      "feats": [
+        {
+          "name": "Устойчивость",
+          "description": "Сопротивление ядам.",
+          "wolds": { "id": "faerun", "name": "Фаэрун", "description": "" },
+          "type": "racial"
+        }
+      ],
+      "worlds": [{ "id": "faerun", "name": "Фаэрун", "description": "" }],
+      "skills": [
+        { "id": "endurance", "name": "Выносливость", "description": "Выдержка в бою и походах." }
+      ],
+      "toolSkills": [{ "id": "cooking_tools", "description": "Владение кухонными инструментами." }],
+      "equipment": ["dagger", "Кинжал"],
+      "md_content": "Описание происхождения халфлинга стойкого."
+    }
+  ],
+  "traits": [
+    {
+      "id": "origin-1",
+      "name": "Крепкий",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-2",
+      "name": "Драчун",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-3",
+      "name": "Одарённый",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-4",
+      "name": "Дикий Атакующий",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-5",
+      "name": "Музыкант",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-6",
+      "name": "Посвященный в магию",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-7",
+      "name": "Везунчик",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-8",
+      "name": "Лекарь",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "origin-9",
+      "name": "Бдительный",
+      "worlds": [],
+      "type": "Черты происхождения"
+    },
+    {
+      "id": "style-1",
+      "name": "Дуэлянт",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-2",
+      "name": "Защита",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-3",
+      "name": "Оборона",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-4",
+      "name": "Перехват",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-5",
+      "name": "Сражение большим оружием",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-6",
+      "name": "Сражение вслепую",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-7",
+      "name": "Сражение голыми руками",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-8",
+      "name": "Сражение двумя оружиями",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-9",
+      "name": "Сражение метательным оружием",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "style-10",
+      "name": "Стрельба из лука",
+      "worlds": [],
+      "type": "Черты боевых стилей"
+    },
+    {
+      "id": "common-1",
+      "name": "Атлет",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-2",
+      "name": "Боевой заклинатель",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-3",
+      "name": "Борец",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-4",
+      "name": "Верховой боец",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-5",
+      "name": "Владение воинским оружием",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-6",
+      "name": "Воодушевляющий лидер",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-7",
+      "name": "Затронутый тенью",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-8",
+      "name": "Затронутый феями",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-9",
+      "name": "Знаток легких доспехов",
+      "worlds": [],
+      "type": "Общие черты"
+    },
+    {
+      "id": "common-10",
+      "name": "Знаток средних доспехов",
+      "worlds": [],
+      "type": "Общие черты"
     }
   ]
 }

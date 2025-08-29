@@ -11,6 +11,7 @@ import {
 export const Text: React.FC<TypographyProps> = forwardRef<any, TypographyProps>(
   (
     {
+      style,
       children,
       as = 'p',
       color = 'text-primary',
@@ -32,7 +33,10 @@ export const Text: React.FC<TypographyProps> = forwardRef<any, TypographyProps>(
       <Tag
         ref={ref}
         className={`${sizeMap[size]} ${weightMap[weight]} ${fontMap[font]} ${colorClass} ${gradientClass} ${maxCountClass} ${className}`}
-        style={maxCount ? { WebkitLineClamp: maxCount } : undefined}>
+        style={{
+          ...(maxCount ? { WebkitLineClamp: maxCount } : {}),
+          ...style,
+        }}>
         {children}
       </Tag>
     );

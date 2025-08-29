@@ -28,16 +28,19 @@ export const DescriptionList: React.FC<DescriptionListProps> = ({ data, options 
       {data.map(({ title, value, icon: Icon }, i) => {
         return (
           <div key={i} style={{ wordWrap: 'break-word' }} className="flex w-full items-start">
+            <Text style={{ lineHeight: '100%' }} size={size} className="mt-[5px] mr-[6px]">
+              {Icon && <Icon size={14} />}
+            </Text>
             <Text
-              size={size}
+              style={{ lineHeight: '100%' }}
               as="span"
-              className="inline-flex gap-x-2 flex-1 min-w-0 break-words break-all hyphens-auto items-start"
+              className="flex-1 min-w-0 break-words break-all hyphens-auto items-start vertical-center"
               color={secondaryColor || 'text-secondary'}>
               <Text
                 size={size}
                 as="span"
-                className="flex-shrink-0 inline-flex gap-x-1 items-center">
-                {Icon && <Icon size={14} />} {title}:
+                className="flex-shrink-0 inline-flex gap-x-1 items-center pr-1">
+                {title}:
               </Text>
               {value}
             </Text>
