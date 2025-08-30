@@ -6,6 +6,10 @@ import styles from './SpellCard.module.css';
 import { Badge } from '../../../../../components/wrappers/badge/Badge';
 import { Text } from '../../../../../components/wrappers/typography/Text';
 import { SpellDescription } from '@/pages/character/spells/components/spellDescription/SpellDescription';
+import {
+  cardTransition,
+  cardVariants,
+} from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 
 export const SpellCard = ({ data, onClick }: { data: SpellDataType; onClick?: () => void }) => {
   const { name, level, school_id, description, classes } = data;
@@ -15,6 +19,8 @@ export const SpellCard = ({ data, onClick }: { data: SpellDataType; onClick?: ()
 
   return (
     <motion.div
+      variants={cardVariants}
+      transition={cardTransition}
       onClick={onClick}
       style={{
         border: '1px solid rgba(255,255,255,0.06)',

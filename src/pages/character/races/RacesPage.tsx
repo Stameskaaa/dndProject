@@ -13,7 +13,7 @@ import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/A
 
 export const RacesPage = () => {
   const isScrolled = useScroll();
-  const { isLoading, data: raceList } = useGetRaceListQuery();
+  const { isLoading, data: raceList, isError } = useGetRaceListQuery();
   usePageTransitionLoading(isLoading);
 
   return (
@@ -36,8 +36,7 @@ export const RacesPage = () => {
             </div>
           </div>
         </motion.div>
-        <AnimatedGridList isLoading={isLoading}>
-          {/* TODO когда будут все подобные страницы вынести в компонент AnimatedGridList */}
+        <AnimatedGridList isError={isError} isLoading={isLoading}>
           {raceList?.map((data) => (
             <RaceCard key={data.id} raceData={data} />
           ))}

@@ -124,6 +124,13 @@ export const CHARACTER_NAVIGATION = [
     element: <TraitsPage />,
   },
   {
+    id: 'trait',
+    title: 'Черта',
+    relativePath: 'traits/:id',
+    fullPath: '/game/character/traits/:id',
+    element: <TraitsPage />,
+  },
+  {
     id: 'spells',
     title: 'Заклинания',
     relativePath: 'spells',

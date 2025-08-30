@@ -1,28 +1,28 @@
-import {
-  cardVariants,
-  MotionHoverZoomCard,
-} from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
+import { MotionHoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
-import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import {
+  AnimatedGridList,
+  cardVariants,
+} from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 import { useGetClassesListQuery } from '@/features/classes/api';
 import { Text } from '@/components/wrappers/typography/Text';
 import { ClassModalContent } from './ClassModalContent';
 
 export const ClassesPage = () => {
-  const { isLoading, data: raceList } = useGetClassesListQuery();
+  const { isLoading, data: raceList, isError } = useGetClassesListQuery();
 
   return (
-    <Section fixedWidth screen>
+    <Section paddingY="large" fixedWidth screen>
       <Text size="4xl">Классы</Text>
-      <AnimatedGridList isLoading={isLoading}>
+      <AnimatedGridList isError={isError} isLoading={isLoading}>
         {/* TODO когда будут все подобные страницы вынести в компонент AnimatedGridList */}
         {raceList?.map(({ id, name, description, src }) => (
           <ModalWindow
             key={id}
             buttonTrigger={
               <MotionHoverZoomCard
-                name={name}
+                title={name}
                 src={src}
                 description={description}
                 variants={cardVariants}

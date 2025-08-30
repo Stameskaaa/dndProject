@@ -6,6 +6,8 @@ export interface Trait {
   worlds: World[];
   type: TraitType;
   src: string;
+  requirements: string;
+  md_content: string;
 }
 
 interface TraitType {

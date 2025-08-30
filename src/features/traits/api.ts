@@ -9,7 +9,10 @@ export const traitsApi = createApi({
     getTraitsList: builder.query<Trait[], void>({
       query: () => 'traits',
     }),
+    getTraitsById: builder.query<Trait, { id: string }>({
+      query: ({ id }) => `traits/${id}`,
+    }),
   }),
 });
 
-export const { useGetTraitsListQuery } = traitsApi;
+export const { useGetTraitsListQuery, useGetTraitsByIdQuery } = traitsApi;

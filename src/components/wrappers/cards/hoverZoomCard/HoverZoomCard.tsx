@@ -49,9 +49,3 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
 HoverZoomCard.displayName = 'HoverZoomCard';
 
 export const MotionHoverZoomCard = motion.create(HoverZoomCard);
-
-// TODO переиспользовать
-export const cardVariants = {
-  hidden: { opacity: 0, y: 10, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1 },
-};

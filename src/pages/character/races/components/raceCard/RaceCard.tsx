@@ -1,10 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import type { Race } from '@/features/races/types';
-import {
-  cardVariants,
-  MotionHoverZoomCard,
-} from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 import { Text } from '@/components/wrappers/typography/Text';
+import {
+  cardTransition,
+  cardVariants,
+} from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import { MotionHoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 
 export const RaceCard = ({ raceData }: { raceData: Race }) => {
   const { id } = useParams();
@@ -39,7 +40,7 @@ export const RaceCard = ({ raceData }: { raceData: Race }) => {
       src={raceData.src}
       description={<Description />}
       variants={cardVariants}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={cardTransition}
       onClick={() => navigate(`${raceData.id}`)}
     />
   );

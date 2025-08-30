@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { CheckboxIcon } from '../forms/checkboxIcon/CheckboxIcon';
 
-export const MarkDownText: React.FC<{ children: string }> = ({ children }) => {
+export const MarkDownText: React.FC<{ children?: string }> = ({ children }) => {
   return (
     <div className="prose prose-gray max-w-none">
       <ReactMarkdown

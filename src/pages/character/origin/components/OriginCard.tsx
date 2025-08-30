@@ -1,10 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  cardVariants,
-  MotionHoverZoomCard,
-} from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
+import { MotionHoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 import { Text } from '@/components/wrappers/typography/Text';
 import type { Origin } from '@/features/origin/types';
+import { cardVariants } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 
 export const OriginCard = ({ originData }: { originData: Origin }) => {
   const { id } = useParams();

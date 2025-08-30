@@ -14,6 +14,13 @@ const containerVariants = {
   },
 };
 
+export const cardVariants = {
+  hidden: { opacity: 0, y: 10, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+};
+
+export const cardTransition = { type: 'spring', stiffness: 300, damping: 20 } as const;
+
 export const AnimatedGridList = ({
   children,
   isLoading,
