@@ -15,7 +15,9 @@ export const SpellsPage = () => {
 
   return (
     <Section paddingY="large" fixedWidth screen>
-      <Text size="4xl">Заклинания</Text>
+      <Text className="my-5" size="4xl">
+        Заклинания
+      </Text>
       <AnimatedGridList gap={8} minW={280} isLoading={isLoading} isError={isError || !spellData}>
         {arrayIsValid(spellData) &&
           spellData.map((data) => (
