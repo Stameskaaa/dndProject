@@ -6,24 +6,27 @@ import {
   type ReactNode,
   Children,
   isValidElement,
+  type CSSProperties,
 } from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import classNames from 'classnames';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 interface ModalDialogProps {
   buttonTrigger?: ReactNode;
-  contentStyles?: string;
+  contentClassname?: string;
   children?: ReactNode;
   open?: boolean;
   setOpen?: (state: boolean) => void;
+  contentStyle?: CSSProperties;
 }
 
 export const ModalWindow: FC<ModalDialogProps> = ({
   buttonTrigger,
   children,
-  contentStyles,
+  contentClassname,
   open: externalOpen,
   setOpen: externalSetOpen,
+  contentStyle,
 }) => {
   const [internalOpen, setInternalOpen] = useState<boolean>(false);
 
@@ -41,9 +44,10 @@ export const ModalWindow: FC<ModalDialogProps> = ({
       <DialogContent
         open={open}
         setopen={setOpen}
+        style={contentStyle}
         className={classNames(
           'bg-brand-400 border-none h-[60%] w-[400px] !max-w-none',
-          contentStyles,
+          contentClassname,
         )}>
         {Children.map(children, (child) =>
           isValidElement(child) ? cloneElement(child as ReactElement<any>, { setOpen }) : child,

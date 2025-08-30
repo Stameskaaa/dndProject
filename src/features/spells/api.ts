@@ -9,7 +9,10 @@ export const spellsApi = createApi({
     getSpellsList: builder.query<SpellDataType[], void>({
       query: () => 'spells',
     }),
+    getSpellById: builder.query<SpellDataType, { id: string }>({
+      query: ({ id }) => `spells/${id}`,
+    }),
   }),
 });
 
-export const { useGetSpellsListQuery } = spellsApi;
+export const { useGetSpellsListQuery, useGetSpellByIdQuery } = spellsApi;

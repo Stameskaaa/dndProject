@@ -43,17 +43,17 @@ function DialogContent({ className, children, open, setopen, ...props }: MotionD
             style={{ zIndex: ModalIndex - 1 }}
           />
           <motion.div
+            {...props}
             initial={{ scale: 0.95, filter: 'blur(8px)', opacity: 0 }}
             animate={{ scale: 1, filter: 'blur(0px)', opacity: 1 }}
             exit={{ scale: 0.95, filter: 'blur(8px)', opacity: 0 }}
             transition={{ duration: 0.2 }}
-            style={{ zIndex: ModalIndex }}
+            style={{ ...props.style, zIndex: ModalIndex }}
             data-slot="dialog-content"
             className={cn(
               'bg-background fixed top-[50%] left-[50%] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg sm:max-w-lg',
               className,
-            )}
-            {...props}>
+            )}>
             {children}
           </motion.div>
         </DialogPortal>

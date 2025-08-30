@@ -30,7 +30,7 @@ export const TraitsPage = () => {
           </div>
           {/* TODO ПЕРЕНЕСТИ В OUTLET */}
           <ModalWindow
-            contentStyles="w-full !max-w-[600px]"
+            contentClassname="w-full !max-w-[600px]"
             setOpen={() => navigate('/game/character/spells')}
             open={!!id}></ModalWindow>
         </>
