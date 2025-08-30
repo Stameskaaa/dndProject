@@ -14,7 +14,7 @@ export const TraitsPage = () => {
   const { id } = useParams();
 
   return (
-    <Section paddingY="large" fixedWidth screen>
+    <Section paddingY="medium" fixedWidth screen>
       <Text size="4xl">Черты</Text>
       <AnimatedGridList isLoading={isLoading} isError={isError}>
         {arrayIsValid(traitData) &&

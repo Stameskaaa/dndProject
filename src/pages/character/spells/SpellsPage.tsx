@@ -3,10 +3,10 @@ import { useGetSpellsListQuery } from '@/features/spells/api';
 import { arrayIsValid } from '@/helpers/arrayHelpers';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
+import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
 import { SpellCard } from '@/pages/character/spells/components/spellCard/SpellCard';
 import { SpellModal } from '@/pages/character/spells/components/spellModal/SpellModal';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
 
 export const SpellsPage = () => {
   const navigate = useNavigate();

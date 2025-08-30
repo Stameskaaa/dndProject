@@ -13,7 +13,7 @@ export const ClassesPage = () => {
   const { isLoading, data: raceList, isError } = useGetClassesListQuery();
 
   return (
-    <Section paddingY="large" fixedWidth screen>
+    <Section paddingY="medium" fixedWidth screen>
       <Text size="4xl">Классы</Text>
       <AnimatedGridList isError={isError} isLoading={isLoading}>
         {/* TODO когда будут все подобные страницы вынести в компонент AnimatedGridList */}

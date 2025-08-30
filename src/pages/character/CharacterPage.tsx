@@ -5,12 +5,14 @@ import { CHARACTER_NAVIGATION } from '@/routes/nestedRoutes';
 
 export const CharacterPage = () => {
   return (
-    <Section screen>
-      <Text size="4xl">Персонаж</Text>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+    <Section paddingY="medium" screen className="items-center flex flex-col">
+      <div className="flex flex-col gap-4 w-full max-w-[700px]">
+        <Text className="mr-auto" size="4xl">
+          Персонаж
+        </Text>
         {CHARACTER_NAVIGATION.map(({ title, fullPath }, i) => (
           <Link key={`${title}${i}`} to={fullPath}>
-            <div className="w-[140px] h-[100px] bg-brand-200 rounded-2xl">
+            <div className=" h-[200px] rounded-xl bg-brand-300">
               <Text>{title}</Text>
             </div>
           </Link>

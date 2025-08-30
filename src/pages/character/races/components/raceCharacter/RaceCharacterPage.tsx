@@ -48,7 +48,6 @@ export const RaceCharacterPage = () => {
                 <X />
               </Button>
             </div>
-
             <Tabs
               defaultTabId={1}
               activeColor="bg-brand-300"

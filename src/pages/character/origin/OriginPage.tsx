@@ -13,7 +13,7 @@ export const OriginPage = () => {
   const { data: originData, isLoading, isError } = useGetOriginsListQuery();
 
   return (
-    <Section paddingY="large" fixedWidth={true} screen={true}>
+    <Section paddingY="medium" fixedWidth={true} screen={true}>
       <AnimatedGridList isLoading={isLoading} isError={isError}>
         {arrayIsValid(originData) &&
           originData?.map((data) => <OriginCard key={data.id} originData={data} />)}

@@ -1,9 +1,10 @@
 import { useRef } from 'react';
+import classNames from 'classnames';
 import { motion, useCycle, type Variants } from 'framer-motion';
 import { Navigation } from './Navigation';
 import { MenuToggle } from './MenuToggle';
 import { useDimensions } from './use-dimensions';
-import classNames from 'classnames';
+import { ModalHeaderIndex } from '@/constants/zIndex';
 
 const sidebar: Variants = {
   open: (height = 1000) => ({
@@ -44,6 +45,7 @@ export const ToggleNavigation = () => {
 
   return (
     <motion.nav
+      style={{ zIndex: ModalHeaderIndex }}
       className={`absolute top-0 right-0 max-w-[310px] w-[300px] h-screen overflow-hidden  ${
         isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       }`}

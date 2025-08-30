@@ -28,7 +28,7 @@ export const RacesPage = () => {
             borderRadius: `0 0 10px 10px`,
           }}
           transition={{ duration: 0.3 }}>
-          <Text size="4xl">Расы и происхождения</Text>
+          {/* <Text size="4xl">Расы и происхождения</Text> */}
           <div className="w-full flex gap-3 items-center">
             <Input placeholder="Поиск ..." className="flex-1" />
             <div className="max-w-content">

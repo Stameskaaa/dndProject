@@ -1,11 +1,25 @@
-import { ClassesPage } from '@/pages/character/classes/ClassesPage';
-import { OriginPage } from '@/pages/character/origin/OriginPage';
-import { RaceCharacterPage } from '@/pages/character/races/components/raceCharacter/RaceCharacterPage';
+import type { ReactNode } from 'react';
 import { RacesPage } from '@/pages/character/races/RacesPage';
+import { OriginPage } from '@/pages/character/origin/OriginPage';
 import { SpellsPage } from '@/pages/character/spells/SpellsPage';
 import { TraitsPage } from '@/pages/character/traits/TraitsPage';
+import { ClassesPage } from '@/pages/character/classes/ClassesPage';
+import { RaceCharacterPage } from '@/pages/character/races/components/raceCharacter/RaceCharacterPage';
 
-export const NEW_PLAYER_NAVIGATION = [
+export interface NestedRoute {
+  id: string;
+  title: string;
+  relativePath: string;
+  fullPath: string;
+  element: ReactNode;
+  parentId?: string | null;
+  children?: {
+    path: string;
+    element: ReactNode;
+  }[];
+}
+
+export const NEW_PLAYER_NAVIGATION: NestedRoute[] = [
   {
     id: 'useful',
     title: 'Полезно знать',
@@ -22,7 +36,7 @@ export const NEW_PLAYER_NAVIGATION = [
   },
 ];
 
-export const EVENTS_NAVIGATION = [
+export const EVENTS_NAVIGATION: NestedRoute[] = [
   {
     id: 'regular',
     title: 'Регулярные игры',
@@ -81,13 +95,14 @@ export const EVENTS_NAVIGATION = [
   },
 ];
 
-export const CHARACTER_NAVIGATION = [
+export const CHARACTER_NAVIGATION: NestedRoute[] = [
   {
     id: 'classes',
     title: 'Классы',
     relativePath: 'classes',
     fullPath: '/game/character/classes',
     element: <ClassesPage />,
+    parentId: null,
   },
   {
     id: 'races',
@@ -95,6 +110,7 @@ export const CHARACTER_NAVIGATION = [
     relativePath: 'races',
     fullPath: '/game/character/races',
     element: <RacesPage />,
+    parentId: null,
     children: [
       {
         path: ':id',
@@ -108,13 +124,15 @@ export const CHARACTER_NAVIGATION = [
     relativePath: 'origins',
     fullPath: '/game/character/origins',
     element: <OriginPage />,
+    parentId: null,
   },
   {
-    id: 'originsId',
+    id: 'origin',
     title: 'Происхождение',
     relativePath: 'origins/:id',
-    fullPath: '/game/character/origins:id',
+    fullPath: '/game/character/origins/:id',
     element: <OriginPage />,
+    parentId: 'origins',
   },
   {
     id: 'traits',
@@ -122,6 +140,7 @@ export const CHARACTER_NAVIGATION = [
     relativePath: 'traits',
     fullPath: '/game/character/traits',
     element: <TraitsPage />,
+    parentId: null,
   },
   {
     id: 'trait',
@@ -129,6 +148,7 @@ export const CHARACTER_NAVIGATION = [
     relativePath: 'traits/:id',
     fullPath: '/game/character/traits/:id',
     element: <TraitsPage />,
+    parentId: 'traits',
   },
   {
     id: 'spells',
@@ -136,17 +156,19 @@ export const CHARACTER_NAVIGATION = [
     relativePath: 'spells',
     fullPath: '/game/character/spells',
     element: <SpellsPage />,
+    parentId: null,
   },
   {
-    id: 'spellsId',
+    id: 'spell',
     title: 'Заклинание',
     relativePath: 'spells/:id',
     fullPath: '/game/character/spells/:id',
     element: <SpellsPage />,
+    parentId: 'spells',
   },
 ];
 
-export const WORLD_NAVIGATION = [
+export const WORLD_NAVIGATION: NestedRoute[] = [
   {
     id: 'history',
     title: 'История',
@@ -181,5 +203,28 @@ export const WORLD_NAVIGATION = [
     relativePath: 'library',
     fullPath: '/worlds/library',
     element: <div>useful</div>,
+  },
+];
+
+export const SUB_NAVIGATION_CONTROLLER: { id: string; data: NestedRoute[]; title: string }[] = [
+  {
+    id: '/docs/new-players',
+    title: 'Для новых игроков',
+    data: NEW_PLAYER_NAVIGATION,
+  },
+  {
+    id: '/docs/events',
+    title: 'Мероприятия',
+    data: EVENTS_NAVIGATION,
+  },
+  {
+    id: '/game/character',
+    title: 'Персонаж',
+    data: CHARACTER_NAVIGATION,
+  },
+  {
+    id: '/worlds',
+    title: 'Миры',
+    data: WORLD_NAVIGATION,
   },
 ];

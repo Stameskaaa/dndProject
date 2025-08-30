@@ -53,7 +53,7 @@ export const NAVIGATION_ITEMS = [
 
 const loaderRoutes = ['/', '/game', 'game/character', 'game/character/races'];
 
-const routesWrapper = (routes: RouteObject[]): RouteObject[] => {
+const routesWrapper = (routes: any[]): RouteObject[] => {
   return routes.map((value) => {
     const loader = loaderRoutes.includes(value?.path || '')
       ? delayLoader(SHOW_TRANSITION * 1000)
@@ -67,7 +67,7 @@ const routesWrapper = (routes: RouteObject[]): RouteObject[] => {
     }
   });
 };
-export const ROUTES: RouteObject[] = [
+export const ROUTES = [
   {
     path: '/',
     element: <Layout key="layout" />,
