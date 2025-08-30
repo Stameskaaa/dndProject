@@ -37,6 +37,7 @@ export const colorMap = {
   'accent-300': 'text-[var(--color-accent-300)]',
   'text-primary': 'text-[var(--color-text-primary)]',
   'text-secondary': 'text-[var(--color-text-secondary)]',
+  'text-description': 'text-[var(--color-text-description)]',
   'text-muted': 'text-[var(--color-text-muted)]',
 } as const;
 

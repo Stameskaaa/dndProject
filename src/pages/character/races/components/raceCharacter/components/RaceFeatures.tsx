@@ -1,36 +1,21 @@
+import type { Race } from '@/features/races/types';
 import { Separator } from '@/components/ui/separator';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
-import { Text } from '@/components/wrappers/typography/Text';
-import type { Race } from '@/features/races/types';
+import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
 
 export const RaceFeatures = ({ features }: { features?: Race['features'] }) => {
   if (!features) return null;
 
-  const DescriptionItem = ({ title, description }: { title: string; description: String }) => (
-    <div className="flex-1 flex items-start gap-1">
-      <Text
-        as="span"
-        size="md"
-        color="text-secondary"
-        className='className="flex items-center gap-1 text-nowrap'>
-        {title}:{' '}
-      </Text>
-      <Text as="span" size="md" color="text-muted">
-        {description}
-      </Text>
-    </div>
-  );
-
-  const Description = () => (
-    <div className="flex flex-col gap-2">
-      <DescriptionItem title="Тип существа" description={features?.type} />
-      <DescriptionItem title="Размер" description={features?.size} />
-      <DescriptionItem title="Скорость" description={features?.speed} />
-    </div>
-  );
   return (
     <div>
-      <Description />
+      <DescriptionList
+        options={{ gap: 8 }}
+        data={[
+          { title: 'Тип существа', value: features?.type },
+          { title: 'Размер', value: features?.size },
+          { title: 'Скорость', value: features?.speed },
+        ]}
+      />
       <Separator />
       <MarkDownText>{features.md_content}</MarkDownText>
     </div>

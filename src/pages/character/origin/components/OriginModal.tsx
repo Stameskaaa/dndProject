@@ -44,6 +44,7 @@ export const OriginModal = () => {
         {name}
       </Text>
       <DescriptionList
+        options={{ gap: 4 }}
         data={[
           { title: 'Характеристики', value: pluckAndJoin(characteristic, 'name') },
           { title: 'Черты', value: pluckAndJoin(feats, 'name') },

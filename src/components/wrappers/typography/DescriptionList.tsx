@@ -11,15 +11,17 @@ interface DescriptionListProps {
     className?: string;
     size?: Size;
     secondaryColor?: BaseColor;
+    titleColor?: BaseColor;
+    gap?: number;
   };
 }
 
 export const DescriptionList: React.FC<DescriptionListProps> = ({ data, options }) => {
-  const { size, secondaryColor } = options || {};
+  const { size, secondaryColor, titleColor, gap } = options || {};
 
   return (
     <div
-      style={{ width: '100%' }}
+      style={{ width: '100%', ...{ gap: `${gap}px` } }}
       className={classNames(
         'flex flex-col w-full',
         options?.background ? 'bg-brand-200 py-3 px-4 rounded-md' : '',
@@ -28,17 +30,20 @@ export const DescriptionList: React.FC<DescriptionListProps> = ({ data, options 
       {data.map(({ title, value, icon: Icon }, i) => {
         return (
           <div key={i} style={{ wordWrap: 'break-word' }} className="flex w-full items-start">
-            <Text style={{ lineHeight: '100%' }} size={size} className="mt-[5px] mr-[6px]">
-              {Icon && <Icon size={14} />}
-            </Text>
+            {Icon && (
+              <Text style={{ lineHeight: '100%' }} size={size} className="mt-[5px] mr-[6px]">
+                <Icon size={14} />
+              </Text>
+            )}
             <Text
               style={{ lineHeight: '100%' }}
               as="span"
               className="flex-1 min-w-0 break-words break-all hyphens-auto items-start vertical-center"
-              color={secondaryColor || 'text-secondary'}>
+              color={secondaryColor || 'text-description'}>
               <Text
                 size={size}
                 as="span"
+                color={titleColor || 'text-secondary'}
                 className="flex-shrink-0 inline-flex gap-x-1 items-center pr-1">
                 {title}:
               </Text>
