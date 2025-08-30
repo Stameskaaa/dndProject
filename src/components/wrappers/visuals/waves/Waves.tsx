@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties } from 'react';
 
 const customStyle: CSSProperties & Record<string, string> = {
   '--wave-animation': 'move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite',
@@ -12,9 +12,9 @@ const customStyle: CSSProperties & Record<string, string> = {
   '--wave-duration-4': '20s',
 };
 
-export const Waves = ({ children }: { children?: ReactNode }) => {
+export const Waves = () => {
   return (
-    <div className="w-full h-[250px]">
+    <div className="w-full">
       <div
         className="relative w-full h-[200px] min-h-[200px] max-h-[150px] mb-[-7px]"
         style={customStyle}>
@@ -71,7 +71,6 @@ export const Waves = ({ children }: { children?: ReactNode }) => {
           </g>
         </svg>
       </div>
-      <div className="bg-brand-400 h-full w-full">{children}</div>
     </div>
   );
 };

@@ -15,9 +15,11 @@ const containerVariants = {
 export const AnimatedGridList = ({
   children,
   isLoading,
+  isError,
 }: {
   children: ReactNode;
   isLoading: boolean;
+  isError: boolean;
 }) => {
   return (
     <AnimatePresence>

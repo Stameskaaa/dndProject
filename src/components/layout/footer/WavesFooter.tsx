@@ -8,8 +8,9 @@ const ButtList = [{ text: 'О нас' }, { text: 'Не о нас' }, { text: 'О
 
 export const WavesFooter = () => {
   return (
-    <Waves>
-      <div className="w-full h-full grid grid-rows-2 p-8">
+    <div className="w-full mt-[80px]">
+      <Waves />
+      <div className="w-full h-[300px] grid grid-rows-2 p-8 bg-brand-400">
         <div className="flex items-center px-4 justify-between  flex-wrap">
           <h4 className="text-3xl text-text-primary">Time of heroes</h4>
 
@@ -17,16 +18,14 @@ export const WavesFooter = () => {
             {ButtList.map(({ text }, i) => (
               <React.Fragment key={i}>
                 <FooterButton key={text} text={text} />{' '}
-                {i !== ButtList.length - 1 && (
-                  <Separator className="bg-text-muted" orientation="vertical" />
-                )}
+                {i !== ButtList.length - 1 && <Separator orientation="vertical" />}
               </React.Fragment>
             ))}
           </div>
         </div>
         <SocialButtons className="flex gap-3 mt-auto ml-auto" />
       </div>
-    </Waves>
+    </div>
   );
 };
 

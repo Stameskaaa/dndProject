@@ -13,7 +13,7 @@ export const SpellsPage = () => {
   const { id } = useParams();
 
   return (
-    <Section fixedWidth screen>
+    <Section paddingY="large" fixedWidth screen>
       <Text size="4xl">Заклинания</Text>
       {isLoading ? (
         <CubeLoader />
