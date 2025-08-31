@@ -4,7 +4,7 @@ import {
   AccordionRoot,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Text } from '../../Typography/Text';
+import { Text } from '../../typography/Text';
 
 interface AccordionProps {
   title: string;

@@ -1,6 +1,6 @@
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 import { Text } from '../../typography/Text';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
 export const BackgroundImageCard = ({
   src,

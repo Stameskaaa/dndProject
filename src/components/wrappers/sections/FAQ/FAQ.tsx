@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { Text } from '../../Typography/Text';
 import { Accordion } from '../../navigation/accordion/Accordion';
+import { Text } from '../../typography/Text';
 
 interface FAQData {
   title: string;

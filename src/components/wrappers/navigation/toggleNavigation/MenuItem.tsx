@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Text } from '../../typography/Text';
 import type { RouteNode } from '@/routes/routes';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Text } from '../../typography/Text';
 
 const variants = {
   open: {
