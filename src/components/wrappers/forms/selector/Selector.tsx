@@ -80,13 +80,13 @@ export const Selector: React.FC<SelectorProps> = ({
                 style={{ width: defaultWidth }}
                 {...triggerProps}
                 className={classNames(
-                  'justify-between',
+                  'justify-between truncate relative !pr-[30px]',
                   'focus-visible:ring-brand-200/50 focus-visible:ring-[3px] focus-visible:border-brand-300',
                   triggerProps?.className,
                 )}>
-                {displayText}{' '}
+                <span className="min-w-0 overflow-hidden text-ellipsis">{displayText}</span>
                 <ChevronUp
-                  className="transition-transform duration-300"
+                  className="transition-transform duration-300 absolute right-2"
                   style={open ? { transform: 'rotate(180deg)' } : {}}
                 />
               </Button>

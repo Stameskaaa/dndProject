@@ -23,6 +23,8 @@ export const worldSelector = {
   options: [
     { id: '1', value: 'Долина Гурван-Гол' },
     { id: '2', value: 'Долина Хан-Тенгри' },
+    { id: '3', value: 'Долина Хан-Тенгри' },
+    { id: '4', value: 'Долина Хан-Тенгри' },
   ],
 };
 
