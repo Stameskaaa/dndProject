@@ -12,12 +12,14 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { useScrollLock } from '@/features/scroll/hooks';
-import { HeaderHeight } from '@/constants/heights';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { Blanket } from '../../background/blanket/Blanket';
 import { DropdownIndex, ModalIndex } from '@/constants/zIndex';
+import { HeaderHeight, HeaderSubNavHeight } from '@/constants/heights';
 
 const PARENT_SPACING = 24;
+
+const height = HeaderHeight + HeaderSubNavHeight;
 
 const defaultContentClass =
   'rounded-lg h-full max-h-[100%] bg-brand-400 flex-1 shadow-2xl shadow-black';
@@ -42,7 +44,7 @@ export const SectionModalContent = ({ children }: { children: ReactElement<any> 
     const rect = parentRef.current.getBoundingClientRect();
     const width = isModal ? rect.width : rect.width / 2 - PARENT_SPACING / 2;
     const left = isModal ? rect.left : rect.left + rect.width / 2 + PARENT_SPACING / 2;
-    const top = HeaderHeight + PARENT_SPACING;
+    const top = height + PARENT_SPACING;
     setCoords({ width, left, top });
   };
 
@@ -79,10 +81,10 @@ export const SectionModalContent = ({ children }: { children: ReactElement<any> 
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
           style={{
-            top: HeaderHeight + PARENT_SPACING,
+            top: height + PARENT_SPACING,
             left: coords.left,
             width: coords.width,
-            height: `calc(100vh - ${HeaderHeight + PARENT_SPACING * 2}px)`,
+            height: `calc(100vh - ${height + PARENT_SPACING * 2}px)`,
             zIndex: isModal ? ModalIndex : DropdownIndex,
             position: 'fixed',
             transition: 'left 0.3s ease, width 0.3s ease',

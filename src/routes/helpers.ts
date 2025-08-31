@@ -1,4 +1,4 @@
-import { SUB_NAVIGATION_CONTROLLER } from './nestedRoutes';
+import type { RouteNode } from './routes';
 
 export const delayLoader =
   (ms: number = 300) =>
@@ -7,30 +7,62 @@ export const delayLoader =
     return null;
   };
 
-export function filterSubNavigation(currentPath: string) {
-  const controller = SUB_NAVIGATION_CONTROLLER.find((c) => currentPath.startsWith(c.id));
+export type ActiveRouteInfo = {
+  parent: RouteNode | null;
+  current: RouteNode | null;
+  nestedLevel: 2 | 3;
+} | null;
 
-  if (!controller) return { parentName: null, items: [] };
+export function findActiveInfo(routes: RouteNode[], pathname: string): ActiveRouteInfo | null {
+  function walk(
+    nodes: RouteNode[],
+    parent: RouteNode | null,
+    grandParent: RouteNode | null,
+    level: number,
+  ): ActiveRouteInfo | null {
+    for (const node of nodes) {
+      if (node.fullPath === '*' || !node) return null;
 
-  const nav = controller.data;
+      const pattern = new RegExp('^' + node?.fullPath.replace(/:\w+/g, '[^/]+') + '$');
 
-  const activeItem = nav.find(
-    (item) => currentPath === item.fullPath || currentPath.startsWith(item.fullPath.split('/:')[0]),
-  );
+      if (pattern.test(pathname)) {
+        if (node.ignoreInActive) {
+          return parent
+            ? { parent: grandParent, current: parent, nestedLevel: (level - 1) as 2 | 3 }
+            : null;
+        }
+        return { parent, current: node, nestedLevel: level as 2 | 3 };
+      }
 
-  let parentName: string | null = null;
+      if (node.children) {
+        const found = walk(node.children, node, parent, level + 1);
+        if (found) return found;
+      }
+    }
 
-  if (activeItem?.parentId) {
-    const parent = nav.find((p) => p.id === activeItem.parentId);
-    if (parent) parentName = parent.title;
-  } else if (activeItem) {
-    parentName = activeItem.title;
+    return null;
   }
 
-  const items = nav.filter((item) => {
-    if (!item.parentId) return true;
-    return item.parentId === activeItem?.id || item.parentId === activeItem?.parentId;
-  });
-
-  return { parentName, items };
+  return walk(routes, null, null, 1);
 }
+
+export const findRouteById = (routes: RouteNode[], id: string): RouteNode | null => {
+  for (const route of routes) {
+    if (route.id === id) return route;
+    if (route.children) {
+      const found = findRouteById(route.children, id);
+      if (found) return found;
+    }
+  }
+  return null;
+};
+
+export const filterNavigation = (data?: RouteNode[] | null) => {
+  if (!data) return [];
+  return data.filter(({ navigationIngore }) => !navigationIngore) || [];
+};
+
+export const getNavigationRoutes = (routes: RouteNode[], id: string) => {
+  const findedRoutes = findRouteById(routes, id);
+  return filterNavigation(findedRoutes?.children);
+};

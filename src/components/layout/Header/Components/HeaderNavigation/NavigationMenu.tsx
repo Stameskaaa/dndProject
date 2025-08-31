@@ -1,17 +1,20 @@
-import * as React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { LucideArrowDown } from 'lucide-react';
 import styles from './NavigationMenu.module.css';
-import { NAVIGATION_ITEMS } from '@/routes/routes';
+import { HEADER_DISABLED_IDS, ROUTES } from '@/routes/routes';
 import { Text } from '@/components/wrappers/typography/Text';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
 export const HeaderNavigation = () => {
+  const filteredRoutes = ROUTES[0]?.children?.filter(
+    ({ id }) => !(id && HEADER_DISABLED_IDS.includes(id)),
+  );
+
   return (
     <NavigationMenu.Root className={classNames(styles.Root, '!justify-end')}>
       <NavigationMenu.List className={classNames(styles.MenuList, 'flex items-center gap-3.5')}>
-        {NAVIGATION_ITEMS.map(({ title, content, src }, i) => (
+        {filteredRoutes?.map(({ title, children, src }, i) => (
           <NavigationMenu.Item key={i}>
             <NavigationMenu.Trigger
               className={classNames(
@@ -30,32 +33,30 @@ export const HeaderNavigation = () => {
                 styles.Content,
                 'h-full w-full shadow-2xl/50 shadow-black border-none flex gap-2',
               )}>
-              <React.Fragment key={src}>
-                <div className="relative w-[250px] min-h-full border-none overflow-hidden">
-                  <img src={src} alt="" className="w-auto h-full object-cover" />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: 'linear-gradient(to left, #1c2224 0%, transparent 70%)',
-                    }}
-                  />
-                </div>
-
+              <div className="relative w-[250px] min-h-full border-none overflow-hidden">
+                <img src={src} alt="" className="w-auto h-full object-cover" />
                 <div
-                  style={{ overscrollBehavior: 'contain' }}
-                  className="flex gap-2 flex-col w-full py-3 pr-3  overflow-auto">
-                  {content.map(({ title, href }, i) => (
-                    <NavigationMenu.Link key={i} asChild>
-                      <Link
-                        to={href}
-                        className="py-2 px-3 hover:bg-brand-300 rounded-md transition-color duration-300 cursor-pointer">
-                        <Text color="accent-200">{title}</Text>
-                        <Text className="text-text-secondary">{title}</Text>
-                      </Link>
-                    </NavigationMenu.Link>
-                  ))}
-                </div>
-              </React.Fragment>
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(to left, #1c2224 0%, transparent 70%)',
+                  }}
+                />
+              </div>
+
+              <div
+                style={{ overscrollBehavior: 'contain' }}
+                className="flex gap-2 flex-col w-full py-3 pr-3  overflow-auto">
+                {children?.map(({ title, fullPath }, i) => (
+                  <NavigationMenu.Link key={i} asChild>
+                    <Link
+                      to={fullPath}
+                      className="py-2 px-3 hover:bg-brand-300 rounded-md transition-color duration-300 cursor-pointer">
+                      <Text color="accent-200">{title}</Text>
+                      <Text className="text-text-secondary">{title}</Text>
+                    </Link>
+                  </NavigationMenu.Link>
+                ))}
+              </div>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         ))}

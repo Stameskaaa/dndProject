@@ -14,7 +14,7 @@ interface Positions {
 
 const debounceMs = 50;
 
-export const AnimatedHeaderTitle = ({ title, parentRef, isScrolled }: HeaderTitleProps) => {
+export const AnimatedHeaderTitleText = ({ title, parentRef, isScrolled }: HeaderTitleProps) => {
   const controls = useAnimation();
   const [positions, setPositions] = useState<Positions>({
     start: { top: 0, left: 0 },
@@ -65,32 +65,21 @@ export const AnimatedHeaderTitle = ({ title, parentRef, isScrolled }: HeaderTitl
   }, [debouncedScrolled, positions, controls, mounted]);
 
   return (
-    <HeaderTitle
-      className="text-4xl md:text-5xl"
+    <HeaderTitleText
+      className="text-4xl md:text-5xl fixed"
       style={{ transformOrigin: 'left' }}
       initial={false}
       animate={controls}>
       {title}
-    </HeaderTitle>
-    // <motion.h1
-    //   initial={false}
-    //   animate={controls}
-    //   style={{
-    //     fontFamily: 'Cinzel',
-    //     whiteSpace: 'pre-wrap',
-    //     transformOrigin: 'left',
-    //   }}
-    //   className="text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-4xl md:text-5xl ">
-    //   {title}
-    // </motion.h1>
+    </HeaderTitleText>
   );
 };
 
 interface TitleProps extends HTMLMotionProps<'h1'> {
-  children: string;
+  children: any;
 }
 
-export const HeaderTitle: React.FC<TitleProps> = ({ children, ...props }) => {
+export const HeaderTitleText: React.FC<TitleProps> = ({ children, ...props }) => {
   return (
     <motion.h1
       {...props}
@@ -102,7 +91,7 @@ export const HeaderTitle: React.FC<TitleProps> = ({ children, ...props }) => {
         ...props?.style,
       }}
       className={classNames(
-        'text-center leading-[50px] w-max fixed bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-2xl md:text-3xl',
+        'text-center leading-[40px] w-max flex items-center gap-4 bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-2xl md:text-3xl',
         props?.className,
       )}>
       {children}

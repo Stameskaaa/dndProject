@@ -6,7 +6,6 @@ import {
   cardVariants,
 } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 import { useGetClassesListQuery } from '@/features/classes/api';
-import { Text } from '@/components/wrappers/typography/Text';
 import { ClassModalContent } from './ClassModalContent';
 
 export const ClassesPage = () => {
@@ -14,7 +13,6 @@ export const ClassesPage = () => {
 
   return (
     <Section paddingY="medium" fixedWidth screen>
-      <Text size="4xl">Классы</Text>
       <AnimatedGridList isError={isError} isLoading={isLoading}>
         {/* TODO когда будут все подобные страницы вынести в компонент AnimatedGridList */}
         {raceList?.map(({ id, name, description, src }) => (

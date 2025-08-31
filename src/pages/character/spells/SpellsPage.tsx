@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGetSpellsListQuery } from '@/features/spells/api';
 import { arrayIsValid } from '@/helpers/arrayHelpers';
-import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
 import { SpellCard } from '@/pages/character/spells/components/spellCard/SpellCard';
@@ -14,10 +13,7 @@ export const SpellsPage = () => {
   const { data: spellData, isLoading, isError } = useGetSpellsListQuery();
 
   return (
-    <Section paddingY="large" fixedWidth screen>
-      <Text className="my-5" size="4xl">
-        Заклинания
-      </Text>
+    <Section paddingY="medium" fixedWidth screen>
       <AnimatedGridList gap={8} minW={280} isLoading={isLoading} isError={isError || !spellData}>
         {arrayIsValid(spellData) &&
           spellData.map((data) => (
@@ -26,7 +22,7 @@ export const SpellsPage = () => {
       </AnimatedGridList>
       <ModalWindow
         contentClassname="w-full !max-w-[600px]"
-        setOpen={() => navigate('/game/character/spells')}
+        setOpen={() => navigate('/resources/character/spells')}
         open={!!id}>
         <SpellModal />
       </ModalWindow>

@@ -20,7 +20,7 @@ export const OriginPage = () => {
       </AnimatedGridList>
       <ModalWindow
         contentClassname="w-full !max-w-[600px]"
-        setOpen={() => navigate('/game/character/origins')}
+        setOpen={() => navigate('/resources/character/origins')}
         open={!!id}>
         <OriginModal />
       </ModalWindow>
