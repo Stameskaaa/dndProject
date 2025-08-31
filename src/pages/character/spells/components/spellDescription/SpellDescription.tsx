@@ -7,10 +7,10 @@ export const SpellDescription = ({
   data,
   type = 'short',
 }: {
-  data: SpellDataType;
+  data?: SpellDataType;
   type?: 'full' | 'short';
 }) => {
-  const component = data.components_list
+  const component = data?.components_list
     ?.map((currentId) => spellComponents.find(({ id }) => id == currentId)?.name)
     .join(', ');
 

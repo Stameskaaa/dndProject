@@ -1,94 +1,36 @@
-// const markdown = `
-// # H1 Заголовок
-// ## H2 Заголовок
-// ### H3 Заголовок
-// #### H4 Заголовок
-// ##### H5 Заголовок
-// ###### H6 Заголовок
-
-// > Это первая строка цитаты
-// >
-// > А это вторая строка
-
-// Обычный текст, **жирный текст**, *курсив*, ~~зачеркнутый~~, \`инлайн-код\`.
-
-// ---
-
-// ## Списки
-// - Элемент списка 1
-// - Элемент списка 2
-//   - Вложенный элемент
-
-// 1. Нумерация
-// 2. Работает
-// 3. Тоже вложенный список
-//    1. Внутри
-
-// ---
-
-// ## Чекбоксы (GFM)
-// - [x] Сделано
-// - [ ] Не сделано
-
-// ---
-
-// #### Таблица (GFM)
-
-// | Имя     | Класс    | Уровень |
-// |---------|----------|---------|
-// | Артём   | Воин     | 5       |
-// | Елена   | Маг      | 7       |
-// | Кирилл  | Разбойник| 3       |
-
-// ---
-
-// ## Ссылки
-// Обычная ссылка: [Google](https://google.com)
-// HTML ссылка: <a href="/game/character" target="_blank">Custom link</a>
-
-// ---
-
-// ## Код-блок
-
-// \`\`\`js
-// function hello(name) {
-//   return \`Привет, \${name}\`
-// }
-// console.log(hello("Мир"))
-// \`\`\`
-
-// ---
-
-// ## HTML внутри (rehype-raw)
-// <b>Жирный через HTML</b>
-// <i>Курсив через HTML</i>
-// <span style="color:red">Красный текст</span>
-
-// ![альтернативный текст](https://i.pinimg.com/736x/4c/8f/e1/4c8fe1e0db55d63a534d34137933517c.jpg)
-
-// #### Таблица (GFM)
-
-// | Имя     | Класс    | Уровень |
-// |---------|----------|---------|
-// | Артём   | Воин     | 5       |
-// | Елена   | Маг      | 7       |
-// | Кирилл  | Разбойник| 3       |
-
-// `;
-
-interface ClassModalContent {
-  title: string;
-  about: string;
-  // TODO
-  tableData: any;
-  peculiarities: { title: string; data: { title: string; description: string }[] };
-}
+import { useParams } from 'react-router-dom';
+import { CharacterModalWrapper } from '../ui/CharacterModalWrapper';
+import { AsyncState } from '../traits/components/AsyncState';
+import { Text } from '@/components/wrappers/typography/Text';
+import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
+import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
+import { useGetClassByIdQuery } from '@/features/classes/api';
 
 export const ClassModalContent = () => {
+  const { id } = useParams();
+  const { data, isLoading, isError } = useGetClassByIdQuery({ id: id! }, { skip: !id });
+
   return (
-    <div style={{ overflowY: 'auto' }}>
-      123213
-      {/* <MarkDownText>{markdown}</MarkDownText> */}
-    </div>
+    <CharacterModalWrapper closeHref="/resources/character/classes" id={id}>
+      <div className="flex flex-col w-full min-w-0">
+        <AsyncState isLoading={isLoading} isError={isError} data={data}>
+          <Text className="mx-auto mb-3" size="xl">
+            {data?.name}
+          </Text>
+          <DescriptionList
+            data={[
+              { title: 'Броня', value: data?.features.armor },
+              { title: 'Кость хита', value: data?.features.hitDice },
+              { title: 'Инструменты', value: data?.features.instruments },
+              { title: 'Основная характеристика', value: data?.features.mainCharacteristic },
+              { title: 'Спасброски', value: data?.features.savingThrows.join(', ') },
+              { title: 'Навыки', value: data?.features.skills },
+              { title: 'Оружие', value: data?.features.weapons },
+            ]}
+          />
+          <MarkDownText>{data?.description}</MarkDownText>
+        </AsyncState>
+      </div>
+    </CharacterModalWrapper>
   );
 };

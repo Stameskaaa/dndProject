@@ -9,7 +9,7 @@ export const classesApi = createApi({
     getClassesList: builder.query<CharacterClass[], void>({
       query: () => 'classes',
     }),
-    getClassById: builder.query<CharacterClass, { id: number }>({
+    getClassById: builder.query<CharacterClass, { id: string }>({
       query: ({ id }) => `classes/${id}`,
     }),
   }),
