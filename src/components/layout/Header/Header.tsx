@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { ROUTES } from '@/routes/routes';
 import { findActiveInfo } from '@/routes/helpers';
 import { HeaderIndex } from '@/constants/zIndex';
+import { HeaderHeight } from '@/constants/heights';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
 import { HeaderTitle } from './Components/headerTitle/HeaderTitle';
 import { Section } from '@/components/wrappers/sections/section/Section';
@@ -12,7 +13,6 @@ import { HeaderNavigation } from './Components/headerNavigation/NavigationMenu';
 import ScrollProgress from '@/components/wrappers/scrollProgress/ScrollProgress';
 import { HeaderSubNavigation } from './Components/headerSubNavigation/HeaderSubNavigation';
 import { ToggleNavigation } from '@/components/wrappers/navigation/toggleNavigation/ToggleNavigation';
-import { HeaderHeight } from '@/constants/heights';
 
 const defaultClass =
   'z-1 flex w-full transition-all bg-brand-500 sticky top-0 duration-400 items-center flex-col';

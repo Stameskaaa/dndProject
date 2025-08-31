@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-import { LucideArrowDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import styles from './NavigationMenu.module.css';
 import { HEADER_DISABLED_IDS, ROUTES } from '@/routes/routes';
 import { Text } from '@/components/wrappers/typography/Text';
@@ -22,7 +22,7 @@ export const HeaderNavigation = () => {
                 'hover:bg-brand-300 rounded-md  shadow-bottom-black  py-[6px] px-4 h-auto cursor-pointer',
               )}>
               <Text>{title}</Text>
-              <LucideArrowDown
+              <ChevronDown
                 size={14}
                 className={classNames(styles.CaretDown, 'text-text-primary')}
                 aria-hidden
