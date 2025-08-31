@@ -1,23 +1,57 @@
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from '@/lib/utils';
-
 const buttonVariants = cva(
-  "inline-flex cursor-pointer items-center shadow-xs hover:bg-brand-300 text-text-primary justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-brand-100 focus-visible:ring-brand-200/50 focus-visible:ring-[3px]",
   {
     variants: {
       variant: {
-        default: 'bg-brand-200',
-        tonal: '',
-        destructive:
-          'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
-        outline:
-          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
-        secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
-        link: 'text-primary underline-offset-4 hover:underline',
+        default: `
+          bg-brand-400 border border-brand-300 text-text-primary
+          hover:bg-brand-300/60 
+          active:bg-brand-300/40
+        `,
+        secondary: `
+          bg-brand-200 text-text-primary 
+          hover:bg-brand-300 
+          active:bg-brand-300/60
+        `,
+        tonal: `
+          bg-brand-100 text-text-primary 
+          hover:bg-brand-200 
+          active:bg-brand-300
+        `,
+        destructive: `
+          bg-error text-white 
+          hover:bg-error/90 
+          active:bg-error/80 
+          focus-visible:ring-error/40
+        `,
+        success: `
+          bg-success text-white 
+          hover:bg-success/90 
+          active:bg-success/80 
+          focus-visible:ring-success/40
+        `,
+        outline: `
+          border border-brand-100 text-brand-100 
+          bg-transparent 
+          hover:bg-brand-200/40 
+          active:bg-brand-400/60 
+          focus-visible:ring-brand-200/40
+        `,
+        ghost: `
+          text-brand-100
+          hover:bg-brand-300/70 
+          active:bg-brand-200/20
+        `,
+        link: `
+          text-brand-100 underline-offset-4 
+          hover:underline 
+          active:text-brand-100/60
+        `,
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -25,10 +59,15 @@ const buttonVariants = cva(
         lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
         icon: 'size-8',
       },
+      shadow: {
+        true: 'shadow-xs',
+        false: 'shadow-none',
+      },
     },
     defaultVariants: {
       variant: 'default',
       size: 'default',
+      shadow: true,
     },
   },
 );

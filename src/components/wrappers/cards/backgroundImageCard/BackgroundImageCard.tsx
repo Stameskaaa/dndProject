@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { Text } from '../../typography/Text';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 
+const MotionCard = motion.create(Card);
+
 export const BackgroundImageCard = ({
   src,
   title,
@@ -11,8 +13,6 @@ export const BackgroundImageCard = ({
   title: String;
   text: string;
 }) => {
-  const MotionCard = motion.create(Card);
-
   return (
     <MotionCard
       whileHover={{

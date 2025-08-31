@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '@/components/wrappers/sections/section/Section';
 
+const MotionSection = motion.create(Section);
+
 export const CharacterSection = ({
   children,
   className,
@@ -9,7 +11,6 @@ export const CharacterSection = ({
   children: ReactNode;
   className?: string;
 }) => {
-  const MotionSection = motion.create(Section);
   return (
     <MotionSection
       className={className}

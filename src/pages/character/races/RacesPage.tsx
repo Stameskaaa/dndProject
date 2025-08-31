@@ -1,16 +1,17 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
 import { useGetRaceListQuery } from '@/features/races/api';
 import { useScroll } from './hooks';
-import { Input } from '@/components/ui/input';
-import { HeaderHeight, HeaderSubNavHeight } from '@/constants/heights';
 import { RaceCard } from './components/raceCard/RaceCard';
-import { RaceFilters } from './components/raceFilters/RaceFilters';
+import { Input } from '@/components/wrappers/forms/input/Input';
+import { HeaderHeight, HeaderSubNavHeight } from '@/constants/heights';
 import { SectionModal } from '@/components/wrappers/sections/sectionModal/SectionModal';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 
 export const RacesPage = () => {
   const isScrolled = useScroll();
+  const { control } = useForm();
   const { isLoading, data: raceList, isError } = useGetRaceListQuery();
   const height = HeaderHeight + HeaderSubNavHeight;
 
@@ -27,10 +28,7 @@ export const RacesPage = () => {
           }}
           transition={{ duration: 0.3 }}>
           <div className="w-full flex gap-3 items-center">
-            <Input placeholder="Поиск ..." className="flex-1" />
-            <div className="max-w-content">
-              <RaceFilters />
-            </div>
+            <Input control={control} name="name" placeholder="Поиск ..." className="flex-1" />
           </div>
         </motion.div>
         <AnimatedGridList isError={isError} isLoading={isLoading}>
