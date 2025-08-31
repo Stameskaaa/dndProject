@@ -3,7 +3,7 @@ import { useGetOriginByIdQuery } from '@/features/origin/api';
 import { Separator } from '@/components/ui/separator';
 import { pluckAndJoin } from '@/helpers/objectHelpers';
 import { Text } from '@/components/wrappers/typography/Text';
-import { AsyncState } from '../../traits/components/AsyncState';
+import { AsyncState } from '../../ui/AsyncState';
 import { CharacterModalWrapper } from '../../ui/CharacterModalWrapper';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';

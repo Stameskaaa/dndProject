@@ -3,7 +3,7 @@ import { schoolList } from '@/features/spells/constant';
 import { useGetSpellByIdQuery } from '@/features/spells/api';
 import { Badge } from '@/components/wrappers/badge/Badge';
 import { Text } from '../../../../../components/wrappers/typography/Text';
-import { AsyncState } from '@/pages/character/traits/components/AsyncState';
+import { AsyncState } from '@/pages/character/ui/AsyncState';
 import { CharacterModalWrapper } from '@/pages/character/ui/CharacterModalWrapper';
 import { SpellDescription } from '@/pages/character/spells/components/spellDescription/SpellDescription';
 

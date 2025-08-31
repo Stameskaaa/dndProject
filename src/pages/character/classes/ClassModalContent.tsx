@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { CharacterModalWrapper } from '../ui/CharacterModalWrapper';
-import { AsyncState } from '../traits/components/AsyncState';
+import { AsyncState } from '../ui/AsyncState';
 import { Text } from '@/components/wrappers/typography/Text';
 import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGetTraitsByIdQuery } from '@/features/traits/api';
-import { AsyncState } from './AsyncState';
+import { AsyncState } from '../../ui/AsyncState';
 import { Text } from '@/components/wrappers/typography/Text';
 import { CharacterModalWrapper } from '../../ui/CharacterModalWrapper';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';

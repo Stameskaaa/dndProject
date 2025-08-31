@@ -9,7 +9,7 @@ export const CharacterSection = ({
   children: ReactNode;
   className?: string;
 }) => {
-  const MotionSection = motion(Section);
+  const MotionSection = motion.create(Section);
   return (
     <MotionSection
       className={className}
