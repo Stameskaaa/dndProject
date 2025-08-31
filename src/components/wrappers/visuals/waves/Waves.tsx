@@ -50,7 +50,7 @@ export const Waves = () => {
         `}
         </style>
         <svg
-          className="absolute bottom-0 w-full h-full"
+          className="absolute bottom-0 w-full h-full  md:scale-y-100 scale-y-50 md:top-[0px] top-[44px]"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 24 150 28"

@@ -11,6 +11,7 @@ export const PageLoader = () => {
   const navigation = useNavigation();
   const { sectionLoading } = useAppSelector((state) => state.pageTransition);
   const [firstMount, setFirstMount] = useState(true);
+  // TODO МБ НА USEREF
   const showPageTransition = navigation.state === 'loading' || sectionLoading || firstMount;
   useScrollLock('SectionLoader', showPageTransition);
 

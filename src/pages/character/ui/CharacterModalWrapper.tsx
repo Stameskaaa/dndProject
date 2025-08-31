@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Expand, X } from 'lucide-react';
+import { Copy, Expand, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
@@ -36,11 +36,14 @@ const Content = ({
     <>
       {' '}
       <div className="absolute right-[10px] top-[10px] flex gap-1">
-        <Button onClick={() => setOpen?.(false)} size="icon">
-          <X />
-        </Button>
-        <Button onClick={() => alert('Ты лох')} size="icon">
+        <Button variant="ghost" onClick={() => alert('Ты лох')} size="icon">
           <Expand />
+        </Button>
+        <Button variant="ghost" onClick={() => alert('Ты лох')} size="icon">
+          <Copy />
+        </Button>
+        <Button variant="ghost" onClick={() => setOpen?.(false)} size="icon">
+          <X />
         </Button>
       </div>
       <div className="h-[full] w-full px-1 max-w-[800px] flex flex-col gap-4 overflow-y-auto">
