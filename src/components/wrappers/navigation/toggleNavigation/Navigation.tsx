@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { MenuItem } from './MenuItem';
+import { HEADER_DISABLED_IDS, ROUTES } from '@/routes/routes';
 
 const variants = {
   open: {
@@ -10,13 +11,19 @@ const variants = {
   },
 };
 
-export const Navigation = () => (
-  <motion.ul
-    style={{ overscrollBehavior: 'contain' }}
-    className="p-[25px] absolute top-[50px] width-[230px] h-[calc(100%-50px)] overflow-auto"
-    variants={variants}>
-    {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-      <MenuItem i={i} key={i} />
-    ))}
-  </motion.ul>
-);
+export const Navigation = ({ toggle }: { toggle: () => any }) => {
+  const filteredRoutes = ROUTES[0]?.children?.filter(
+    ({ id }) => !(id && HEADER_DISABLED_IDS.includes(id)),
+  );
+
+  return (
+    <motion.ul
+      style={{ overscrollBehavior: 'contain' }}
+      className="p-[25px] absolute w-full top-[50px] h-[calc(100%-50px)] overflow-auto"
+      variants={variants}>
+      {filteredRoutes?.map((data, i) => (
+        <MenuItem toggle={toggle} data={data} i={i} key={i} />
+      ))}
+    </motion.ul>
+  );
+};
