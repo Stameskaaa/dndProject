@@ -15,7 +15,7 @@ export const CharacterSection = ({
     <MotionSection
       className={className}
       initial={{ opacity: 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 1.2 }}
       animate={{ opacity: 1 }}
       paddingY="medium"
       fixedWidth
