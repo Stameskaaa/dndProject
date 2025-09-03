@@ -9,7 +9,7 @@ export default defineConfig({
     host: true,
     allowedHosts: true,
   },
-  // base: '/dndProject/',
+  base: '/dndProject/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
