@@ -10,6 +10,7 @@ import {
   cardTransition,
   cardVariants,
 } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import { CharacterIcon } from '@/pages/character/ui/CharacterIcon';
 
 export const SpellCard = ({ data, onClick }: { data?: Spell; onClick?: () => void }) => {
   const school = schoolList.find(({ id }) => data?.school_id == id);
@@ -37,7 +38,11 @@ export const SpellCard = ({ data, onClick }: { data?: Spell; onClick?: () => voi
             {data?.level === 0 ? 'Кантрип' : `Уровень ${data?.level}`} · {school?.title}
           </Text>
         </div>
-        {Icon ? <Icon width={40} height={40} /> : null}
+        {Icon ? (
+          <CharacterIcon shadow={false}>
+            <Icon />
+          </CharacterIcon>
+        ) : null}
       </header>
       <hr className="border-brand-100" />
 

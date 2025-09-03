@@ -2,7 +2,10 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import type { Trait } from '@/features/traits/types';
 import { Text } from '@/components/wrappers/typography/Text';
-import { cardVariants } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import {
+  cardTransition,
+  cardVariants,
+} from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 import classNames from 'classnames';
 import { CharacterIcon } from '../../ui/CharacterIcon';
 import { trait_types } from '@/mock/mock';
@@ -18,7 +21,7 @@ export const TraitCard = ({ traitData }: { traitData: Trait }) => {
         'cursor-pointer w-full border border-transparent active:bg-brand-300/60  transition-colors duration-300 bg-brand-400 hover:bg-brand-300 shadow-xl shadow-black rounded-lg',
       )}
       variants={cardVariants}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={cardTransition}
       onClick={() => navigate(`${traitData.id}`)}>
       <div className="px-5 py-3 h-full flex justify-between gap-1">
         <div className="flex flex-col gap-2">

@@ -44,10 +44,10 @@ function DialogContent({ className, children, open, setopen, ...props }: MotionD
           />
           <motion.div
             {...props}
-            initial={{ scale: 0.95, filter: 'blur(8px)', opacity: 0 }}
+            initial={{ scale: 0.95, filter: 'blur(12px)', opacity: 0 }}
             animate={{ scale: 1, filter: 'blur(0px)', opacity: 1 }}
-            exit={{ scale: 0.95, filter: 'blur(8px)', opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            exit={{ scale: 0.95, filter: 'blur(12px)', opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
             style={{ ...props.style, zIndex: ModalIndex }}
             data-slot="dialog-content"
             className={cn(

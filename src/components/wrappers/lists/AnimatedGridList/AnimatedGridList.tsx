@@ -15,11 +15,11 @@ const containerVariants = {
 };
 
 export const cardVariants = {
-  hidden: { opacity: 0, y: 10, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1 },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 },
 };
 
-export const cardTransition = { type: 'spring', stiffness: 300, damping: 20 } as const;
+export const cardTransition = { type: 'spring', stiffness: 300, damping: 15 } as const;
 
 export const AnimatedGridList = memo(
   ({
@@ -52,7 +52,7 @@ export const AnimatedGridList = memo(
             className={classNames('w-full grid justify-items-center')}
             style={{
               gridTemplateColumns: `repeat(auto-fit, minmax(${minW}px, 1fr))`,
-              gap: `${gap * 0.25}rem`, // потому что gap-4 = 1rem
+              gap: `${gap * 0.25}rem`,
             }}>
             {children}
           </motion.div>

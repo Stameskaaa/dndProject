@@ -264,7 +264,7 @@ export const classSkills: ClassSkills[] = [
 
 export const mockClass: Class = {
   id: 'bard',
-  src: 'https://i.pinimg.com/736x/d5/d1/91/d5d191309aba4cf4b7f54003c0f2732f.jpg',
+  src: 'https://img.freepik.com/free-photo/fantasy-group-adventurers_23-2151470683.jpg',
   name: 'Бард',
   worlds_data: [{ id: 'Гурван-Гол', name: 'Гурван-Гол' }],
   md_table_data: classMD,
@@ -302,7 +302,7 @@ export const traitMock: Trait = {
 export const originMock: Origin = {
   id: 'artist',
   name: 'Артист',
-  src: '',
+  src: 'https://as2.ftcdn.net/v2/jpg/16/46/43/69/1000_F_1646436961_kuHwFjzyRBPqGxVQKchC357mfaUefOGw.jpg',
   characteristic_data: characteristic.slice(1, 3),
   characteristic_ids: ['dex', 'cha'],
   traits_ids: 'artist-trait-1',
@@ -366,7 +366,7 @@ export const spellMock: Spell = {
 export const raceMock: Race = {
   id: 1,
   name: 'Эльф',
-  src: 'https://example.com/elf.jpg',
+  src: 'https://as1.ftcdn.net/v2/jpg/06/04/74/38/1000_F_604743855_wbmNQsusbtFn25o8Mj71Otv6SLkbpAKb.jpg',
   md_description:
     'Эльфы живут в гармонии с природой, обладают долгой жизнью и врожденной магической чувствительностью. Они известны своей точностью в бою и искусством.',
   features: {

@@ -1,8 +1,16 @@
 import type { ReactNode } from 'react';
 
-export const CharacterIcon = ({ children }: { children: ReactNode }) => {
+interface CharacterIconProps {
+  children: ReactNode;
+  shadow?: boolean;
+}
+
+export const CharacterIcon = ({ children, shadow = true }: CharacterIconProps) => {
   return (
-    <div className="bg-brand-300 w-[40px] text-brand-100 h-[40px] shadow-md shadow-black rounded-xl p-2 grid place-items-center">
+    <div
+      className={`bg-brand-300 w-[40px] h-[40px] rounded-xl p-2 grid place-items-center ${
+        shadow ? 'shadow-md shadow-black' : ''
+      }`}>
       {children}
     </div>
   );

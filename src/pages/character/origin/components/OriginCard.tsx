@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import { MotionHoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 import { Text } from '@/components/wrappers/typography/Text';
 import type { Origin } from '@/features/origin/types';
-import { cardVariants } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import {
+  cardTransition,
+  cardVariants,
+} from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 
 export const OriginCard = ({ originData }: { originData: Origin }) => {
   const navigate = useNavigate();
@@ -37,7 +40,7 @@ export const OriginCard = ({ originData }: { originData: Origin }) => {
       src={originData.src}
       description={<Description />}
       variants={cardVariants}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={cardTransition}
       onClick={() => navigate(`${originData.id}`)}
     />
   );

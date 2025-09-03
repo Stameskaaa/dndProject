@@ -45,7 +45,9 @@ const Content: React.FC<RaceCharacterPageProps> = ({
             ) : (
               <div />
             )}
-            <Text size="lg">{raceMock?.name}</Text>
+            <Text className={isModalLocked ? 'ml-5 mr-auto' : ''} size="lg">
+              {raceMock?.name}
+            </Text>
             <Button size="sm" variant="ghost" onClick={closeModal}>
               <X />
             </Button>
