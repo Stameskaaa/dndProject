@@ -13,10 +13,15 @@ export const ClassModalContent = () => {
   // const { data, isLoading, isError } = useGetClassByIdQuery({ id: id! }, { skip: !id });
 
   return (
-    <CharacterModalWrapper title={mockClass.name} closeHref="/resources/character/classes" id={id}>
+    <CharacterModalWrapper closeHref="/resources/character/classes" id={id}>
       <div className="flex flex-col w-full min-w-0">
         <AsyncState isLoading={false} isError={false} data={true}>
-          <Separator spacing="equalSmall" />
+          <div className="pb-3 flex bg-brand-400">
+            <Text className="mx-auto" size="xl">
+              {mockClass?.name}
+            </Text>
+          </div>
+          <Separator spacing="equalSmall" className="mt-0" />
           <Text color="text-secondary">{mockClass?.description}</Text>
           <Separator spacing="equalSmall" />
 

@@ -15,7 +15,7 @@ export const SpellModal = () => {
   return (
     <CharacterModalWrapper id={paramsId} closeHref="/resources/character/spells">
       <AsyncState isLoading={false} isError={false} data={true}>
-        <div className="flex flex-col gap-1 items-center">
+        <div className="flex flex-col gap-1 items-center pb-3">
           <Text size="2xl" weight="bold" color="brand-100">
             {spellMock?.name}
           </Text>
@@ -24,20 +24,22 @@ export const SpellModal = () => {
             {spellMock?.level === 0 ? 'Кантрип' : `Уровень ${spellMock?.level}`} · {school?.title}
           </Text>
         </div>
-        <Separator spacing="empty" />
-        <SpellDescription type="full" data={spellMock} />
-        <Separator spacing="empty" />
-        <MarkDownText>{spellMock?.md_description}</MarkDownText>
-        {spellMock?.classes_data.length > 0 ? (
-          <div className="mt-auto flex gap-2 items-center flex-wrap">
-            <Text color="text-muted" as="span">
-              Доступно классам:
-            </Text>
-            {spellMock?.classes_data.map(({ name, id }) => (
-              <Badge key={id}>{name}</Badge>
-            ))}
-          </div>
-        ) : null}
+        <div className="flex flex-col gap-3">
+          <Separator spacing="empty" />
+          <SpellDescription type="full" data={spellMock} />
+          <Separator spacing="empty" />
+          <MarkDownText>{spellMock?.md_description}</MarkDownText>
+          {spellMock?.classes_data.length > 0 ? (
+            <div className="mt-auto flex gap-2 items-center flex-wrap">
+              <Text color="text-muted" as="span">
+                Доступно классам:
+              </Text>
+              {spellMock?.classes_data.map(({ name, id }) => (
+                <Badge key={id}>{name}</Badge>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </AsyncState>
     </CharacterModalWrapper>
   );

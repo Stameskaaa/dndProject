@@ -20,12 +20,12 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
         {...props}
         className={classNames(
           active ? '!border-brand-100 border-2' : '',
-          'relative cursor-pointer group w-full border border-transparent transition-colors duration-300 bg-brand-400 shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between',
+          'relative cursor-pointer  group w-full  transition-colors duration-300 bg-brand-400  shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between',
         )}>
         <div className="absolute right-0 h-full max-w-full rounded-lg z-0 overflow-hidden">
           {src && (
             <img
-              src={src}
+              src={'https://i.pinimg.com/736x/3a/fe/98/3afe98d59b63ff2d6001a7940c236412.jpg'}
               alt=""
               className="w-auto h-full object-cover group-hover:scale-110 duration-400"
             />

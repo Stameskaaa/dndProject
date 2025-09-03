@@ -15,9 +15,11 @@ export const TraitsModal = () => {
     <CharacterModalWrapper closeHref="/resources/character/traits" id={id}>
       <div className="flex flex-col w-full min-w-0">
         <AsyncState isLoading={false} isError={false} data={true}>
-          <Text className="mx-auto mb-3" size="xl">
-            {traitMock?.name}
-          </Text>
+          <div className="pb-3 flex bg-brand-400">
+            <Text className="mx-auto" size="xl">
+              {traitMock?.name}
+            </Text>
+          </div>
           <Separator className="mt-0" />
           {traitMock?.requirements ? (
             <>

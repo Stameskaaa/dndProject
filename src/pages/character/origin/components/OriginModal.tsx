@@ -13,10 +13,12 @@ export const OriginModal = () => {
   return (
     <CharacterModalWrapper id={paramsId} closeHref="/resources/character/origins">
       <AsyncState isLoading={false} isError={false} data={true}>
-        <div className="flex flex-col w-full min-w-0">
-          <Text className="mx-auto mb-3" size="xl">
+        <div className="pb-3 flex bg-brand-400">
+          <Text className="mx-auto" size="xl">
             {originMock?.name}
           </Text>
+        </div>
+        <div className="flex flex-col w-full min-w-0">
           <Separator className="mt-0" spacing="equalSmall" />
           <DescriptionList
             options={{ gap: 4, background: true }}
