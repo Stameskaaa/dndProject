@@ -1,11 +1,10 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MotionHoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 import { Text } from '@/components/wrappers/typography/Text';
 import type { Origin } from '@/features/origin/types';
 import { cardVariants } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 
 export const OriginCard = ({ originData }: { originData: Origin }) => {
-  const { id } = useParams();
   const navigate = useNavigate();
 
   const Title = () => (
@@ -17,9 +16,9 @@ export const OriginCard = ({ originData }: { originData: Origin }) => {
   const Description = () => {
     return (
       <ul className="list-disc pl-5 space-y-1 text-brand-100 text-md">
-        {originData.worlds?.map(({ name, id }) => {
+        {originData.worlds_data?.map(({ name }, i) => {
           return (
-            <li key={id}>
+            <li key={i}>
               <Text size="sm" color="text-secondary">
                 {name}
               </Text>
@@ -32,7 +31,8 @@ export const OriginCard = ({ originData }: { originData: Origin }) => {
 
   return (
     <MotionHoverZoomCard
-      active={id == originData.id}
+      // active={id == originData.id}
+      active={false}
       title={<Title />}
       src={originData.src}
       description={<Description />}

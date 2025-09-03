@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { CheckCheck, ChevronUp } from 'lucide-react';
+import { CheckCheck, ChevronDown } from 'lucide-react';
 import { Controller, type Control } from 'react-hook-form';
 import { useState, useMemo, type HTMLAttributes } from 'react';
 import { Button } from '@/components/ui/button';
@@ -18,7 +18,7 @@ interface SelectorProps {
   options: Option[];
   multiple?: boolean;
   placeholder?: string;
-  label: string;
+  label?: string;
   defaultValue?: string[];
   contentProps?: React.ComponentProps<typeof PopoverContent>;
   triggerProps?: HTMLAttributes<HTMLButtonElement>;
@@ -93,7 +93,7 @@ export const Selector: React.FC<SelectorProps> = ({
                   className="min-w-0 overflow-hidden duration-300 text-ellipsis">
                   {displayText || placeholder}
                 </Text>
-                <ChevronUp
+                <ChevronDown
                   className="transition-transform duration-300 absolute right-2"
                   style={open ? { transform: 'rotate(180deg)' } : {}}
                 />
@@ -108,11 +108,10 @@ export const Selector: React.FC<SelectorProps> = ({
                 width: elementWidth || defaultWidth,
               }}
               {...contentProps}>
-              {label && (
-                <Text color="text-muted" className="px-[18px] pt-2 select-none" size="sm">
-                  {label}
-                </Text>
-              )}
+              <Text color="text-muted" className="px-[18px] pt-2 select-none" size="sm">
+                {label || 'Выберите значение'}
+              </Text>
+
               {options.map((opt) => {
                 const active = selectedIds.includes(opt.id);
                 return (

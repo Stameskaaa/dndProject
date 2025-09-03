@@ -5,6 +5,7 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 
 interface SelectConfig {
   name: string;
+  label: string;
   placeholder?: string;
   multiple?: boolean;
   options: { id: string; value: string }[];
@@ -20,6 +21,7 @@ export const worldSelector = {
   name: 'worlds',
   placeholder: 'Выберите мир',
   multiple: true,
+  label: 'Миры',
   options: [
     { id: '1', value: 'Долина Гурван-Гол' },
     { id: '2', value: 'Долина Хан-Тенгри' },
@@ -37,9 +39,9 @@ export const Filters: React.FC<FilterProps> = ({ control, inputName, selectors =
         control={control}
         name={inputName}
       />
-      {[...selectors, worldSelector]?.map(({ name, placeholder, multiple, options }) => (
+      {[...selectors, worldSelector]?.map(({ name, label, placeholder, multiple, options }) => (
         <Selector
-          label="Миры"
+          label={label}
           triggerProps={{ className: 'min-w-[300px] w-auto flex-1' }}
           key={name}
           control={control}

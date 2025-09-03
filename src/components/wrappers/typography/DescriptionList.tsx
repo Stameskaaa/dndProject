@@ -24,7 +24,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = ({ data, options 
       style={{ width: '100%', ...{ gap: `${gap}px` } }}
       className={classNames(
         'flex flex-col w-full',
-        options?.background ? 'bg-brand-200 py-3 px-4 rounded-md' : '',
+        options?.background ? 'bg-brand-300 py-3 px-4 rounded-md' : '',
         options?.className,
       )}>
       {data.map(({ title, value, icon: Icon }, i) => {

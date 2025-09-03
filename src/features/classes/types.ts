@@ -1,28 +1,34 @@
-export interface CharacterClass {
-  id: number;
+import type { Characteristic } from '../types';
+
+export interface Class {
+  id: string;
+  src: string;
   name: string;
   description: string;
-  src: string;
-  levelTable: LevelEntry[];
-  features: Features;
-}
-
-interface LevelEntry {
-  level: number;
-  masteryBonus: number;
-  abilities: string[];
-  knownSpells: number;
-  spellSlots: number;
-  spellSlotLevels: (number | null)[];
-}
-
-interface Features {
-  mainCharacteristic: string;
-  hitDice: string;
-  savingThrows: string[];
+  md_table_data: string;
+  dice_hit_id: number;
+  saving_throws: Characteristic[];
   skills: string;
-  weapons: string;
-  instruments: string;
-  armor: string;
-  startingEquipment: string[];
+  weapon_skills: string[];
+  tool_skills: string;
+  armor_id: string[];
+  start_equipment: string[];
+
+  worlds_ids?: string[];
+  worlds_data?: { id: string; name: string }[];
+
+  class_skills_ids: string[];
+  class_skills_data: ClassSkills[];
+
+  subclass_skills_ids: string[];
+  subclass_skills_data: ClassSkills[];
+
+  characteristic_ids: string[];
+  characteristic_data: Characteristic[];
+}
+
+export interface ClassSkills {
+  id: string;
+  title: string;
+  md_description: string;
 }

@@ -1,16 +1,17 @@
-import type { World } from '@/features/types';
-
 export interface Trait {
   id: string;
   name: string;
-  worlds: World[];
-  type: TraitType;
-  src: string;
+  trait_type_id: string;
   requirements: string;
-  md_content: string;
+  md_description: string;
+
+  worlds_ids?: string[];
+  worlds_data?: { id: string; name: string }[];
 }
 
-interface TraitType {
+export interface TraitType {
   id: string;
   name: string;
+  description: string;
+  icon: any;
 }

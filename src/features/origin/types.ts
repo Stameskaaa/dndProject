@@ -1,14 +1,22 @@
-import type { Characteristic, Feats, Skills, ToolSkills, World } from '../types';
+import type { Trait } from '../traits/types';
+import type { Characteristic } from '../types';
 
 export interface Origin {
   id: string;
   name: string;
   src: string;
-  characteristic: Characteristic[];
-  feats: Feats[];
-  worlds: World[];
-  skills: Skills[];
-  toolSkills: ToolSkills[];
-  equipment: [string, string];
-  md_content: string;
+  skills: string;
+  tool_skills: string;
+  start_equipment: string[];
+  md_description: string;
+
+  // TODO массив для удобства, можно будет выбрать одну
+  traits_ids: string;
+  trait_data: Trait[];
+
+  characteristic_ids: string[];
+  characteristic_data: Characteristic[];
+
+  worlds_ids?: string[];
+  worlds_data?: { id: string; name: string }[];
 }

@@ -1,21 +1,17 @@
-export interface SpellDataType {
+export interface Spell {
   id: string;
   name: string;
   level: number;
-  school_id: SpellSchool['id'];
-  castingTime: string;
+  school_id: string;
+  casting_time: string;
   duration: string;
   distance: string;
-  components_list: SpellComponent['id'][];
   description: string;
-  classes: { id: string; name: string }[];
-  full_description: string;
-}
+  md_description: string;
+  components_list: string;
 
-export interface SpellComponent {
-  id: string;
-  name: string;
-  description: string;
+  classes_ids: string[];
+  classes_data: { id: string; name: string }[];
 }
 
 export interface SpellSchool {

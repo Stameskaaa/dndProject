@@ -33,7 +33,7 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
           <div
             className="absolute inset-0"
             style={{
-              background: 'linear-gradient(to right, #1c2224 10%, transparent 100%)',
+              background: 'linear-gradient(to right, #1c2224 5%, transparent 100%)',
             }}
           />
         </div>

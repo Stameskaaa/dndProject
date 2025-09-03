@@ -91,7 +91,7 @@ export const HeaderTitleText: React.FC<TitleProps> = ({ children, ...props }) =>
         ...props?.style,
       }}
       className={classNames(
-        'text-center leading-[40px] w-max flex items-center gap-4 bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent text-2xl md:text-3xl',
+        'text-center leading-[40px] w-max flex items-center gap-4 bg-gradient-to-br bg-text-primary bg-clip-text text-transparent text-2xl md:text-3xl',
         props?.className,
       )}>
       {children}

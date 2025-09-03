@@ -1,26 +1,25 @@
 import { useForm } from 'react-hook-form';
-import { useGetClassesListQuery } from '@/features/classes/api';
 import { Filters } from '../ui/Filters';
 import { ListCard } from '../ui/ListCard';
 import { ClassModalContent } from './ClassModalContent';
 import { CharacterSection } from '../ui/CharacterSection';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
+import { mockClass } from '@/mock/mock';
 
 export const ClassesPage = () => {
-  const { isLoading, data: raceList, isError } = useGetClassesListQuery();
   const { control } = useForm();
 
   return (
     <CharacterSection>
       <Filters control={control} inputName="name" />
-      <AnimatedGridList isError={isError} isLoading={isLoading}>
-        {raceList?.map(({ id, name, description, src }) => (
+      <AnimatedGridList isError={false} isLoading={false}>
+        {Array.from({ length: 20 })?.map((_, i) => (
           <ListCard
-            key={id}
-            cardId={String(id)}
-            name={name}
-            src={src}
-            description={[description]}
+            key={i}
+            cardId={`${i}`}
+            name={mockClass.name}
+            src={mockClass.src}
+            description={mockClass?.worlds_data?.map(({ name }) => name) || []}
           />
         ))}
       </AnimatedGridList>

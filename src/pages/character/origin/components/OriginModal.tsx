@@ -1,56 +1,49 @@
 import { useParams } from 'react-router-dom';
-import { useGetOriginByIdQuery } from '@/features/origin/api';
 import { Separator } from '@/components/ui/separator';
-import { pluckAndJoin } from '@/helpers/objectHelpers';
 import { Text } from '@/components/wrappers/typography/Text';
 import { AsyncState } from '../../ui/AsyncState';
 import { CharacterModalWrapper } from '../../ui/CharacterModalWrapper';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
-
+import { originMock } from '@/mock/mock';
+import { Equipment } from '../../ui/Equipment';
 export const OriginModal = () => {
-  // TODO ПРИНИМАЕТ ТОЛЬКО АЙДИ БЕЗ МАССИВА
   const { id: paramsId } = useParams();
-  const { data, isLoading, isError } = useGetOriginByIdQuery(
-    { id: paramsId! },
-    { skip: !paramsId },
-  );
-
-  const Equipment = () => {
-    return (
-      <ul className="list-disc list-inside text-xl text-brand-100">
-        <li>
-          <Text as="span">(А) {data?.equipment[0]}</Text>
-        </li>
-        <li>
-          <Text as="span">(Б) {data?.equipment[1]}</Text>
-        </li>
-      </ul>
-    );
-  };
 
   return (
     <CharacterModalWrapper id={paramsId} closeHref="/resources/character/origins">
-      <AsyncState isLoading={isLoading} isError={isError} data={data}>
+      <AsyncState isLoading={false} isError={false} data={true}>
         <div className="flex flex-col w-full min-w-0">
           <Text className="mx-auto mb-3" size="xl">
-            {data?.name}
+            {originMock?.name}
           </Text>
+          <Separator className="mt-0" spacing="equalSmall" />
           <DescriptionList
-            options={{ gap: 4 }}
+            options={{ gap: 4, background: true }}
             data={[
-              { title: 'Характеристики', value: pluckAndJoin('name', data?.characteristic) },
-              { title: 'Черты', value: pluckAndJoin('name', data?.feats) },
-              { title: 'Навыки', value: pluckAndJoin('name', data?.skills) },
+              {
+                title: 'Характеристики',
+                value: originMock.characteristic_data.map(({ name }) => name).join(', '),
+              },
+              { title: 'Черты', value: originMock.trait_data.map(({ name }) => name).join(', ') },
+              { title: 'Навыки', value: originMock.skills },
               {
                 title: 'Владение инструментами',
-                value: pluckAndJoin('description', data?.toolSkills),
+                value: originMock.tool_skills,
               },
-              { title: 'Снаряжение (Выберите А или Б)', value: <Equipment /> },
+              {
+                title: 'Снаряжение (Выберите А или Б)',
+                value: (
+                  <Equipment
+                    first={originMock.start_equipment[0]}
+                    second={originMock.start_equipment[1]}
+                  />
+                ),
+              },
             ]}
           />
-          <Separator />
-          <MarkDownText>{data?.md_content}</MarkDownText>
+          <Separator spacing="equalSmall" />
+          <MarkDownText>{originMock?.md_description}</MarkDownText>
         </div>
       </AsyncState>
     </CharacterModalWrapper>

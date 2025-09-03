@@ -2,7 +2,7 @@ import { useEffect, type HTMLAttributes, type ReactNode } from 'react';
 import styles from './StartBackground.module.css';
 
 interface StarsBackgroundProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const StarsBackground: React.FC<StarsBackgroundProps> = ({ children, ...props }) => {
@@ -38,10 +38,10 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({ children, ...p
     });
 
     const canvas = document.querySelector('.finisher-header canvas');
-    if (canvas) {
-      // @ts-ignore
-      canvas.style.zIndex = '0';
-    }
+    // if (canvas) {
+    //   // @ts-ignore
+    //   canvas.style.zIndex = '0';
+    // }
 
     return () => {
       finisher?.destroy?.();

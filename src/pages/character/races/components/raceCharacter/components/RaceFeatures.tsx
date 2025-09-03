@@ -9,7 +9,7 @@ export const RaceFeatures = ({ features }: { features?: Race['features'] }) => {
   return (
     <div>
       <DescriptionList
-        options={{ gap: 8 }}
+        options={{ background: true }}
         data={[
           { title: 'Тип существа', value: features?.type },
           { title: 'Размер', value: features?.size },

@@ -13,6 +13,7 @@ import { TraitsPage } from '@/pages/character/traits/TraitsPage';
 import { SpellsPage } from '@/pages/character/spells/SpellsPage';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { Text } from '@/components/wrappers/typography/Text';
+import { WorldsPage } from '@/pages/worlds/WorldsPage';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -163,11 +164,7 @@ export const ROUTES: RouteNode[] = [
         title: 'Миры',
         path: 'worlds',
         fullPath: '/worlds',
-        element: (
-          <Section paddingY="medium" fixedWidth screen>
-            <Text>Миры</Text>
-          </Section>
-        ),
+        element: <WorldsPage />,
         loader: true,
         src: 'https://sun9-29.userapi.com/s/v1/ig2/W5VMwVk-5lnf0EG7H-4fMcV2VIWqF-G6Dctu1ADv24pTaWLnSg6UcFCITu-bZQpYcM0aWGbIOWTcbQoIeNxUslVH.jpg?quality=95&as=32x38,48x57,72x86,108x129,160x191,240x287,360x430,480x574,540x645,640x765,720x860,1080x1290,1170x1398&from=bu&cs=1170x0',
         children: [
@@ -253,6 +250,7 @@ export const ROUTES: RouteNode[] = [
                 path: 'classes',
                 fullPath: '/resources/character/classes',
                 element: <ClassesPage />,
+                src: 'https://cdnb.artstation.com/p/assets/images/images/047/200/669/large/anato-finnstark-web-petit.jpg?1647002974',
                 children: [
                   {
                     path: ':id',
@@ -266,6 +264,7 @@ export const ROUTES: RouteNode[] = [
                 title: 'Виды',
                 path: 'races',
                 fullPath: '/resources/character/races',
+                src: 'https://cdnb.artstation.com/p/assets/images/images/041/500/289/large/anato-finnstark-web-peit.jpg?1631867384',
                 element: <RacesPage />,
                 children: [
                   {
@@ -281,6 +280,7 @@ export const ROUTES: RouteNode[] = [
                 path: 'origins',
                 fullPath: '/resources/character/origins',
                 element: <OriginPage />,
+                src: 'https://cdna.artstation.com/p/assets/images/images/036/497/596/4k/pablo-del-molino-thegate02.jpg?1617824920',
                 children: [
                   {
                     path: ':id',
@@ -294,6 +294,7 @@ export const ROUTES: RouteNode[] = [
                 title: 'Черты',
                 path: 'traits',
                 fullPath: '/resources/character/traits',
+                src: 'https://cdnb.artstation.com/p/assets/images/images/044/018/107/large/anato-finnstark-anato-finnstark-web-petit.jpg?1638889244',
                 element: <TraitsPage />,
                 children: [
                   {
@@ -308,6 +309,7 @@ export const ROUTES: RouteNode[] = [
                 title: 'Заклинания',
                 path: 'spells',
                 fullPath: '/resources/character/spells',
+                src: 'https://cdnb.artstation.com/p/assets/images/images/034/041/739/4k/anato-finnstark-web-petit.jpg?1611241472',
                 element: <SpellsPage />,
                 children: [
                   {

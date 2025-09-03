@@ -1,19 +1,18 @@
-import type { World } from '../types';
-
 export interface RaceFeature {
   type: string;
-  size: string;
-  speed: string;
+  size?: string;
+  speed?: string;
   md_content: string;
 }
 
 export interface Race {
-  id: string;
+  id: number;
   name: string;
   src: string;
-  worlds: World[];
-  description: string;
-  full_description: string;
+  md_description: string;
   features: RaceFeature;
-  history: string;
+  md_history: string;
+
+  worlds_ids?: string[];
+  worlds_data?: { id: string; name: string }[];
 }

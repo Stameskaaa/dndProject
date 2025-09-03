@@ -1,11 +1,10 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { Trait } from '@/features/traits/types';
 import { MotionHoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
 import { Text } from '@/components/wrappers/typography/Text';
 import { cardVariants } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 
 export const TraitCard = ({ traitData }: { traitData: Trait }) => {
-  const { id } = useParams();
   const navigate = useNavigate();
 
   const Title = () => (
@@ -17,9 +16,9 @@ export const TraitCard = ({ traitData }: { traitData: Trait }) => {
   const Description = () => {
     return (
       <ul className="list-disc pl-5 space-y-1 text-brand-100 text-md">
-        {traitData.worlds.map(({ name, id }) => {
+        {traitData?.worlds_data?.map(({ name }, i) => {
           return (
-            <li key={id}>
+            <li key={i}>
               <Text size="sm" color="text-secondary">
                 {name}
               </Text>
@@ -32,9 +31,9 @@ export const TraitCard = ({ traitData }: { traitData: Trait }) => {
 
   return (
     <MotionHoverZoomCard
-      active={id == traitData.id}
+      // active={id == traitData.id}
+      active={false}
       title={<Title />}
-      src={traitData.src}
       description={<Description />}
       variants={cardVariants}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
