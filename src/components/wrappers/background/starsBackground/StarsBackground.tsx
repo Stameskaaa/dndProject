@@ -37,11 +37,11 @@ export const StarsBackground: React.FC<StarsBackgroundProps> = ({ children, ...p
       shapes: ['t'],
     });
 
-    const canvas = document.querySelector('.finisher-header canvas');
-    // if (canvas) {
-    //   // @ts-ignore
-    //   canvas.style.zIndex = '0';
-    // }
+    // const canvas = document.querySelector('.finisher-header canvas');
+    // // if (canvas) {
+    // //   // @ts-ignore
+    // //   canvas.style.zIndex = '0';
+    // // }
 
     return () => {
       finisher?.destroy?.();

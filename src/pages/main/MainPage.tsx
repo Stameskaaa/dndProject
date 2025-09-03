@@ -5,12 +5,10 @@ import { ExpandingCard } from '@/components/wrappers/cards/expandingCard/Expandi
 import { FAQ } from '@/components/wrappers/sections/FAQ/FAQ';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
-import { StarsBackground } from '@/components/wrappers/background/starsBackground/StarsBackground';
 
 export const MainPage = () => {
   return (
     <>
-      {/* <StarsBackground className="finisher-header w-full h-[1400px] flex items-center justify-center"></StarsBackground> */}
       <Section screen={true} className="flex justify-center flex-col items-center">
         <img
           className="w-full filter blur-[1px] shadow-[inset_0_0_30px_rgba(0,0,0,0.7)]"
