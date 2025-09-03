@@ -14,6 +14,8 @@ import { SpellsPage } from '@/pages/character/spells/SpellsPage';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { Text } from '@/components/wrappers/typography/Text';
 import { WorldsPage } from '@/pages/worlds/WorldsPage';
+import { ClubRulesPage } from '@/pages/rules/clubRules/ClubRulesPage';
+import { HomeRulesPage } from '@/pages/rules/homeRules/HomeRules';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -201,11 +203,7 @@ export const ROUTES: RouteNode[] = [
             path: 'rules',
             fullPath: '/resources/rules',
             loader: true,
-            element: (
-              <Section paddingY="medium" fixedWidth screen>
-                <Text>Правила клуба</Text>
-              </Section>
-            ),
+            element: <ClubRulesPage />,
             children: [{ path: ':id', fullPath: '/resources/rules/:id' }],
           },
           {
@@ -224,11 +222,7 @@ export const ROUTES: RouteNode[] = [
             path: 'home-rules',
             fullPath: '/resources/home-rules',
             children: [{ path: ':id', fullPath: '/resources/home-rules/:id' }],
-            element: (
-              <Section paddingY="medium" fixedWidth screen>
-                <Text>Домашние правила</Text>
-              </Section>
-            ),
+            element: <HomeRulesPage />,
             loader: true,
           },
           {
