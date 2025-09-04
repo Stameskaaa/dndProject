@@ -43,14 +43,16 @@ export const ModalWindow: FC<ModalDialogProps> = ({
       )}
       <DialogContent
         open={open}
-        setopen={setOpen}
+        setOpen={setOpen}
         style={contentStyle}
         className={classNames(
           'bg-brand-400 border-none h-[60%] w-[400px] !max-w-none',
           contentClassname,
         )}>
         {Children.map(children, (child) =>
-          isValidElement(child) ? cloneElement(child as ReactElement<any>, { setOpen }) : child,
+          isValidElement(child) && typeof child.type !== 'string'
+            ? cloneElement(child as ReactElement<any>, { setOpen })
+            : child,
         )}
       </DialogContent>
     </Dialog>

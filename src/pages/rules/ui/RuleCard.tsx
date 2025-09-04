@@ -15,7 +15,7 @@ interface RuleCardProps {
 export const RuleCard: React.FC<RuleCardProps> = ({ title, description, full_description }) => {
   return (
     <ModalWindow
-      contentClassname="w-[calc(100%-40px)] h-[70%] max-h-[600px] !max-w-[500px]"
+      contentClassname="w-[calc(100%-40px)] h-[70%] max-h-[600px] !max-w-[600px]"
       buttonTrigger={
         <div className="cursor-pointer hover:bg-brand-300 active:bg-brand-300/70 duration-300 transition-colors h-[180px] p-3 rounded-xl ratio bg-brand-400  w-full flex flex-col gap-2">
           <Text color="brand-100" size="xl">
@@ -38,7 +38,11 @@ export const RuleCard: React.FC<RuleCardProps> = ({ title, description, full_des
 
 const Action = ({ setOpen }: { setOpen?: (data: boolean) => void }) => {
   return (
-    <Button onClick={() => setOpen?.(false)} className="absolute right-0 m-2" variant="ghost">
+    <Button
+      size="icon"
+      onClick={() => setOpen?.(false)}
+      className="absolute right-0 m-2"
+      variant="ghost">
       <X />
     </Button>
   );
