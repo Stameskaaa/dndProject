@@ -51,8 +51,10 @@ export const HeaderNavigation = () => {
                     <Link
                       to={fullPath}
                       className="py-2 px-3 hover:bg-brand-300 rounded-md transition-color duration-300 cursor-pointer">
-                      <Text color="accent-200">{title}</Text>
-                      <Text className="text-text-secondary">{title}</Text>
+                      <Text color="accent-100">{title}</Text>
+                      <Text color="text-description" className="text-text-secondary">
+                        {title}
+                      </Text>
                     </Link>
                   </NavigationMenu.Link>
                 ))}

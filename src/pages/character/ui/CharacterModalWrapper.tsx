@@ -26,24 +26,32 @@ export const CharacterModalWrapper = ({
       )}
       open={!!id}
       setOpen={() => navigate(closeHref)}>
-      <div className="absolute right-[10px] top-[10px] z-1  flex gap-1 p-[2px] rounded-sm shadow shadow-black bg-brand-400">
-        <Button variant="ghost" onClick={() => setExpanded(!expanded)} size="icon">
-          {expanded ? <Minimize /> : <Expand />}
-        </Button>
-        <Button variant="ghost" onClick={() => alert('Да')} size="icon">
-          <Copy />
-        </Button>
-        <CloseAction />
-      </div>
+      <CloseAction expanded={expanded} setExpanded={setExpanded} />
       <div className="h-[full] w-full px-1 flex flex-col overflow-y-auto">{children}</div>
     </ModalWindow>
   );
 };
 
-const CloseAction = ({ setOpen }: { setOpen?: (data: boolean) => void }) => {
+const CloseAction = ({
+  setOpen,
+  expanded,
+  setExpanded,
+}: {
+  setOpen?: (data: boolean) => void;
+  expanded: boolean;
+  setExpanded: (data: boolean) => void;
+}) => {
   return (
-    <Button variant="ghost" onClick={() => setOpen?.(false)} size="icon">
-      <X />
-    </Button>
+    <div className="absolute right-[10px] top-[10px] z-1  flex gap-1 p-[2px] rounded-sm shadow shadow-black bg-brand-400">
+      <Button variant="ghost" onClick={() => setExpanded(!expanded)} size="icon">
+        {expanded ? <Minimize /> : <Expand />}
+      </Button>
+      <Button variant="ghost" onClick={() => alert('Да')} size="icon">
+        <Copy />
+      </Button>
+      <Button variant="ghost" onClick={() => setOpen?.(false)} size="icon">
+        <X />
+      </Button>
+    </div>
   );
 };

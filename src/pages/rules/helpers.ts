@@ -1,24 +1,30 @@
 import type { Rule } from '@/features/rules/types';
 
 interface GroupedRules {
-  title: string;
-  content: Rule[];
+  id: string;
+  content: (Omit<Rule, 'type'> & { type: string })[];
 }
 
 export function groupRules(rules: Rule[]): GroupedRules[] {
-  const groupsMap: Record<string, Rule[]> = {};
+  const groupsMap: Record<string, (Omit<Rule, 'type'> & { type: string })[]> = {};
 
   rules.forEach((rule) => {
-    const type = rule.type?.toLowerCase() || 'прочее';
+    const normalizedType = Array.isArray(rule.type)
+      ? rule.type[0].toLowerCase()
+      : rule.type?.toLowerCase() || 'other';
 
-    const key = type.includes('прочее') ? 'прочее' : type;
+    const key = normalizedType.includes('other') ? 'other' : normalizedType;
 
     if (!groupsMap[key]) groupsMap[key] = [];
-    groupsMap[key].push(rule);
+
+    groupsMap[key].push({
+      ...rule,
+      type: normalizedType,
+    });
   });
 
   return Object.entries(groupsMap).map(([key, content]) => ({
-    title: key === 'прочее' ? 'Прочее' : content[0].type || key,
+    id: key === 'other' ? 'other' : content[0].type,
     content,
   }));
 }

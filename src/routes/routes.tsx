@@ -16,6 +16,7 @@ import { Text } from '@/components/wrappers/typography/Text';
 import { WorldsPage } from '@/pages/worlds/WorldsPage';
 import { ClubRulesPage } from '@/pages/rules/clubRules/ClubRulesPage';
 import { HomeRulesPage } from '@/pages/rules/homeRules/HomeRules';
+import { DnDRules } from '@/pages/rules/dndRules/DnDRules';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -210,11 +211,7 @@ export const ROUTES: RouteNode[] = [
             title: 'Правила D&D',
             path: 'dnd-rules',
             fullPath: '/resources/dnd-rules',
-            element: (
-              <Section paddingY="medium" fixedWidth screen>
-                <Text>Правила D&D</Text>
-              </Section>
-            ),
+            element: <DnDRules />,
             loader: true,
           },
           {

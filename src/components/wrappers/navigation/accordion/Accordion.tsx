@@ -1,27 +1,64 @@
+import classNames from 'classnames';
+import { useState, type ReactNode } from 'react';
 import {
-  AccordionContent,
-  AccordionItem,
   AccordionRoot,
+  AccordionItem,
   AccordionTrigger,
+  AccordionContent,
 } from '@/components/ui/accordion';
-import { Text } from '../../typography/Text';
 
-interface AccordionProps {
-  title: string;
-  content: React.ReactNode;
+interface AccordionItemData {
+  id: string;
+  title: ReactNode;
+  content: ReactNode;
 }
 
-export const Accordion = ({ data }: { data: AccordionProps[] }) => {
+interface AccordionProps {
+  data: AccordionItemData[];
+  triggerClass?: string;
+  contentClass?: string;
+  containerClass?: string;
+  defaultValue?: string;
+  open?: string;
+  setOpen?: (id: string | undefined) => void;
+}
+
+export const Accordion = ({
+  data,
+  open: externalOpen,
+  setOpen: externalSetOpen,
+  triggerClass,
+  contentClass,
+  containerClass,
+  defaultValue,
+}: AccordionProps) => {
+  const [internalOpen, setInternalOpen] = useState<string | undefined>(undefined);
+
+  const open = externalOpen ?? internalOpen;
+  const setOpen = externalSetOpen ?? setInternalOpen;
+
   return (
-    <AccordionRoot type="single" collapsible className="w-full" defaultValue="item-0">
-      {data.map(({ title, content }, i) => (
-        <AccordionItem key={i} className="border-brand-200" value={`item-${i}`}>
-          <AccordionTrigger className="hover:bg-brand-400 px-3 cursor-pointer">
-            <Text size="lg" color="text-primary">
-              {title}
-            </Text>
+    <AccordionRoot
+      type="single"
+      collapsible
+      className="w-full"
+      value={open}
+      defaultValue={defaultValue}
+      onValueChange={(val) => setOpen(val)}>
+      {data.map(({ title, content, id }) => (
+        <AccordionItem key={id} value={id} className={containerClass}>
+          <AccordionTrigger
+            className={classNames(
+              'hover:bg-brand-400 px-3 cursor-pointer flex justify-between items-center',
+              triggerClass,
+            )}>
+            {title}
           </AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-4 text-balance text-text-secondary px-3">
+          <AccordionContent
+            className={classNames(
+              'flex flex-col gap-4 text-balance text-text-secondary px-3',
+              contentClass,
+            )}>
             {content}
           </AccordionContent>
         </AccordionItem>
