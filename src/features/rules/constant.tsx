@@ -26,3 +26,18 @@ export const clubRulesTypes: RuleType[] = [
   { id: 'user_agreement', name: 'Пользовательское соглашение', icon: UserRoundCheck },
   { id: 'other', name: 'Прочее', icon: HandCoins },
 ];
+
+export const dndRuleTypes: Omit<RuleType, 'icon'>[] = [
+  { id: 'core_terms', name: 'Основные термины' },
+  { id: 'core_actions', name: 'Основные действия' },
+  { id: 'combat', name: 'Сражение' },
+  { id: 'magic', name: 'Магия' },
+  { id: 'conditions', name: 'Состояния' },
+  { id: 'areas', name: 'Области воздействия' },
+  { id: 'exploration', name: 'Исследование мира' },
+  { id: 'movement', name: 'Перемещение' },
+  { id: 'statblock', name: 'Статблок' },
+  { id: 'senses', name: 'Чувства' },
+  { id: 'equipment', name: 'Снаряжение' },
+  { id: 'other', name: 'Прочее' },
+];

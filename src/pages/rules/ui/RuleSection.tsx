@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { Rule } from '@/features/rules/types';
 import { groupRules } from '../helpers';
 import { RuleCard } from '../ui/RuleCard';
@@ -40,7 +40,7 @@ export const RulesSection = ({ rules, type }: RulesSectionPageProps) => {
                 {
                   id,
                   title: (
-                    <Text color="text-secondary" size="2xl">
+                    <Text color="text-secondary" size="xl">
                       {ruleType?.name}
                     </Text>
                   ),
