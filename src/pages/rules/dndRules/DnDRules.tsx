@@ -14,14 +14,12 @@ import { dndRuleTypes } from '@/features/rules/constant';
 
 export const DnDRules = () => {
   const { control } = useForm();
-  const TypeBlock = ({ type, id }: { type?: Rule['type']; id: number }) => {
-    if (!type) return null;
-
-    const types = typeof type === 'string' ? [type] : type;
+  const TypeBlock = ({ tags, id }: { tags?: Rule['tags']; id: number }) => {
+    if (!Array.isArray(tags) || tags.length === 0) return null;
 
     return (
       <div key={id} className="flex flex-row pt-2 flex-wrap gap-2">
-        {types.map((data) => {
+        {tags.map((data) => {
           const value = dndRuleTypes.find(({ id }) => id === data)?.name || '';
           return (
             <Badge size="md" key={value}>
@@ -52,14 +50,14 @@ export const DnDRules = () => {
           />
         </div>
 
-        {dndRules.map(({ id, title, md_content, type }, i) => (
+        {dndRules.map(({ id, title, md_content, tags }, i) => (
           <React.Fragment key={id}>
             <div key={id} className="flex flex-col gap-2">
               <Text color="brand-100" size="xl">
                 {title}
               </Text>
               <MarkDownText>{md_content}</MarkDownText>
-              <TypeBlock id={i} type={type} />
+              <TypeBlock id={i} tags={tags} />
             </div>{' '}
             {i !== dndRules.length - 1 && <Separator className="bg-brand-300" spacing="empty" />}
           </React.Fragment>

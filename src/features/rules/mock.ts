@@ -3,295 +3,311 @@ import type { Rule } from './types';
 export const clubRules: Rule[] = [
   {
     id: '1',
+    type: 'club',
     title: 'Общие правила',
     short_description: 'Короткое описаниеКороткое описание',
     md_content: 'Будьте вежливы, соблюдайте расписание.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '2',
+    type: 'club',
     title: 'Правила поведения',
     short_description: 'Короткое описание',
     md_content: 'Не перебивайте ведущего, уважайте других.',
-    type: 'club_behavior',
+    tags: ['club_behavior'],
   },
   {
     id: '3',
+    type: 'club',
     title: 'Правила участия в играх',
     short_description: 'Короткое описание',
     md_content: 'Регистрация обязательна, соблюдайте игровые правила.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '4',
+    type: 'club',
     title: 'Пользовательское соглашение',
     short_description: 'Короткое описание',
     md_content: 'Согласие с правилами обязательно.',
-    type: 'user_agreement',
+    tags: ['user_agreement'],
   },
   {
     id: '5',
+    type: 'club',
     title: 'Безопасность',
     short_description: 'Короткое описание',
     md_content: 'Не использовать опасные предметы.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '6',
+    type: 'club',
     title: 'Время сессий',
     short_description: 'Короткое описание',
     md_content: 'Игры проводятся не дольше 3 часов.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '7',
+    type: 'club',
     title: 'Использование инвентаря',
     short_description: 'Короткое описание',
     md_content: 'Не ломайте и не перемещайте чужие вещи.',
-    type: 'club_behavior',
+    tags: ['club_behavior'],
   },
   {
     id: '8',
+    type: 'club',
     title: 'Фото и видео',
     short_description: 'Короткое описание',
     md_content: 'Снимать только с разрешения участников.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '9',
+    type: 'club',
     title: 'Обратная связь',
     short_description: 'Короткое описание',
     md_content: 'Отзывы принимаются через форму на сайте.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '10',
+    type: 'club',
     title: 'Ограничение шума',
     short_description: 'Короткое описание',
     md_content: 'Разговоры только по делу, мобильные устройства в беззвучном режиме.',
-    type: 'club_behavior',
+    tags: ['club_behavior'],
   },
   {
     id: '11',
+    type: 'club',
     title: 'Дополнительные материалы',
     short_description: 'Короткое описание',
     md_content: 'Используйте только разрешённые книги и карты.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '12',
+    type: 'club',
     title: 'Чат и общение',
     short_description: 'Короткое описание',
     md_content: 'Запрещены оскорбления и спам.',
-    type: 'club_behavior',
+    tags: ['club_behavior'],
   },
   {
     id: '13',
+    type: 'club',
     title: 'Особые ситуации',
     short_description: 'Короткое описание',
     md_content: 'Решения в нестандартных ситуациях принимает ведущий.',
-    type: 'user_agreement',
+    tags: ['user_agreement'],
   },
   {
     id: '14',
+    type: 'club',
     title: 'Прочее',
     short_description: 'Короткое описание',
     md_content: 'Любые изменения обсуждаются заранее.',
-    type: 'other',
+    tags: ['other'],
   },
   {
     id: '15',
+    type: 'club',
     title: 'Костюмы и реквизит',
     short_description: 'Короткое описание',
     md_content: 'Костюмы использовать аккуратно, не повреждать.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '16',
+    type: 'club',
     title: 'Совместная работа',
     short_description: 'Короткое описание',
     md_content: 'Помогайте друг другу и кооперируйтесь.',
-    type: 'club_behavior',
+    tags: ['club_behavior'],
   },
   {
     id: '17',
+    type: 'club',
     title: 'Использование карт',
     short_description: 'Короткое описание',
     md_content: 'Карты и миниатюры использовать аккуратно.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
   {
     id: '18',
+    type: 'club',
     title: 'Обновления правил',
     short_description: 'Короткое описание',
     md_content: 'Новые версии правил публикуются на сайте.',
-    type: 'user_agreement',
+    tags: ['user_agreement'],
   },
   {
     id: '19',
+    type: 'club',
     title: 'Запрет чит-кодов',
     short_description: 'Короткое описание',
     md_content: 'Все действия должны соответствовать правилам и этике игры.',
-    type: 'club_behavior',
+    tags: ['club_behavior'],
   },
   {
     id: '20',
+    type: 'club',
     title: 'Награды и достижения',
     short_description: 'Короткое описание',
     md_content: 'Достижения фиксируются и выдаются по результатам игры.',
-    type: 'event_participation',
+    tags: ['event_participation'],
   },
 ];
 
 export const homeRules: Rule[] = [
   {
     id: '1',
+    type: 'home',
     title: 'Расширенные возможности',
     short_description: 'Дополнительные действия и опции',
     md_content:
       'Вы можете использовать специальные способности персонажей, расширенные заклинания и уникальные предметы.',
-    type: 'extensions',
+    tags: ['extensions'],
   },
   {
     id: '2',
+    type: 'home',
     title: 'Особые навыки',
     short_description: 'Улучшенные умения',
     md_content:
       'Некоторые персонажи могут получать уникальные навыки, недоступные в базовой системе.',
-    type: 'extensions',
+    tags: ['extensions'],
   },
   {
     id: '3',
+    type: 'home',
     title: 'Правила особых ситуаций',
     short_description: 'Необычные игровые события',
     md_content: 'В нестандартных случаях решения принимает мастер игры с учётом правил.',
-    type: 'special_cases',
+    tags: ['special_cases'],
   },
   {
     id: '4',
+    type: 'home',
     title: 'Изменения в классической системе',
     short_description: 'Модификации стандартной DnD',
     md_content: 'Некоторые заклинания или способности могут работать иначе для улучшения баланса.',
-    type: 'revisions',
+    tags: ['revisions'],
   },
   {
     id: '5',
+    type: 'home',
     title: 'Прочее',
     short_description: 'Дополнительные правила',
     md_content: 'Любые другие ситуации и правила уточняются заранее с мастером игры.',
-    type: 'other',
+    tags: ['other'],
   },
   {
     id: '6',
+    type: 'home',
     title: 'Расширение экипировки',
     short_description: 'Новые предметы',
     md_content: 'Вы можете использовать новые предметы и оружие, добавленные в игру.',
-    type: 'extensions',
+    tags: ['extensions'],
   },
   {
     id: '7',
+    type: 'home',
     title: 'Сложные боевые ситуации',
     short_description: 'Особые условия боя',
     md_content: 'При нестандартных боях вводятся дополнительные условия и бонусы.',
-    type: 'special_cases',
+    tags: ['special_cases'],
   },
   {
     id: '8',
+    type: 'home',
     title: 'Модифицированные заклинания',
     short_description: 'Заклинания работают иначе',
     md_content: 'Некоторые заклинания имеют альтернативные эффекты для баланса.',
-    type: 'revisions',
+    tags: ['revisions'],
   },
   {
     id: '9',
+    type: 'home',
     title: 'Прочее поведение',
     short_description: 'Общие рекомендации',
     md_content: 'Следите за порядком и уважайте других игроков.',
-    type: 'other',
+    tags: ['other'],
   },
   {
     id: '10',
+    type: 'home',
     title: 'Особые роли',
     short_description: 'Уникальные персонажи',
     md_content: 'Некоторые персонажи могут иметь уникальные способности или обязанности.',
-    type: 'extensions',
+    tags: ['extensions'],
   },
   {
     id: '11',
+    type: 'home',
     title: 'Случайные события',
     short_description: 'Непредвиденные ситуации',
     md_content: 'Мастер игры может добавлять случайные события для разнообразия.',
-    type: 'special_cases',
+    tags: ['special_cases'],
   },
   {
     id: '12',
+    type: 'home',
     title: 'Модификация предметов',
     short_description: 'Изменение оружия и брони',
     md_content: 'Некоторые предметы могут быть модифицированы по правилам мастера.',
-    type: 'revisions',
+    tags: ['revisions'],
   },
   {
     id: '13',
+    type: 'home',
     title: 'Прочее использование магии',
     short_description: 'Дополнительные правила заклинаний',
     md_content: 'Некоторые заклинания могут быть использованы иначе по решению мастера.',
-    type: 'other',
+    tags: ['other'],
   },
   {
     id: '14',
+    type: 'home',
     title: 'Дополнительные награды',
     short_description: 'Бонусы для игроков',
     md_content: 'Игроки могут получать специальные награды за креативные действия.',
-    type: 'extensions',
+    tags: ['extensions'],
   },
   {
     id: '15',
+    type: 'home',
     title: 'Нестандартные ситуации',
     short_description: 'Игровые исключения',
     md_content: 'Мастер может вводить уникальные условия для сюжетных целей.',
-    type: 'special_cases',
+    tags: ['special_cases'],
   },
   {
     id: '16',
+    type: 'home',
     title: 'Модификация правил боя',
     short_description: 'Альтернативные системы боя',
     md_content: 'Некоторые боевые механики могут быть изменены для динамики игры.',
-    type: 'revisions',
+    tags: ['revisions'],
   },
   {
     id: '17',
+    type: 'home',
     title: 'Прочее взаимодействие',
     short_description: 'Особенности общения',
     md_content: 'Особые ситуации общения между персонажами решаются мастером.',
-    type: 'other',
-  },
-  {
-    id: '18',
-    title: 'Расширенные приключения',
-    short_description: 'Новые сюжетные возможности',
-    md_content: 'В кампании могут быть новые квесты и сюжетные линии.',
-    type: 'extensions',
-  },
-  {
-    id: '19',
-    title: 'Особые локации',
-    short_description: 'Модификация карт',
-    md_content: 'Некоторые локации имеют дополнительные правила и эффекты.',
-    type: 'special_cases',
-  },
-  {
-    id: '20',
-    title: 'Изменения заклинаний',
-    short_description: 'Модификация магии',
-    md_content: 'Некоторые заклинания работают иначе для баланса и интереса.',
-    type: 'revisions',
+    tags: ['other'],
   },
 ];
 
 export const dndRules: Rule[] = [
   {
     id: '1',
-    type: ['combat', 'areas'],
+    type: 'dnd',
     title: 'Атака',
     short_description: '',
     md_content: `**Атака** — базовое действие в бою.
@@ -303,10 +319,11 @@ export const dndRules: Rule[] = [
 - Некоторые умения позволяют атаковать несколько раз за одно действие.
 
 > Пример: воин с мечом наносит удар орку. Мастер просит бросить d20 и прибавить модификатор силы.`,
+    tags: ['combat', 'areas'],
   },
   {
     id: '2',
-    type: ['combat'],
+    type: 'dnd',
     title: 'Бонусное действие',
     short_description: '',
     md_content: `**Бонусное действие** — дополнительное действие, совершаемое в ваш ход.
@@ -317,10 +334,11 @@ export const dndRules: Rule[] = [
 - Можно использовать только одно бонусное действие за ход.
 
 > Пример: плут использует "Скрыться" как бонусное действие после атаки.`,
+    tags: ['combat'],
   },
   {
     id: '3',
-    type: ['magic'],
+    type: 'dnd',
     title: 'Компоненты заклинаний',
     short_description: '',
     md_content: `Заклинания могут требовать **вербальные (В)**, **соматические (С)** и **материальные (М)** компоненты.
@@ -330,10 +348,11 @@ export const dndRules: Rule[] = [
 - **Материальные** — требуется конкретный предмет или фокусировка.
 
 > Пример: заклинание *Огненный шар* требует В, С и М (кусочек гуано летучей мыши).`,
+    tags: ['magic'],
   },
   {
     id: '4',
-    type: ['conditions'],
+    type: 'dnd',
     title: 'Опутанный',
     short_description: '',
     md_content: `**Опутанный** — состояние, ограничивающее движение.
@@ -343,10 +362,11 @@ export const dndRules: Rule[] = [
 - Само оно атакует с помехой.
 
 > Пример: паук окутывает жертву паутиной, лишая её свободы.`,
+    tags: ['conditions'],
   },
   {
     id: '5',
-    type: ['areas'],
+    type: 'dnd',
     title: 'Сфера действия',
     short_description: '',
     md_content: `Некоторые эффекты имеют **область действия**.
@@ -357,10 +377,11 @@ export const dndRules: Rule[] = [
 - Важно учитывать преграды и укрытия.
 
 > Пример: заклинание *Туманное облако* создаёт сферу радиусом 20 футов.`,
+    tags: ['areas'],
   },
   {
     id: '6',
-    type: ['exploration'],
+    type: 'dnd',
     title: 'Изучение',
     short_description: '',
     md_content: `**Изучение** — действие, позволяющее узнать больше о мире через проверку Интеллекта.
@@ -369,10 +390,11 @@ export const dndRules: Rule[] = [
 - Обычно бросается d20 + модификатор Интеллекта + бонус навыка.
 
 > Пример: маг пытается вспомнить историю древних руин, делая проверку Истории.`,
+    tags: ['exploration'],
   },
   {
     id: '7',
-    type: ['movement'],
+    type: 'dnd',
     title: 'Доставание и убирание оружия',
     short_description: '',
     md_content: `Персонаж может достать или убрать оружие в рамках действия **Атака**.
@@ -381,10 +403,11 @@ export const dndRules: Rule[] = [
 - Иногда Мастер может ограничить количество предметов.
 
 > Пример: воин достаёт меч из ножен и сразу атакует.`,
+    tags: ['movement'],
   },
   {
     id: '8',
-    type: ['statblock'],
+    type: 'dnd',
     title: 'Характеристики',
     short_description: '',
     md_content: `**Статблок** — краткое описание параметров существа.
@@ -398,10 +421,11 @@ export const dndRules: Rule[] = [
 - Харизма (CHA)
 
 > Пример: у огра высокая Сила и Телосложение, но низкий Интеллект.`,
+    tags: ['statblock'],
   },
   {
     id: '9',
-    type: ['senses'],
+    type: 'dnd',
     title: 'Тёмное зрение',
     short_description: '',
     md_content: `**Тёмное зрение** позволяет видеть в темноте как при тусклом свете.
@@ -410,10 +434,11 @@ export const dndRules: Rule[] = [
 - Нельзя различать цвета, только оттенки серого.
 
 > Пример: эльф видит в пещере, где обычный человек ничего не различит.`,
+    tags: ['senses'],
   },
   {
     id: '10',
-    type: ['senses'],
+    type: 'dnd',
     title: 'Чувство вибрации',
     short_description: '',
     md_content: `Некоторые существа ощущают мир через **вибрации**.
@@ -422,5 +447,6 @@ export const dndRules: Rule[] = [
 - Работает в радиусе, указанном в описании существа.
 
 > Пример: гигантский червь чувствует шаги приключенцев по земле.`,
+    tags: ['senses'],
   },
 ];

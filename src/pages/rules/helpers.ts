@@ -9,22 +9,19 @@ export function groupRules(rules: Rule[]): GroupedRules[] {
   const groupsMap: Record<string, (Omit<Rule, 'type'> & { type: string })[]> = {};
 
   rules.forEach((rule) => {
-    const normalizedType = Array.isArray(rule.type)
-      ? rule.type[0].toLowerCase()
-      : rule.type?.toLowerCase() || 'other';
+    const tag =
+      Array.isArray(rule.tags) && rule.tags.length > 0 ? rule.tags[0].toLowerCase() : 'other';
 
-    const key = normalizedType.includes('other') ? 'other' : normalizedType;
+    if (!groupsMap[tag]) groupsMap[tag] = [];
 
-    if (!groupsMap[key]) groupsMap[key] = [];
-
-    groupsMap[key].push({
+    groupsMap[tag].push({
       ...rule,
-      type: normalizedType,
+      type: tag,
     });
   });
 
   return Object.entries(groupsMap).map(([key, content]) => ({
-    id: key === 'other' ? 'other' : content[0].type,
+    id: key,
     content,
   }));
 }
