@@ -23,23 +23,23 @@ export const HoverZoomCard = forwardRef<HTMLDivElement, HoverZoomCardProps>(
           'relative cursor-pointer  group w-full  transition-colors duration-300 bg-brand-400   shadow-xl shadow-black h-[160px] rounded-lg flex flex-col justify-between',
           !src ? 'hover:bg-brand-300 active:bg-brand-300/70' : '',
         )}>
-        <div className="absolute right-0 h-full max-w-full rounded-lg z-0 overflow-hidden">
+        <div className="absolute inset-0 rounded-lg z-0 overflow-hidden">
           {src && (
-            <div>
+            <>
               <img
                 src={src}
                 alt=""
-                className="w-auto h-full object-cover group-hover:scale-110 duration-400"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover object-center block transition-transform duration-300 transform-gpu group-hover:scale-110"
               />
-            </div>
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(to right, #1c2224 5%, transparent 100%)',
+                }}
+              />
+            </>
           )}
-
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to right, #1c2224 5%, transparent 100%)',
-            }}
-          />
         </div>
         <div className="z-0 p-4 h-full flex flex-col gap-1">
           {title}
