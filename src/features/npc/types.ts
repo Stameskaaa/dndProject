@@ -15,7 +15,7 @@ export interface NPC {
   status: string;
   fraction: string;
   md_description: string;
-  short_description: string;
+  md_short_description: string;
   md_history: string;
   md_fun_facts: string;
   language: string;

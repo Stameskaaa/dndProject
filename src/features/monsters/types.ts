@@ -31,6 +31,6 @@ export interface Monster {
 
   challenge: number; // 0-50 включительно, дробное, если пусто → нет опасности
   proficiency_bonus: number; // всегда + спереди, 0-20
-  short_description: string;
+  md_short_description: string;
   md_content: string;
 }
