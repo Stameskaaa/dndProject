@@ -1,10 +1,11 @@
-import { useRef } from 'react';
+import { useId, useRef } from 'react';
 import classNames from 'classnames';
 import { motion, useCycle, type Variants } from 'framer-motion';
 import { Navigation } from './Navigation';
 import { MenuToggle } from './MenuToggle';
 import { useDimensions } from './use-dimensions';
 import { ModalHeaderIndex } from '@/constants/zIndex';
+import { useScrollLock } from '@/features/scroll/hooks';
 
 const sidebar: Variants = {
   open: (height = 1000) => ({
@@ -40,6 +41,8 @@ const shadowVariants: Variants = {
 
 export const ToggleNavigation = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const id = useId();
+  useScrollLock(id, isOpen);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
 

@@ -1,23 +1,30 @@
 import { useForm } from 'react-hook-form';
-import { RaceCard } from './components/raceCard/RaceCard';
-import { SectionModal } from '@/components/wrappers/sections/sectionModal/SectionModal';
-import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import { Filters } from '../ui/Filters';
+import { Outlet } from 'react-router-dom';
 import { raceMock } from '@/features/races/mock';
+import { Filters } from '../ui/Filters';
+import { RaceCard } from './components/RaceCard';
+import { useNavigatePath } from '@/hooks/useNavigatePath';
+import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 
 export const RacesPage = () => {
   const { control } = useForm();
+  const { navigatePath } = useNavigatePath();
 
   return (
-    <SectionModal>
-      <div className="flex flex-1 flex-col">
-        <Filters inputName="name" control={control} />
-        <AnimatedGridList isError={false} isLoading={false}>
-          {Array.from({ length: 20 })?.map((_, i) => (
-            <RaceCard key={i} raceData={raceMock} />
-          ))}
-        </AnimatedGridList>
-      </div>
-    </SectionModal>
+    <>
+      <Filters inputName="name" control={control} />
+      <AnimatedGridList isError={false} isLoading={false}>
+        {Array.from({ length: 20 })?.map((_, i) => (
+          <RaceCard
+            openModal={() => {
+              navigatePath('13');
+            }}
+            key={i}
+            raceData={raceMock}
+          />
+        ))}
+      </AnimatedGridList>
+      <Outlet />
+    </>
   );
 };

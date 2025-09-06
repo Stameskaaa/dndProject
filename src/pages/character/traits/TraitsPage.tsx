@@ -1,11 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { Filters } from '../ui/Filters';
 import { TraitCard } from './components/TraitCard';
-import { TraitsModal } from './components/TraitsModal';
-import { CharacterSection } from '../ui/CharacterSection';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 import { trait_types } from '@/mock/mock';
 import { traitMock } from '@/features/traits/mock';
+import { Outlet } from 'react-router-dom';
 
 const traitSelector = {
   name: 'types',
@@ -18,7 +17,7 @@ export const TraitsPage = () => {
   const { control } = useForm();
 
   return (
-    <CharacterSection>
+    <>
       <Filters selectors={[traitSelector]} control={control} inputName="name" />
       <AnimatedGridList isLoading={false} isError={false}>
         {
@@ -28,7 +27,7 @@ export const TraitsPage = () => {
           ))
         }
       </AnimatedGridList>
-      <TraitsModal />
-    </CharacterSection>
+      <Outlet />
+    </>
   );
 };

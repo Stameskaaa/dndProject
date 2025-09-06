@@ -8,13 +8,15 @@ import { SpellDescription } from '@/pages/character/spells/components/spellDescr
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { Separator } from '@/components/ui/separator';
 import { spellMock } from '@/features/spells/mock';
+import { useNavigatePath } from '@/hooks/useNavigatePath';
 
 export const SpellModal = () => {
   const { id: paramsId } = useParams();
+  const { navigatePath } = useNavigatePath();
   const school = schoolList.find(({ id }) => id == spellMock?.school_id);
 
   return (
-    <CharacterModalWrapper id={paramsId} closeHref="/character/spells">
+    <CharacterModalWrapper open={!!paramsId} closeAction={() => navigatePath('/character/spells')}>
       <AsyncState isLoading={false} isError={false} data={true}>
         <div className="flex flex-col gap-1 items-center pb-3">
           <Text size="2xl" weight="bold" color="brand-100">

@@ -1,36 +1,33 @@
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { filterNavigation, type ActiveRouteInfo } from '@/routes/helpers';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
+import { useNavigatePath } from '@/hooks/useNavigatePath';
 
-export const HeaderSubNavigation = ({ locationData }: { locationData: ActiveRouteInfo }) => {
-  const navigate = useNavigate();
+interface SubNavigationProps {
+  data: { title: string; fullPath: string }[];
+  className?: string;
+}
 
-  const currentRoutes = filterNavigation(locationData?.parent?.children);
-  const notRender =
-    !locationData ||
-    locationData?.nestedLevel < 4 ||
-    !currentRoutes?.length ||
-    currentRoutes?.length < 2;
-
-  if (notRender) {
-    return null;
-  }
+export const SubNavigation: React.FC<SubNavigationProps> = ({ data, className }) => {
+  const { navigatePath } = useNavigatePath();
 
   return (
     <Section
+      paddingX="empty"
       fixedWidth
-      className="flex gap-2 md:gap-4 items-center h-[50px] overflow-x-auto scrollbar-hide">
-      {currentRoutes.map(({ title, fullPath }, i) => {
+      className={classNames(
+        'flex gap-2 md:gap-4 items-center h-[50px] overflow-x-auto scrollbar-hide',
+        className,
+      )}>
+      {data.map(({ title, fullPath }, i) => {
         const isSelected = location.pathname.includes(fullPath);
         return (
           <motion.div
             key={`${i}`}
             initial=""
             onClick={() => {
-              navigate(fullPath);
+              navigatePath(fullPath);
             }}
             className={classNames(
               'cursor-pointer relative h-full flex flex-col justify-center px-2 md:px-4',

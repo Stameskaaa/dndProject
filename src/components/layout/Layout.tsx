@@ -1,9 +1,10 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Header } from './Header/Header';
 import { WavesFooter } from './footer/WavesFooter';
 import { Section } from '../wrappers/sections/section/Section';
 import { PageLoader } from '../wrappers/loaders/pageLoader/PageLoader';
+import { useEffect } from 'react';
 
 export const Layout = () => {
   return (
@@ -13,7 +14,18 @@ export const Layout = () => {
         <PageLoader key="loader" />
         <Outlet />
       </AnimatePresence>
+      <PageChangeWatcher />
       <WavesFooter />
     </Section>
   );
+};
+
+const PageChangeWatcher = () => {
+  const location = useLocation();
+  // TODO решить когда нужен
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, behavior: 'smooth' });
+  // }, [location.pathname]);
+
+  return null;
 };

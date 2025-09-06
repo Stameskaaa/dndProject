@@ -4,10 +4,10 @@ import { HEADER_DISABLED_IDS, ROUTES } from '@/routes/routes';
 
 const variants = {
   open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.03, delayChildren: 0.03 },
   },
   closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+    transition: { staggerChildren: 0.02, staggerDirection: -1 },
   },
 };
 
@@ -19,7 +19,7 @@ export const Navigation = ({ toggle }: { toggle: () => any }) => {
   return (
     <motion.ul
       style={{ overscrollBehavior: 'contain' }}
-      className="p-[25px] absolute w-full top-[50px] h-[calc(100%-50px)] overflow-auto"
+      className="p-[25px] absolute w-full top-[50px] h-[calc(100%-50px)] overflow-auto pb-18"
       variants={variants}>
       {filteredRoutes?.map((data, i) => (
         <MenuItem toggle={toggle} data={data} i={i} key={i} />

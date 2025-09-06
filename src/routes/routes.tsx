@@ -6,7 +6,6 @@ import { SHOW_TRANSITION } from '@/features/pageTransition/constants';
 import type { ReactNode } from 'react';
 import { ClassesPage } from '@/pages/character/classes/ClassesPage';
 import { RacesPage } from '@/pages/character/races/RacesPage';
-import { RaceCharacterPage } from '@/pages/character/races/components/raceCharacter/RaceCharacterPage';
 import { OriginPage } from '@/pages/character/origin/OriginPage';
 import { TraitsPage } from '@/pages/character/traits/TraitsPage';
 import { SpellsPage } from '@/pages/character/spells/SpellsPage';
@@ -19,6 +18,12 @@ import { DnDRules } from '@/pages/rules/dndRules/DnDRules';
 import { BestiaryPage } from '@/pages/universe/bestiary/BestiaryPage';
 import { RaidBossesPage } from '@/pages/universe/raidbosses/RadiBossesPage';
 import { NPCPage } from '@/pages/universe/npcs/NPCsPage';
+import { CharacterPage } from '@/pages/character/CharacterPage';
+import { RaceModal } from '@/pages/character/races/components/RaceModal';
+import { ClassModalContent } from '@/pages/character/classes/ClassModalContent';
+import { OriginModal } from '@/pages/character/origin/components/OriginModal';
+import { TraitsModal } from '@/pages/character/traits/components/TraitsModal';
+import { SpellModal } from '@/pages/character/spells/components/spellModal/SpellModal';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -211,7 +216,7 @@ export const ROUTES: RouteNode[] = [
         id: 'character',
         fullPath: '/character',
         src: 'https://sun9-44.userapi.com/s/v1/ig2/Cmd1CC138WveJUjSujFu0BOd3M8Y6U4BL8X5DoW4PLKEe0cirjt7Y3clUV05VdrHyVeXcl9rYay5FF7YIKbFumLz.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,960x960&from=bu&cs=960x0',
-        element: <Outlet />,
+        element: <CharacterPage />,
         loader: true,
         children: [
           {
@@ -224,7 +229,7 @@ export const ROUTES: RouteNode[] = [
               {
                 path: ':id',
                 fullPath: '/character/classes/:id',
-                element: <ClassesPage />,
+                element: <ClassModalContent />,
                 ignoreInActive: true,
               },
             ],
@@ -239,8 +244,9 @@ export const ROUTES: RouteNode[] = [
               {
                 path: ':id',
                 fullPath: '/character/races/:id',
-                element: <RaceCharacterPage />,
+                // element: <RaceCharacterPage />,
                 ignoreInActive: true,
+                element: <RaceModal />,
               },
             ],
           },
@@ -254,7 +260,7 @@ export const ROUTES: RouteNode[] = [
               {
                 path: ':id',
                 fullPath: '/character/origins/:id',
-                element: <OriginPage />,
+                element: <OriginModal />,
                 ignoreInActive: true,
               },
             ],
@@ -269,7 +275,7 @@ export const ROUTES: RouteNode[] = [
               {
                 path: ':id',
                 fullPath: '/character/traits/:id',
-                element: <TraitsPage />,
+                element: <TraitsModal />,
                 ignoreInActive: true,
               },
             ],
@@ -284,7 +290,7 @@ export const ROUTES: RouteNode[] = [
               {
                 path: ':id',
                 fullPath: '/character/spells/:id',
-                element: <SpellsPage />,
+                element: <SpellModal />,
                 ignoreInActive: true,
               },
             ],

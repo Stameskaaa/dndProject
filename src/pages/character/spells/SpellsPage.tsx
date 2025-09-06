@@ -1,9 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Filters } from '../ui/Filters';
-import { CharacterSection } from '../ui/CharacterSection';
 import { SpellCard } from '@/pages/character/spells/components/spellCard/SpellCard';
-import { SpellModal } from '@/pages/character/spells/components/spellModal/SpellModal';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 import { spellMock } from '@/features/spells/mock';
 
@@ -49,7 +47,7 @@ export const SpellsPage = () => {
   // const { data: spellData, isLoading, isError } = useGetSpellsListQuery();
 
   return (
-    <CharacterSection>
+    <>
       <Filters selectors={spellSelectors} control={control} inputName="name" />
       <AnimatedGridList gap={8} minW={280} isLoading={false} isError={false}>
         {
@@ -59,7 +57,7 @@ export const SpellsPage = () => {
           ))
         }
       </AnimatedGridList>
-      <SpellModal />
-    </CharacterSection>
+      <Outlet />
+    </>
   );
 };

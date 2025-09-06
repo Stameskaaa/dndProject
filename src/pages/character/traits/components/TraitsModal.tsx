@@ -6,13 +6,15 @@ import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
 import { Separator } from '@/components/ui/separator';
 import { traitMock } from '@/features/traits/mock';
+import { useNavigatePath } from '@/hooks/useNavigatePath';
 
 export const TraitsModal = () => {
   const { id } = useParams();
+  const { navigatePath } = useNavigatePath();
   // const { data, isLoading, isError } = useGetTraitsByIdQuery({ id: id! }, { skip: !id });
 
   return (
-    <CharacterModalWrapper closeHref="/character/traits" id={id}>
+    <CharacterModalWrapper closeAction={() => navigatePath('/character/traits')} open={!!id}>
       <div className="flex flex-col w-full min-w-0">
         <AsyncState isLoading={false} isError={false} data={true}>
           <div className="pb-3 flex bg-brand-400">

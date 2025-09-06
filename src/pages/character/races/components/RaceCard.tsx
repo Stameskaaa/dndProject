@@ -1,4 +1,3 @@
-import { useNavigate, useParams } from 'react-router-dom';
 import type { Race } from '@/features/races/types';
 import {
   cardTransition,
@@ -6,14 +5,8 @@ import {
 } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
 import { Text } from '@/components/wrappers/typography/Text';
 import { MotionHoverZoomCard } from '@/components/wrappers/cards/hoverZoomCard/HoverZoomCard';
-import { useId } from 'react';
 
-export const RaceCard = ({ raceData }: { raceData: Race }) => {
-  const { id: paramsId } = useParams();
-  const navigate = useNavigate();
-  // TODO Для анимации
-  const id = useId();
-
+export const RaceCard = ({ raceData, openModal }: { raceData: Race; openModal: () => void }) => {
   const Title = () => (
     <Text color="text-primary" size="lg">
       {raceData.name}
@@ -44,9 +37,7 @@ export const RaceCard = ({ raceData }: { raceData: Race }) => {
       description={<Description />}
       variants={cardVariants}
       transition={cardTransition}
-      onClick={() => {
-        paramsId !== id && navigate(`${id}`);
-      }}
+      onClick={openModal}
     />
   );
 };

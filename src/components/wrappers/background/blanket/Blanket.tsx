@@ -18,7 +18,7 @@ export const Blanket: React.FC<BlanketProps> = ({ className, style, duration = 0
       exit={{ opacity: 0 }}
       transition={{ duration }}
       style={{ ...defaultStyle, ...style }}
-      className={`w-full h-screen fixed inset-0 duration-300 ${className ?? ''}`}
+      className={`w-full h-screen fixed inset-0 ${className ?? ''}`}
     />
   );
 };

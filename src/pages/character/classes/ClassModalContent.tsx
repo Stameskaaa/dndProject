@@ -8,13 +8,19 @@ import { armors } from '@/mock/mock';
 import { Separator } from '@/components/ui/separator';
 import { Equipment } from '../ui/Equipment';
 import { mockClass } from '@/features/classes/mock';
+import { useNavigatePath } from '@/hooks/useNavigatePath';
 
 export const ClassModalContent = () => {
   const { id } = useParams();
+  const { navigatePath } = useNavigatePath();
   // const { data, isLoading, isError } = useGetClassByIdQuery({ id: id! }, { skip: !id });
 
   return (
-    <CharacterModalWrapper closeHref="/character/classes" id={id}>
+    <CharacterModalWrapper
+      closeAction={() => {
+        navigatePath('/character/classes');
+      }}
+      open={!!id}>
       <div className="flex flex-col w-full min-w-0">
         <AsyncState isLoading={false} isError={false} data={true}>
           <div className="pb-3 flex bg-brand-400">

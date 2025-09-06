@@ -66,3 +66,22 @@ export const getNavigationRoutes = (routes: RouteNode[], id: string) => {
   const findedRoutes = findRouteById(routes, id);
   return filterNavigation(findedRoutes?.children);
 };
+
+export function getChildrenById(
+  routes: RouteNode[],
+  id: string,
+): { title: string; fullPath: string }[] {
+  for (const route of routes) {
+    if (route.id === id) {
+      return (route.children || []).map((child) => ({
+        title: child.title || '',
+        fullPath: child.fullPath || '',
+      }));
+    }
+    if (route.children) {
+      const found = getChildrenById(route.children, id);
+      if (found.length) return found;
+    }
+  }
+  return [];
+}

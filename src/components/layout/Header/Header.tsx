@@ -11,7 +11,6 @@ import { HeaderTitle } from './Components/headerTitle/HeaderTitle';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { HeaderNavigation } from './Components/headerNavigation/NavigationMenu';
 import ScrollProgress from '@/components/wrappers/scrollProgress/ScrollProgress';
-import { HeaderSubNavigation } from './Components/headerSubNavigation/HeaderSubNavigation';
 import { ToggleNavigation } from '@/components/wrappers/navigation/toggleNavigation/ToggleNavigation';
 
 const defaultClass =
@@ -56,8 +55,6 @@ export function Header() {
           )}
         </Section>
       </div>
-
-      <HeaderSubNavigation locationData={locationData} />
     </motion.div>
   );
 }
