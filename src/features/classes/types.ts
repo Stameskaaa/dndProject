@@ -6,7 +6,8 @@ export interface Class {
   name: string;
   description: string;
   md_table_data: string;
-  dice_hit_id: number;
+  // TODO по сути хранить просто число
+  dice_hit: number;
   saving_throws: Characteristic[];
   skills: string;
   weapon_skills: string[];
@@ -17,11 +18,11 @@ export interface Class {
   worlds_ids?: string[];
   worlds_data?: { id: string; name: string }[];
 
-  class_skills_ids: string[];
-  class_skills_data: ClassSkills[];
+  class_skill_ids: string[];
+  class_skill_data: ClassSkills[];
 
-  subclass_skills_ids: string[];
-  subclass_skills_data: ClassSkills[];
+  subclass_skill_ids: string[];
+  subclass_skill_data: ClassSkills[];
 
   characteristic_ids: string[];
   characteristic_data: Characteristic[];

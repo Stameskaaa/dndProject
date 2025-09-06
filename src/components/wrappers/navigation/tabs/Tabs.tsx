@@ -189,7 +189,8 @@ const DEFAULT_TABS: TabItem[] = [
 interface SmoothTabProps {
   items?: TabItem[];
   defaultTabId?: string | number;
-  className?: string;
+  bgClassName?: string;
+  headerClassName?: string;
   activeColor?: string;
   onChange?: (tabId: string) => void;
 }
@@ -226,7 +227,8 @@ const transition = {
 export function Tabs({
   items = DEFAULT_TABS,
   defaultTabId = DEFAULT_TABS[0].id,
-  className,
+  headerClassName,
+  bgClassName,
   activeColor = 'bg-[#1F9CFE]',
   onChange,
 }: SmoothTabProps) {
@@ -253,12 +255,21 @@ export function Tabs({
       }
     };
 
-    requestAnimationFrame(() => {
+    updateDimensions();
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const resizeObserver = new ResizeObserver(() => {
       updateDimensions();
     });
+    resizeObserver.observe(container);
 
     window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', updateDimensions);
+    };
   }, [selected]);
 
   const handleTabClick = (tabId: string) => {
@@ -279,7 +290,7 @@ export function Tabs({
   const selectedItem = items.find((item) => item.id == selected);
 
   return (
-    <div className="flex flex-col h-full gap-4 bg-brand-400 rounded-lg">
+    <div className={classNames('flex flex-col h-full gap-4 bg-brand-400 rounded-lg', bgClassName)}>
       <div
         ref={containerRef}
         role="tablist"
@@ -289,7 +300,7 @@ export function Tabs({
           'bg-brand-400 w-full mx-auto',
           'border rounded-xl border-brand-200',
           'transition-all duration-200',
-          className,
+          headerClassName,
         )}>
         <motion.div
           className={cn('absolute rounded-lg z-[1]', selectedItem?.color || activeColor)}
@@ -344,7 +355,7 @@ export function Tabs({
 
       <div className="flex-1 mb-4 relative h-full">
         <div className="h-full w-full relative">
-          <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden h-full">
             <AnimatePresence initial={false} mode="popLayout" custom={direction}>
               <motion.div
                 key={`card-${selected}`}

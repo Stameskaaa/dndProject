@@ -100,7 +100,7 @@ export const Selector: React.FC<SelectorProps> = ({
               </Button>
             </PopoverTrigger>
             <PopoverContent
-              className="w-full flex flex-col px-0 py-2 pt-0 contain-content gap-1"
+              className="w-full flex flex-col px-0 py-2 pt-0 contain-content gap-1 overscroll-contain"
               style={{
                 maxHeight:
                   maxVisible * itemHeight + paddingY + paddingTop + (gap * options.length - 1),

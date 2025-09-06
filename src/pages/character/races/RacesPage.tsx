@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { RaceCard } from './components/raceCard/RaceCard';
 import { SectionModal } from '@/components/wrappers/sections/sectionModal/SectionModal';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import { raceMock } from '@/mock/mock';
 import { Filters } from '../ui/Filters';
+import { raceMock } from '@/features/races/mock';
 
 export const RacesPage = () => {
   const { control } = useForm();

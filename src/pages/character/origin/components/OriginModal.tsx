@@ -5,13 +5,13 @@ import { AsyncState } from '../../ui/AsyncState';
 import { CharacterModalWrapper } from '../../ui/CharacterModalWrapper';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
-import { originMock } from '@/mock/mock';
 import { Equipment } from '../../ui/Equipment';
+import { originMock } from '@/features/origin/mock';
 export const OriginModal = () => {
   const { id: paramsId } = useParams();
 
   return (
-    <CharacterModalWrapper id={paramsId} closeHref="/resources/character/origins">
+    <CharacterModalWrapper id={paramsId} closeHref="/character/origins">
       <AsyncState isLoading={false} isError={false} data={true}>
         <div className="pb-3 flex bg-brand-400">
           <Text className="mx-auto" size="xl">

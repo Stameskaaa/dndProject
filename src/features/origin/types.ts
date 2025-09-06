@@ -11,12 +11,12 @@ export interface Origin {
   md_description: string;
 
   // TODO массив для удобства, можно будет выбрать одну
-  traits_ids: string;
+  trait_ids: string[];
   trait_data: Trait[];
 
   characteristic_ids: string[];
   characteristic_data: Characteristic[];
 
-  worlds_ids?: string[];
-  worlds_data?: { id: string; name: string }[];
+  world_ids?: string[];
+  world_data?: { id: string; name: string }[];
 }

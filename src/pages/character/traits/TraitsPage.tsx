@@ -4,7 +4,8 @@ import { TraitCard } from './components/TraitCard';
 import { TraitsModal } from './components/TraitsModal';
 import { CharacterSection } from '../ui/CharacterSection';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import { trait_types, traitMock } from '@/mock/mock';
+import { trait_types } from '@/mock/mock';
+import { traitMock } from '@/features/traits/mock';
 
 const traitSelector = {
   name: 'types',

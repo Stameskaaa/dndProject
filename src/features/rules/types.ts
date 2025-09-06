@@ -3,7 +3,8 @@ export interface Rule {
   title: string;
   short_description: string;
   md_content: string;
-  type?: string[] | string;
+  type: string;
+  tags?: string[];
 }
 
 export interface RuleType {

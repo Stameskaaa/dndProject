@@ -4,7 +4,7 @@ import { OriginCard } from './components/OriginCard';
 import { OriginModal } from './components/OriginModal';
 import { CharacterSection } from '../ui/CharacterSection';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import { originMock } from '@/mock/mock';
+import { originMock } from '@/features/origin/mock';
 
 export const OriginPage = () => {
   // const { data: originData, isLoading, isError } = useGetOriginsListQuery();

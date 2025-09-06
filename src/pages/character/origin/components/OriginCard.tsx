@@ -19,7 +19,7 @@ export const OriginCard = ({ originData }: { originData: Origin }) => {
   const Description = () => {
     return (
       <ul className="list-disc pl-5 space-y-1 text-brand-100 text-md">
-        {originData.worlds_data?.map(({ name }, i) => {
+        {originData?.world_data?.map(({ name }, i) => {
           return (
             <li key={i}>
               <Text size="sm" color="text-secondary">

@@ -6,12 +6,12 @@ export interface Spell {
   casting_time: string;
   duration: string;
   distance: string;
-  description: string;
+  short_description: string;
   md_description: string;
   components_list: string;
 
-  classes_ids: string[];
-  classes_data: { id: string; name: string }[];
+  class_ids: string[];
+  class_data: { id: string; name: string }[];
 }
 
 export interface SpellSchool {

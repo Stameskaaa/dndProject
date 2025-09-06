@@ -51,11 +51,11 @@ export const SpellCard = ({ data, onClick }: { data?: Spell; onClick?: () => voi
       <hr className="border-brand-100" />
 
       <Text color="text-secondary" size="sm" className="leading-5">
-        {data?.description}
+        {data?.short_description}
       </Text>
 
       <div className="mt-auto flex justify-end flex-row gap-1">
-        {data?.classes_data.map(({ name, id }) => (
+        {data?.class_data.map(({ name, id }) => (
           <Badge key={id}>{name}</Badge>
         ))}
       </div>

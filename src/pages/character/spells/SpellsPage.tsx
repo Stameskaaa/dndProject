@@ -5,7 +5,7 @@ import { CharacterSection } from '../ui/CharacterSection';
 import { SpellCard } from '@/pages/character/spells/components/spellCard/SpellCard';
 import { SpellModal } from '@/pages/character/spells/components/spellModal/SpellModal';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import { spellMock } from '@/mock/mock';
+import { spellMock } from '@/features/spells/mock';
 
 const spellSelectors = [
   {

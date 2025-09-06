@@ -5,8 +5,8 @@ export interface Trait {
   requirements: string;
   md_description: string;
 
-  worlds_ids?: string[];
-  worlds_data?: { id: string; name: string }[];
+  world_ids?: string[];
+  world_data?: { id: string; name: string }[];
 }
 
 export interface TraitType {

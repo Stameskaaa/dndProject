@@ -5,8 +5,8 @@ import { Text } from '@/components/wrappers/typography/Text';
 import { Tabs } from '@/components/wrappers/navigation/tabs/Tabs';
 import { CubeLoader } from '@/components/wrappers/loaders/cubeLoader/CubeLoader';
 import { SectionModalContent } from '@/components/wrappers/sections/sectionModal/SectionModalContent';
-import { raceMock } from '@/mock/mock';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
+import { raceMock } from '@/features/races/mock';
 
 interface RaceCharacterPageProps {
   isModal?: boolean;
@@ -55,7 +55,7 @@ const Content: React.FC<RaceCharacterPageProps> = ({
           <Tabs
             defaultTabId={1}
             activeColor="bg-brand-300"
-            className="max-w-[800px] m-0 !mr-auto"
+            headerClassName="max-w-[800px] m-0 !mr-auto"
             items={[
               {
                 id: 1,

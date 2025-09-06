@@ -29,7 +29,7 @@ export const TraitCard = ({ traitData }: { traitData: Trait }) => {
             {traitData.name}
           </Text>
           <ul className="list-disc pl-5 space-y-1 text-brand-100 text-md">
-            {traitData?.worlds_data?.map(({ name }, i) => {
+            {traitData?.world_data?.map(({ name }, i) => {
               return (
                 <li key={i}>
                   <Text size="sm" color="text-secondary">

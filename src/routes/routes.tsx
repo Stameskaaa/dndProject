@@ -1,5 +1,4 @@
 import { MainPage } from '../pages/main/MainPage';
-import { CharacterPage } from '@/pages/character/CharacterPage';
 import { createBrowserRouter, Outlet, type RouteObject } from 'react-router-dom';
 import { Layout } from '@/components/layout/Layout';
 import { delayLoader } from './helpers';
@@ -13,10 +12,13 @@ import { TraitsPage } from '@/pages/character/traits/TraitsPage';
 import { SpellsPage } from '@/pages/character/spells/SpellsPage';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { Text } from '@/components/wrappers/typography/Text';
-import { WorldsPage } from '@/pages/worlds/WorldsPage';
+import { WorldsPage } from '@/pages/universe/worlds/WorldsPage';
 import { ClubRulesPage } from '@/pages/rules/clubRules/ClubRulesPage';
 import { HomeRulesPage } from '@/pages/rules/homeRules/HomeRules';
 import { DnDRules } from '@/pages/rules/dndRules/DnDRules';
+import { BestiaryPage } from '@/pages/universe/bestiary/BestiaryPage';
+import { RaidBossesPage } from '@/pages/universe/raidbosses/RadiBossesPage';
+import { NPCPage } from '@/pages/universe/npcs/NPCsPage';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -164,30 +166,127 @@ export const ROUTES: RouteNode[] = [
         ],
       },
       {
-        title: 'Миры',
-        path: 'worlds',
-        fullPath: '/worlds',
-        element: <WorldsPage />,
+        title: 'Вселенная',
+        path: 'universe',
+        fullPath: '/universe',
+        element: <Outlet />,
         loader: true,
         src: 'https://sun9-29.userapi.com/s/v1/ig2/W5VMwVk-5lnf0EG7H-4fMcV2VIWqF-G6Dctu1ADv24pTaWLnSg6UcFCITu-bZQpYcM0aWGbIOWTcbQoIeNxUslVH.jpg?quality=95&as=32x38,48x57,72x86,108x129,160x191,240x287,360x430,480x574,540x645,640x765,720x860,1080x1290,1170x1398&from=bu&cs=1170x0',
         children: [
           {
-            title: 'Долина Гурван-Гол',
-            path: 'gurvan-gol',
-            fullPath: '/worlds/gurvan-gol',
-            element: (
-              <Section paddingY="medium" fixedWidth screen>
-                <Text>Долина Гурван-Гол</Text>
-              </Section>
-            ),
-            loader: true,
+            title: 'Миры',
+            path: 'worlds',
+            fullPath: '/universe/worlds',
+            element: <WorldsPage />,
+          },
+          {
+            title: 'Локации',
+            path: 'locations',
+            fullPath: '/universe/locations',
+            element: <WorldsPage />,
+          },
+          {
+            title: 'Личности',
+            path: 'npcs',
+            fullPath: '/universe/npcs',
+            element: <NPCPage />,
+          },
+          {
+            title: 'Бестиарий',
+            path: 'bestiary',
+            fullPath: '/universe/bestiary',
+            element: <BestiaryPage />,
+          },
+          {
+            title: 'Рейдбоссы',
+            path: 'raidbosses',
+            fullPath: '/universe/raidbosses',
+            element: <RaidBossesPage />,
+          },
+        ],
+      },
+      {
+        title: 'Персонаж',
+        path: 'character',
+        id: 'character',
+        fullPath: '/character',
+        src: 'https://sun9-44.userapi.com/s/v1/ig2/Cmd1CC138WveJUjSujFu0BOd3M8Y6U4BL8X5DoW4PLKEe0cirjt7Y3clUV05VdrHyVeXcl9rYay5FF7YIKbFumLz.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,960x960&from=bu&cs=960x0',
+        element: <Outlet />,
+        loader: true,
+        children: [
+          {
+            title: 'Классы',
+            path: 'classes',
+            fullPath: '/character/classes',
+            element: <ClassesPage />,
+            src: 'https://cdnb.artstation.com/p/assets/images/images/047/200/669/large/anato-finnstark-web-petit.jpg?1647002974',
             children: [
-              { title: 'История', path: 'history', fullPath: '/worlds/gurvan-gol/history' },
-              { title: 'Локации', path: 'locations', fullPath: '/worlds/gurvan-gol/locations' },
-              { title: 'Страны', path: 'countries', fullPath: '/worlds/gurvan-gol/countries' },
-              { title: 'Личности', path: 'characters', fullPath: '/worlds/gurvan-gol/characters' },
-              { title: 'Рейдбоссы', path: 'raidbosses', fullPath: '/worlds/gurvan-gol/raidbosses' },
-              { title: 'Бестиарий', path: 'bestiary', fullPath: '/worlds/gurvan-gol/bestiary' },
+              {
+                path: ':id',
+                fullPath: '/character/classes/:id',
+                element: <ClassesPage />,
+                ignoreInActive: true,
+              },
+            ],
+          },
+          {
+            title: 'Виды',
+            path: 'races',
+            fullPath: '/character/races',
+            src: 'https://cdnb.artstation.com/p/assets/images/images/041/500/289/large/anato-finnstark-web-peit.jpg?1631867384',
+            element: <RacesPage />,
+            children: [
+              {
+                path: ':id',
+                fullPath: '/character/races/:id',
+                element: <RaceCharacterPage />,
+                ignoreInActive: true,
+              },
+            ],
+          },
+          {
+            title: 'Происхождения',
+            path: 'origins',
+            fullPath: '/character/origins',
+            element: <OriginPage />,
+            src: 'https://cdna.artstation.com/p/assets/images/images/036/497/596/4k/pablo-del-molino-thegate02.jpg?1617824920',
+            children: [
+              {
+                path: ':id',
+                fullPath: '/character/origins/:id',
+                element: <OriginPage />,
+                ignoreInActive: true,
+              },
+            ],
+          },
+          {
+            title: 'Черты',
+            path: 'traits',
+            fullPath: '/character/traits',
+            src: 'https://cdnb.artstation.com/p/assets/images/images/044/018/107/large/anato-finnstark-anato-finnstark-web-petit.jpg?1638889244',
+            element: <TraitsPage />,
+            children: [
+              {
+                path: ':id',
+                fullPath: '/character/traits/:id',
+                element: <TraitsPage />,
+                ignoreInActive: true,
+              },
+            ],
+          },
+          {
+            title: 'Заклинания',
+            path: 'spells',
+            fullPath: '/character/spells',
+            src: 'https://cdnb.artstation.com/p/assets/images/images/034/041/739/4k/anato-finnstark-web-petit.jpg?1611241472',
+            element: <SpellsPage />,
+            children: [
+              {
+                path: ':id',
+                fullPath: '/character/spells/:id',
+                element: <SpellsPage />,
+                ignoreInActive: true,
+              },
             ],
           },
         ],
@@ -221,97 +320,6 @@ export const ROUTES: RouteNode[] = [
             children: [{ path: ':id', fullPath: '/resources/home-rules/:id' }],
             element: <HomeRulesPage />,
             loader: true,
-          },
-          {
-            title: 'Персонаж',
-            path: 'character',
-            id: 'character',
-            fullPath: '/resources/character',
-            element: <Outlet />,
-            loader: true,
-            children: [
-              {
-                path: '',
-                fullPath: '/resources/character',
-                element: <CharacterPage />,
-                navigationIngore: true,
-              },
-              {
-                title: 'Классы',
-                path: 'classes',
-                fullPath: '/resources/character/classes',
-                element: <ClassesPage />,
-                src: 'https://cdnb.artstation.com/p/assets/images/images/047/200/669/large/anato-finnstark-web-petit.jpg?1647002974',
-                children: [
-                  {
-                    path: ':id',
-                    fullPath: '/resources/character/classes/:id',
-                    element: <ClassesPage />,
-                    ignoreInActive: true,
-                  },
-                ],
-              },
-              {
-                title: 'Виды',
-                path: 'races',
-                fullPath: '/resources/character/races',
-                src: 'https://cdnb.artstation.com/p/assets/images/images/041/500/289/large/anato-finnstark-web-peit.jpg?1631867384',
-                element: <RacesPage />,
-                children: [
-                  {
-                    path: ':id',
-                    fullPath: '/resources/character/races/:id',
-                    element: <RaceCharacterPage />,
-                    ignoreInActive: true,
-                  },
-                ],
-              },
-              {
-                title: 'Происхождения',
-                path: 'origins',
-                fullPath: '/resources/character/origins',
-                element: <OriginPage />,
-                src: 'https://cdna.artstation.com/p/assets/images/images/036/497/596/4k/pablo-del-molino-thegate02.jpg?1617824920',
-                children: [
-                  {
-                    path: ':id',
-                    fullPath: '/resources/character/origins/:id',
-                    element: <OriginPage />,
-                    ignoreInActive: true,
-                  },
-                ],
-              },
-              {
-                title: 'Черты',
-                path: 'traits',
-                fullPath: '/resources/character/traits',
-                src: 'https://cdnb.artstation.com/p/assets/images/images/044/018/107/large/anato-finnstark-anato-finnstark-web-petit.jpg?1638889244',
-                element: <TraitsPage />,
-                children: [
-                  {
-                    path: ':id',
-                    fullPath: '/resources/character/traits/:id',
-                    element: <TraitsPage />,
-                    ignoreInActive: true,
-                  },
-                ],
-              },
-              {
-                title: 'Заклинания',
-                path: 'spells',
-                fullPath: '/resources/character/spells',
-                src: 'https://cdnb.artstation.com/p/assets/images/images/034/041/739/4k/anato-finnstark-web-petit.jpg?1611241472',
-                element: <SpellsPage />,
-                children: [
-                  {
-                    path: ':id',
-                    fullPath: '/resources/character/spells/:id',
-                    element: <SpellsPage />,
-                    ignoreInActive: true,
-                  },
-                ],
-              },
-            ],
           },
           {
             title: 'Избранное',

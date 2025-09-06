@@ -13,6 +13,6 @@ export interface Race {
   features: RaceFeature;
   md_history: string;
 
-  worlds_ids?: string[];
-  worlds_data?: { id: string; name: string }[];
+  world_ids?: string[];
+  world_data?: { id: string; name: string }[];
 }

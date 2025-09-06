@@ -4,7 +4,7 @@ import { ListCard } from '../ui/ListCard';
 import { ClassModalContent } from './ClassModalContent';
 import { CharacterSection } from '../ui/CharacterSection';
 import { AnimatedGridList } from '@/components/wrappers/lists/AnimatedGridList/AnimatedGridList';
-import { mockClass } from '@/mock/mock';
+import { mockClass } from '@/features/classes/mock';
 
 export const ClassesPage = () => {
   const { control } = useForm();
