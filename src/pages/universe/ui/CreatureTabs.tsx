@@ -1,4 +1,3 @@
-import { Separator } from '@/components/ui/separator';
 import { Tabs } from '@/components/wrappers/navigation/tabs/Tabs';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { Text } from '@/components/wrappers/typography/Text';

@@ -1,21 +1,14 @@
-export const Monsters = [
+import type { Monster } from './types';
+
+export const mockMonsters: Monster[] = [
   {
     id: 1,
     name: 'Древний дракон Бурь',
     src: 'https://img.freepik.com/free-photo/3d-rendering-fantasy-dragon_23-2150796084.jpg',
-
-    location_ids: [1, 2],
-    location_data: [
-      { id: 1, name: 'Долина Гурван-Гол' },
-      { id: 2, name: 'Грозовые Пики' },
-    ],
-
     size_id: 'huge',
-
     type_id: 3,
     hp: '620 (33d20 + 297)',
     speed: '40 ft., fly 80 ft.',
-
     characteristic_ids: ['str', 'dex', 'con', 'int', 'wis', 'cha'],
     characteristic_data: [
       { id: 'str', name: 'Сила', value: 30 },
@@ -25,28 +18,27 @@ export const Monsters = [
       { id: 'wis', name: 'Мудрость', value: 17 },
       { id: 'cha', name: 'Харизма', value: 21 },
     ],
-
     saving_throws: [
       { id: 'dex', name: 'Ловкость', value: 9 },
       { id: 'con', name: 'Телосложение', value: 16 },
       { id: 'wis', name: 'Мудрость', value: 10 },
       { id: 'cha', name: 'Харизма', value: 12 },
     ],
-
     skills: 'Perception +16, Insight +10, Intimidation +12',
-
-    damage_immunities: [1], // например: 1 = lightning
-    condition_immunities: [2], // 2 = frightened
-
-    damage_resistance: [3], // 3 = bludgeoning
-    condition_resistance: [4], // 4 = poisoned
-
+    damage_immunities: [1],
+    condition_immunities: [2],
+    damage_resistance: [3],
+    condition_resistance: [4],
     senses: 'Blindsight 60 ft., Darkvision 120 ft., passive Perception 26',
     language: 'Всеобщий, Драконий, может телепатически общаться на 120 ft.',
-
+    location_ids: [1, 2],
+    location_data: [
+      { id: 1, name: 'Долина Гурван-Гол' },
+      { id: 2, name: 'Грозовые Пики' },
+    ],
     challenge: 25,
     proficiency_bonus: 8,
-
+    short_description: 'Могущественный древний дракон, воплощение грозы и разрушения.',
     md_content: `
 ## Древний дракон Бурь
 Древний дракон Бурь — это воплощение ярости стихии и разрушительной мощи небес.  
@@ -71,6 +63,7 @@ export const Monsters = [
 Легенды гласят, что этот дракон появился из самого сердца бури, когда мир только зарождался.  
 Многие королевства пытались подчинить его или уничтожить, но все без исключения были повергнуты.  
 
-Его имя до сих пор произносят с благоговением и страхом.`,
+Его имя до сих пор произносят с благоговением и страхом.
+`,
   },
 ];

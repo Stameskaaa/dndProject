@@ -1,11 +1,11 @@
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
-import { Monsters } from '@/features/monsters/mock';
 import { cn } from '@/lib/utils';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
 import { Heart, Footprints, Shield, Swords, Scale } from 'lucide-react';
 import type { Monster } from '@/features/monsters/types';
+import { mockMonsters } from '@/features/monsters/mock';
 
 export const BestiaryPage = () => {
   const getMonsterStats = (monster: Monster) => {
@@ -42,6 +42,8 @@ export const BestiaryPage = () => {
     ] satisfies { title: React.ReactNode; value: React.ReactNode; icon?: any }[];
   };
 
+  const monster = mockMonsters[0];
+
   return (
     <Section paddingY="medium" fixedWidth screen className="flex flex-col">
       <Text as="span" className="mx-auto mb-4" size="3xl">
@@ -49,7 +51,7 @@ export const BestiaryPage = () => {
       </Text>
 
       <div className="flex flex-col gap-3">
-        {Monsters.map((monster) => (
+        {Array.from({ length: 20 }).map(() => (
           <div
             key={monster.id}
             className={cn(
