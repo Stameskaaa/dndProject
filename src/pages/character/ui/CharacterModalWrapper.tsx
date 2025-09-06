@@ -3,6 +3,7 @@ import { useState, type ReactNode } from 'react';
 import { Copy, Expand, Minimize, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
+import { useWindowWidth } from '@/hooks/useWindowWidth';
 
 export const CharacterModalWrapper = ({
   open,
@@ -39,11 +40,15 @@ const CloseAction = ({
   expanded: boolean;
   setExpanded: (data: boolean) => void;
 }) => {
+  const width = useWindowWidth();
+
   return (
-    <div className="absolute right-[10px] top-[10px] z-1  flex gap-1 p-[2px] rounded-sm shadow shadow-black bg-brand-400">
-      <Button variant="ghost" onClick={() => setExpanded(!expanded)} size="icon">
-        {expanded ? <Minimize /> : <Expand />}
-      </Button>
+    <div className="absolute right-[10px] top-[-20px] z-1  flex gap-1 p-[2px] rounded-sm shadow shadow-black bg-brand-400">
+      {width > 950 && (
+        <Button variant="ghost" onClick={() => setExpanded(!expanded)} size="icon">
+          {expanded ? <Minimize /> : <Expand />}
+        </Button>
+      )}
       <Button variant="ghost" onClick={() => alert('Да')} size="icon">
         <Copy />
       </Button>
