@@ -24,11 +24,11 @@
 }
 
 .card:hover::before {
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 .card:active::before {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 .card.abjuration::before {

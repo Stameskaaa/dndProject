@@ -61,27 +61,35 @@ export const CreatureTabs: React.FC<CreatureTabsProps> = ({ npcData, raidBossDat
       : [];
 
   return (
-    <div className="rounded-md bg-brand-400 overflow-hidden p-6 h-[700px] flex flex-col">
-      <Text color="brand-100" size="3xl">
-        {data.name}
-      </Text>
-      <Separator className="bg-brand-300" spacing="equalSmall" />
+    <div className="rounded-md bg-brand-400 overflow-hidden p-6 flex xl:flex-row flex-col lg:h-[700px] h-[1000px]">
+      <div className="flex flex-1 gap-4 overflow-hidden flex-col lg:flex-row">
+        <div className="flex-shrink-0 w-full relative h-[300px] lg:h-full lg:w-[500px]">
+          <Text
+            color="brand-100"
+            className="absolute top-0 left-1/2 -translate-x-1/2 text-center min-w-[300px] max-w-[600px] bg-brand-400 rounded-b-2xl px-3 py-2"
+            size="2xl">
+            {data.name}
+          </Text>
+          <img
+            src={data.src}
+            alt={data.name}
+            className="h-full w-full object-cover lg:w-auto lg:h-full rounded-md border-2 border-brand-300"
+          />
 
-      <div className="flex flex-1 gap-4 overflow-hidden flex-wrap">
+          <div
+            className="absolute inset-0 hidden lg:block"
+            style={{
+              background: 'linear-gradient(to left, #1c2224 0%, transparent 20%)',
+            }}
+          />
+        </div>
+
         <div className="flex-1 h-full">
           <Tabs
             defaultTabId={1}
             activeColor="bg-brand-300"
             bgClassName="bg-transparent"
             items={[...baseTabs, ...raidBossTabs]}
-          />
-        </div>
-
-        <div className="flex-shrink-0 w-[500px] h-full relative">
-          <img
-            src={data.src}
-            alt={data.name}
-            className="w-full h-full object-cover rounded-md border-2 border-brand-300"
           />
         </div>
       </div>
