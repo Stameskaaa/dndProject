@@ -4,10 +4,10 @@ import { useCreateRuleMutation } from '@/features/rules/api';
 import { allTags, ruleOptions } from '@/features/rules/constant';
 import { Button } from '@/components/ui/button';
 import { SelectRuleModal } from './SelectRuleModal';
-import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Input } from '@/components/wrappers/forms/input/Input';
+import { Textarea } from '@/components/wrappers/forms/textarea/Textarea';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
 

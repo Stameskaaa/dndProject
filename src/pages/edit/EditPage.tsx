@@ -23,6 +23,7 @@ import { useNavigatePath } from '@/hooks/useNavigatePath';
 import { Accordion } from '@/components/wrappers/navigation/accordion/Accordion';
 import classNames from 'classnames';
 import { SidePanel } from '@/components/wrappers/modals/sidePanel/SidePanel';
+import { Button } from '@/components/ui/button';
 
 const categories = [
   {
@@ -83,18 +84,24 @@ export const EditPage = () => {
                   )}>
                   {title}
                 </Text>
-                {items.map(({ name, icon: Icon, path }) => (
-                  <div
-                    onClick={() => navigatePath(`/edit/${path}`)}
-                    className="border-t cursor-pointer hover:bg-brand-200 active:bg-brand-200/60 duration-300 border-brand-200 flex gap-2 items-center text-brand-100 py-[10px] px-4">
-                    <Icon size={18} />
-                    <Text color="text-secondary">{name}</Text>
-                  </div>
-                ))}
+                {items.map(({ name, icon: Icon, path }) => {
+                  const isActive = location.pathname.includes(path);
+                  return (
+                    <div
+                      onClick={() => navigatePath(`/edit/${path}`)}
+                      className={classNames(
+                        'border-t cursor-pointer hover:bg-brand-200 active:bg-brand-200/60 duration-300 border-brand-200 flex gap-2 items-center text-brand-100 py-[10px] px-4',
+                        isActive ? '!bg-brand-300' : '',
+                      )}>
+                      <Icon size={18} />
+                      <Text color="text-secondary">{name}</Text>
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
-          <SidePanel />
+          <SidePanel buttonTrigger={<Button>Помощь</Button>} />
         </div>
         <AnimatePresence mode="wait" key={location.pathname}>
           <motion.div

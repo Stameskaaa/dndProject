@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { DialogTitle } from '@/components/ui/dialog';
 import {
   Sheet,
   SheetClose,
@@ -9,6 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { SidePanelIndex } from '@/constants/zIndex';
 import classNames from 'classnames';
 import type { ReactNode } from 'react';
 
@@ -21,26 +23,11 @@ interface SidePanel {
 export const SidePanel: React.FC<SidePanel> = ({ buttonTrigger, contentClassname }) => {
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline">Open</Button>
-      </SheetTrigger>
-      <SheetContent className={classNames(contentClassname)}>
-        <SheetHeader>
-          <SheetTitle>Edit profile</SheetTitle>
-          <SheetDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="grid flex-1 auto-rows-min gap-6 px-4">
-          <div className="grid gap-3"></div>
-          <div className="grid gap-3"></div>
-        </div>
-        <SheetFooter>
-          <Button type="submit">Save changes</Button>
-          <SheetClose asChild>
-            <Button variant="outline">Close</Button>
-          </SheetClose>
-        </SheetFooter>
+      <SheetTrigger asChild>{buttonTrigger}</SheetTrigger>
+      <SheetContent
+        style={{ zIndex: SidePanelIndex }}
+        className={classNames(contentClassname, 'w-[1500px]')}>
+        <DialogTitle>Title</DialogTitle>
       </SheetContent>
     </Sheet>
   );

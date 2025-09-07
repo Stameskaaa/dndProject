@@ -1,14 +1,14 @@
 import { Controller, type Control } from 'react-hook-form';
 import { cn } from '@/lib/utils';
-import { FormMessage } from '../wrappers/forms/formMessage/FormMessage';
-import { Button } from './button';
-import { MarkDownText } from '../wrappers/typography/MarkDownText';
 import { Eye, EyeOff, Heart, MessageCircleQuestionMark } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
-import { ModalWindow } from '../wrappers/modals/modalWindow/ModalWindow';
-import cat from '../../assets/cat.webp';
-import { MotionText, Text } from '../wrappers/typography/Text';
+import cat from '../../../../assets/cat.webp';
+import { FormMessage } from '../formMessage/FormMessage';
+import { Button } from '@/components/ui/button';
+import { MotionText, Text } from '../../typography/Text';
+import { ModalWindow } from '../../modals/modalWindow/ModalWindow';
+import { MarkDownText } from '../../typography/MarkDownText';
 
 interface TextareaProps extends React.ComponentProps<'textarea'> {
   control: Control<any>;
