@@ -1,16 +1,8 @@
-import { Controller, type Control } from 'react-hook-form';
 import { cn } from '@/lib/utils';
-import { Eye, EyeOff, Heart, MessageCircleQuestionMark } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
-import cat from '../../../../assets/cat.webp';
+import { Controller, type Control } from 'react-hook-form';
 import { FormMessage } from '../formMessage/FormMessage';
-import { Button } from '@/components/ui/button';
-import { MotionText, Text } from '../../typography/Text';
-import { ModalWindow } from '../../modals/modalWindow/ModalWindow';
-import { MarkDownText } from '../../typography/MarkDownText';
 
-interface TextareaProps extends React.ComponentProps<'textarea'> {
+export interface TextareaProps extends React.ComponentProps<'textarea'> {
   control: Control<any>;
   name: string;
   message?: string;
@@ -18,6 +10,7 @@ interface TextareaProps extends React.ComponentProps<'textarea'> {
   hasMd?: boolean;
   required?: boolean;
   errorMessage?: string;
+  actions?: React.ReactNode[];
 }
 
 export const Textarea: React.FC<TextareaProps> = ({
@@ -29,10 +22,9 @@ export const Textarea: React.FC<TextareaProps> = ({
   hasMd,
   required,
   errorMessage,
+  actions,
   ...props
 }) => {
-  const [isShowed, setIsShowed] = useState(false);
-
   return (
     <Controller
       name={name}
@@ -42,55 +34,10 @@ export const Textarea: React.FC<TextareaProps> = ({
       render={({ field, fieldState }) => {
         const { value, onChange, onBlur } = field;
         const { error } = fieldState;
-
         return (
           <div className="flex flex-col w-full gap-1 relative">
             {message && <FormMessage as="label">{message}</FormMessage>}
-            {hasMd && (
-              <div className="flex gap-1 absolute right-0 top-[-6px] p-4">
-                <>
-                  <Button onClick={() => onChange(value + '\n# Заголвооку')} variant="secondary">
-                    <Text>Вставить заголвоок</Text> {isShowed ? <Eye /> : <EyeOff />}
-                  </Button>
-                  <Button onClick={() => setIsShowed((prev) => !prev)} variant="secondary">
-                    <Text>Предпросмотр</Text> {isShowed ? <Eye /> : <EyeOff />}
-                  </Button>
-                  <Button variant="secondary">
-                    <MessageCircleQuestionMark />
-                  </Button>
-                  <ModalWindow
-                    contentClassname="h-[fit-content] overflow-hidden"
-                    buttonTrigger={
-                      <Button>
-                        <Heart />
-                      </Button>
-                    }>
-                    <motion.img
-                      animate={{ y: [400, 0], opacity: [0, 1], rotate: [0, 0, 360] }}
-                      transition={{ duration: 2, times: [0, 0.8, 1] }}
-                      src={cat}
-                    />
-                    <MotionText
-                      size="xl"
-                      className="absolute bottom-0 left-[180px]"
-                      initial={{ opacity: 0, y: 0 }}
-                      animate={{ opacity: 1, y: -200 }}
-                      transition={{ type: 'spring', duration: 0.6, delay: 2.2 }}>
-                      Ты лох
-                    </MotionText>
-
-                    <MotionText
-                      size="sm"
-                      className="absolute bottom-0 left-[30px]"
-                      initial={{ opacity: 0, y: 0 }}
-                      animate={{ opacity: 1, y: -160 }}
-                      transition={{ type: 'spring', duration: 0.6, delay: 3 }}>
-                      А Сюда не смотри
-                    </MotionText>
-                  </ModalWindow>
-                </>
-              </div>
-            )}
+            {actions && <div className="flex gap-1 absolute right-0 top-[-6px] p-4">{actions}</div>}
             <textarea
               {...props}
               value={value}
@@ -107,19 +54,6 @@ export const Textarea: React.FC<TextareaProps> = ({
               )}
             />
             {error?.message && <FormMessage type="error">{error?.message}</FormMessage>}
-            <AnimatePresence mode="wait">
-              {hasMd && isShowed && (
-                <motion.div
-                  className="overflow-y-auto overscroll-contain border-1 rounded-md p-2 border-brand-200"
-                  layout
-                  transition={{ duration: 0.3 }}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}>
-                  <MarkDownText className="min-h-[300px] max-h-[500px]">{field.value}</MarkDownText>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         );
       }}

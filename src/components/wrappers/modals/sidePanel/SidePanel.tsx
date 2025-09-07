@@ -1,18 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { DialogTitle } from '@/components/ui/dialog';
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
-import { SidePanelIndex } from '@/constants/zIndex';
 import classNames from 'classnames';
-import type { ReactNode } from 'react';
+import { useId, useState, type ReactNode } from 'react';
+import { useScrollLock } from '@/features/scroll/hooks';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 interface SidePanel {
   buttonTrigger?: ReactNode;
@@ -20,14 +9,17 @@ interface SidePanel {
   children?: ReactNode;
 }
 
-export const SidePanel: React.FC<SidePanel> = ({ buttonTrigger, contentClassname }) => {
+export const SidePanel: React.FC<SidePanel> = ({ buttonTrigger, contentClassname, children }) => {
+  const id = useId();
+  const [open, setOpen] = useState(false);
+  useScrollLock(id, open);
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>{buttonTrigger}</SheetTrigger>
-      <SheetContent
-        style={{ zIndex: SidePanelIndex }}
-        className={classNames(contentClassname, 'w-[1500px]')}>
-        <DialogTitle>Title</DialogTitle>
+      <SheetTitle className="sr-only">Боковая панель</SheetTitle>
+      <SheetContent setOpen={setOpen} className={classNames(contentClassname, 'w-[1500px]')}>
+        {children}
       </SheetContent>
     </Sheet>
   );

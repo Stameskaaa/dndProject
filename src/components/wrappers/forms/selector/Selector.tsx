@@ -103,11 +103,7 @@ export const Selector: React.FC<SelectorProps> = ({
 
         return (
           <Popover open={open} onOpenChange={setOpen}>
-            <div
-              className={classNames(
-                'flex flex-col !h-[36px] gap-1 flex-1 min-w-[250px]',
-                className,
-              )}>
+            <div className={classNames('flex flex-col gap-1 flex-1 min-w-[250px]', className)}>
               {message && <FormMessage as="label">{message}</FormMessage>}
               <PopoverTrigger asChild>
                 <Button
@@ -117,7 +113,7 @@ export const Selector: React.FC<SelectorProps> = ({
                   style={{ width: defaultWidth }}
                   {...triggerProps}
                   className={classNames(
-                    'justify-between !w-full truncate relative !pr-[30px]',
+                    'justify-between !h-[36px] !w-full truncate relative !pr-[30px]',
                     error && '!border-error ring-destructive/20',
                     triggerProps?.className,
                   )}>

@@ -1,26 +1,13 @@
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { XIcon } from 'lucide-react';
-
 import { cn } from '@/lib/utils';
 import { SidePanelIndex } from '@/constants/zIndex';
-import { useScrollLock } from '@/features/scroll/hooks';
 import { Button } from './button';
+import { Blanket } from '../wrappers/background/blanket/Blanket';
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
-  const id = React.useId();
-  const [open, setOpen] = React.useState(false);
-  useScrollLock(id, open);
-
-  return (
-    <SheetPrimitive.Root
-      open={open}
-      onOpenChange={setOpen}
-      modal={false}
-      data-slot="sheet"
-      {...props}
-    />
-  );
+  return <SheetPrimitive.Root modal={false} data-slot="sheet" {...props} />;
 }
 
 function SheetTrigger({ ...props }: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
@@ -35,34 +22,26 @@ function SheetPortal({ ...props }: React.ComponentProps<typeof SheetPrimitive.Po
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
-function SheetOverlay({
-  className,
-  ...props
-}: React.ComponentProps<typeof SheetPrimitive.Overlay>) {
-  return (
-    <SheetPrimitive.Overlay
-      data-slot="sheet-overlay"
-      style={{ zIndex: SidePanelIndex - 1 }}
-      className={cn(
-        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 bg-black/50',
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
 function SheetContent({
   className,
   children,
   side = 'right',
+  setOpen,
+  style,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: 'top' | 'right' | 'bottom' | 'left';
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <SheetPortal>
-      <SheetOverlay />
+      <Blanket
+        duration={0.2}
+        onClick={() => setOpen?.(false)}
+        key="blanket"
+        style={{ zIndex: SidePanelIndex - 1 }}
+      />
+
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
@@ -77,10 +56,13 @@ function SheetContent({
             'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t',
           className,
         )}
+        style={{ ...style, zIndex: SidePanelIndex }}
         {...props}>
         {children}
-        <SheetPrimitive.Close className="ring-offset-background !focus:ring-brand-200/50 data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
-          <Button size="icon" variant="ghost">
+        <SheetPrimitive.Close
+          asChild
+          className=" absolute top-4 right-4 disabled:pointer-events-none">
+          <Button variant="secondary">
             <XIcon className="size-4" />
           </Button>
         </SheetPrimitive.Close>

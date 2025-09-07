@@ -15,15 +15,12 @@ import {
   Star,
   BarChart3,
 } from 'lucide-react';
+import classNames from 'classnames';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigatePath } from '@/hooks/useNavigatePath';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
-import { useNavigatePath } from '@/hooks/useNavigatePath';
-import { Accordion } from '@/components/wrappers/navigation/accordion/Accordion';
-import classNames from 'classnames';
-import { SidePanel } from '@/components/wrappers/modals/sidePanel/SidePanel';
-import { Button } from '@/components/ui/button';
 
 const categories = [
   {
@@ -65,15 +62,13 @@ export const EditPage = () => {
   const location = useLocation();
   const { navigatePath } = useNavigatePath();
 
-  // ПО УМОЛЧАНИЮ ОТКРЫВТЬ ВСЕ ТИПЫ, НО ДОЛЖНО БЫТЬ МОЖНО СКРЫТЬ ЧТО БЫ НЕ МЕШАЛО
-
   return (
     <Section fixedWidth screen className="p-6 space-y-8">
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-start">
         <div className="w-[200px] border border-brand-300 bg-brand-500  flex flex-col rounded-md overflow-hidden">
           {categories.map(({ title, items }, i) => {
             return (
-              <div>
+              <div key={title}>
                 <Text
                   color="text-muted"
                   size="lg"
@@ -88,6 +83,7 @@ export const EditPage = () => {
                   const isActive = location.pathname.includes(path);
                   return (
                     <div
+                      key={name}
                       onClick={() => navigatePath(`/edit/${path}`)}
                       className={classNames(
                         'border-t cursor-pointer hover:bg-brand-200 active:bg-brand-200/60 duration-300 border-brand-200 flex gap-2 items-center text-brand-100 py-[10px] px-4',
@@ -101,7 +97,6 @@ export const EditPage = () => {
               </div>
             );
           })}
-          <SidePanel buttonTrigger={<Button>Помощь</Button>} />
         </div>
         <AnimatePresence mode="wait" key={location.pathname}>
           <motion.div
