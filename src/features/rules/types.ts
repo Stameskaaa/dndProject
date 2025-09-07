@@ -3,12 +3,14 @@ export interface Rule {
   title: string;
   short_description: string;
   md_content: string;
-  type: string;
+  type: RuleTypes;
   tags?: string[];
 }
 
-export interface RuleType {
+export type RuleTypes = 'dnd' | 'home' | 'club';
+
+export interface RuleTags {
   id: string;
-  name: string;
+  value: string;
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }

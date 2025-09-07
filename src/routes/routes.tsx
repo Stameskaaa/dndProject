@@ -24,6 +24,9 @@ import { ClassModalContent } from '@/pages/character/classes/ClassModalContent';
 import { OriginModal } from '@/pages/character/origin/components/OriginModal';
 import { TraitsModal } from '@/pages/character/traits/components/TraitsModal';
 import { SpellModal } from '@/pages/character/spells/components/spellModal/SpellModal';
+import { EditPage } from '@/pages/edit/EditPage';
+import { EditRules } from '@/pages/edit/general/rule/EditRules';
+import { EditNews } from '@/pages/edit/general/news/EditNews';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -40,32 +43,6 @@ export const ROUTES_AUTH: RouteObject[] = [
   },
 ];
 // TODO должны быть реализованы с полем private обернуть дло createBrowserRouter
-
-export const NAVIGATION_ITEMS = [
-  {
-    title: 'О клубе',
-    content: [
-      { title: 'Что такое D&D', href: '/about' },
-      { title: 'Уникальность клуба', href: '/about/uniqueness' },
-      { title: 'Мероприятия', href: '/about/events' },
-      { title: 'Для новых игроков', href: '/about/new-players' },
-    ],
-  },
-  {
-    title: 'Миры',
-    content: [{ title: 'Долина Гурван-Гол', href: '/worlds/gurvan-gol' }],
-  },
-  {
-    title: 'Всё для игры',
-    content: [
-      { title: 'Правила клуба', href: '/game/club-rules' },
-      { title: 'Правила D&D', href: '/game/dnd-rules' },
-      { title: 'Персонаж', href: '/game/character' },
-      { title: 'Домашние правила ToH', href: '/game/toh-house-rules' },
-      { title: 'Избранное', href: '/game/favorites' },
-    ],
-  },
-];
 
 export const routesWrapper = (routes: RouteNode[]): RouteObject[] => {
   return routes.map((node) => {
@@ -125,6 +102,17 @@ export const ROUTES: RouteNode[] = [
             loader: true,
           },
           {
+            title: 'Избранное',
+            path: 'favorites',
+            fullPath: '/favorites',
+            element: (
+              <Section paddingY="medium" fixedWidth screen>
+                <Text>Избранное</Text>
+              </Section>
+            ),
+            loader: true,
+          },
+          {
             title: 'Мероприятия',
             path: 'events',
             fullPath: '/events',
@@ -167,6 +155,57 @@ export const ROUTES: RouteNode[] = [
                 ),
               },
             ],
+          },
+          {
+            title: 'Управление данными',
+            path: 'edit',
+            fullPath: '/edit',
+            element: <EditPage />,
+            children: [
+              {
+                title: 'Правила',
+                path: 'rules',
+                fullPath: '/edit/rules',
+                element: <EditRules />,
+              },
+              {
+                title: 'Новости',
+                path: 'news',
+                fullPath: '/edit/news',
+                element: <EditNews />,
+              },
+              {
+                title: 'Классы',
+                path: 'class',
+                fullPath: '/edit/class',
+                element: <EditNews />,
+              },
+              {
+                title: 'Происхождения',
+                path: 'origin',
+                fullPath: '/edit/origin',
+                element: <EditNews />,
+              },
+              {
+                title: 'Черты',
+                path: 'trait',
+                fullPath: '/edit/trait',
+                element: <EditNews />,
+              },
+              {
+                title: 'Расы',
+                path: 'race',
+                fullPath: '/edit/race',
+                element: <EditNews />,
+              },
+              {
+                title: 'Заклинания',
+                path: 'spell',
+                fullPath: '/edit/spell',
+                element: <EditNews />,
+              },
+            ],
+            loader: true,
           },
         ],
       },
@@ -325,18 +364,6 @@ export const ROUTES: RouteNode[] = [
             fullPath: '/resources/home-rules',
             children: [{ path: ':id', fullPath: '/resources/home-rules/:id' }],
             element: <HomeRulesPage />,
-            loader: true,
-          },
-          {
-            title: 'Избранное',
-            path: 'favorites',
-            fullPath: '/resources/favorites',
-
-            element: (
-              <Section paddingY="medium" fixedWidth screen>
-                <Text>Избранное</Text>
-              </Section>
-            ),
             loader: true,
           },
         ],

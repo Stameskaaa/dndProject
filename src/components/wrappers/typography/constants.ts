@@ -39,6 +39,7 @@ export const colorMap = {
   'text-secondary': 'text-[var(--color-text-secondary)]',
   'text-description': 'text-[var(--color-text-description)]',
   'text-muted': 'text-[var(--color-text-muted)]',
+  'text-destructive': 'text-[var(--color-error)]',
 } as const;
 
 export const gradientMap = {
@@ -60,7 +61,7 @@ export type Gradient = keyof typeof gradientMap;
 export type TypographyProps = {
   style?: CSSProperties;
   children?: React.ReactNode;
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label';
   color?: BaseColor;
   gradient?: Gradient;
   size?: Size;

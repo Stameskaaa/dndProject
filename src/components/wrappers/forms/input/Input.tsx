@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { Controller, type Control } from 'react-hook-form';
-import { UIInput, type InputUIPropsType } from '@/components/ui/input';
 import { Text } from '../../typography/Text';
-import classNames from 'classnames';
+import { FormMessage } from '../formMessage/FormMessage';
+import { UIInput, type InputUIPropsType } from '@/components/ui/input';
 
 interface FormInputProps extends InputUIPropsType {
   control: Control<any>;
   name: string;
   inputClassName?: string;
+  message?: string;
+  required?: boolean;
+  errorMessage?: string;
 }
 
 export const Input = ({
@@ -17,20 +21,29 @@ export const Input = ({
   className,
   style,
   placeholder,
+  required,
   onFocus,
   onBlur,
   inputClassName,
+  errorMessage,
+  message,
   ...props
 }: FormInputProps) => {
   const [focus, setFocus] = useState(false);
 
   return (
-    <div className={classNames(className, 'relative')} style={style}>
+    <div className={classNames(className, 'relative flex flex-col w-full gap-1')} style={style}>
+      {message && <FormMessage as="label">{message}</FormMessage>}
+
       <Controller
+        rules={{ required: errorMessage || required }}
         control={control}
         name={name}
-        render={({ field }) => {
-          const isActive = focus || field?.value;
+        defaultValue=""
+        render={({ field, fieldState }) => {
+          const { value } = field;
+          const { error } = fieldState;
+          const isActive = focus || value;
 
           return (
             <>
@@ -44,17 +57,19 @@ export const Input = ({
                   onFocus?.(e);
                   setFocus(true);
                 }}
+                placeholder={message ? placeholder : undefined}
+                className={classNames(inputClassName, error && '!border-error ring-destructive/20')}
                 {...props}
-                className={inputClassName}
               />
-              {placeholder && (
+
+              {!message && placeholder && (
                 <motion.label
                   initial={'rest'}
-                  className={'absolute left-[12px] leading-[16px] pointer-events-none'}
+                  className={'absolute inset-0 leading-[16px] pointer-events-none'}
                   animate={isActive ? 'active' : 'rest'}
                   variants={{
-                    rest: { y: -30 },
-                    active: { y: -57, x: 5 },
+                    rest: { y: 6, x: 12 },
+                    active: { y: -24, x: 5 },
                   }}>
                   <Text
                     className="duration-300"
@@ -64,6 +79,8 @@ export const Input = ({
                   </Text>
                 </motion.label>
               )}
+
+              {error?.message && <FormMessage type="error">{error.message}</FormMessage>}
             </>
           );
         }}

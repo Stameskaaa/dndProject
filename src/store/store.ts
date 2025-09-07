@@ -1,3 +1,4 @@
+import { rulesApi } from './../features/rules/api';
 import { originsApi } from './../features/origin/api';
 import { configureStore } from '@reduxjs/toolkit';
 import { racesApi } from '@/features/races/api';
@@ -14,6 +15,7 @@ export const store = configureStore({
     [spellsApi.reducerPath]: spellsApi.reducer,
     [originsApi.reducerPath]: originsApi.reducer,
     [traitsApi.reducerPath]: traitsApi.reducer,
+    [rulesApi.reducerPath]: rulesApi.reducer,
     scrollLock: scrollLockReducer,
     pageTransition: pageTransitionReducer,
   },
@@ -23,7 +25,8 @@ export const store = configureStore({
       .concat(classesApi.middleware)
       .concat(spellsApi.middleware)
       .concat(originsApi.middleware)
-      .concat(traitsApi.middleware),
+      .concat(traitsApi.middleware)
+      .concat(rulesApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -5,7 +5,7 @@ import { RuleCard } from '../ui/RuleCard';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { Accordion } from '@/components/wrappers/navigation/accordion/Accordion';
-import { clubRulesTypes, homeRuleTypes } from '@/features/rules/constant';
+import { clubRulesTags, homeRuleTags } from '@/features/rules/constant';
 
 interface RulesSectionPageProps {
   rules: Rule[];
@@ -14,7 +14,7 @@ interface RulesSectionPageProps {
 
 export const RulesSection = ({ rules, type }: RulesSectionPageProps) => {
   const groupedData = useMemo(() => groupRules(rules), [rules]);
-  const types = type === 'club' ? clubRulesTypes : homeRuleTypes;
+  const types = type === 'club' ? clubRulesTags : homeRuleTags;
   const title = type === 'club' ? 'Правила клуба' : 'Домашние правила';
   const firstId = groupedData[0]?.id || '';
 
@@ -41,7 +41,7 @@ export const RulesSection = ({ rules, type }: RulesSectionPageProps) => {
                   id,
                   title: (
                     <Text color="text-secondary" size="xl">
-                      {ruleType?.name}
+                      {ruleType?.value}
                     </Text>
                   ),
                   content: (

@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import React from 'react';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { HeaderHeight } from '@/constants/heights';
-import { dndRuleTypes } from '@/features/rules/constant';
+import { dndRuleTags } from '@/features/rules/constant';
 
 export const DnDRules = () => {
   const { control } = useForm();
@@ -20,7 +20,7 @@ export const DnDRules = () => {
     return (
       <div key={id} className="flex flex-row pt-2 flex-wrap gap-2">
         {tags.map((data) => {
-          const value = dndRuleTypes.find(({ id }) => id === data)?.name || '';
+          const value = dndRuleTags.find(({ id }) => id === data)?.value || '';
           return (
             <Badge size="md" key={value}>
               {value}
@@ -39,14 +39,19 @@ export const DnDRules = () => {
       <div className="flex flex-col gap-4 max-w-[800px] mx-auto">
         <div
           style={{ top: HeaderHeight }}
-          className="flex gap-2 sticky bg-brand-500 py-6 -mx-0.5 px-0.5">
-          <Input className="flex-1" control={control} name="name" placeholder="Введите название" />
+          className="flex gap-2 sticky bg-brand-500 py-6 -mx-0.5 px-0.5 flex-wrap">
+          <Input
+            className="flex-2 min-w-[300px]"
+            control={control}
+            name="name"
+            placeholder="Введите название"
+          />
           <Selector
             placeholder="Введите тег"
             label="Список тегов"
             name="tag"
             control={control}
-            options={dndRuleTypes.map(({ id, name }) => ({ id, value: name }))}
+            options={dndRuleTags}
           />
         </div>
 

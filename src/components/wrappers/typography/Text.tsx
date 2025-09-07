@@ -7,6 +7,7 @@ import {
   weightMap,
   type TypographyProps,
 } from './constants';
+import { motion } from 'framer-motion';
 
 export const Text: React.FC<TypographyProps> = forwardRef<any, TypographyProps>(
   (
@@ -42,3 +43,5 @@ export const Text: React.FC<TypographyProps> = forwardRef<any, TypographyProps>(
     );
   },
 );
+
+export const MotionText = motion.create(Text);

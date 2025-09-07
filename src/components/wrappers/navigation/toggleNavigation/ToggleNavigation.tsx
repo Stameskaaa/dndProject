@@ -61,7 +61,7 @@ export const ToggleNavigation = () => {
         className={classNames('absolute bottom-0 h-full w-[300px] bg-brand-400')}
         variants={sidebar}
       />
-      <Navigation toggle={toggleOpen} />
+      <Navigation open={isOpen} toggle={toggleOpen} />
       <MenuToggle toggle={toggleOpen} />
     </motion.nav>
   );

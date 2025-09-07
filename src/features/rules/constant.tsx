@@ -9,35 +9,47 @@ import {
   Scale,
   UserRoundCheck,
 } from 'lucide-react';
-import type { RuleType } from './types';
+import type { RuleTags, RuleTypes } from './types';
 
-export const homeRuleTypes: RuleType[] = [
-  { id: 'extensions', name: 'Расширенные возможности', icon: Crown },
-  { id: 'unique_innovations', name: 'Уникальные нововведения клуба', icon: Gem },
-  { id: 'revisions', name: 'Переосмысления классических правил', icon: Coffee },
-  { id: 'special_cases', name: 'Правила частных ситуаций', icon: Scale },
-  { id: 'other', name: 'Прочее', icon: HandCoins },
+export const homeRuleTags: RuleTags[] = [
+  { id: 'extensions', value: 'Расширенные возможности', icon: Crown },
+  { id: 'unique_innovations', value: 'Уникальные нововведения клуба', icon: Gem },
+  { id: 'revisions', value: 'Переосмысления классических правил', icon: Coffee },
+  { id: 'special_cases', value: 'Правила частных ситуаций', icon: Scale },
+  { id: 'other', value: 'Прочее', icon: HandCoins },
 ];
 
-export const clubRulesTypes: RuleType[] = [
-  { id: 'event_reglament', name: 'Регламенты проведения мероприятий', icon: Landmark },
-  { id: 'event_participation', name: 'Правила участия в мероприятиях', icon: BookUser },
-  { id: 'club_behavior', name: 'Правила поведения в клубе', icon: Handshake },
-  { id: 'user_agreement', name: 'Пользовательское соглашение', icon: UserRoundCheck },
-  { id: 'other', name: 'Прочее', icon: HandCoins },
+export const clubRulesTags: RuleTags[] = [
+  { id: 'event_reglament', value: 'Регламенты проведения мероприятий', icon: Landmark },
+  { id: 'event_participation', value: 'Правила участия в мероприятиях', icon: BookUser },
+  { id: 'club_behavior', value: 'Правила поведения в клубе', icon: Handshake },
+  { id: 'user_agreement', value: 'Пользовательское соглашение', icon: UserRoundCheck },
+  { id: 'other', value: 'Прочее', icon: HandCoins },
 ];
 
-export const dndRuleTypes: Omit<RuleType, 'icon'>[] = [
-  { id: 'core_terms', name: 'Основные термины' },
-  { id: 'core_actions', name: 'Основные действия' },
-  { id: 'combat', name: 'Сражение' },
-  { id: 'magic', name: 'Магия' },
-  { id: 'conditions', name: 'Состояния' },
-  { id: 'areas', name: 'Области воздействия' },
-  { id: 'exploration', name: 'Исследование мира' },
-  { id: 'movement', name: 'Перемещение' },
-  { id: 'statblock', name: 'Статблок' },
-  { id: 'senses', name: 'Чувства' },
-  { id: 'equipment', name: 'Снаряжение' },
-  { id: 'other', name: 'Прочее' },
+export const dndRuleTags: Omit<RuleTags, 'icon'>[] = [
+  { id: 'core_terms', value: 'Основные термины' },
+  { id: 'core_actions', value: 'Основные действия' },
+  { id: 'combat', value: 'Сражение' },
+  { id: 'magic', value: 'Магия' },
+  { id: 'conditions', value: 'Состояния' },
+  { id: 'areas', value: 'Области воздействия' },
+  { id: 'exploration', value: 'Исследование мира' },
+  { id: 'movement', value: 'Перемещение' },
+  { id: 'statblock', value: 'Статблок' },
+  { id: 'senses', value: 'Чувства' },
+  { id: 'equipment', value: 'Снаряжение' },
+  { id: 'other', value: 'Прочее' },
+];
+
+export const allTags: Record<RuleTypes, RuleTags[] | Omit<RuleTags, 'icon'>[]> = {
+  dnd: dndRuleTags,
+  home: homeRuleTags,
+  club: clubRulesTags,
+};
+
+export const ruleOptions: { id: RuleTypes; value: string }[] = [
+  { id: 'dnd', value: 'D&D' },
+  { id: 'home', value: 'Домашние' },
+  { id: 'club', value: 'Клуб' },
 ];

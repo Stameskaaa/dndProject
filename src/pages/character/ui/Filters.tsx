@@ -32,7 +32,7 @@ export const worldSelector = {
 
 export const Filters: React.FC<FilterProps> = ({ control, inputName, selectors = [] }) => {
   return (
-    <div className="flex gap-3 pt-1 pb-6 flex-wrap">
+    <div className="flex gap-3 pt-3 pb-6 flex-wrap">
       <Input
         placeholder="Поиск на названию"
         className="min-w-[300px] flex-2 w-auto"
@@ -42,7 +42,6 @@ export const Filters: React.FC<FilterProps> = ({ control, inputName, selectors =
       {[...selectors, worldSelector]?.map(({ name, label, placeholder, multiple, options }) => (
         <Selector
           label={label}
-          triggerProps={{ className: 'min-w-[300px] w-auto flex-1' }}
           key={name}
           control={control}
           name={name}

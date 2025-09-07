@@ -2,10 +2,11 @@ import classNames from 'classnames';
 import { CheckCheck, ChevronDown } from 'lucide-react';
 import { Controller, type Control } from 'react-hook-form';
 import { useState, useMemo, type HTMLAttributes } from 'react';
+import { Text } from '../../typography/Text';
 import { Button } from '@/components/ui/button';
+import { FormMessage } from '../formMessage/FormMessage';
 import { useElementWidth } from '@/hooks/useElementWidth';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Text } from '../../typography/Text';
 
 interface Option {
   id: string;
@@ -15,14 +16,19 @@ interface Option {
 interface SelectorProps {
   name: string;
   control: Control<any>;
-  options: Option[];
+  options?: Option[];
   multiple?: boolean;
   placeholder?: string;
   label?: string;
-  defaultValue?: string[];
+  defaultValue?: string[] | string;
   contentProps?: React.ComponentProps<typeof PopoverContent>;
   triggerProps?: HTMLAttributes<HTMLButtonElement>;
   className?: string;
+  message?: string;
+  disabled?: boolean;
+  onChangeAction?: (id: string) => void;
+  required?: boolean;
+  errorMessage?: string;
 }
 
 const maxVisible = 4;
@@ -39,9 +45,15 @@ export const Selector: React.FC<SelectorProps> = ({
   multiple = false,
   placeholder,
   label,
-  defaultValue = [],
+  defaultValue,
   contentProps,
   triggerProps,
+  className,
+  message,
+  disabled,
+  required,
+  onChangeAction,
+  errorMessage,
 }) => {
   const [open, setOpen] = useState(false);
   const { elementRef, elementWidth } = useElementWidth();
@@ -50,9 +62,19 @@ export const Selector: React.FC<SelectorProps> = ({
     <Controller
       name={name}
       control={control}
-      defaultValue={defaultValue}
-      render={({ field: { value, onChange } }) => {
-        const selectedIds = value || [];
+      rules={{ required: errorMessage || required }}
+      defaultValue={
+        multiple
+          ? Array.isArray(defaultValue)
+            ? defaultValue
+            : []
+          : typeof defaultValue === 'string'
+          ? defaultValue
+          : ''
+      }
+      render={({ field: { value, onChange }, fieldState }) => {
+        const { error } = fieldState;
+        const selectedIds = multiple ? (Array.isArray(value) ? value : []) : value;
 
         const toggleOption = (id: string) => {
           if (multiple) {
@@ -62,49 +84,62 @@ export const Selector: React.FC<SelectorProps> = ({
               onChange([...selectedIds, id]);
             }
           } else {
-            onChange(selectedIds[0] === id ? [] : [id]);
+            onChange(selectedIds === id ? null : id);
             setOpen(false);
           }
+          onChangeAction?.(id);
         };
 
         const displayText = useMemo(() => {
-          if (!selectedIds.length) return '';
+          if (!selectedIds || (Array.isArray(selectedIds) && selectedIds?.length === 0)) return '';
+          const selectedArray = multiple ? selectedIds : [selectedIds];
           const selectedValues = options
-            .filter((opt) => selectedIds.includes(opt.id))
+            ?.filter((opt) => selectedArray.includes(opt.id))
             .map((opt) => opt.value);
-          return multiple ? selectedValues.join(', ') : selectedValues[0];
+          return multiple ? selectedValues?.join(', ') : selectedValues?.[0];
         }, [selectedIds, options, multiple]);
+
+        const length = options?.length || 1;
 
         return (
           <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                ref={elementRef}
-                variant="default"
-                style={{ width: defaultWidth }}
-                {...triggerProps}
-                className={classNames(
-                  'justify-between truncate relative !pr-[30px]',
-                  triggerProps?.className,
-                )}>
-                <Text
-                  as="span"
-                  color={displayText ? 'text-secondary' : 'text-muted'}
-                  className="min-w-0 overflow-hidden duration-300 text-ellipsis">
-                  {displayText || placeholder}
-                </Text>
-                <ChevronDown
-                  className="transition-transform duration-300 absolute right-2"
-                  style={open ? { transform: 'rotate(180deg)' } : {}}
-                />
-              </Button>
-            </PopoverTrigger>
+            <div
+              className={classNames(
+                'flex flex-col !h-[36px] gap-1 flex-1 min-w-[250px]',
+                className,
+              )}>
+              {message && <FormMessage as="label">{message}</FormMessage>}
+              <PopoverTrigger asChild>
+                <Button
+                  disabled={disabled}
+                  ref={elementRef}
+                  variant="default"
+                  style={{ width: defaultWidth }}
+                  {...triggerProps}
+                  className={classNames(
+                    'justify-between !w-full truncate relative !pr-[30px]',
+                    error && '!border-error ring-destructive/20',
+                    triggerProps?.className,
+                  )}>
+                  <Text
+                    as="span"
+                    color={displayText ? 'text-secondary' : 'text-muted'}
+                    className="min-w-0 overflow-hidden duration-300 text-ellipsis">
+                    {displayText || placeholder}
+                  </Text>
+                  <ChevronDown
+                    className="transition-transform duration-300 absolute right-2"
+                    style={open ? { transform: 'rotate(180deg)' } : {}}
+                  />
+                </Button>
+              </PopoverTrigger>
+              {error?.message && <FormMessage type="error">{error?.message}</FormMessage>}
+            </div>
             <PopoverContent
-              className="w-full flex flex-col px-0 py-2 pt-0 contain-content gap-1 overscroll-contain"
+              className="w-full  flex flex-col px-0 py-2 pt-0 contain-content gap-1 overscroll-contain"
               style={{
-                maxHeight:
-                  maxVisible * itemHeight + paddingY + paddingTop + (gap * options.length - 1),
-                overflowY: options.length > maxVisible ? 'auto' : 'visible',
+                maxHeight: maxVisible * (itemHeight + gap) + paddingY + paddingTop,
+                overflowY: length > maxVisible ? 'auto' : 'visible',
                 width: elementWidth || defaultWidth,
               }}
               {...contentProps}>
@@ -112,8 +147,8 @@ export const Selector: React.FC<SelectorProps> = ({
                 {label || 'Выберите значение'}
               </Text>
 
-              {options.map((opt) => {
-                const active = selectedIds.includes(opt.id);
+              {options?.map((opt) => {
+                const active = multiple ? selectedIds.includes(opt.id) : selectedIds === opt.id;
                 return (
                   <Button
                     key={opt.id}
