@@ -11,6 +11,7 @@ export const EditSpell = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список заклинаний"
       title={'Настройка заклинаний'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>

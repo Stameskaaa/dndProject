@@ -11,6 +11,7 @@ export const EditLocation = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список локаций"
       title={'Настройка локаций'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>

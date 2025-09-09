@@ -10,7 +10,11 @@ export const EditCountry = () => {
   const { control, reset, handleSubmit } = useForm<Country>();
 
   return (
-    <EditWrapper title={'Настройка стран'} saveAction={handleSubmit(() => {})} cancelAction={reset}>
+    <EditWrapper
+      modalTriggerText="Открыть список стран"
+      title={'Настройка стран'}
+      saveAction={handleSubmit(() => {})}
+      cancelAction={reset}>
       <Input
         required
         placeholder="Сенкриф"

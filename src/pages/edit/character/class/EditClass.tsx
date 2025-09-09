@@ -10,7 +10,11 @@ export const EditClass = () => {
   const { control, reset, handleSubmit } = useForm<Class>();
 
   return (
-    <EditWrapper title={'Создание класса'} saveAction={handleSubmit(() => {})} cancelAction={reset}>
+    <EditWrapper
+      modalTriggerText="Открыть список классов"
+      title={'Создание класса'}
+      saveAction={handleSubmit(() => {})}
+      cancelAction={reset}>
       <Input required message="Название класса" placeholder="Воин" name="name" control={control} />
 
       <div className="flex gap-2 items-start">

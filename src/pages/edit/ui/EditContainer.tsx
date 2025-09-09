@@ -9,11 +9,15 @@ export const EditWrapper = ({
   saveAction,
   cancelAction,
   children,
+  modalContent,
+  modalTriggerText,
 }: {
   title: string;
   saveAction: () => void;
   cancelAction: () => void;
   children: ReactNode;
+  modalContent?: ReactNode;
+  modalTriggerText?: string;
 }) => {
   return (
     <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 p-4">
@@ -21,8 +25,10 @@ export const EditWrapper = ({
         <Text size="2xl" color="brand-100">
           {title}
         </Text>
-        <ModalWindow contentClassname="w-[600px]" buttonTrigger={<Button>Выбрать правило</Button>}>
-          <div>Потом придумаю</div>
+        <ModalWindow
+          contentClassname="w-[95%] h-[95%] max-h-[800px] !max-w-[800px]"
+          buttonTrigger={<Button>{modalTriggerText}</Button>}>
+          {modalContent || <div>Потом придумаю</div>}
         </ModalWindow>
       </div>
       <Separator spacing="equalSmall" />

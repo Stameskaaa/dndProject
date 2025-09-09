@@ -10,6 +10,7 @@ export const EditSubclass = () => {
   return (
     <EditWrapper
       title={'Настройка Подклассов'}
+      modalTriggerText="Открыть список подклассов"
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>
       <Input

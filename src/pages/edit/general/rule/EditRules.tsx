@@ -30,6 +30,7 @@ export const EditRules = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список правил"
       title={
         selectedRule
           ? `Редактирование правила - ${selectedRule.title || ''}`

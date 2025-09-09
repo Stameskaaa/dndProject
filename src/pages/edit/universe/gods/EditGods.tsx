@@ -10,7 +10,11 @@ export const EditGods = () => {
   const { control, reset, handleSubmit } = useForm<God>();
 
   return (
-    <EditWrapper title={'Настройка богов'} saveAction={handleSubmit(() => {})} cancelAction={reset}>
+    <EditWrapper
+      modalTriggerText="Открыть список богов"
+      title={'Настройка богов'}
+      saveAction={handleSubmit(() => {})}
+      cancelAction={reset}>
       <Input required placeholder="Кайдор" message="Имя бога" name="name" control={control} />
       <div className="flex gap-2 items-start">
         <Selector

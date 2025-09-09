@@ -10,7 +10,11 @@ export const EditWorld = () => {
   const { control, reset, handleSubmit } = useForm<World>();
 
   return (
-    <EditWrapper title={'Настройка Миров'} saveAction={handleSubmit(() => {})} cancelAction={reset}>
+    <EditWrapper
+      modalTriggerText="Открыть список миров"
+      title={'Настройка Миров'}
+      saveAction={handleSubmit(() => {})}
+      cancelAction={reset}>
       <Input required placeholder="Кайдор" message="Имя бога" name="name" control={control} />
       <Input
         required

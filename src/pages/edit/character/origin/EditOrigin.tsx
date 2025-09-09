@@ -11,6 +11,7 @@ export const EditOrigin = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список происхождений"
       title={'Настройка происхождений'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>

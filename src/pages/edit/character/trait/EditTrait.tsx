@@ -9,7 +9,11 @@ export const EditTrait = () => {
   const { control, reset, handleSubmit } = useForm();
 
   return (
-    <EditWrapper title={'Настройка черты'} saveAction={handleSubmit(() => {})} cancelAction={reset}>
+    <EditWrapper
+      modalTriggerText="Открыть список черт"
+      title={'Настройка черты'}
+      saveAction={handleSubmit(() => {})}
+      cancelAction={reset}>
       <div className="flex gap-2 items-start">
         <Input
           className="flex-1"

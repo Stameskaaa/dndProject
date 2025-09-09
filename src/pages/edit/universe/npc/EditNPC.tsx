@@ -11,6 +11,7 @@ export const EditNPC = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список личностей"
       title={'Настройка Личностей(NPC)'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>

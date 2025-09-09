@@ -8,7 +8,11 @@ export const EditNews = () => {
   const { control } = useForm<News>();
 
   return (
-    <EditWrapper title={'Создание новости'} saveAction={() => {}} cancelAction={() => {}}>
+    <EditWrapper
+      modalTriggerText="Открыть список новостей"
+      title={'Создание новости'}
+      saveAction={() => {}}
+      cancelAction={() => {}}>
       <Input
         message="Название новости"
         placeholder="Украли кубики"

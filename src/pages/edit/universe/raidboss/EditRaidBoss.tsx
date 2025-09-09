@@ -19,6 +19,7 @@ export const EditRaidBoss = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список рейдбоссов"
       title={'Настройка рейдбоссов'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>

@@ -19,6 +19,7 @@ export const EditMonster = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список монстров"
       title={'Настройка существа'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>

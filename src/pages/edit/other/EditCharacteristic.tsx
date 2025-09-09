@@ -8,6 +8,7 @@ export const EditCharacteristic = () => {
 
   return (
     <EditWrapper
+      modalTriggerText="Открыть список характеристик"
       title={'Настройка Характеристик'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>

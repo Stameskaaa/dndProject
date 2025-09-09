@@ -41,6 +41,7 @@ export const Filters: React.FC<FilterProps> = ({ control, inputName, selectors =
       />
       {[...selectors, worldSelector]?.map(({ name, label, placeholder, multiple, options }) => (
         <Selector
+          className="min-w-[250px] !w-auto flex-1"
           label={label}
           key={name}
           control={control}

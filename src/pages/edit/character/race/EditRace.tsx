@@ -19,7 +19,8 @@ export const EditRace = () => {
 
   return (
     <EditWrapper
-      title={'Настройка вида(расы)'}
+      modalTriggerText="Открыть список видов (рас)"
+      title={'Настройка вида (расы)'}
       saveAction={handleSubmit(() => {})}
       cancelAction={reset}>
       <Input
