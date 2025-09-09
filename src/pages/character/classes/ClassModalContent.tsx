@@ -29,7 +29,7 @@ export const ClassModalContent = () => {
             </Text>
           </div>
           <Separator spacing="equalSmall" className="mt-0" />
-          <Text color="text-secondary">{mockClass?.description}</Text>
+          <Text color="text-secondary">{mockClass?.md_description}</Text>
           <Separator spacing="equalSmall" />
 
           <DescriptionList

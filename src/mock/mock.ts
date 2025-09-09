@@ -96,10 +96,11 @@ export const trait_types: TraitType[] = [
     icon: HandFist,
   },
 ];
+
 export const schoolList: SpellSchool[] = [
   {
     id: 'evocation',
-    title: 'Эвокация',
+    title: 'Воплощение',
     color: 'linear-gradient(to right, #4dd0e1 0%, #26c6da 100%)',
     icon: EvocationIcon,
   },
@@ -123,7 +124,7 @@ export const schoolList: SpellSchool[] = [
   },
   {
     id: 'conjuration',
-    title: 'Призывание',
+    title: 'Вызов',
     color: 'linear-gradient(to right, #ba68c8 0%, #ab47bc 100%)',
     icon: ConjurationIcon,
   },
@@ -145,4 +146,73 @@ export const schoolList: SpellSchool[] = [
     color: 'linear-gradient(to right, #81c784 0%, #66bb6a 100%)',
     icon: TransmutationIcon,
   },
+];
+
+export const creature_sizes = [
+  { id: 'Enormous', value: 'Громадный' },
+  { id: 'Huge', value: 'Огромный' },
+  { id: 'Large', value: 'Большой' },
+  { id: 'Medium', value: 'Средний' },
+  { id: 'Small', value: 'Маленький' },
+  { id: 'Tiny', value: 'крошечный' },
+];
+
+export const creature_types = [
+  { id: 'Aberration', value: 'Аберрация' },
+  { id: 'Giant', value: 'Великан' },
+  { id: 'Humanoid', value: 'Гуманоид' },
+  { id: 'Dragon', value: 'Дракон' },
+  { id: 'Beast', value: 'Зверь' },
+  { id: 'Fiend', value: 'Исчадие' },
+  { id: 'Construct', value: 'Конструкт' },
+  { id: 'Monster', value: 'Чудовище' },
+  { id: 'Celestial', value: 'Небожитель' },
+  { id: 'Undead', value: 'Нежить' },
+  { id: 'Plant', value: 'Растение' },
+  { id: 'Slime', value: 'Слизь' },
+  { id: 'Fairy', value: 'Фея' },
+  { id: 'Elemental', value: 'Элементаль' },
+];
+
+export const dice_hits = [
+  { id: 'k6', value: 'к6' },
+  { id: 'k8', value: 'к8' },
+  { id: 'k10', value: 'к10' },
+  { id: 'k12', value: 'к12' },
+];
+
+export const damage_states = [
+  { id: 'Piercing_non_magical', value: 'Колющий не магический' },
+  { id: 'Slashing_non_magical', value: 'Рубящий не магический' },
+  { id: 'Crushing_non_magical', value: 'Дробящий не магический' },
+  { id: 'Piercing_magical', value: 'Колющий магический' },
+  { id: 'Slashing_magical', value: 'Рубящий магический' },
+  { id: 'Crushing_magical', value: 'Дробящий магический' },
+  { id: 'Radiation', value: 'Излучение' },
+  { id: 'Necrotic_energy', value: 'Некротическая энергия' },
+  { id: 'Acid', value: 'Кислота' },
+  { id: 'Sound', value: 'Звук' },
+  { id: 'Cold', value: 'Холод' },
+  { id: 'Fire', value: 'Огонь' },
+  { id: 'Electricity', value: 'Электричество' },
+  { id: 'Psychic_energy', value: 'Психическая энергия' },
+  { id: 'Force_field', value: 'Силовое поле' },
+  { id: 'Poison', value: 'Яд' },
+];
+export const condition_states = [
+  { id: 'Unconscious', value: 'Бессознательный' },
+  { id: 'Frightened', value: 'Испуганный' },
+  { id: 'Exhausted', value: 'Истощение' },
+  { id: 'Invisible', value: 'Невидимый' },
+  { id: 'Incapacitated', value: 'Недееспособный' },
+  { id: 'Deafened', value: 'Оглохший' },
+  { id: 'Petrified', value: 'Окаменевший' },
+  { id: 'Prone', value: 'Лежащий ничком' },
+  { id: 'Entangled', value: 'Опутанный' },
+  { id: 'Blinded', value: 'Ослеплённый' },
+  { id: 'Poisoned', value: 'Отравленный' },
+  { id: 'Enchanted', value: 'Очарованный' },
+  { id: 'Dazed', value: 'Ошеломлённый' },
+  { id: 'Grabbed', value: 'Схваченный' },
+  { id: 'Paralyzed', value: 'Парализованный' },
 ];

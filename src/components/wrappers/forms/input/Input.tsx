@@ -32,7 +32,7 @@ export const Input = ({
   const [focus, setFocus] = useState(false);
 
   return (
-    <div className={classNames(className, 'relative flex flex-col w-full gap-1')} style={style}>
+    <label className={classNames(className, 'relative flex flex-col w-full gap-1')} style={style}>
       {message && <FormMessage as="label">{message}</FormMessage>}
 
       <Controller
@@ -63,7 +63,7 @@ export const Input = ({
               />
 
               {!message && placeholder && (
-                <motion.label
+                <motion.span
                   initial={'rest'}
                   className={'absolute inset-0 leading-[16px] pointer-events-none'}
                   animate={isActive ? 'active' : 'rest'}
@@ -77,7 +77,7 @@ export const Input = ({
                     as="span">
                     {placeholder}
                   </Text>
-                </motion.label>
+                </motion.span>
               )}
 
               {error?.message && <FormMessage type="error">{error.message}</FormMessage>}
@@ -85,6 +85,6 @@ export const Input = ({
           );
         }}
       />
-    </div>
+    </label>
   );
 };

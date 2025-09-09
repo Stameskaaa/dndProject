@@ -8,6 +8,9 @@ export interface Location {
   world_id: number;
   world_data: { id: string; name: string };
 
+  country_id: number;
+  country_data: { id: string; name: string };
+
   monster_ids: number[];
   monster_data?: { id: number; name: string }[];
 

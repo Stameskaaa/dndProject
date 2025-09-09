@@ -5,10 +5,11 @@ export interface RaidBoss {
   name: string;
   src: string;
   status: string;
-  md_short_description: string;
+  short_description: string;
   md_description: string;
   md_history: string;
   md_fun_facts: string;
+  md_statblock: string;
 
   location_ids: number[];
   location_data: { id: number; name: string }[];
@@ -18,10 +19,9 @@ export interface RaidBoss {
   hp: string;
   speed: string;
 
-  characteristic_ids: string[];
-  characteristic_data: Characteristic[];
+  characteristic_ids: { id: Characteristic['id']; value: string }[];
+  saving_throws: string;
 
-  saving_throws: Characteristic[];
   skills: string;
 
   damage_immunities: number[];
@@ -35,5 +35,4 @@ export interface RaidBoss {
 
   challenge: number; // 0-50 включительно, дробное, если пусто → нет опасности
   proficiency_bonus: number; // всегда + спереди, 0-20
-  md_content: string;
 }

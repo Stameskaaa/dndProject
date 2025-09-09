@@ -1,16 +1,17 @@
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import { useController } from 'react-hook-form';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Eye, EyeOff, Heart, MessageCircleQuestionMark } from 'lucide-react';
+import { Eye, EyeOff, FileOutput, Heart, MessageCircleQuestionMark } from 'lucide-react';
 import cat from '../../../../assets/cat.webp';
 import { Button } from '@/components/ui/button';
-import { MotionText, Text } from '../../typography/Text';
+import { MotionText } from '../../typography/Text';
 import { Textarea, type TextareaProps } from './Textarea';
 import { MarkDownText } from '../../typography/MarkDownText';
 import { SidePanel } from '../../modals/sidePanel/SidePanel';
 import { ModalWindow } from '../../modals/modalWindow/ModalWindow';
 
-export const TextareaMD: React.FC<TextareaProps> = ({ control, name, ...props }) => {
+export const TextareaMD: React.FC<TextareaProps> = ({ control, name, className, ...props }) => {
   const {
     field: { onChange, value },
   } = useController({ control, name });
@@ -19,19 +20,27 @@ export const TextareaMD: React.FC<TextareaProps> = ({ control, name, ...props })
   return (
     <div className="flex flex-col gap-2 w-full">
       <Textarea
+        className={classNames('h-[240px]', className)}
         control={control}
         name={name}
         actions={[
-          <Button key={1} onClick={() => onChange((value || '') + '\n# Заголвооку')}>
-            <Text>Вставить заголвоок</Text>
-          </Button>,
-          <Button key={2} onClick={() => setIsShowed((prev) => !prev)}>
-            <Text>Предпросмотр</Text> {isShowed ? <Eye /> : <EyeOff />}
+          <ModalWindow
+            key={1}
+            contentClassname="h-[fit-content] overflow-hidden"
+            buttonTrigger={
+              <Button size="sm" onClick={() => onChange((value || '') + '\n# Заголвооку')}>
+                <FileOutput />
+              </Button>
+            }>
+            Место для вставки шаблонов
+          </ModalWindow>,
+          <Button size="sm" key={2} onClick={() => setIsShowed((prev) => !prev)}>
+            {isShowed ? <Eye /> : <EyeOff />}
           </Button>,
           <SidePanel
             key={3}
             buttonTrigger={
-              <Button>
+              <Button size="sm">
                 <MessageCircleQuestionMark />
               </Button>
             }>
@@ -43,7 +52,7 @@ export const TextareaMD: React.FC<TextareaProps> = ({ control, name, ...props })
             key={4}
             contentClassname="h-[fit-content] overflow-hidden"
             buttonTrigger={
-              <Button>
+              <Button size="sm">
                 <Heart />
               </Button>
             }>

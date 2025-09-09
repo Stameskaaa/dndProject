@@ -29,9 +29,10 @@ interface SelectorProps {
   onChangeAction?: (id: string) => void;
   required?: boolean;
   errorMessage?: string;
+  disabledIds?: string[];
 }
 
-const maxVisible = 4;
+const maxVisible = 6;
 const itemHeight = 36;
 const paddingY = 8;
 const paddingTop = 28;
@@ -54,6 +55,7 @@ export const Selector: React.FC<SelectorProps> = ({
   required,
   onChangeAction,
   errorMessage,
+  disabledIds,
 }) => {
   const [open, setOpen] = useState(false);
   const { elementRef, elementWidth } = useElementWidth();
@@ -103,7 +105,7 @@ export const Selector: React.FC<SelectorProps> = ({
 
         return (
           <Popover open={open} onOpenChange={setOpen}>
-            <div className={classNames('flex flex-col gap-1 flex-1 min-w-[250px]', className)}>
+            <div className={classNames('flex flex-col gap-1 w-full min-w-[250px]', className)}>
               {message && <FormMessage as="label">{message}</FormMessage>}
               <PopoverTrigger asChild>
                 <Button
@@ -145,13 +147,16 @@ export const Selector: React.FC<SelectorProps> = ({
 
               {options?.map((opt) => {
                 const active = multiple ? selectedIds.includes(opt.id) : selectedIds === opt.id;
+                const isDisabled = disabledIds?.includes(opt.id) && !active;
                 return (
                   <Button
                     key={opt.id}
                     variant="ghost"
+                    disabled={isDisabled}
                     className={classNames(
                       `h-[${itemHeight}px] justify-start border-l-2 border-transparent text-text-secondary truncate rounded-none duration-300 gap-0`,
                       active ? 'bg-brand-300 border-brand-100' : '',
+                      isDisabled ? 'opacity-50 cursor-not-allowed' : '',
                     )}
                     onClick={() => toggleOption(opt.id)}>
                     {active && <CheckCheck className="mr-2" />}

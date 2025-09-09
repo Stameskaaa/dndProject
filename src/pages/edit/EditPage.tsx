@@ -54,7 +54,10 @@ const categories = [
   },
   {
     title: 'Дополнительно',
-    items: [{ name: 'Характеристики', path: 'stats', icon: BarChart3 }],
+    items: [
+      { name: 'Характеристики', path: 'characteristic', icon: BarChart3 },
+      { name: 'Подклассы', path: 'subclass', icon: Sword },
+    ],
   },
 ];
 

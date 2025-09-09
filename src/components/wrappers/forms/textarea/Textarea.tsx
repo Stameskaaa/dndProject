@@ -37,7 +37,7 @@ export const Textarea: React.FC<TextareaProps> = ({
         return (
           <div className="flex flex-col w-full gap-1 relative">
             {message && <FormMessage as="label">{message}</FormMessage>}
-            {actions && <div className="flex gap-1 absolute right-0 top-[-6px] p-4">{actions}</div>}
+            {actions && <div className="flex flex-col gap-1 absolute right-0 p-2">{actions}</div>}
             <textarea
               {...props}
               value={value}

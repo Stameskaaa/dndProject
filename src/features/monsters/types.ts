@@ -11,10 +11,9 @@ export interface Monster {
   hp: string;
   speed: string;
 
-  characteristic_ids: string[];
-  characteristic_data: Characteristic[];
+  characteristic_ids: { id: Characteristic['id']; value: string }[];
+  saving_throws: string;
 
-  saving_throws: Characteristic[];
   skills: string;
 
   damage_immunities: number[];
@@ -31,6 +30,6 @@ export interface Monster {
 
   challenge: number; // 0-50 включительно, дробное, если пусто → нет опасности
   proficiency_bonus: number; // всегда + спереди, 0-20
-  md_short_description: string;
-  md_content: string;
+  short_description: string;
+  md_description: string;
 }

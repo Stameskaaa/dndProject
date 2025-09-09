@@ -1,5 +1,4 @@
 import type { Trait } from '../traits/types';
-import type { Characteristic } from '../types';
 
 export interface Origin {
   id: string;
@@ -11,11 +10,10 @@ export interface Origin {
   md_description: string;
 
   // TODO массив для удобства, можно будет выбрать одну
-  trait_ids: string[];
-  trait_data: Trait[];
+  trait_id: string;
+  trait_data: Trait;
 
   characteristic_ids: string[];
-  characteristic_data: Characteristic[];
 
   world_ids?: string[];
   world_data?: { id: string; name: string }[];

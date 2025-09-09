@@ -27,6 +27,20 @@ import { SpellModal } from '@/pages/character/spells/components/spellModal/Spell
 import { EditPage } from '@/pages/edit/EditPage';
 import { EditRules } from '@/pages/edit/general/rule/EditRules';
 import { EditNews } from '@/pages/edit/general/news/EditNews';
+import { EditOrigin } from '@/pages/edit/character/origin/EditOrigin';
+import { EditTrait } from '@/pages/edit/character/trait/EditTrait';
+import { EditRace } from '@/pages/edit/character/race/EditRace';
+import { EditSpell } from '@/pages/edit/character/spell/EditSpell';
+import { EditClass } from '@/pages/edit/character/class/EditClass';
+import { EditLocation } from '@/pages/edit/universe/location/EditLocation';
+import { EditCountry } from '@/pages/edit/universe/country/EditCountry';
+import { EditGods } from '@/pages/edit/universe/gods/EditGods';
+import { EditNPC } from '@/pages/edit/universe/npc/EditNPC';
+import { EditMonster } from '@/pages/edit/universe/monsters/EditMonster';
+import { EditRaidBoss } from '@/pages/edit/universe/raidboss/EditRaidboss';
+import { EditCharacteristic } from '@/pages/edit/other/EditCharacteristic';
+import { EditSubclass } from '@/pages/edit/other/EditSubclass';
+import { EditWorld } from '@/pages/edit/universe/world/EditWorld';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -178,31 +192,85 @@ export const ROUTES: RouteNode[] = [
                 title: 'Классы',
                 path: 'class',
                 fullPath: '/edit/class',
-                element: <EditNews />,
+                element: <EditClass />,
               },
               {
                 title: 'Происхождения',
                 path: 'origin',
                 fullPath: '/edit/origin',
-                element: <EditNews />,
+                element: <EditOrigin />,
               },
               {
                 title: 'Черты',
                 path: 'trait',
                 fullPath: '/edit/trait',
-                element: <EditNews />,
+                element: <EditTrait />,
               },
               {
                 title: 'Расы',
                 path: 'race',
                 fullPath: '/edit/race',
-                element: <EditNews />,
+                element: <EditRace />,
               },
               {
                 title: 'Заклинания',
                 path: 'spell',
                 fullPath: '/edit/spell',
-                element: <EditNews />,
+                element: <EditSpell />,
+              },
+              {
+                title: 'Локации',
+                path: 'location',
+                fullPath: '/edit/location',
+                element: <EditLocation />,
+              },
+              {
+                title: 'Страны',
+                path: 'country',
+                fullPath: '/edit/country',
+                element: <EditCountry />,
+              },
+              {
+                title: 'Миры',
+                path: 'world',
+                fullPath: '/edit/world',
+                element: <EditWorld />,
+              },
+              {
+                title: 'Боги',
+                path: 'god',
+                fullPath: '/edit/god',
+                element: <EditGods />,
+              },
+              {
+                title: 'Личности',
+                path: 'npc',
+                fullPath: '/edit/npc',
+                element: <EditNPC />,
+              },
+              {
+                title: 'Монстры',
+                path: 'monster',
+                fullPath: '/edit/monster',
+                element: <EditMonster />,
+              },
+              {
+                title: 'Рейдбоссы',
+                path: 'raidboss',
+                fullPath: '/edit/raidboss',
+                element: <EditRaidBoss />,
+              },
+              {
+                title: 'Характеристики',
+                path: 'characteristic',
+                fullPath: '/edit/characteristic',
+                element: <EditCharacteristic />,
+              },
+              {
+                title: 'Подклассы',
+                path: 'subclass',
+                fullPath: '/edit/subclass',
+                element: <EditSubclass />,
               },
             ],
             loader: true,
