@@ -1,3 +1,5 @@
+import type { World } from '../worlds/types';
+
 export interface Class {
   id: string;
   src: string;
@@ -10,20 +12,22 @@ export interface Class {
   armorId: string[];
   startEquipment: string[];
 
+  spellIds: string[];
+
   worldsIds?: string[];
-  worlds_data?: { id: string; name: string }[];
+  worlds?: Pick<World, 'id' | 'name' | 'shortDescription' | 'src'>[];
 
-  md_description: string;
-  md_table_data: string;
+  mdDescription: string;
+  mdTableData: string;
 
-  subclass_skill_ids: string[];
-  subclass_skill_data: ClassSkills[];
+  subclassSkillIds: string[];
+  subclassSkills: SubClassSkills[];
 
-  characteristic_ids: string[];
+  characteristicIds: string[];
 }
 
-export interface ClassSkills {
+export interface SubClassSkills {
   id: string;
   title: string;
-  md_description: string;
+  mdDescription: string;
 }

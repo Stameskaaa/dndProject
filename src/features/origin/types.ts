@@ -1,19 +1,20 @@
 import type { Trait } from '../traits/types';
+import type { World } from '../worlds/types';
 
 export interface Origin {
   id: string;
   name: string;
   src: string;
   skills: string;
-  tool_skills: string;
-  start_equipment: string[];
-  md_description: string;
+  toolSkills: string;
+  startEquipment: string[];
+  mdDescription: string;
 
-  trait_id: string;
-  trait_data: Trait;
+  traitId: string;
+  traits: Trait;
 
-  characteristic_ids: string[];
+  characteristicIds: string[];
 
-  world_ids?: string[];
-  world_data?: { id: string; name: string }[];
+  worldIds?: string[];
+  worlds?: Pick<World, 'id' | 'name' | 'shortDescription' | 'src'>[];
 }

@@ -1,7 +1,7 @@
 import { CreatureTabs } from '../ui/CreatureTabs';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
-import { raidBossMock } from '@/features/raidbosses/mock';
+import { raidBossMock } from '@/features/hostileCreatures/mock';
 
 export const RaidBossesPage = () => {
   return (

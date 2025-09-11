@@ -6,6 +6,8 @@ export interface Rule {
   shortDescription: string;
   mdContent: string;
   type: RuleTypes;
+  createdAt: string;
+  updatedAt: string;
   tags?: string[];
 }
 

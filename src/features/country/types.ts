@@ -1,13 +1,20 @@
+import type { Location } from '../locations/types';
+import type { NPC } from '../npc/types';
+import type { World } from '../worlds/types';
+
 export interface Country {
   id: number;
   src: string;
   name: string;
-  short_description: string;
-  md_description: string;
+  shortDescription: string;
+  mdDescription: string;
 
-  location_ids: number[];
-  location_data: { id: string; name: string }[];
+  npcIds: number[];
+  npcs: Pick<NPC, 'id' | 'name' | 'src' | 'shortDescription' | 'status' | 'fraction'>[];
 
-  world_id: number;
-  world_data: { id: string; name: string };
+  locationIds: number[];
+  locations: Pick<Location, 'id' | 'name' | 'shortDescription' | 'src'>[];
+
+  worldId: number;
+  world: Pick<World, 'id' | 'src' | 'name' | 'shortDescription'>;
 }

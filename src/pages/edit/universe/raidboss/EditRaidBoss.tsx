@@ -10,7 +10,7 @@ import { EditWrapper } from '../../ui/EditContainer';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
-import type { RaidBoss } from '@/features/raidbosses/types';
+import type { RaidBoss } from '@/features/hostileCreatures/types';
 import { Text } from '@/components/wrappers/typography/Text';
 import { CharacteristicForm } from '../../ui/CharacteristicForm';
 

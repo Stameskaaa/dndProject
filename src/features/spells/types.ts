@@ -1,17 +1,19 @@
+import type { Class } from '../classes/types';
+
 export interface Spell {
   id: string;
   name: string;
   level: number;
-  school_id: string;
-  casting_time: string;
+  schoolId: string;
+  castingTime: string;
   duration: string;
   distance: string;
-  short_description: string;
-  md_description: string;
-  components_list: string;
+  shortDescription: string;
+  mdDescription: string;
+  componentsList: string;
 
-  class_ids: string[];
-  class_data: { id: string; name: string }[];
+  classIds: string[];
+  classes: Pick<Class, 'id' | 'src' | 'name'>[];
 }
 
 export interface SpellSchool {

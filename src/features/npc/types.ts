@@ -1,15 +1,18 @@
+import type { Country } from '../country/types';
+
 export interface NPC {
   id: number;
   name: string;
   src: string;
   status: string;
   fraction: string;
-  short_description: string;
-  md_description: string;
-  md_history: string;
-  md_fun_facts: string;
-  country_ids: number[];
-  country_data: { id: string; name: string }[];
-  location_ids: number[];
-  location_data: { id: string; name: string }[];
+  shortDescription: string;
+  mdDescription: string;
+  mdHistory: string;
+  mdFunFacts: string;
+
+  worldId: string;
+
+  countryId: number;
+  country: Pick<Country, 'id' | 'name' | 'shortDescription' | 'src'>;
 }

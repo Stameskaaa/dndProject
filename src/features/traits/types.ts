@@ -1,12 +1,14 @@
+import type { World } from '../worlds/types';
+
 export interface Trait {
   id: string;
   name: string;
-  trait_type_id: string;
+  traitTypeId: string;
   requirements: string;
-  md_description: string;
+  mdDescription: string;
 
-  world_ids?: string[];
-  world_data?: { id: string; name: string }[];
+  worldIds?: string[];
+  worlds?: Pick<World, 'id' | 'name' | 'shortDescription' | 'src'>[];
 }
 
 export interface TraitType {

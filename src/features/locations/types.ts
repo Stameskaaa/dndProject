@@ -1,19 +1,19 @@
+import type { HostileCreatures } from '../hostileCreatures/types';
+import type { World } from '../worlds/types';
+
 export interface Location {
   id: number;
   src: string;
   name: string;
-  short_description: string;
-  md_description: string;
+  shortDescription: string;
+  mdDescription: string;
 
-  world_id: number;
-  world_data: { id: string; name: string };
+  worldId: number;
+  world: Pick<World, 'id' | 'src' | 'name' | 'shortDescription'>;
 
-  country_id: number;
-  country_data: { id: string; name: string };
+  countryId: number;
+  country: Pick<Location, 'id' | 'src' | 'name' | 'shortDescription'>;
 
-  monster_ids: number[];
-  monster_data?: { id: number; name: string }[];
-
-  raidboss_ids: number[];
-  raidboss_data?: { id: number; name: string }[];
+  hostileCreatureIds: number[];
+  hostileCreatures?: Pick<HostileCreatures, 'id' | 'name' | 'src' | 'shortDescription' | 'type'>[];
 }

@@ -4,5 +4,7 @@ export interface News {
   title: string;
   shortDescription: string;
   mdDescription: string;
-  src?: string;
+  createdAt: string;
+  updatedAt: string;
+  src: string;
 }

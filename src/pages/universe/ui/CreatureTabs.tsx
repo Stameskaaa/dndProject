@@ -2,7 +2,7 @@ import { Tabs } from '@/components/wrappers/navigation/tabs/Tabs';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { Text } from '@/components/wrappers/typography/Text';
 import type { NPC } from '@/features/npc/types';
-import type { RaidBoss } from '@/features/raidbosses/types';
+import type { RaidBoss } from '@/features/hostileCreatures/types';
 
 interface CreatureTabsProps {
   npcData?: NPC;
