@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   useCreateRuleMutation,
@@ -8,6 +7,7 @@ import {
 } from '@/features/rules/api';
 import type { Rule } from '@/features/rules/types';
 import { allTags, ruleOptions } from '@/features/rules/constant';
+import { useEditableForm } from '../../hooks/useEditableItem';
 import { EditList } from '../../ui/EditItem';
 import { Button } from '@/components/ui/button';
 import { EditWrapper } from '../../ui/EditContainer';
@@ -16,46 +16,39 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditRules = () => {
-  const { data, isLoading } = useGetRulesListQuery();
-  const [open, setOpen] = useState(false);
+  const { data, isLoading } = useGetRulesListQuery({ page: 3, limit: 3 });
   const { control, watch, resetField, handleSubmit, getValues, reset } = useForm<Rule>({
     defaultValues: {
       type: 'dnd',
     },
   });
-  const [update] = useUpdateRuleMutation();
-  const [deleteRule] = useDeleteRuleMutation();
-  const [create] = useCreateRuleMutation();
+  const [update, { isLoading: updateLoading }] = useUpdateRuleMutation();
+  const [create, { isLoading: createLoading }] = useCreateRuleMutation();
+  const [remove] = useDeleteRuleMutation();
 
   const selectedTag = watch('type');
   const tagList = allTags?.[selectedTag];
 
   function handleSave() {
-    const data = getValues();
-    const { tags, ...rest } = data;
+    const { tags, ...rest } = getValues();
     const newTags = Array.isArray(tags) ? tags : [tags || 'other'];
-    const payload = { ...rest, tags: newTags };
-
-    if (payload.id) update(payload);
-    else create(payload);
+    return { ...rest, tags: newTags };
   }
 
-  function actions(type: 'delete' | 'edit', id: number) {
-    if (type === 'edit') {
-      setOpen(true);
-      const dataItem = data?.find((data) => data.id === id);
-      if (dataItem) {
-        reset(dataItem);
-      }
-    } else {
-      deleteRule({ id });
-    }
-  }
+  const { open, setOpen, actions, submitAction, loadDeletedId } = useEditableForm<Rule>({
+    reset,
+    getData: handleSave,
+    create,
+    update,
+    remove,
+    data,
+  });
 
   return (
     <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 p-4 gap-3">
       <Button onClick={() => setOpen(true)}>Создать новую новость</Button>
       <EditList
+        loadDeletedId={loadDeletedId}
         isLoading={isLoading}
         actions={actions}
         data={data?.map(({ id, title, shortDescription }) => ({
@@ -65,10 +58,11 @@ export const EditRules = () => {
         }))}
       />
       <EditWrapper
+        isLoading={updateLoading || createLoading}
         setOpen={setOpen}
         open={open}
         title={'Создание нового правила'}
-        submitAction={handleSubmit(handleSave)}
+        submitAction={handleSubmit(submitAction)}
         cancelAction={reset}>
         <div className="flex gap-2 flex-wrap items-end">
           <Input

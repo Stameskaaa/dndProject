@@ -15,10 +15,12 @@ export const EditList = ({
   data,
   actions,
   isLoading,
+  loadDeletedId,
 }: {
   data?: EditableItem[];
   actions: ActionsType;
   isLoading: boolean;
+  loadDeletedId: number | null;
 }) => {
   if (isLoading) {
     return <CubeLoader />;
@@ -35,18 +37,19 @@ export const EditList = ({
   return (
     <div className="flex flex-col gap-3">
       {data.map((data) => (
-        <EditItem key={data.id} actions={actions} {...data} />
+        <EditItem isLoading={data.id === loadDeletedId} key={data.id} actions={actions} {...data} />
       ))}
     </div>
   );
 };
 
 export const EditItem = ({
+  isLoading,
   title,
   description,
   actions,
   id,
-}: EditableItem & { actions: ActionsType }) => {
+}: EditableItem & { actions: ActionsType; isLoading: boolean }) => {
   return (
     <div className="flex justify-between gap-2 border-1 items-start border-brand-200 p-3 rounded-md">
       <div>
@@ -61,10 +64,10 @@ export const EditItem = ({
         </Text>
       </div>
       <div className="flex gap-2">
-        <Button onClick={() => actions('edit', id)}>
+        <Button disabled={isLoading} onClick={() => actions('edit', id)}>
           <Pencil />
         </Button>
-        <Button onClick={() => actions('delete', id)}>
+        <Button isLoading={isLoading} onClick={() => actions('delete', id)}>
           <X />
         </Button>
       </div>

@@ -6,6 +6,7 @@ import { Text } from '../../typography/Text';
 import { Button } from '@/components/ui/button';
 import { FormMessage } from '../formMessage/FormMessage';
 import { useElementWidth } from '@/hooks/useElementWidth';
+import { SelectorDropdownIndex } from '@/constants/zIndex';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 interface Option {
@@ -139,6 +140,7 @@ export const Selector: React.FC<SelectorProps> = ({
                 maxHeight: maxVisible * (itemHeight + gap) + paddingY + paddingTop,
                 overflowY: length > maxVisible ? 'auto' : 'visible',
                 width: elementWidth || defaultWidth,
+                zIndex: SelectorDropdownIndex,
               }}
               {...contentProps}>
               <Text color="text-muted" className="px-[18px] pt-2 select-none" size="sm">

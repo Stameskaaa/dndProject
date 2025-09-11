@@ -9,7 +9,7 @@ export const characteristicApi = createApi({
   endpoints: (builder) => ({
     getCharacteristicList: builder.query<Characteristic[], void>({
       query: (type) => ({
-        url: '/characteristic',
+        url: '/characteristics',
         method: 'GET',
         body: type,
         headers: {
@@ -20,22 +20,25 @@ export const characteristicApi = createApi({
     }),
     createCharacteristic: builder.mutation<Characteristic, Characteristic>({
       query: (data) => ({
-        url: '/characteristic',
+        url: '/characteristics',
         method: 'POST',
         body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }),
       invalidatesTags: ['characteristicList'],
     }),
     deleteCharacteristic: builder.mutation<Characteristic, Pick<Characteristic, 'id'>>({
       query: (data) => ({
-        url: `/characteristic/${data.id}`,
+        url: `/characteristics/${data.id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['characteristicList'],
     }),
     updateCharacteristic: builder.mutation<Characteristic, Partial<Characteristic>>({
       query: (data) => ({
-        url: `/characteristic/${data.id}`,
+        url: `/characteristics/${data.id}`,
         method: 'PATCH',
         body: data,
       }),

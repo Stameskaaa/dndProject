@@ -10,6 +10,7 @@ export const EditWrapper = ({
   cancelAction,
   children,
   setOpen,
+  isLoading,
   open,
 }: {
   open: boolean;
@@ -17,6 +18,7 @@ export const EditWrapper = ({
   title: string;
   submitAction: () => void;
   cancelAction: () => void;
+  isLoading: boolean;
   children: ReactNode;
 }) => {
   return (
@@ -31,10 +33,10 @@ export const EditWrapper = ({
         <Separator spacing="empty" />
         <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-4">{children}</div>
         <div className="flex gap-2 pt-2 justify-end">
-          <Button onClick={submitAction} variant="success">
+          <Button isLoading={isLoading} onClick={submitAction} variant="success">
             Сохранить
           </Button>
-          <Button onClick={cancelAction} variant="secondary">
+          <Button disabled={isLoading} onClick={cancelAction} variant="secondary">
             Отменить изменения
           </Button>
         </div>

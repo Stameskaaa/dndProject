@@ -19,4 +19,4 @@ export interface RuleTags {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
-export type RuleListProps = Pagination & Pick<Rule, 'type'>;
+export type RuleListProps = Pagination & Partial<Pick<Rule, 'type'>>;

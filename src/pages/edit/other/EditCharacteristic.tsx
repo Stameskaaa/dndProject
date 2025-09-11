@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   useCreateCharacteristicMutation,
@@ -8,40 +7,32 @@ import {
 } from '@/features/characteristic/api';
 import type { Characteristic } from '@/features/characteristic/types';
 import { EditList } from '../ui/EditItem';
-import { EditWrapper } from '../ui/EditContainer';
 import { Button } from '@/components/ui/button';
+import { EditWrapper } from '../ui/EditContainer';
+import { useEditableForm } from '../hooks/useEditableItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 
 export const EditCharacteristic = () => {
-  const [open, setOpen] = useState(false);
   const { data, isLoading } = useGetCharacteristicListQuery();
   const { control, getValues, reset } = useForm<Characteristic>({ shouldUnregister: true });
-  const [deleteCharacteristic] = useDeleteCharacteristicMutation();
-  const [create] = useCreateCharacteristicMutation();
-  const [update] = useUpdateCharacteristicMutation();
+  const [remove] = useDeleteCharacteristicMutation();
+  const [create, { isLoading: createLoading }] = useCreateCharacteristicMutation();
+  const [update, { isLoading: updateLoading }] = useUpdateCharacteristicMutation();
 
-  function submitAction() {
-    const payload = getValues();
-    if (payload.id) update(payload);
-    else create(payload);
-  }
-
-  function actions(type: 'delete' | 'edit', id: number) {
-    if (type === 'edit') {
-      setOpen(true);
-      const findedItem = data?.find((data) => data.id === id);
-      if (findedItem) {
-        reset(findedItem);
-      }
-    } else {
-      deleteCharacteristic({ id });
-    }
-  }
+  const { open, setOpen, actions, submitAction, loadDeletedId } = useEditableForm<Characteristic>({
+    reset,
+    getData: getValues,
+    create,
+    update,
+    remove,
+    data,
+  });
 
   return (
     <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 p-4 gap-3">
       <Button onClick={() => setOpen(true)}>Создать новую характестику</Button>
       <EditList
+        loadDeletedId={loadDeletedId}
         isLoading={isLoading}
         actions={actions}
         data={data?.map(({ id, name }) => ({
@@ -50,6 +41,7 @@ export const EditCharacteristic = () => {
         }))}
       />
       <EditWrapper
+        isLoading={createLoading || updateLoading}
         setOpen={setOpen}
         open={open}
         title={'Редактирование новости'}
