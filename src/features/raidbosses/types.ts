@@ -1,25 +1,30 @@
-import type { Characteristic } from '../types';
+import type { Location } from '../locations/types';
 
-export interface RaidBoss {
+type HostileType = 'monster' | 'raid_boss';
+
+export interface HostileCreatures {
   id: number;
   name: string;
   src: string;
-  status: string;
+  type: HostileType;
+
   short_description: string;
   md_description: string;
-  md_history: string;
-  md_fun_facts: string;
-  md_statblock: string;
+
+  status?: string;
+  md_history?: string;
+  md_fun_facts?: string;
+  md_statblock?: string;
 
   location_ids: number[];
-  location_data: { id: number; name: string }[];
+  location_data: Pick<Location, 'id' | 'name' | 'short_description' | 'src'>[];
 
   size_id: string;
   type_id: number;
   hp: string;
   speed: string;
 
-  characteristic_ids: { id: Characteristic['id']; value: string }[];
+  characteristic_ids: { id: string; value: string }[];
   saving_throws: string;
 
   skills: string;
@@ -33,6 +38,6 @@ export interface RaidBoss {
   senses: string;
   language: string;
 
-  challenge: number; // 0-50 включительно, дробное, если пусто → нет опасности
-  proficiency_bonus: number; // всегда + спереди, 0-20
+  challenge: number;
+  proficiency_bonus: number;
 }

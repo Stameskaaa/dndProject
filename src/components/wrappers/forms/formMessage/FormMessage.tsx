@@ -11,7 +11,7 @@ export const FormMessage: React.FC<FormMessageProps> = ({
   ...props
 }) => {
   return (
-    <Text {...props} color={type === 'default' ? 'text-secondary' : 'text-destructive'}>
+    <Text color={type === 'default' ? 'text-secondary' : 'text-destructive'} {...props}>
       {children}
     </Text>
   );

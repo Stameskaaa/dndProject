@@ -22,6 +22,7 @@ export const Text: React.FC<TypographyProps> = forwardRef<any, TypographyProps>(
       font = 'Nunito',
       className = '',
       maxCount,
+      ...props
     },
     ref,
   ) => {
@@ -37,7 +38,8 @@ export const Text: React.FC<TypographyProps> = forwardRef<any, TypographyProps>(
         style={{
           ...(maxCount ? { WebkitLineClamp: maxCount } : {}),
           ...style,
-        }}>
+        }}
+        {...props}>
         {children}
       </Tag>
     );

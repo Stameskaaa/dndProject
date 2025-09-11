@@ -4,7 +4,10 @@ export interface Country {
   name: string;
   short_description: string;
   md_description: string;
-  world_id: number;
+
   location_ids: number[];
+  location_data: { id: string; name: string }[];
+
+  world_id: number;
   world_data: { id: string; name: string };
 }

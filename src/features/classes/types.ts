@@ -2,17 +2,15 @@ export interface Class {
   id: string;
   src: string;
   name: string;
-
-  // TODO по сути хранить просто число
-  dice_hit: string;
-  saving_throws: string[];
+  diceHit: string;
+  savingThrowsIds: string[];
   skills: string;
-  weapon_skills: string;
-  tool_skills: string;
-  armor_id: string[];
-  start_equipment: string[];
+  weaponSkills: string;
+  toolSkills: string;
+  armorId: string[];
+  startEquipment: string[];
 
-  worlds_ids?: string[];
+  worldsIds?: string[];
   worlds_data?: { id: string; name: string }[];
 
   md_description: string;

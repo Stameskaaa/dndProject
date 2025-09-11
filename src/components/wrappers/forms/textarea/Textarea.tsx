@@ -40,7 +40,7 @@ export const Textarea: React.FC<TextareaProps> = ({
             {actions && <div className="flex flex-col gap-1 absolute right-0 p-2">{actions}</div>}
             <textarea
               {...props}
-              value={value}
+              value={value || ''}
               onChange={onChange}
               onBlur={onBlur}
               placeholder={placeholder}

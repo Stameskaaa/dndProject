@@ -1,13 +1,3 @@
-interface Country {
-  id: number;
-  name: string;
-}
-
-interface Location {
-  id: number;
-  name: string;
-}
-
 export interface NPC {
   id: number;
   name: string;
@@ -19,7 +9,7 @@ export interface NPC {
   md_history: string;
   md_fun_facts: string;
   country_ids: number[];
-  country_data: Country[];
+  country_data: { id: string; name: string }[];
   location_ids: number[];
-  location_data: Location[];
+  location_data: { id: string; name: string }[];
 }

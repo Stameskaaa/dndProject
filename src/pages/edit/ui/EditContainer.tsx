@@ -1,47 +1,44 @@
-import type { ReactNode } from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/wrappers/typography/Text';
+import { Separator } from '@/components/ui/separator';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
 
 export const EditWrapper = ({
   title,
-  saveAction,
+  submitAction,
   cancelAction,
   children,
-  modalContent,
-  modalTriggerText,
+  setOpen,
+  open,
 }: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
   title: string;
-  saveAction: () => void;
+  submitAction: () => void;
   cancelAction: () => void;
   children: ReactNode;
-  modalContent?: ReactNode;
-  modalTriggerText?: string;
 }) => {
   return (
-    <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 p-4">
-      <div className="flex gap-2 justify-between">
-        <Text size="2xl" color="brand-100">
-          {title}
+    <ModalWindow
+      contentClassname="w-[95%] h-[95%] max-h-[900px] block !max-w-[1600px] p-0"
+      setOpen={setOpen}
+      open={open}>
+      <div className="flex h-full max-h-full flex-col bg-brand-3 border-1 rounded-md border-brand-300 p-2">
+        <Text color="brand-100" className="p-2" size="xl">
+          {title || 'Изменение / Создание контента'}
         </Text>
-        <ModalWindow
-          contentClassname="w-[95%] h-[95%] max-h-[800px] !max-w-[800px]"
-          buttonTrigger={<Button>{modalTriggerText}</Button>}>
-          {modalContent || <div>Потом придумаю</div>}
-        </ModalWindow>
+        <Separator spacing="empty" />
+        <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-4">{children}</div>
+        <div className="flex gap-2 pt-2 justify-end">
+          <Button onClick={submitAction} variant="success">
+            Сохранить
+          </Button>
+          <Button onClick={cancelAction} variant="secondary">
+            Отменить изменения
+          </Button>
+        </div>
       </div>
-      <Separator spacing="equalSmall" />
-
-      <div className="flex flex-col gap-3">{children}</div>
-      <div className="flex gap-2 pt-2 justify-end">
-        <Button onClick={saveAction} variant="success">
-          Сохранить
-        </Button>
-        <Button onClick={cancelAction} variant="secondary">
-          Отменить изменения
-        </Button>
-      </div>
-    </div>
+    </ModalWindow>
   );
 };

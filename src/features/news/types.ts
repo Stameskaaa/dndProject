@@ -1,8 +1,8 @@
 export interface News {
   id: number;
-  created_date: string;
+  createdDate: string;
   title: string;
-  short_description: string;
-  md_description: string;
+  shortDescription: string;
+  mdDescription: string;
   src?: string;
 }

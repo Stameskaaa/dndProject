@@ -69,4 +69,5 @@ export type TypographyProps = {
   font?: Font;
   className?: string;
   maxCount?: number;
+  htmlFor?: string;
 };

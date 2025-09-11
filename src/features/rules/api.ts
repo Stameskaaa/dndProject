@@ -1,17 +1,20 @@
 import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { Rule } from './types';
+import type { Rule, RuleListProps } from './types';
 
 export const rulesApi = createApi({
   reducerPath: 'rulesApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ['ruleList'],
   endpoints: (builder) => ({
-    getRulesList: builder.query<Rule[], Pick<Rule, 'type'> | void>({
+    getRulesList: builder.query<Rule[], RuleListProps | void>({
       query: (type) => ({
         url: '/rules/search',
         method: 'POST',
         body: type,
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }),
       providesTags: ['ruleList'],
     }),
@@ -23,7 +26,27 @@ export const rulesApi = createApi({
       }),
       invalidatesTags: ['ruleList'],
     }),
+    deleteRule: builder.mutation<Rule, Pick<Rule, 'id'>>({
+      query: (data) => ({
+        url: `/rules/${data.id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['ruleList'],
+    }),
+    updateRule: builder.mutation<Rule, Partial<Rule>>({
+      query: (data) => ({
+        url: `/rules/${data.id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['ruleList'],
+    }),
   }),
 });
 
-export const { useGetRulesListQuery, useCreateRuleMutation } = rulesApi;
+export const {
+  useGetRulesListQuery,
+  useCreateRuleMutation,
+  useDeleteRuleMutation,
+  useUpdateRuleMutation,
+} = rulesApi;

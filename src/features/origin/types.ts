@@ -9,7 +9,6 @@ export interface Origin {
   start_equipment: string[];
   md_description: string;
 
-  // TODO массив для удобства, можно будет выбрать одну
   trait_id: string;
   trait_data: Trait;
 

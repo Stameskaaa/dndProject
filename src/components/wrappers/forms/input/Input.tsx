@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
+import { useId, useState } from 'react';
 import { Controller, type Control } from 'react-hook-form';
 import { Text } from '../../typography/Text';
 import { FormMessage } from '../formMessage/FormMessage';
@@ -30,10 +30,15 @@ export const Input = ({
   ...props
 }: FormInputProps) => {
   const [focus, setFocus] = useState(false);
+  const id = useId();
 
   return (
-    <label className={classNames(className, 'relative flex flex-col w-full gap-1')} style={style}>
-      {message && <FormMessage as="label">{message}</FormMessage>}
+    <div className={classNames(className, 'relative flex flex-col w-full gap-1')} style={style}>
+      {message && (
+        <FormMessage as="label" htmlFor={id}>
+          {message}
+        </FormMessage>
+      )}
 
       <Controller
         rules={{ required: errorMessage || required }}
@@ -49,6 +54,7 @@ export const Input = ({
             <>
               <UIInput
                 {...field}
+                value={field.value || ''}
                 onBlur={(e) => {
                   onBlur?.(e);
                   setFocus(false);
@@ -60,6 +66,7 @@ export const Input = ({
                 placeholder={message ? placeholder : undefined}
                 className={classNames(inputClassName, error && '!border-error ring-destructive/20')}
                 {...props}
+                id={id}
               />
 
               {!message && placeholder && (
@@ -85,6 +92,6 @@ export const Input = ({
           );
         }}
       />
-    </label>
+    </div>
   );
 };

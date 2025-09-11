@@ -1,8 +1,10 @@
+import type { Pagination } from '@/constants/pagination/types';
+
 export interface Rule {
-  id: string;
+  id: number;
   title: string;
-  short_description: string;
-  md_content: string;
+  shortDescription: string;
+  mdContent: string;
   type: RuleTypes;
   tags?: string[];
 }
@@ -14,3 +16,5 @@ export interface RuleTags {
   value: string;
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
+
+export type RuleListProps = Pagination & Pick<Rule, 'type'>;

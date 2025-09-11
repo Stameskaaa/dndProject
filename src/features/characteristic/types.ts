@@ -1,5 +1,4 @@
 export interface Characteristic {
-  id: string;
+  id: number;
   name: string;
-  value?: number;
 }
