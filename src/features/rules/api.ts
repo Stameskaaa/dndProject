@@ -12,9 +12,6 @@ export const rulesApi = createApi({
         url: '/rules/search',
         method: 'POST',
         body: type,
-        headers: {
-          'Content-Type': 'application/json',
-        },
       }),
       providesTags: ['ruleList'],
     }),

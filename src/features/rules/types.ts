@@ -1,4 +1,4 @@
-import type { Pagination } from '@/constants/pagination/types';
+import type { Pagination } from '../pagination/types';
 
 export interface Rule {
   id: number;

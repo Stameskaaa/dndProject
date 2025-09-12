@@ -1,26 +1,41 @@
+import { usePagination } from '@/hooks/usePagination';
 import { useState, useEffect } from 'react';
-import type { FieldValues, UseFormReset } from 'react-hook-form';
+import { useForm, type FieldValues, type UseFormReset } from 'react-hook-form';
+
+type MutationHook<T> = () => readonly [(arg: T) => ReturnType<any>, { isLoading: boolean }];
 
 interface UseEditableItemProps<T extends FieldValues> {
+  // TODO
+  queryHook: (args: any) => { data?: T[]; isLoading: boolean; isFetching?: boolean };
   reset?: UseFormReset<T>;
   getData?: () => T;
   create: (payload: T) => Promise<any>;
   update: (payload: T) => Promise<any>;
   remove: ({ id }: { id: number }) => Promise<any>;
-  data?: T[];
+  createHook: MutationHook<T>;
 }
 
 export function useEditableForm<T extends { id?: number | null } & FieldValues>({
+  queryHook,
   reset,
   getData,
   create,
   update,
   remove,
-  data,
+  createHook,
 }: UseEditableItemProps<T>) {
+  const { control, watch } = useForm<{ inputValue: string }>({ defaultValues: { inputValue: '' } });
   const [open, setOpen] = useState(false);
   const [loadDeletedId, setLoadDeletedId] = useState<number | null>(null);
   const [editableItem, setEditableItem] = useState<T | null>(null);
+  const inputValue = watch('inputValue');
+
+  const pagintaionData = usePagination();
+  const { data, isLoading } = queryHook({
+    page: pagintaionData.currentPage,
+    limit: pagintaionData.totalPages,
+    q: inputValue,
+  });
 
   useEffect(() => {
     if (!open) {
@@ -60,6 +75,8 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
   }
 
   return {
+    data,
+    isLoading,
     editableItem,
     setEditableItem,
     open,
@@ -68,5 +85,7 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
     submitAction,
     actions,
     loadDeletedId,
+    inputControl: control,
+    inputValue,
   };
 }

@@ -13,9 +13,6 @@ export const newsApi = createApi({
         url: '/news/search',
         method: 'POST',
         body: type,
-        headers: {
-          'Content-Type': 'application/json',
-        },
       }),
       providesTags: ['newsList'],
     }),

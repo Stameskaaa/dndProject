@@ -13,16 +13,45 @@ import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 import type { Monster } from '@/features/monsters/types';
 import { CharacteristicForm } from '../../ui/CharacteristicForm';
 import { Text } from '@/components/wrappers/typography/Text';
+import { EditList } from '../../ui/EditItem';
+import { useEditableForm } from '../../hooks/useEditableItem';
+import type { HostileCreatures } from '@/features/hostileCreatures/types';
 
 export const EditMonster = () => {
-  const { control, reset, handleSubmit } = useForm<Monster>();
+  const { control, handleSubmit, reset } = useForm<Monster>();
+  const { open, setOpen, actions, submitAction, loadDeletedId, inputControl } =
+    useEditableForm<HostileCreatures>({
+      reset,
+      getData: handleSave,
+      create,
+      update,
+      remove,
+      data,
+    });
+
+  <EditWrapper
+    modalTriggerText="Открыть список монстров"
+    title={'Настройка существа'}
+    saveAction={handleSubmit(() => {})}
+    cancelAction={reset}></EditWrapper>;
 
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список монстров"
-      title={'Настройка существа'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      inputControl={inputControl}
+      pagintaionData={pagintaionData}
+      open={open}
+      setOpen={setOpen}
+      loadDeletedId={loadDeletedId}
+      buttActionsLoading={updateLoading || createLoading}
+      isLoading={isLoading}
+      actions={actions}
+      submitAction={handleSubmit(submitAction)}
+      cancelAction={reset}
+      data={data?.data.map(({ id, title, shortDescription }) => ({
+        id,
+        title,
+        description: shortDescription,
+      }))}>
       <Input required placeholder="Тиамат" message="Имя существа" name="name" control={control} />
       <Input
         required
@@ -223,6 +252,6 @@ export const EditMonster = () => {
         message="Полное описание"
         name="md_description"
       />
-    </EditWrapper>
+    </EditList>
   );
 };

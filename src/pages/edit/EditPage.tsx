@@ -66,8 +66,8 @@ export const EditPage = () => {
   const { navigatePath } = useNavigatePath();
 
   return (
-    <Section fixedWidth screen className="p-6 space-y-8">
-      <div className="flex gap-4 items-start">
+    <Section fixedWidth screen className="p-6 space-y-8 h-[full]">
+      <div className="flex gap-4 h-full">
         <div className="w-[200px] border border-brand-300 bg-brand-500  flex flex-col rounded-md overflow-hidden">
           {categories.map(({ title, items }, i) => {
             return (

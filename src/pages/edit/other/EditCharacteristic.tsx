@@ -7,54 +7,52 @@ import {
 } from '@/features/characteristic/api';
 import type { Characteristic } from '@/features/characteristic/types';
 import { EditList } from '../ui/EditItem';
-import { Button } from '@/components/ui/button';
-import { EditWrapper } from '../ui/EditContainer';
+import { usePagination } from '@/hooks/usePagination';
 import { useEditableForm } from '../hooks/useEditableItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 
 export const EditCharacteristic = () => {
   const { data, isLoading } = useGetCharacteristicListQuery();
   const { control, getValues, reset } = useForm<Characteristic>({ shouldUnregister: true });
+  const pagintaionData = usePagination({ defaultLimit: 100 });
   const [remove] = useDeleteCharacteristicMutation();
   const [create, { isLoading: createLoading }] = useCreateCharacteristicMutation();
   const [update, { isLoading: updateLoading }] = useUpdateCharacteristicMutation();
 
-  const { open, setOpen, actions, submitAction, loadDeletedId } = useEditableForm<Characteristic>({
-    reset,
-    getData: getValues,
-    create,
-    update,
-    remove,
-    data,
-  });
+  const { open, setOpen, actions, submitAction, loadDeletedId, inputControl } =
+    useEditableForm<Characteristic>({
+      queryHook: useGetCharacteristicListQuery,
+      createHook: useCreateCharacteristicMutation,
+      reset,
+      getData: getValues,
+      create,
+      update,
+      remove,
+    });
 
   return (
-    <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 p-4 gap-3">
-      <Button onClick={() => setOpen(true)}>Создать новую характестику</Button>
-      <EditList
-        loadDeletedId={loadDeletedId}
-        isLoading={isLoading}
-        actions={actions}
-        data={data?.map(({ id, name }) => ({
-          id,
-          title: name,
-        }))}
+    <EditList
+      buttActionsLoading={createLoading || updateLoading}
+      pagintaionData={pagintaionData}
+      inputControl={inputControl}
+      submitAction={submitAction}
+      cancelAction={() => {}}
+      open={open}
+      setOpen={setOpen}
+      loadDeletedId={loadDeletedId}
+      isLoading={isLoading}
+      actions={actions}
+      data={data?.map(({ id, name }) => ({
+        id,
+        title: name,
+      }))}>
+      <Input
+        required
+        placeholder="Рассудок"
+        message="Название характеристики"
+        name="name"
+        control={control}
       />
-      <EditWrapper
-        isLoading={createLoading || updateLoading}
-        setOpen={setOpen}
-        open={open}
-        title={'Редактирование новости'}
-        submitAction={submitAction}
-        cancelAction={() => {}}>
-        <Input
-          required
-          placeholder="Рассудок"
-          message="Название характеристики"
-          name="name"
-          control={control}
-        />
-      </EditWrapper>
-    </div>
+    </EditList>
   );
 };

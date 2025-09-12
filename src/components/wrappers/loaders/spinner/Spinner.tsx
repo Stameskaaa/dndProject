@@ -1,5 +1,6 @@
 import { LoaderCircleIcon, LoaderIcon, LoaderPinwheelIcon, type LucideProps } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import classNames from 'classnames';
 type SpinnerVariantProps = Omit<SpinnerProps, 'variant'>;
 const Default = ({ className, ...props }: SpinnerVariantProps) => (
   <LoaderIcon className={cn('animate-spin', className)} {...props} />
@@ -209,7 +210,7 @@ export type SpinnerProps = LucideProps & {
     | 'bars'
     | 'infinite';
 };
-export const Spinner = ({ variant, ...props }: SpinnerProps) => {
+export const Spinner = ({ variant, className, ...props }: SpinnerProps) => {
   switch (variant) {
     case 'circle':
       return <Circle {...props} />;
@@ -226,6 +227,6 @@ export const Spinner = ({ variant, ...props }: SpinnerProps) => {
     case 'infinite':
       return <Infinite {...props} />;
     default:
-      return <Default {...props} />;
+      return <Default className={classNames(className, 'text-brand-200')} {...props} />;
   }
 };

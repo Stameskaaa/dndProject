@@ -12,9 +12,6 @@ export const characteristicApi = createApi({
         url: '/characteristics',
         method: 'GET',
         body: type,
-        headers: {
-          'Content-Type': 'application/json',
-        },
       }),
       providesTags: ['characteristicList'],
     }),
@@ -23,9 +20,6 @@ export const characteristicApi = createApi({
         url: '/characteristics',
         method: 'POST',
         body: data,
-        headers: {
-          'Content-Type': 'application/json',
-        },
       }),
       invalidatesTags: ['characteristicList'],
     }),
