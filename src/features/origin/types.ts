@@ -2,7 +2,7 @@ import type { Trait } from '../traits/types';
 import type { World } from '../worlds/types';
 
 export interface Origin {
-  id: string;
+  id: number;
   name: string;
   src: string;
   skills: string;
@@ -10,8 +10,8 @@ export interface Origin {
   startEquipment: string[];
   mdDescription: string;
 
-  traitId: string;
-  traits: Trait;
+  featureIds: string;
+  features: Trait;
 
   characteristicIds: string[];
 

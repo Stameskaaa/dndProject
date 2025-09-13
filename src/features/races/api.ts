@@ -1,18 +1,50 @@
+import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { GetList, ListQuery } from '../types';
 import type { Race } from './types';
-import { baseUrl } from '@/constants/api';
 
 export const racesApi = createApi({
   reducerPath: 'racesApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
+  tagTypes: ['racesList'],
   endpoints: (builder) => ({
-    getRaceList: builder.query<Race[], void>({
-      query: () => 'races',
+    getRaceList: builder.query<GetList<Race>, ListQuery | void>({
+      query: (data) => ({
+        url: '/races/search',
+        method: 'POST',
+        body: data,
+      }),
+      providesTags: ['racesList'],
     }),
-    getRaceById: builder.query<Race, { id: string }>({
-      query: ({ id }) => `races/${id}`,
+    createRace: builder.mutation<Race, Race>({
+      query: (data) => ({
+        url: '/races',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['racesList'],
+    }),
+    deleteRace: builder.mutation<Race, Pick<Race, 'id'>>({
+      query: (data) => ({
+        url: `/races/${data.id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['racesList'],
+    }),
+    updateRace: builder.mutation<Race, Partial<Race>>({
+      query: (data) => ({
+        url: `/races/${data.id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['racesList'],
     }),
   }),
 });
 
-export const { useGetRaceListQuery, useGetRaceByIdQuery } = racesApi;
+export const {
+  useGetRaceListQuery,
+  useCreateRaceMutation,
+  useUpdateRaceMutation,
+  useDeleteRaceMutation,
+} = racesApi;

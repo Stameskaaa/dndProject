@@ -1,18 +1,50 @@
+import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { GetList, ListQuery } from '../types';
 import type { Origin } from './types';
-import { baseUrl } from '@/constants/api';
 
 export const originsApi = createApi({
   reducerPath: 'originsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
+  tagTypes: ['originList'],
   endpoints: (builder) => ({
-    getOriginsList: builder.query<Origin[], void>({
-      query: () => 'origins',
+    getOriginList: builder.query<GetList<Origin>, ListQuery | void>({
+      query: (data) => ({
+        url: '/origins/search',
+        method: 'POST',
+        body: data,
+      }),
+      providesTags: ['originList'],
     }),
-    getOriginById: builder.query<Origin, { id: string }>({
-      query: ({ id }) => `origins/${id}`,
+    createOrigin: builder.mutation<Origin, Origin>({
+      query: (data) => ({
+        url: '/origins',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['originList'],
+    }),
+    deleteOrigin: builder.mutation<Origin, Pick<Origin, 'id'>>({
+      query: (data) => ({
+        url: `/origins/${data.id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['originList'],
+    }),
+    updateOrigin: builder.mutation<Origin, Partial<Origin>>({
+      query: (data) => ({
+        url: `/origins/${data.id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['originList'],
     }),
   }),
 });
 
-export const { useGetOriginsListQuery, useGetOriginByIdQuery } = originsApi;
+export const {
+  useGetOriginListQuery,
+  useCreateOriginMutation,
+  useUpdateOriginMutation,
+  useDeleteOriginMutation,
+} = originsApi;

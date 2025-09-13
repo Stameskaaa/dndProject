@@ -7,45 +7,27 @@ import {
 } from '@/features/characteristic/api';
 import type { Characteristic } from '@/features/characteristic/types';
 import { EditList } from '../ui/EditItem';
-import { usePagination } from '@/hooks/usePagination';
-import { useEditableForm } from '../hooks/useEditableItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 
 export const EditCharacteristic = () => {
-  const { data, isLoading } = useGetCharacteristicListQuery();
-  const { control, getValues, reset } = useForm<Characteristic>({ shouldUnregister: true });
-  const pagintaionData = usePagination({ defaultLimit: 100 });
-  const [remove] = useDeleteCharacteristicMutation();
-  const [create, { isLoading: createLoading }] = useCreateCharacteristicMutation();
-  const [update, { isLoading: updateLoading }] = useUpdateCharacteristicMutation();
-
-  const { open, setOpen, actions, submitAction, loadDeletedId, inputControl } =
-    useEditableForm<Characteristic>({
-      queryHook: useGetCharacteristicListQuery,
-      createHook: useCreateCharacteristicMutation,
-      reset,
-      getData: getValues,
-      create,
-      update,
-      remove,
-    });
+  const { control, getValues, reset, handleSubmit } = useForm<Characteristic>({
+    shouldUnregister: true,
+  });
 
   return (
-    <EditList
-      buttActionsLoading={createLoading || updateLoading}
-      pagintaionData={pagintaionData}
-      inputControl={inputControl}
-      submitAction={submitAction}
-      cancelAction={() => {}}
-      open={open}
-      setOpen={setOpen}
-      loadDeletedId={loadDeletedId}
-      isLoading={isLoading}
-      actions={actions}
-      data={data?.map(({ id, name }) => ({
-        id,
-        title: name,
-      }))}>
+    <EditList<Characteristic>
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetCharacteristicListQuery}
+      createHook={useCreateCharacteristicMutation}
+      updateHook={useUpdateCharacteristicMutation}
+      removeHook={useDeleteCharacteristicMutation}
+      mapData={(data: Characteristic[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name }) => ({ id, title: name }));
+      }}
+      cancelAction={() => {}}>
       <Input
         required
         placeholder="Рассудок"

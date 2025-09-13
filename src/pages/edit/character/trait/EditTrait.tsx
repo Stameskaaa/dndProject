@@ -1,19 +1,37 @@
 import { useForm } from 'react-hook-form';
+import {
+  useCreateTraitMutation,
+  useDeleteTraitMutation,
+  useGetTraitListQuery,
+  useUpdateTraitMutation,
+} from '@/features/traits/api';
+import type { Trait } from '@/features/traits/types';
 import { trait_types } from '@/mock/mock';
-import { EditWrapper } from '../../ui/EditContainer';
+import { EditList } from '../../ui/EditItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditTrait = () => {
-  const { control, reset, handleSubmit } = useForm();
+  const { control, reset, getValues, handleSubmit } = useForm<Trait>();
 
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список черт"
-      title={'Настройка черты'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      reset={reset}
+      handleSubmit={handleSubmit}
+      getValues={getValues}
+      queryHook={useGetTraitListQuery}
+      createHook={useCreateTraitMutation}
+      updateHook={useUpdateTraitMutation}
+      removeHook={useDeleteTraitMutation}
+      cancelAction={reset}
+      mapData={(data: Trait[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name }) => ({
+          id,
+          title: name,
+        }));
+      }}>
       <div className="flex gap-2 items-start">
         <Input
           className="flex-1"
@@ -61,6 +79,6 @@ export const EditTrait = () => {
         message="Описание умения"
         name="md_description"
       />
-    </EditWrapper>
+    </EditList>
   );
 };

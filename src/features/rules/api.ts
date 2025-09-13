@@ -1,17 +1,18 @@
 import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { Rule, RuleListProps } from './types';
+import type { GetList } from '../types';
 
 export const rulesApi = createApi({
   reducerPath: 'rulesApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ['ruleList'],
   endpoints: (builder) => ({
-    getRulesList: builder.query<Rule[], RuleListProps | void>({
-      query: (type) => ({
+    getRulesList: builder.query<GetList<Rule>, RuleListProps | void>({
+      query: (data) => ({
         url: '/rules/search',
         method: 'POST',
-        body: type,
+        body: data,
       }),
       providesTags: ['ruleList'],
     }),

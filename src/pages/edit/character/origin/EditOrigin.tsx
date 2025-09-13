@@ -1,20 +1,38 @@
 import { useForm } from 'react-hook-form';
+import {
+  useCreateOriginMutation,
+  useDeleteOriginMutation,
+  useGetOriginListQuery,
+  useUpdateOriginMutation,
+} from '@/features/origin/api';
+import type { Origin } from '@/features/origin/types';
 import { ruleOptions } from '@/features/rules/constant';
 import { characteristic } from '@/mock/mock';
-import { EditWrapper } from '../../ui/EditContainer';
+import { EditList } from '../../ui/EditItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
-import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
+import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditOrigin = () => {
-  const { control, reset, handleSubmit } = useForm();
+  const { control, reset, handleSubmit, getValues } = useForm<Origin>();
 
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список происхождений"
-      title={'Настройка происхождений'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetOriginListQuery}
+      createHook={useCreateOriginMutation}
+      updateHook={useUpdateOriginMutation}
+      removeHook={useDeleteOriginMutation}
+      cancelAction={reset}
+      mapData={(data: Origin[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name }) => ({
+          id,
+          title: name,
+        }));
+      }}>
       <Input
         className="w-auto flex-1 min-w-[260px]"
         required
@@ -44,7 +62,6 @@ export const EditOrigin = () => {
           options={characteristic.map(({ id, name }) => ({ id, value: name }))}
         />
       </div>
-
       <Selector
         placeholder="Ловкость"
         message="Выберите характеристики"
@@ -55,7 +72,6 @@ export const EditOrigin = () => {
         name={'characteristic_ids'}
         options={characteristic.map(({ id, name }) => ({ id, value: name }))}
       />
-
       <div className="flex gap-2">
         <Input
           className="flex-1"
@@ -83,7 +99,6 @@ export const EditOrigin = () => {
         name="trait_ids"
         options={ruleOptions}
       />
-
       <div className="flex gap-2">
         <Input
           className="w-auto flex-1 min-w-[260px]"
@@ -102,7 +117,6 @@ export const EditOrigin = () => {
           control={control}
         />
       </div>
-
       <TextareaMD
         hasMd
         required
@@ -110,6 +124,6 @@ export const EditOrigin = () => {
         message="Корни происхождения, история и любые примечания"
         name="md_description"
       />
-    </EditWrapper>
+    </EditList>
   );
 };

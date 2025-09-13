@@ -1,18 +1,18 @@
 import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { News } from './types';
-import type { Pagination } from '@/constants/pagination/types';
+import type { GetList, ListQuery } from '../types';
 
 export const newsApi = createApi({
   reducerPath: 'newsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ['newsList'],
   endpoints: (builder) => ({
-    getNewsList: builder.query<News[], Pagination | void>({
-      query: (type) => ({
+    getNewsList: builder.query<GetList<News>, ListQuery | void>({
+      query: (data) => ({
         url: '/news/search',
         method: 'POST',
-        body: type,
+        body: data,
       }),
       providesTags: ['newsList'],
     }),
@@ -43,8 +43,8 @@ export const newsApi = createApi({
 });
 
 export const {
-  useCreateNewsMutation,
   useGetNewsListQuery,
+  useCreateNewsMutation,
   useUpdateNewsMutation,
   useDeleteNewsMutation,
 } = newsApi;

@@ -6,7 +6,7 @@ export interface PaginatedResponse<T> {
   };
   data: T[];
 }
-
+// TODO уже не надо
 export type Pagination =
   | Partial<{
       limit: number;

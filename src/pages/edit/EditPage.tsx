@@ -10,7 +10,6 @@ import {
   Map,
   UserCircle,
   Bug,
-  Crown,
   Globe,
   Star,
   BarChart3,
@@ -46,8 +45,7 @@ const categories = [
       { name: 'Миры', path: 'world', icon: Globe },
       { name: 'Локации', path: 'location', icon: Map },
       { name: 'Личности (NPC)', path: 'npc', icon: UserCircle },
-      { name: 'Монстры', path: 'monster', icon: Bug },
-      { name: 'Рейдбоссы', path: 'raidboss', icon: Crown },
+      { name: 'Враждебные существа', path: 'hostile-creatures', icon: Bug },
       { name: 'Страны', path: 'country', icon: Castle },
       { name: 'Божества', path: 'god', icon: Star },
     ],
@@ -67,8 +65,8 @@ export const EditPage = () => {
 
   return (
     <Section fixedWidth screen className="p-6 space-y-8 h-[full]">
-      <div className="flex gap-4 h-full">
-        <div className="w-[200px] border border-brand-300 bg-brand-500  flex flex-col rounded-md overflow-hidden">
+      <div className="flex gap-4 items-start h-[1020px] max-h-[calc(100vh-124px)] min-h-[600px]">
+        <div className="w-[200px] border border-brand-300 h-full bg-brand-500  flex flex-col rounded-md overflow-x-hidden overflow-y-auto">
           {categories.map(({ title, items }, i) => {
             return (
               <div key={title}>
@@ -103,7 +101,7 @@ export const EditPage = () => {
         </div>
         <AnimatePresence mode="wait" key={location.pathname}>
           <motion.div
-            className="flex-1"
+            className="flex-1 h-full min-h-0"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}>

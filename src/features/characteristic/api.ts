@@ -1,17 +1,18 @@
 import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { Characteristic } from './types';
+import type { GetList, ListQuery } from '../types';
 
 export const characteristicApi = createApi({
   reducerPath: 'characteristicApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ['characteristicList'],
   endpoints: (builder) => ({
-    getCharacteristicList: builder.query<Characteristic[], void>({
-      query: (type) => ({
+    getCharacteristicList: builder.query<GetList<Characteristic>, ListQuery | void>({
+      query: (data) => ({
         url: '/characteristics',
-        method: 'GET',
-        body: type,
+        method: 'POST',
+        body: data,
       }),
       providesTags: ['characteristicList'],
     }),

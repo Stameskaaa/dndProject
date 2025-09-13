@@ -4,11 +4,9 @@ import { cn } from '@/lib/utils';
 import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { DescriptionList } from '@/components/wrappers/typography/DescriptionList';
 import { Heart, Footprints, Shield, Swords, Scale } from 'lucide-react';
-import type { Monster } from '@/features/monsters/types';
-import { mockMonsters } from '@/features/monsters/mock';
 
 export const BestiaryPage = () => {
-  const getMonsterStats = (monster: Monster) => {
+  const getMonsterStats = (monster: any) => {
     return [
       {
         title: 'ХП',
@@ -42,7 +40,7 @@ export const BestiaryPage = () => {
     ] satisfies { title: React.ReactNode; value: React.ReactNode; icon?: any }[];
   };
 
-  const monster = mockMonsters[0];
+  const monster = {};
 
   return (
     <Section paddingY="medium" fixedWidth screen className="flex flex-col">
@@ -50,10 +48,10 @@ export const BestiaryPage = () => {
         Бестиарий
       </Text>
 
-      <div className="flex flex-col gap-3">
+      {/* <div className="flex flex-col gap-3">
         {Array.from({ length: 20 }).map(() => (
           <div
-            key={monster.id}
+            key={monster?.id}
             className={cn(
               'relative overflow-hidden rounded-2xl shadow-lg',
               'bg-gradient-to-br from-brand-400/80 to-brand-600/60',
@@ -71,7 +69,6 @@ export const BestiaryPage = () => {
               />
             </div>
 
-            {/* Справа — картинка */}
             <div className="relative w-72 flex-shrink-0">
               <img src={monster.src} alt={monster.name} className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
@@ -103,7 +100,7 @@ export const BestiaryPage = () => {
             <MarkDownText>{monster.md_content}</MarkDownText>
           </div>
         ))}
-      </div>
+      </div> */}
     </Section>
   );
 };

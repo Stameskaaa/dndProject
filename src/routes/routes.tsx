@@ -36,11 +36,10 @@ import { EditLocation } from '@/pages/edit/universe/location/EditLocation';
 import { EditCountry } from '@/pages/edit/universe/country/EditCountry';
 import { EditGods } from '@/pages/edit/universe/gods/EditGods';
 import { EditNPC } from '@/pages/edit/universe/npc/EditNPC';
-import { EditMonster } from '@/pages/edit/universe/monsters/EditMonster';
-import { EditRaidBoss } from '@/pages/edit/universe/raidboss/EditRaidboss';
 import { EditCharacteristic } from '@/pages/edit/other/EditCharacteristic';
 import { EditSubclass } from '@/pages/edit/other/EditSubclass';
 import { EditWorld } from '@/pages/edit/universe/world/EditWorld';
+import { EditHostileCreatures } from '@/pages/edit/universe/hostileCreatures/EditHostileCreatures';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -249,16 +248,10 @@ export const ROUTES: RouteNode[] = [
                 element: <EditNPC />,
               },
               {
-                title: 'Монстры',
-                path: 'monster',
-                fullPath: '/edit/monster',
-                element: <EditMonster />,
-              },
-              {
-                title: 'Рейдбоссы',
-                path: 'raidboss',
-                fullPath: '/edit/raidboss',
-                element: <EditRaidBoss />,
+                title: 'Враждебные существа',
+                path: 'hostile-creatures',
+                fullPath: '/edit/hostile-creatures',
+                element: <EditHostileCreatures />,
               },
               {
                 title: 'Характеристики',

@@ -1,28 +1,29 @@
-import { usePagination } from '@/hooks/usePagination';
 import { useState, useEffect } from 'react';
 import { useForm, type FieldValues, type UseFormReset } from 'react-hook-form';
+import { usePagination } from '@/hooks/usePagination';
+import type { GetList } from '@/features/types';
 
 type MutationHook<T> = () => readonly [(arg: T) => ReturnType<any>, { isLoading: boolean }];
 
-interface UseEditableItemProps<T extends FieldValues> {
+export interface UseEditableItemProps<T extends FieldValues> {
   // TODO
-  queryHook: (args: any) => { data?: T[]; isLoading: boolean; isFetching?: boolean };
+  handleSubmit: any;
+  queryHook: (args: any) => { data?: GetList<T>; isLoading: boolean; isFetching?: boolean };
   reset?: UseFormReset<T>;
-  getData?: () => T;
-  create: (payload: T) => Promise<any>;
-  update: (payload: T) => Promise<any>;
-  remove: ({ id }: { id: number }) => Promise<any>;
+  getValues?: () => T;
   createHook: MutationHook<T>;
+  updateHook: MutationHook<T>;
+  removeHook: MutationHook<{ id: number }>;
 }
 
 export function useEditableForm<T extends { id?: number | null } & FieldValues>({
   queryHook,
   reset,
-  getData,
-  create,
-  update,
-  remove,
+  getValues,
   createHook,
+  removeHook,
+  updateHook,
+  handleSubmit,
 }: UseEditableItemProps<T>) {
   const { control, watch } = useForm<{ inputValue: string }>({ defaultValues: { inputValue: '' } });
   const [open, setOpen] = useState(false);
@@ -30,11 +31,15 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
   const [editableItem, setEditableItem] = useState<T | null>(null);
   const inputValue = watch('inputValue');
 
+  const [remove] = removeHook();
+  const [create, { isLoading: createLoading }] = createHook();
+  const [update, { isLoading: updateLoading }] = updateHook();
+
   const pagintaionData = usePagination();
-  const { data, isLoading } = queryHook({
+  const { data, isLoading, isFetching } = queryHook({
     page: pagintaionData.currentPage,
-    limit: pagintaionData.totalPages,
-    q: inputValue,
+    limit: pagintaionData.limit,
+    query: inputValue,
   });
 
   useEffect(() => {
@@ -51,7 +56,7 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
   }
 
   async function submitAction() {
-    const payload = getData?.();
+    const payload = getValues?.();
     if (!payload) return;
     if (editableItem) {
       await update({ ...editableItem, ...payload });
@@ -63,7 +68,7 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
 
   async function actions(type: 'delete' | 'edit', id: number) {
     if (type === 'edit') {
-      const found = data?.find((d) => d.id === id);
+      const found = data?.data?.find((d) => d.id === id);
       if (found) {
         setEditItem(found);
       }
@@ -76,12 +81,17 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
 
   return {
     data,
+    pagintaionData,
     isLoading,
+    isFetching,
+    editLoading: createLoading || updateLoading,
     editableItem,
     setEditableItem,
     open,
     setOpen,
     setEditItem,
+    // TODO ВАЛИДАЦИЯ
+    // submitAction: handleSubmit(submitAction),
     submitAction,
     actions,
     loadDeletedId,

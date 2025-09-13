@@ -1,18 +1,50 @@
+import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { baseUrl } from '@/constants/api';
 import type { Trait } from './types';
+import type { GetList, ListQuery } from '../types';
 
 export const traitsApi = createApi({
-  reducerPath: 'traitsApi',
+  reducerPath: 'traitApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
+  tagTypes: ['traitList'],
   endpoints: (builder) => ({
-    getTraitsList: builder.query<Trait[], void>({
-      query: () => 'traits',
+    getTraitList: builder.query<GetList<Trait>, ListQuery | void>({
+      query: (data) => ({
+        url: '/features/search',
+        method: 'POST',
+        body: data,
+      }),
+      providesTags: ['traitList'],
     }),
-    getTraitsById: builder.query<Trait, { id: string }>({
-      query: ({ id }) => `traits/${id}`,
+    createTrait: builder.mutation<Trait, Trait>({
+      query: (data) => ({
+        url: '/features',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['traitList'],
+    }),
+    deleteTrait: builder.mutation<Trait, Pick<Trait, 'id'>>({
+      query: (data) => ({
+        url: `/features/${data.id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['traitList'],
+    }),
+    updateTrait: builder.mutation<Trait, Partial<Trait>>({
+      query: (data) => ({
+        url: `/features/${data.id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['traitList'],
     }),
   }),
 });
 
-export const { useGetTraitsListQuery, useGetTraitsByIdQuery } = traitsApi;
+export const {
+  useGetTraitListQuery,
+  useCreateTraitMutation,
+  useDeleteTraitMutation,
+  useUpdateTraitMutation,
+} = traitsApi;

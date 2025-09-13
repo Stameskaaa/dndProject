@@ -8,60 +8,51 @@ import {
 import type { Rule } from '@/features/rules/types';
 import { allTags, ruleOptions } from '@/features/rules/constant';
 import { EditList } from '../../ui/EditItem';
-import { useEditableForm } from '../../hooks/useEditableItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditRules = () => {
-  const { control, watch, resetField, handleSubmit, getValues, reset } = useForm<Rule>({
+  const {
+    control,
+    watch,
+    resetField,
+    getValues: getFormData,
+    reset,
+    handleSubmit,
+  } = useForm<Rule>({
     defaultValues: {
       type: 'dnd',
     },
   });
 
-  const [update, { isLoading: updateLoading }] = useUpdateRuleMutation();
-  const [create, { isLoading: createLoading }] = useCreateRuleMutation();
-  const [remove] = useDeleteRuleMutation();
-
   const selectedTag = watch('type');
   const tagList = allTags?.[selectedTag];
 
   function handleSave() {
-    const { tags, ...rest } = getValues();
+    const { tags, ...rest } = getFormData();
     const newTags = Array.isArray(tags) ? tags : [tags || 'other'];
     return { ...rest, tags: newTags };
   }
 
-  const { open, setOpen, actions, submitAction, loadDeletedId, inputControl, data } =
-    useEditableForm<Rule>({
-      queryHook: useGetRulesListQuery,
-      reset,
-      getData: handleSave,
-      create,
-      update,
-      remove,
-    });
-
-  console.log(data);
-
   return (
     <EditList
-      inputControl={inputControl}
-      pagintaionData={pagintaionData}
-      open={open}
-      setOpen={setOpen}
-      loadDeletedId={loadDeletedId}
-      buttActionsLoading={updateLoading || createLoading}
-      isLoading={isLoading}
-      actions={actions}
-      submitAction={handleSubmit(submitAction)}
-      cancelAction={reset}
-      data={data?.data.map(({ id, title, shortDescription }) => ({
-        id,
-        title,
-        description: shortDescription,
-      }))}>
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={handleSave}
+      queryHook={useGetRulesListQuery}
+      createHook={useCreateRuleMutation}
+      updateHook={useUpdateRuleMutation}
+      removeHook={useDeleteRuleMutation}
+      mapData={(data: Rule[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, title, shortDescription }) => ({
+          id,
+          title,
+          description: shortDescription,
+        }));
+      }}
+      cancelAction={() => {}}>
       <div className="flex gap-2 flex-wrap items-end">
         <Input
           className="w-auto flex-1 min-w-[260px]"

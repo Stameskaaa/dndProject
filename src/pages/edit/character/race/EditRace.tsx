@@ -1,14 +1,20 @@
 import { useForm } from 'react-hook-form';
 import type { Race } from '@/features/races/types';
+import { EditList } from '../../ui/EditItem';
 import { creature_sizes, creature_types, trait_types } from '@/mock/mock';
-import { EditWrapper } from '../../ui/EditContainer';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
+import {
+  useCreateRaceMutation,
+  useDeleteRaceMutation,
+  useGetRaceListQuery,
+  useUpdateRaceMutation,
+} from '@/features/races/api';
 
 export const EditRace = () => {
-  const { control, reset, handleSubmit } = useForm<Race>({
+  const { control, reset, handleSubmit, getValues } = useForm<Race>({
     defaultValues: {
       features: {
         type: 'Humanoid',
@@ -18,11 +24,19 @@ export const EditRace = () => {
   });
 
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список видов (рас)"
-      title={'Настройка вида (расы)'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList<Race>
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetRaceListQuery}
+      createHook={useCreateRaceMutation}
+      updateHook={useUpdateRaceMutation}
+      removeHook={useDeleteRaceMutation}
+      mapData={(data: Race[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name }) => ({ id, title: name }));
+      }}
+      cancelAction={() => {}}>
       <Input
         required
         placeholder="Эльф"
@@ -97,6 +111,6 @@ export const EditRace = () => {
           name="features.md_content"
         />
       </div>
-    </EditWrapper>
+    </EditList>
   );
 };

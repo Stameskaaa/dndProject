@@ -1,7 +1,7 @@
 import type { World } from '../worlds/types';
 
 export interface Trait {
-  id: string;
+  id: number;
   name: string;
   traitTypeId: string;
   requirements: string;

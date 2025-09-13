@@ -10,48 +10,19 @@ import { EditWrapper } from '../../ui/EditContainer';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
-import type { Monster } from '@/features/monsters/types';
-import { CharacteristicForm } from '../../ui/CharacteristicForm';
 import { Text } from '@/components/wrappers/typography/Text';
-import { EditList } from '../../ui/EditItem';
-import { useEditableForm } from '../../hooks/useEditableItem';
+import { CharacteristicForm } from '../../ui/CharacteristicForm';
 import type { HostileCreatures } from '@/features/hostileCreatures/types';
 
-export const EditMonster = () => {
-  const { control, handleSubmit, reset } = useForm<Monster>();
-  const { open, setOpen, actions, submitAction, loadDeletedId, inputControl } =
-    useEditableForm<HostileCreatures>({
-      reset,
-      getData: handleSave,
-      create,
-      update,
-      remove,
-      data,
-    });
-
-  <EditWrapper
-    modalTriggerText="Открыть список монстров"
-    title={'Настройка существа'}
-    saveAction={handleSubmit(() => {})}
-    cancelAction={reset}></EditWrapper>;
+export const EditHostileCreatures = () => {
+  const { control, reset, handleSubmit } = useForm<HostileCreatures>();
 
   return (
-    <EditList
-      inputControl={inputControl}
-      pagintaionData={pagintaionData}
-      open={open}
-      setOpen={setOpen}
-      loadDeletedId={loadDeletedId}
-      buttActionsLoading={updateLoading || createLoading}
-      isLoading={isLoading}
-      actions={actions}
-      submitAction={handleSubmit(submitAction)}
-      cancelAction={reset}
-      data={data?.data.map(({ id, title, shortDescription }) => ({
-        id,
-        title,
-        description: shortDescription,
-      }))}>
+    <EditWrapper
+      modalTriggerText="Открыть список рейдбоссов"
+      title={'Настройка рейдбоссов'}
+      saveAction={handleSubmit(() => {})}
+      cancelAction={reset}>
       <Input required placeholder="Тиамат" message="Имя существа" name="name" control={control} />
       <Input
         required
@@ -249,9 +220,20 @@ export const EditMonster = () => {
         hasMd
         required
         control={control}
-        message="Полное описание"
+        message="Описание статблока"
+        name="md_statblock"
+      />
+
+      <TextareaMD hasMd required control={control} message="Фан факты" name="md_fun_facts" />
+      <TextareaMD hasMd required control={control} message="История" name="md_history" />
+
+      <TextareaMD
+        hasMd
+        required
+        control={control}
+        message="Описание существа"
         name="md_description"
       />
-    </EditList>
+    </EditWrapper>
   );
 };

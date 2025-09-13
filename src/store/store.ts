@@ -9,6 +9,7 @@ import { spellsApi } from '@/features/spells/api';
 import { traitsApi } from '@/features/traits/api';
 import { newsApi } from '@/features/news/api';
 import { characteristicApi } from '@/features/characteristic/api';
+import { godApi } from '@/features/gods/api';
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     [rulesApi.reducerPath]: rulesApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [characteristicApi.reducerPath]: characteristicApi.reducer,
+    [godApi.reducerPath]: godApi.reducer,
     scrollLock: scrollLockReducer,
     pageTransition: pageTransitionReducer,
   },
@@ -32,7 +34,8 @@ export const store = configureStore({
       .concat(traitsApi.middleware)
       .concat(rulesApi.middleware)
       .concat(newsApi.middleware)
-      .concat(characteristicApi.middleware),
+      .concat(characteristicApi.middleware)
+      .concat(godApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

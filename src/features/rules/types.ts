@@ -1,4 +1,4 @@
-import type { Pagination } from '../pagination/types';
+import type { ListQuery } from '../types';
 
 export interface Rule {
   id: number;
@@ -19,4 +19,4 @@ export interface RuleTags {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
-export type RuleListProps = Pagination & Partial<Pick<Rule, 'type'>>;
+export type RuleListProps = ListQuery & Partial<Pick<Rule, 'type'>>;

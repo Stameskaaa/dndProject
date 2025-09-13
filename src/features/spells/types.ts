@@ -1,7 +1,7 @@
 import type { Class } from '../classes/types';
 
 export interface Spell {
-  id: string;
+  id: number;
   name: string;
   level: number;
   schoolId: string;

@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import {
   Pagination as PaginationRoot,
   PaginationContent,
@@ -8,21 +9,24 @@ import {
   PaginationPrevious,
   PaginationEllipsis,
 } from '@/components/ui/pagination';
-import classNames from 'classnames';
 
 interface PaginationProps {
   currentPage: number;
-  totalPages: number;
+  total: number;
+  limit: number;
   onPageChange: (page: number) => void;
   className?: string;
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
   currentPage,
-  totalPages,
+  total,
+  limit,
   onPageChange,
   className,
 }) => {
+  const totalPages = Math.max(1, Math.ceil(total / limit));
+
   const generatePages = () => {
     const pages: (number | 'ellipsis')[] = [];
 

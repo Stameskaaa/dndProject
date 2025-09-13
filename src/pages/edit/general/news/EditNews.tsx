@@ -7,46 +7,30 @@ import {
 } from '@/features/news/api';
 import type { News } from '@/features/news/types';
 import { EditList } from '../../ui/EditItem';
-import { usePagination } from '@/hooks/usePagination';
-import { useEditableForm } from '../../hooks/useEditableItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditNews = () => {
-  const pagintaionData = usePagination();
-  const { control, getValues, reset } = useForm<News>({ shouldUnregister: true });
-  const [remove] = useDeleteNewsMutation();
-  const [update, { isLoading: updateLoading }] = useUpdateNewsMutation();
-  const [create, { isLoading: createLoading }] = useCreateNewsMutation();
-
-  const { data, isLoading } = useGetNewsListQuery();
-  const { open, setOpen, actions, submitAction, loadDeletedId, inputControl } =
-    useEditableForm<News>({
-      reset,
-      getData: getValues,
-      create,
-      update,
-      remove,
-      data,
-    });
+  const { control, getValues, reset, handleSubmit } = useForm<News>({ shouldUnregister: true });
 
   return (
     <EditList
-      inputControl={inputControl}
-      pagintaionData={pagintaionData}
-      open={open}
-      buttActionsLoading={updateLoading || createLoading}
-      setOpen={setOpen}
-      loadDeletedId={loadDeletedId}
-      isLoading={isLoading}
-      actions={actions}
-      submitAction={submitAction}
+      reset={reset}
+      handleSubmit={handleSubmit}
+      getValues={getValues}
+      queryHook={useGetNewsListQuery}
+      createHook={useCreateNewsMutation}
+      updateHook={useUpdateNewsMutation}
+      removeHook={useDeleteNewsMutation}
       cancelAction={reset}
-      data={data?.map(({ id, title, shortDescription }) => ({
-        id,
-        title,
-        description: shortDescription,
-      }))}>
+      mapData={(data: News[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, title, shortDescription }) => ({
+          id,
+          title,
+          description: shortDescription,
+        }));
+      }}>
       <Input
         message="Название новости"
         placeholder="Украли кубики"

@@ -7,7 +7,7 @@ interface UsePaginationProps {
 
 export interface PaginateHookReturn {
   currentPage: number;
-  totalPages: number;
+  limit: number;
   onPageChange: (page: number) => void;
 }
 
@@ -16,7 +16,7 @@ export function usePagination({
   defaultPage = 1,
 }: UsePaginationProps = {}): PaginateHookReturn {
   const [currentPage, setPage] = useState(defaultPage);
-  const [totalPages] = useState(defaultLimit);
+  const [limit] = useState(defaultLimit);
 
   const onPageChange = useCallback((newPage: number) => {
     setPage(newPage);
@@ -24,7 +24,7 @@ export function usePagination({
 
   return {
     currentPage,
-    totalPages,
+    limit,
     onPageChange,
   };
 }

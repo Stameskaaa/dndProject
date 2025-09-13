@@ -1,14 +1,14 @@
 import { type ReactNode } from 'react';
 import { Pencil, X } from 'lucide-react';
-import type { Control } from 'react-hook-form';
-import type { PaginateHookReturn } from '@/hooks/usePagination';
+import type { FieldValues } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Text } from '@/components/wrappers/typography/Text';
+import { Input } from '@/components/wrappers/forms/input/Input';
 import { Spinner } from '@/components/wrappers/loaders/spinner/Spinner';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
+import { useEditableForm, type UseEditableItemProps } from '../hooks/useEditableItem';
 import { Pagination } from '@/components/wrappers/navigation/pagination/Pagination';
-import { Input } from '@/components/wrappers/forms/input/Input';
 
 interface EditableItem {
   id: number;
@@ -16,47 +16,52 @@ interface EditableItem {
   description?: string;
 }
 
-type ActionsType = (type: 'edit' | 'delete', id: number) => void;
-
-export const EditList = ({
-  data,
-  meta,
-  actions,
-  setOpen,
-  open,
-  isLoading,
-  loadDeletedId,
-  buttActionsLoading,
-  pagintaionData,
-  children,
-  submitAction,
-  inputControl,
-  cancelAction,
-}: {
-  data?: EditableItem[];
-  meta?: { total: number; limit: number };
-  actions: ActionsType;
-  open: boolean;
-  setOpen: (data: boolean) => void;
-  isLoading: boolean;
-  buttActionsLoading: boolean;
-  inputControl: Control<any>;
-  loadDeletedId: number | null;
-  pagintaionData: PaginateHookReturn;
+interface EditListProps<T extends { id?: number | null } & FieldValues>
+  extends UseEditableItemProps<T> {
   children: ReactNode;
-  submitAction: () => void;
   cancelAction: () => void;
-}) => {
-  //   useEffect(() => {
-  //   if (data?.totalPages) {
-  //     pagintaionData.setTotalPages(data.totalPages);
-  //   }
-  // }, [data?.totalPages]);
+  mapData: (data: T[] | undefined) => EditableItem[];
+}
+
+export const EditList = <T extends { id?: number | null }>({
+  children,
+  cancelAction,
+  queryHook,
+  createHook,
+  updateHook,
+  removeHook,
+  reset,
+  getValues,
+  mapData,
+  handleSubmit,
+}: EditListProps<T>) => {
+  const {
+    open,
+    setOpen,
+    actions,
+    submitAction,
+    pagintaionData,
+    loadDeletedId,
+    inputControl,
+    editLoading,
+    data,
+    isLoading,
+  } = useEditableForm<T>({
+    handleSubmit,
+    queryHook,
+    createHook,
+    updateHook,
+    removeHook,
+    reset,
+    getValues,
+  });
+
+  const editableData = mapData(data?.data);
 
   return (
-    <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300  h-full p-4 gap-3">
-      <div className="flex flex-col gap-3 h-full overflow-y-auto">
-        <div className="flex gap-2">
+    <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 flex-1 h-full p-4 gap-3 min-h-0">
+      <div className="flex flex-col flex-1 h-full gap-3">
+        <div className="flex gap-2 h-[36px]">
           <Input
             placeholder="Поиск по названию..."
             className="flex-4"
@@ -68,16 +73,16 @@ export const EditList = ({
           </Button>
         </div>
 
-        <div className="flex-1 flex justify-center">
+        <div className="flex-1 min-h-0 h-full overflow-y-auto flex justify-center overscroll-contain">
           {isLoading ? (
             <Spinner className="m-auto" />
-          ) : !Array.isArray(data) ? (
+          ) : !Array.isArray(editableData) ? (
             <Text className="m-auto">Произошла ошибка</Text>
-          ) : data.length === 0 ? (
+          ) : editableData.length === 0 ? (
             <Text className="m-auto">Данных нет</Text>
           ) : (
             <div className="flex flex-col w-full gap-3">
-              {data.map((item) => (
+              {editableData.map((item) => (
                 <EditItem
                   isLoading={item.id === loadDeletedId}
                   key={item.id}
@@ -88,8 +93,20 @@ export const EditList = ({
             </div>
           )}
         </div>
-
-        {meta && <Pagination className="mt-auto" {...pagintaionData} />}
+        {/* TODO */}
+        <div className="mt-auto">
+          {data?.meta && (
+            <Pagination
+              onPageChange={pagintaionData.onPageChange}
+              className="mt-auto"
+              total={data?.meta.total}
+              limit={pagintaionData.limit}
+              // TODO мб поменять из хука взять
+              // currentPage={data?.meta.page}
+              currentPage={pagintaionData.currentPage}
+            />
+          )}
+        </div>
       </div>
       <ModalWindow
         contentClassname="w-[95%] h-[95%] max-h-[900px] block !max-w-[1600px] p-0"
@@ -102,10 +119,10 @@ export const EditList = ({
           <Separator spacing="empty" />
           <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-4">{children}</div>
           <div className="flex gap-2 pt-2 justify-end">
-            <Button isLoading={buttActionsLoading} onClick={submitAction} variant="success">
+            <Button isLoading={editLoading} onClick={submitAction} variant="success">
               Сохранить
             </Button>
-            <Button disabled={buttActionsLoading} onClick={cancelAction} variant="secondary">
+            <Button disabled={editLoading} onClick={cancelAction} variant="secondary">
               Отменить изменения
             </Button>
           </div>
@@ -114,6 +131,8 @@ export const EditList = ({
     </div>
   );
 };
+
+type ActionsType = (type: 'edit' | 'delete', id: number) => void;
 
 export const EditItem = ({
   isLoading,

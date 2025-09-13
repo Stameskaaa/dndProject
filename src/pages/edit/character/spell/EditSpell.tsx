@@ -1,20 +1,38 @@
 import { useForm } from 'react-hook-form';
 import { schoolList } from '@/mock/mock';
 import type { Spell } from '@/features/spells/types';
-import { EditWrapper } from '../../ui/EditContainer';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
+import { EditList } from '../../ui/EditItem';
+import {
+  useCreateSpellMutation,
+  useDeleteSpellMutation,
+  useGetSpellsListQuery,
+  useUpdateSpellMutation,
+} from '@/features/spells/api';
 
 export const EditSpell = () => {
-  const { control, reset, handleSubmit } = useForm<Spell>();
+  const { control, reset, getValues, handleSubmit } = useForm<Spell>();
 
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список заклинаний"
-      title={'Настройка заклинаний'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList<Spell>
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetSpellsListQuery}
+      createHook={useCreateSpellMutation}
+      updateHook={useUpdateSpellMutation}
+      removeHook={useDeleteSpellMutation}
+      mapData={(data: Spell[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name, shortDescription }) => ({
+          id,
+          title: name,
+          description: shortDescription,
+        }));
+      }}
+      cancelAction={() => {}}>
       <Input
         required
         placeholder="Огненный шар"
@@ -102,6 +120,6 @@ export const EditSpell = () => {
       />
 
       <TextareaMD hasMd required control={control} message="Описание" name="md_description" />
-    </EditWrapper>
+    </EditList>
   );
 };
