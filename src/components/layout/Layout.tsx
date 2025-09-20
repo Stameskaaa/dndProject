@@ -4,10 +4,11 @@ import { Header } from './Header/Header';
 import { WavesFooter } from './footer/WavesFooter';
 import { Section } from '../wrappers/sections/section/Section';
 import { PageLoader } from '../wrappers/loaders/pageLoader/PageLoader';
+import { MainBackground } from '../wrappers/background/mainBackground/MainBackground';
 
 export const Layout = () => {
   return (
-    <Section paddingX="empty" screen={true} className="bg-brand-500 flex flex-col items-center">
+    <Section paddingX="empty" screen={true} className="flex flex-col items-center">
       <Header />
       <AnimatePresence>
         <PageLoader key="loader" />
@@ -15,6 +16,7 @@ export const Layout = () => {
       </AnimatePresence>
       <PageChangeWatcher />
       <WavesFooter />
+      <MainBackground />
     </Section>
   );
 };

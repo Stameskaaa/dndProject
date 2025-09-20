@@ -61,8 +61,10 @@
 html,
 body,
 #root {
+  position: relative;
   height: 100%;
   background-color: #1c2224;
+  z-index: -1;
 }
 
 * {

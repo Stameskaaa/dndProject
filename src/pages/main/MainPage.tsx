@@ -5,15 +5,12 @@ import { ExpandingCard } from '@/components/wrappers/cards/expandingCard/Expandi
 import { FAQ } from '@/components/wrappers/sections/FAQ/FAQ';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
+import { MainBackground } from '@/components/wrappers/background/mainBackground/MainBackground';
 
 export const MainPage = () => {
   return (
     <>
       <Section screen={true} className="flex justify-center flex-col items-center">
-        <img
-          className="w-full filter blur-[1px] shadow-[inset_0_0_30px_rgba(0,0,0,0.7)]"
-          src="https://i.pinimg.com/1200x/8a/0d/00/8a0d00c87c9c15a60f83d69215f9e8c6.jpg"
-        />
         <MainButton />
       </Section>
 
