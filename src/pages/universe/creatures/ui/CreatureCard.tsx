@@ -7,6 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { useNavigatePath } from '@/hooks/useNavigatePath';
 import { Text } from '@/components/wrappers/typography/Text';
 import type { HostileCreatures } from '@/features/hostileCreatures/types';
+import { useLocation } from 'react-router-dom';
 
 interface CreatureCardProps {
   creatureData?: HostileCreatures | God | NPC;
@@ -58,6 +59,7 @@ export const CreatureTopContent: React.FC<CreatureCardProps> = ({ creatureData }
 };
 
 export const CreatureBottomContent: React.FC<CreatureCardProps> = ({ creatureData }) => {
+  const location = useLocation();
   const { navigatePath } = useNavigatePath();
   if (!creatureData) return null;
 
@@ -130,7 +132,7 @@ export const CreatureBottomContent: React.FC<CreatureCardProps> = ({ creatureDat
           size="sm"
           variant="ghost"
           onClick={() =>
-            navigatePath(`/universe/bestiary/${'id' in creatureData ? creatureData.id : ''}`)
+            navigatePath(`${location.pathname}/${'id' in creatureData ? creatureData.id : ''}`)
           }>
           Подробнее →
         </Button>

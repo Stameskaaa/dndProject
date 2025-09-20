@@ -29,7 +29,7 @@ export const LocationCard = ({
       </CardContent>
 
       <CardFooter className="mt-auto h-[200px] pb-4 flex flex-col items-start gap-2">
-        <Text color="brand-100" size="2xl">
+        <Text color="brand-100" size="3xl">
           {name}
         </Text>
         <Text color="text-description" className="line-clamp-[4] overflow-hidden">

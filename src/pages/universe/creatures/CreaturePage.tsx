@@ -132,6 +132,7 @@ export const mockHostileCreature2: HostileCreatures = {
     },
   ],
   sizeId: 'large',
+  mdStatblock: '',
   typeId: 2,
   hp: '168 (16d10 + 80)',
   armorClass: 16,

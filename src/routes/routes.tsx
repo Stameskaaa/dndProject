@@ -305,14 +305,14 @@ export const ROUTES: RouteNode[] = [
           },
           {
             title: 'Личности',
-            path: 'npcs',
-            fullPath: '/universe/npcs',
+            path: 'npc',
+            fullPath: '/universe/npc',
             element: <NPCListPage />,
           },
           {
             title: 'Личность',
-            path: 'npcs/:id',
-            fullPath: '/universe/npcs/:id',
+            path: 'npc/:id',
+            fullPath: '/universe/npc/:id',
             element: <CreaturePage creatureData={mockNPC} />,
             navigationIgnore: true,
           },
