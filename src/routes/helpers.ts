@@ -57,16 +57,6 @@ export const findRouteById = (routes: RouteNode[], id: string): RouteNode | null
   return null;
 };
 
-export const filterNavigation = (data?: RouteNode[] | null) => {
-  if (!data) return [];
-  return data.filter(({ navigationIngore }) => !navigationIngore) || [];
-};
-
-export const getNavigationRoutes = (routes: RouteNode[], id: string) => {
-  const findedRoutes = findRouteById(routes, id);
-  return filterNavigation(findedRoutes?.children);
-};
-
 export function getChildrenById(
   routes: RouteNode[],
   id: string,
@@ -84,4 +74,21 @@ export function getChildrenById(
     }
   }
   return [];
+}
+
+export function getTopNavigationRoutes(routes: RouteNode[]): RouteNode[] {
+  if (!routes?.length) return [];
+
+  const topRoutes = routes[0]?.children ?? [];
+
+  function filterRoutes(nodes: RouteNode[]): RouteNode[] {
+    return nodes
+      .filter((node) => !node.navigationIgnore)
+      .map((node) => ({
+        ...node,
+        children: node.children ? filterRoutes(node.children) : undefined,
+      }));
+  }
+
+  return filterRoutes(topRoutes);
 }

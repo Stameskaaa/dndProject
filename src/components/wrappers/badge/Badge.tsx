@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import { Text } from '../typography/Text';
 import type { Size } from '../typography/constants';
+import classNames from 'classnames';
 
 type BadgeSize = 'sm' | 'md' | 'lg';
 
@@ -16,9 +17,17 @@ const textSize: Record<BadgeSize, Size> = {
   lg: 'lg',
 };
 
-export const Badge = ({ children, size = 'sm' }: { children: ReactNode; size?: BadgeSize }) => {
+export const Badge = ({
+  children,
+  size = 'sm',
+  className,
+}: {
+  children: ReactNode;
+  size?: BadgeSize;
+  className?: string;
+}) => {
   return (
-    <div className={`w-max bg-brand-300 rounded-2xl ${sizeClasses[size]}`}>
+    <div className={classNames(`w-max bg-brand-300 rounded-2xl ${sizeClasses[size]}`, className)}>
       <Text color="text-secondary" size={textSize[size]} className="leading-5">
         {children}
       </Text>

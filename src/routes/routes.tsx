@@ -15,9 +15,6 @@ import { WorldsPage } from '@/pages/universe/worlds/WorldsPage';
 import { ClubRulesPage } from '@/pages/rules/clubRules/ClubRulesPage';
 import { HomeRulesPage } from '@/pages/rules/homeRules/HomeRules';
 import { DnDRules } from '@/pages/rules/dndRules/DnDRules';
-import { BestiaryPage } from '@/pages/universe/bestiary/BestiaryPage';
-import { RaidBossesPage } from '@/pages/universe/raidbosses/RadiBossesPage';
-import { NPCPage } from '@/pages/universe/npcs/NPCsPage';
 import { CharacterPage } from '@/pages/character/CharacterPage';
 import { RaceModal } from '@/pages/character/races/components/RaceModal';
 import { ClassModalContent } from '@/pages/character/classes/ClassModalContent';
@@ -40,6 +37,17 @@ import { EditCharacteristic } from '@/pages/edit/other/EditCharacteristic';
 import { EditSubclass } from '@/pages/edit/other/EditSubclass';
 import { EditWorld } from '@/pages/edit/universe/world/EditWorld';
 import { EditHostileCreatures } from '@/pages/edit/universe/hostileCreatures/EditHostileCreatures';
+import { LocationsPage } from '@/pages/universe/locations/LocationsPage';
+import { LocationPage } from '@/pages/universe/locations/locationPage/LocationPage';
+import {
+  CreaturePage,
+  mockHostileCreature,
+  mockHostileCreature2,
+  mockNPC,
+} from '@/pages/universe/creatures/CreaturePage';
+import { RaidBossListPage } from '@/pages/universe/creatures/RaidBossListPage';
+import { BeastListPage } from '@/pages/universe/creatures/BeastListPage';
+import { NPCListPage } from '@/pages/universe/creatures/NPCListPage';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -80,7 +88,7 @@ export type RouteNode = {
   loader?: boolean;
   src?: string;
   ignoreInActive?: boolean;
-  navigationIngore?: boolean;
+  navigationIgnore?: boolean;
 };
 
 const LAYOUT: RouteNode = {
@@ -91,8 +99,6 @@ const LAYOUT: RouteNode = {
 };
 
 //  TODO errorElement
-
-export const HEADER_DISABLED_IDS = ['not-found'];
 
 // TODO для каждой вложенности добавить NOT FOUND
 export const ROUTES: RouteNode[] = [
@@ -288,25 +294,53 @@ export const ROUTES: RouteNode[] = [
             title: 'Локации',
             path: 'locations',
             fullPath: '/universe/locations',
-            element: <WorldsPage />,
+            element: <LocationsPage />,
+          },
+          {
+            title: 'Локация',
+            path: 'locations/:id',
+            fullPath: '/universe/locations/:id',
+            element: <LocationPage />,
+            navigationIgnore: true,
           },
           {
             title: 'Личности',
             path: 'npcs',
             fullPath: '/universe/npcs',
-            element: <NPCPage />,
+            element: <NPCListPage />,
+          },
+          {
+            title: 'Личность',
+            path: 'npcs/:id',
+            fullPath: '/universe/npcs/:id',
+            element: <CreaturePage creatureData={mockNPC} />,
+            navigationIgnore: true,
           },
           {
             title: 'Бестиарий',
             path: 'bestiary',
             fullPath: '/universe/bestiary',
-            element: <BestiaryPage />,
+            element: <BeastListPage />,
+          },
+          {
+            title: 'Бестия',
+            path: 'bestiary/:id',
+            fullPath: '/universe/bestiary/:id',
+            element: <CreaturePage creatureData={mockHostileCreature2} />,
+            navigationIgnore: true,
           },
           {
             title: 'Рейдбоссы',
             path: 'raidbosses',
             fullPath: '/universe/raidbosses',
-            element: <RaidBossesPage />,
+            element: <RaidBossListPage />,
+          },
+          {
+            title: 'Рейдбосс',
+            path: 'raidbosses/:id',
+            fullPath: '/universe/raidbosses/:id',
+            element: <CreaturePage creatureData={mockHostileCreature} />,
+            navigationIgnore: true,
           },
         ],
       },
@@ -433,6 +467,7 @@ export const ROUTES: RouteNode[] = [
         id: 'not-found',
         fullPath: '*',
         path: '*',
+        navigationIgnore: true,
         element: (
           <Section key="not-found" paddingY="medium" fixedWidth screen>
             <Text>Страница не найдена</Text>

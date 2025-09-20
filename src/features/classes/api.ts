@@ -1,18 +1,50 @@
+import { baseUrl } from './../../constants/api';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { baseUrl } from '@/constants/api';
+import type { GetList, ListQuery } from '../types';
 import type { Class } from './types';
 
 export const classesApi = createApi({
   reducerPath: 'classesApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
+  tagTypes: ['classesList'],
   endpoints: (builder) => ({
-    getClassesList: builder.query<Class[], void>({
-      query: () => 'classes',
+    getClasses: builder.query<GetList<Class>, ListQuery | void>({
+      query: (data) => ({
+        url: '/classes/search',
+        method: 'POST',
+        body: data,
+      }),
+      providesTags: ['classesList'],
     }),
-    getClassById: builder.query<Class, { id: string }>({
-      query: ({ id }) => `classes/${id}`,
+    createClass: builder.mutation<Class, Class>({
+      query: (data) => ({
+        url: '/classes',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['classesList'],
+    }),
+    deleteClass: builder.mutation<Class, Pick<Class, 'id'>>({
+      query: (data) => ({
+        url: `/classes/${data.id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['classesList'],
+    }),
+    updateClass: builder.mutation<Class, Partial<Class>>({
+      query: (data) => ({
+        url: `/classes/${data.id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['classesList'],
     }),
   }),
 });
 
-export const { useGetClassesListQuery, useGetClassByIdQuery } = classesApi;
+export const {
+  useGetClassesQuery,
+  useCreateClassMutation,
+  useDeleteClassMutation,
+  useUpdateClassMutation,
+} = classesApi;

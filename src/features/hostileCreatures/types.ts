@@ -1,6 +1,6 @@
 import type { Location } from '../locations/types';
 
-type HostileType = 'monster' | 'raid_boss';
+export type HostileType = 'monster' | 'raidBoss';
 
 export interface HostileCreatures {
   id: number;
@@ -22,6 +22,7 @@ export interface HostileCreatures {
   sizeId: string;
   typeId: number;
   hp: string;
+  armorClass: number;
   speed: string;
 
   characteristicIds: { id: string; value: string }[];

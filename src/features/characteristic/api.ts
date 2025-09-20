@@ -10,7 +10,7 @@ export const characteristicApi = createApi({
   endpoints: (builder) => ({
     getCharacteristicList: builder.query<GetList<Characteristic>, ListQuery | void>({
       query: (data) => ({
-        url: '/characteristics',
+        url: '/characteristics/search',
         method: 'POST',
         body: data,
       }),

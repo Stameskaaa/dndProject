@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { HEADER_DISABLED_IDS, ROUTES } from '@/routes/routes';
+import { ROUTES } from '@/routes/routes';
 import { MenuItem } from './MenuItem';
+import { getTopNavigationRoutes } from '@/routes/helpers';
 
 const variants = {
   open: {
@@ -12,10 +13,7 @@ const variants = {
 };
 
 export const Navigation = ({ toggle, open }: { toggle: () => any; open: boolean }) => {
-  const filteredRoutes = ROUTES[0]?.children?.filter(
-    ({ id }) => !(id && HEADER_DISABLED_IDS.includes(id)),
-  );
-
+  const filteredRoutes = getTopNavigationRoutes(ROUTES);
   return (
     <AnimatePresence mode="wait">
       {open && (

@@ -2,14 +2,13 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import styles from './NavigationMenu.module.css';
-import { HEADER_DISABLED_IDS, ROUTES } from '@/routes/routes';
+import { ROUTES } from '@/routes/routes';
 import { Text } from '@/components/wrappers/typography/Text';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import { getTopNavigationRoutes } from '@/routes/helpers';
 
 export const HeaderNavigation = () => {
-  const filteredRoutes = ROUTES[0]?.children?.filter(
-    ({ id }) => !(id && HEADER_DISABLED_IDS.includes(id)),
-  );
+  const filteredRoutes = getTopNavigationRoutes(ROUTES);
 
   return (
     <NavigationMenu.Root className={classNames(styles.Root, '!justify-end')}>
