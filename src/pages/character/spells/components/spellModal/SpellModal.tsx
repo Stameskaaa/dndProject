@@ -1,19 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { schoolList } from '@/mock/mock';
+import { spellMock } from '@/features/spells/mock';
+import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/wrappers/badge/Badge';
+import { useNavigatePath } from '@/hooks/useNavigatePath';
 import { AsyncState } from '@/pages/character/ui/AsyncState';
 import { Text } from '../../../../../components/wrappers/typography/Text';
+import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
 import { CharacterModalWrapper } from '@/pages/character/ui/CharacterModalWrapper';
 import { SpellDescription } from '@/pages/character/spells/components/spellDescription/SpellDescription';
-import { MarkDownText } from '@/components/wrappers/typography/MarkDownText';
-import { Separator } from '@/components/ui/separator';
-import { spellMock } from '@/features/spells/mock';
-import { useNavigatePath } from '@/hooks/useNavigatePath';
 
 export const SpellModal = () => {
   const { id: paramsId } = useParams();
   const { navigatePath } = useNavigatePath();
-  const school = schoolList.find(({ id }) => id == spellMock?.school_id);
+  const school = schoolList.find(({ id }) => id == spellMock?.schoolId);
 
   return (
     <CharacterModalWrapper open={!!paramsId} closeAction={() => navigatePath('/character/spells')}>
@@ -31,13 +31,13 @@ export const SpellModal = () => {
           <Separator spacing="empty" />
           <SpellDescription type="full" data={spellMock} />
           <Separator spacing="empty" />
-          <MarkDownText>{spellMock?.md_description}</MarkDownText>
-          {spellMock?.class_data.length > 0 ? (
+          <MarkDownText>{spellMock?.mdDescription}</MarkDownText>
+          {spellMock?.classes.length > 0 ? (
             <div className="mt-auto flex gap-2 items-center flex-wrap">
               <Text color="text-muted" as="span">
                 Доступно классам:
               </Text>
-              {spellMock?.class_data.map(({ name, id }) => (
+              {spellMock?.classes.map(({ name, id }) => (
                 <Badge key={id}>{name}</Badge>
               ))}
             </div>

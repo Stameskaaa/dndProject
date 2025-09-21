@@ -27,27 +27,27 @@ export const OriginModal = () => {
             data={[
               {
                 title: 'Характеристики',
-                value: originMock.characteristic_data.map(({ name }) => name).join(', '),
+                value: originMock.characteristicIds.map((data) => data).join(', '),
               },
-              { title: 'Черты', value: originMock.trait_data.map(({ name }) => name).join(', ') },
+              { title: 'Черты', value: originMock.features.name },
               { title: 'Навыки', value: originMock.skills },
               {
                 title: 'Владение инструментами',
-                value: originMock.tool_skills,
+                value: originMock.toolSkills,
               },
               {
                 title: 'Снаряжение (Выберите А или Б)',
                 value: (
                   <Equipment
-                    first={originMock.start_equipment[0]}
-                    second={originMock.start_equipment[1]}
+                    first={originMock.startEquipment[0]}
+                    second={originMock.startEquipment[1]}
                   />
                 ),
               },
             ]}
           />
           <Separator spacing="equalSmall" />
-          <MarkDownText>{originMock?.md_description}</MarkDownText>
+          <MarkDownText>{originMock?.mdDescription}</MarkDownText>
         </div>
       </AsyncState>
     </CharacterModalWrapper>

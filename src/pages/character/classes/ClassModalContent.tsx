@@ -29,7 +29,7 @@ export const ClassModalContent = () => {
             </Text>
           </div>
           <Separator spacing="equalSmall" className="mt-0" />
-          <Text color="text-secondary">{mockClass?.md_description}</Text>
+          <Text color="text-secondary">{mockClass?.mdDescription}</Text>
           <Separator spacing="equalSmall" />
 
           <DescriptionList
@@ -37,32 +37,32 @@ export const ClassModalContent = () => {
             data={[
               {
                 title: 'Броня',
-                value: mockClass.armor_id
+                value: mockClass.armorId
                   .map((armorId) => armors.find(({ id }) => id == armorId)?.name)
                   .join(', '),
               },
               {
                 title: 'Кость хита',
-                value: `${mockClass.dice_hit} за каждый уровень класса - ${mockClass?.name}`,
+                value: `${mockClass.diceHit} за каждый уровень класса - ${mockClass?.name}`,
               },
 
               {
                 title: 'Основная характеристика',
-                value: mockClass.characteristic_data.map(({ name }) => name).join(', '),
+                value: mockClass.characteristicIds.map((id) => id).join(', '),
               },
               {
                 title: 'Спасброски',
-                value: mockClass.saving_throws.map(({ name }) => name).join(', '),
+                value: mockClass.savingThrowsIds.map((id) => id).join(', '),
               },
               { title: 'Навыки', value: mockClass?.skills },
-              { title: 'Оружие', value: mockClass?.weapon_skills.join(', ') },
-              { title: 'Инструменты', value: mockClass.tool_skills },
+              { title: 'Оружие', value: mockClass?.weaponSkills },
+              { title: 'Инструменты', value: mockClass.toolSkills },
               {
                 title: 'Снаряжение (Выберите А или Б)',
                 value: (
                   <Equipment
-                    first={mockClass?.start_equipment[0]}
-                    second={mockClass?.start_equipment[1]}
+                    first={mockClass?.startEquipment[0]}
+                    second={mockClass?.startEquipment[1]}
                   />
                 ),
               },
@@ -70,7 +70,7 @@ export const ClassModalContent = () => {
           />
           <Separator spacing="equalSmall" />
           <div className="w-full overflow-auto">
-            <MarkDownText>{mockClass.md_table_data}</MarkDownText>
+            <MarkDownText>{mockClass.mdTableData}</MarkDownText>
           </div>
         </AsyncState>
       </div>

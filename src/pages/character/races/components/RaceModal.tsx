@@ -27,7 +27,7 @@ export const RaceModal = () => {
           {
             id: 1,
             title: 'Описание',
-            cardContent: <MarkDownText>{raceMock?.md_description || ''}</MarkDownText>,
+            cardContent: <MarkDownText>{raceMock?.mdDescription || ''}</MarkDownText>,
           },
           {
             id: 2,
@@ -37,7 +37,7 @@ export const RaceModal = () => {
           {
             id: 3,
             title: 'История',
-            cardContent: <MarkDownText>{raceMock?.md_history || ''}</MarkDownText>,
+            cardContent: <MarkDownText>{raceMock?.mdHistory || ''}</MarkDownText>,
           },
         ]}
       />
@@ -59,7 +59,7 @@ const RaceFeatures = ({ features }: { features?: Race['features'] }) => {
         ]}
       />
       <Separator />
-      <MarkDownText>{features.md_content}</MarkDownText>
+      <MarkDownText>{features.mdContent}</MarkDownText>
     </div>
   );
 };

@@ -2,16 +2,16 @@ import { mockClass } from '../classes/mock';
 import type { Spell } from './types';
 
 export const spellMock: Spell = {
-  id: 'acid',
+  id: 2,
   name: 'Брызги кислоты',
   level: 0,
-  school_id: 'evocation',
-  casting_time: 'Действие',
+  schoolId: 'evocation',
+  castingTime: 'Действие',
   duration: 'Мгновенная',
   distance: '60 футов',
-  short_description:
+  shortDescription:
     'Вы бросаете кислотный шарик в точку в пределах дальности, где он взрывается сферой в радиусе 5 футов. Каждое существо в этой сфере должно преуспеть в спасброске Ловкости или получить 1к6 урона кислотой.',
-  md_description: `
+  mdDescription: `
 **Детали действия:**  
 Вы создаете маленький шарик кислоты и метаете его на выбранную точку. При попадании он взрывается сферой радиусом 5 футов. Все существа внутри должны сделать спасбросок Ловкости.  
 
@@ -27,7 +27,7 @@ export const spellMock: Spell = {
 **История заклинания:**  
 Это заклинание обучают на курсах начинающих волшебников, как базовое проявление контролируемой стихии. Часто используется для демонстрации мастерства магии или отпугивания мелких существ.
   `,
-  components_list: 'Вербальный, Соматический',
-  class_ids: [mockClass.id],
-  class_data: [{ id: mockClass.id, name: mockClass.name }],
+  componentsList: 'Вербальный, Соматический',
+  classIds: [mockClass.id],
+  classes: [{ id: mockClass.id, name: mockClass.name, src: '' }],
 };

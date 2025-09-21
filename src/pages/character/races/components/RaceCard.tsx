@@ -16,7 +16,7 @@ export const RaceCard = ({ raceData, openModal }: { raceData: Race; openModal: (
   const Description = () => {
     return (
       <ul className="list-disc pl-5 text-brand-100 text-md">
-        {raceData?.world_data?.map(({ name, id }) => {
+        {raceData?.worlds?.map(({ name, id }) => {
           return (
             <li key={id}>
               <Text size="sm" color="text-secondary">

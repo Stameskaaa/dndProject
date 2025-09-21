@@ -13,7 +13,7 @@ import {
 import { CharacterIcon } from '@/pages/character/ui/CharacterIcon';
 
 export const SpellCard = ({ data, onClick }: { data?: Spell; onClick?: () => void }) => {
-  const school = schoolList.find(({ id }) => data?.school_id == id);
+  const school = schoolList.find(({ id }) => data?.schoolId == id);
   const Icon = school?.icon;
 
   return (
@@ -27,7 +27,7 @@ export const SpellCard = ({ data, onClick }: { data?: Spell; onClick?: () => voi
       className={classNames(
         'flex flex-col w-full rounded-2xl bg-brand-400 p-3 gap-2 cursor-pointer',
         styles.card,
-        styles?.[data?.school_id || ''],
+        styles?.[data?.schoolId || ''],
       )}>
       <header className="flex items-center justify-between">
         <div className="flex flex-col gap-1">
@@ -51,11 +51,11 @@ export const SpellCard = ({ data, onClick }: { data?: Spell; onClick?: () => voi
       <hr className="border-brand-100" />
 
       <Text color="text-secondary" size="sm" className="leading-5">
-        {data?.short_description}
+        {data?.shortDescription}
       </Text>
 
       <div className="mt-auto flex justify-end flex-row gap-1">
-        {data?.class_data.map(({ name, id }) => (
+        {data?.classes.map(({ name, id }) => (
           <Badge key={id}>{name}</Badge>
         ))}
       </div>

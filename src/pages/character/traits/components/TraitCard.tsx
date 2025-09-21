@@ -12,7 +12,7 @@ import { trait_types } from '@/mock/mock';
 export const TraitCard = ({ traitData }: { traitData: Trait }) => {
   const navigate = useNavigate();
   const active = false;
-  const Icon = trait_types.find(({ id }) => id === traitData.trait_type_id)?.icon;
+  const Icon = trait_types.find(({ id }) => id === traitData.traitTypeId)?.icon;
 
   return (
     <motion.div
@@ -29,7 +29,7 @@ export const TraitCard = ({ traitData }: { traitData: Trait }) => {
             {traitData.name}
           </Text>
           <ul className="list-disc pl-5 space-y-1 text-brand-100 text-md">
-            {traitData?.world_data?.map(({ name }, i) => {
+            {traitData?.worlds?.map(({ name }, i) => {
               return (
                 <li key={i}>
                   <Text size="sm" color="text-secondary">

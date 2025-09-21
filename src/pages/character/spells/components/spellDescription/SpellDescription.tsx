@@ -10,10 +10,10 @@ export const SpellDescription = ({
   type?: 'full' | 'short';
 }) => {
   const descriptionData = [
-    { title: 'Время сотворения', icon: Hourglass, value: data?.casting_time },
+    { title: 'Время сотворения', icon: Hourglass, value: data?.castingTime },
     { title: 'Длительность', icon: Timer, value: data?.duration },
     { title: 'Дистанция', icon: MoveHorizontal, value: data?.distance },
-    { title: 'Компоненты', icon: Sprout, value: data?.components_list },
+    { title: 'Компоненты', icon: Sprout, value: data?.componentsList },
   ];
 
   return <DescriptionList options={{ background: type !== 'short' }} data={descriptionData} />;

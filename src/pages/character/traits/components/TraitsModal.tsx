@@ -29,7 +29,7 @@ export const TraitsModal = () => {
               <Separator spacing="equalSmall" />
             </>
           ) : null}
-          <MarkDownText>{traitMock?.md_description}</MarkDownText>
+          <MarkDownText>{traitMock?.mdDescription}</MarkDownText>
         </AsyncState>
       </div>
     </CharacterModalWrapper>

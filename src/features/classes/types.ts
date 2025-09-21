@@ -12,7 +12,7 @@ export interface Class {
   armorId: string[];
   startEquipment: string[];
 
-  spellIds: string[];
+  spellIds: number[];
 
   worldsIds?: string[];
   worlds?: Pick<World, 'id' | 'name' | 'shortDescription' | 'src'>[];

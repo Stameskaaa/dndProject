@@ -1,20 +1,38 @@
 import { useForm } from 'react-hook-form';
-import type { Class } from '@/features/classes/types';
-import { EditWrapper } from '@/pages/edit/ui/EditContainer';
+import {
+  useCreateGodMutation,
+  useDeleteGodMutation,
+  useGetGodListQuery,
+  useUpdateGodMutation,
+} from '@/features/gods/api';
+import { God } from '@/features/gods/types';
+import { EditList } from '../../ui/EditItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { armors, characteristic, dice_hits, trait_types } from '@/mock/mock';
 
 export const EditClass = () => {
-  const { control, reset, handleSubmit } = useForm<Class>();
+  const { control, reset, handleSubmit, getValues } = useForm<God>();
 
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список классов"
-      title={'Создание класса'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetGodListQuery}
+      createHook={useCreateGodMutation}
+      updateHook={useUpdateGodMutation}
+      removeHook={useDeleteGodMutation}
+      cancelAction={reset}
+      mapData={(data: God[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name, shortDescription }) => ({
+          id,
+          title: name,
+          description: shortDescription,
+        }));
+      }}>
       <Input required message="Название класса" placeholder="Воин" name="name" control={control} />
 
       <div className="flex gap-2 items-start">
@@ -132,6 +150,6 @@ export const EditClass = () => {
       />
 
       {/* TODO ДОБАВИТЬ МОДАЛКУ С выбором подлкассов */}
-    </EditWrapper>
+    </EditList>
   );
 };

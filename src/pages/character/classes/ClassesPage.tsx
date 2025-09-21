@@ -18,7 +18,7 @@ export const ClassesPage = () => {
             cardId={`${i}`}
             name={mockClass.name}
             src={mockClass.src}
-            description={mockClass?.worlds_data?.map(({ name }) => name) || []}
+            description={mockClass?.worlds?.map(({ name }) => name) || []}
           />
         ))}
       </AnimatedGridList>
