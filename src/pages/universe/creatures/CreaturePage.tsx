@@ -10,7 +10,7 @@ interface CreatureTabsProps {
 
 export const CreaturePage: React.FC<CreatureTabsProps> = ({ creatureData }) => {
   return (
-    <Section screen fixedWidth>
+    <Section screen paddingY="large" fixedWidth>
       <CreatureComponent creatureData={creatureData} />
     </Section>
   );
@@ -88,7 +88,7 @@ export const mockHostileCreature: HostileCreatures = {
 export const mockNPC: NPC = {
   id: 1,
   name: 'Лира — Хранительница Тайн',
-  src: 'https://images.unsplash.com/photo-1593642634367-d91a135587b5?q=80&w=800&auto=format&fit=crop',
+  src: 'https://cdna.artstation.com/p/assets/images/images/081/638/144/large/anato-finnstark-libera.jpg?1730820426',
   status: 'active',
   fraction: 'Орден Света',
   shortDescription: 'Мудрая хранительница знаний и секретов древних цивилизаций.',

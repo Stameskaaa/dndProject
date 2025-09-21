@@ -18,7 +18,7 @@ export const CreatureCard: React.FC<CreatureCardProps> = ({ creatureData }) => {
 
   return (
     <div className="bg-brand-400 border border-brand-300 rounded-lg overflow-hidden shadow-lg">
-      <div className="aspect-[16/9] w-full relative overflow-hidden bg-brand-300">
+      <div className="max-h-[400px] w-full relative overflow-hidden bg-brand-300">
         <img
           src={creatureData.src}
           alt="картинка существа"
@@ -31,7 +31,7 @@ export const CreatureCard: React.FC<CreatureCardProps> = ({ creatureData }) => {
         {creatureData.name && (
           <Text
             color="brand-100"
-            className="absolute top-0 left-1/2 -translate-x-1/2 text-center min-w-[280px] max-w-[600px] bg-brand-400 rounded-b-lg px-2 py-[2px]"
+            className="absolute top-0 left-1/2 -translate-x-1/2 text-center min-w-[280px] bg-brand-400 rounded-b-lg px-2 py-[2px]"
             size="xl">
             {creatureData.name}
           </Text>

@@ -3,6 +3,7 @@ import type { God } from '@/features/gods/types';
 import type { HostileCreatures } from '@/features/hostileCreatures/types';
 import type { NPC } from '@/features/npc/types';
 import { Description } from './Description';
+import { Separator } from '@/components/ui/separator';
 
 export function StatBlock({ creatureData }: { creatureData?: HostileCreatures | God | NPC }) {
   if (!creatureData || !('mdStatblock' in creatureData)) {
@@ -10,8 +11,9 @@ export function StatBlock({ creatureData }: { creatureData?: HostileCreatures | 
   }
 
   return (
-    <div>
-      <Text size="2xl" className="mb-2" color="brand-100">
+    <div className="flex flex-col gap-1">
+      <Separator className="bg-brand-400 mb-2" spacing="empty" />
+      <Text weight="bold" size="2xl" color="brand-100">
         Статблок
       </Text>
       {(creatureData.sizeId || creatureData.typeId) && (
@@ -53,7 +55,7 @@ export function StatBlock({ creatureData }: { creatureData?: HostileCreatures | 
       {creatureData.language && <Description title="Языки" desc={creatureData.language} />}
       {creatureData.challenge && <Description title="Опасность" desc={creatureData.challenge} />}
       {creatureData.proficiencyBonus && (
-        <Description title="Опасность" desc={creatureData.proficiencyBonus} />
+        <Description title="Бонус мастерства" desc={creatureData.proficiencyBonus} />
       )}
       {creatureData.mdStatblock && <Description desc={creatureData.mdStatblock} variant="block" />}
     </div>

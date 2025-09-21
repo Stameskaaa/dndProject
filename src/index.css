@@ -58,6 +58,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Nunito';
+  src: url('../src/assets/fonts/nunito/Nunito-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../src/assets/fonts/nunito/Nunito-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 html,
 body,
 #root {
@@ -100,6 +114,15 @@ body {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;
 }
+
+.swiper-pagination-bullet {
+  background-color: #415554 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #7f9a89 !important;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

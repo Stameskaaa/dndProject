@@ -13,9 +13,8 @@ export const sizeMap = {
 } as const;
 
 export const weightMap = {
-  light: 'font-light',
   normal: 'font-normal',
-  semibold: 'font-semibold',
+  medium: 'font-medium',
   bold: 'font-bold',
 } as const;
 

@@ -17,14 +17,14 @@ export const CreatureComponent: React.FC<CreatureTabsProps> = ({ creatureData })
   if (!creatureData) return null;
 
   return (
-    <div className="rounded-md p-6 flex xl:flex-row flex-col">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="rounded-md flex xl:flex-row flex-col filter backdrop-blur-[3px] p-2 lg:p-6 border-2 border-brand-400">
       <div className="flex flex-1 gap-4 flex-col">
         <div className="relative">
-          <motion.div
-            className="float-left p-2 bg-brand-400 rounded-md relative mr-4 mb-4 max-[600px]:float-none max-[600px]:w-full inline-block w-[300px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}>
+          <div className="float-left p-2 bg-brand-400 rounded-md relative mr-4 max-[600px]:float-none max-[600px]:w-full inline-block w-[300px]">
             <img
               src={creatureData.src}
               alt={creatureData.name}
@@ -35,13 +35,9 @@ export const CreatureComponent: React.FC<CreatureTabsProps> = ({ creatureData })
               className="text-center absolute top-0 px-3 py-2 box-border left-0 bg-brand-400 rounded-md text-xl max-[1000px]:text-lg w-full truncate">
               {creatureData.name}
             </Text>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="space-y-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}>
+          <div className="space-y-2">
             <CreatureContent creatureData={creatureData} />
 
             {hasField(creatureData, 'fraction') && (
@@ -76,11 +72,10 @@ export const CreatureComponent: React.FC<CreatureTabsProps> = ({ creatureData })
                 desc={(creatureData as HostileCreatures).mdFunFacts}
               />
             )}
-
-            <StatBlock creatureData={creatureData} />
-          </motion.div>
+          </div>
         </div>
+        <StatBlock creatureData={creatureData} />
       </div>
-    </div>
+    </motion.div>
   );
 };

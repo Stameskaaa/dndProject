@@ -14,7 +14,7 @@ export function Description({ title, desc, variant = 'inline' }: DescriptionProp
     return (
       <div>
         {title && (
-          <Text size="2xl" className="mb-1" color="brand-100">
+          <Text className="mb-1" size="2xl" weight="bold" color="brand-100">
             {title}
           </Text>
         )}
@@ -26,11 +26,11 @@ export function Description({ title, desc, variant = 'inline' }: DescriptionProp
   return (
     <p className="flex gap-2 items-center">
       {title && (
-        <Text weight="bold" color="text-secondary" as="span">
+        <Text color="brand-100" style={{ fontWeight: 700 }} size="lg" as="span">
           {title}
         </Text>
       )}
-      <Text color="text-secondary" as="span">
+      <Text className="text-text-secondary" as="span">
         {desc}
       </Text>
     </p>

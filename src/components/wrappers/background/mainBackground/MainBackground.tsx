@@ -1,4 +1,3 @@
-// FireBackground.tsx (React + TS)
 import React, { useEffect, useMemo, useState } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadFirePreset } from '@tsparticles/preset-fire';
@@ -21,7 +20,7 @@ export const MainBackground: React.FC = () => {
       },
       background: {
         color: { value: '#141a1b' },
-        image: 'radial-gradient(circle at left, #1c2224,  #141a1b)',
+        image: 'radial-gradient(circle at left, #141a1b,   #141a1b)',
       },
       detectRetina: true,
       particles: {
