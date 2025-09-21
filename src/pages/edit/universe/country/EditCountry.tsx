@@ -1,20 +1,39 @@
 import { useForm } from 'react-hook-form';
+import {
+  useCreateGodMutation,
+  useDeleteGodMutation,
+  useGetGodListQuery,
+  useUpdateGodMutation,
+} from '@/features/gods/api';
+import { God } from '@/features/gods/types';
 import { trait_types } from '@/mock/mock';
-import { EditWrapper } from '../../ui/EditContainer';
+import { EditList } from '../../ui/EditItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
-import type { Country } from '@/features/country/types';
 
 export const EditCountry = () => {
-  const { control, reset, handleSubmit } = useForm<Country>();
+  const { control, reset, handleSubmit, getValues } = useForm<God>();
 
+  // TODO
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список стран"
-      title={'Настройка стран'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetGodListQuery}
+      createHook={useCreateGodMutation}
+      updateHook={useUpdateGodMutation}
+      removeHook={useDeleteGodMutation}
+      cancelAction={reset}
+      mapData={(data: God[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name, shortDescription }) => ({
+          id,
+          title: name,
+          description: shortDescription,
+        }));
+      }}>
       <Input
         required
         placeholder="Сенкриф"
@@ -64,6 +83,6 @@ export const EditCountry = () => {
       />
 
       <TextareaMD hasMd required control={control} message="Описание" name="md_description" />
-    </EditWrapper>
+    </EditList>
   );
 };

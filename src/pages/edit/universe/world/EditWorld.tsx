@@ -5,16 +5,37 @@ import { Input } from '@/components/wrappers/forms/input/Input';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { trait_types } from '@/mock/mock';
+import { EditList } from '../../ui/EditItem';
+import {
+  useCreateGodMutation,
+  useDeleteGodMutation,
+  useGetGodListQuery,
+  useUpdateGodMutation,
+} from '@/features/gods/api';
+import { God } from '@/features/gods/types';
 
 export const EditWorld = () => {
-  const { control, reset, handleSubmit } = useForm<World>();
+  const { control, reset, handleSubmit, getValues } = useForm<God>();
 
+  // TODO
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список миров"
-      title={'Настройка Миров'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetGodListQuery}
+      createHook={useCreateGodMutation}
+      updateHook={useUpdateGodMutation}
+      removeHook={useDeleteGodMutation}
+      cancelAction={reset}
+      mapData={(data: God[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name, shortDescription }) => ({
+          id,
+          title: name,
+          description: shortDescription,
+        }));
+      }}>
       <Input required placeholder="Кайдор" message="Имя бога" name="name" control={control} />
       <Input
         required
@@ -116,6 +137,6 @@ export const EditWorld = () => {
       />
       <TextareaMD hasMd required control={control} message="История" name="md_history" />
       <TextareaMD hasMd required control={control} message="Описание" name="md_description" />
-    </EditWrapper>
+    </EditList>
   );
 };

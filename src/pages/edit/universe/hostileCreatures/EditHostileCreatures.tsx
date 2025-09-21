@@ -1,28 +1,47 @@
 import { useForm } from 'react-hook-form';
 import {
+  useCreateGodMutation,
+  useDeleteGodMutation,
+  useGetGodListQuery,
+  useUpdateGodMutation,
+} from '@/features/gods/api';
+import { God } from '@/features/gods/types';
+import {
   condition_states,
   creature_sizes,
   creature_types,
   damage_states,
   trait_types,
 } from '@/mock/mock';
-import { EditWrapper } from '../../ui/EditContainer';
+import { EditList } from '../../ui/EditItem';
+import { Text } from '@/components/wrappers/typography/Text';
 import { Input } from '@/components/wrappers/forms/input/Input';
+import { CharacteristicForm } from '../../ui/CharacteristicForm';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
-import { Text } from '@/components/wrappers/typography/Text';
-import { CharacteristicForm } from '../../ui/CharacteristicForm';
-import type { HostileCreatures } from '@/features/hostileCreatures/types';
 
 export const EditHostileCreatures = () => {
-  const { control, reset, handleSubmit } = useForm<HostileCreatures>();
+  const { control, reset, handleSubmit, getValues } = useForm<God>();
 
+  // TODO
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список рейдбоссов"
-      title={'Настройка рейдбоссов'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetGodListQuery}
+      createHook={useCreateGodMutation}
+      updateHook={useUpdateGodMutation}
+      removeHook={useDeleteGodMutation}
+      cancelAction={reset}
+      mapData={(data: God[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name, shortDescription }) => ({
+          id,
+          title: name,
+          description: shortDescription,
+        }));
+      }}>
       <Input required placeholder="Тиамат" message="Имя существа" name="name" control={control} />
       <Input
         required
@@ -234,6 +253,6 @@ export const EditHostileCreatures = () => {
         message="Описание существа"
         name="md_description"
       />
-    </EditWrapper>
+    </EditList>
   );
 };

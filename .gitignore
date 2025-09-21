@@ -14,6 +14,10 @@ dist-ssr
 *.local
 .env
 
+# .gitignore
+tsconfig.tsbuildinfo
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

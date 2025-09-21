@@ -55,13 +55,13 @@ export const DnDRules = () => {
           />
         </div>
 
-        {dndRules.map(({ id, title, md_content, tags }, i) => (
+        {dndRules.map(({ id, title, mdContent, tags }, i) => (
           <React.Fragment key={id}>
             <div key={id} className="flex flex-col gap-2">
               <Text color="brand-100" size="xl">
                 {title}
               </Text>
-              <MarkDownText>{md_content}</MarkDownText>
+              <MarkDownText>{mdContent}</MarkDownText>
               <TypeBlock id={i} tags={tags} />
             </div>{' '}
             {i !== dndRules.length - 1 && <Separator className="bg-brand-300" spacing="empty" />}

@@ -1,20 +1,38 @@
 import { useForm } from 'react-hook-form';
-import type { NPC } from '@/features/npc/types';
+import {
+  useCreateGodMutation,
+  useDeleteGodMutation,
+  useGetGodListQuery,
+  useUpdateGodMutation,
+} from '@/features/gods/api';
+import { God } from '@/features/gods/types';
 import { trait_types } from '@/mock/mock';
-import { EditWrapper } from '../../ui/EditContainer';
+import { EditList } from '../../ui/EditItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditNPC = () => {
-  const { control, reset, handleSubmit } = useForm<NPC>();
-
+  const { control, reset, handleSubmit, getValues } = useForm<God>();
+  // TODO
   return (
-    <EditWrapper
-      modalTriggerText="Открыть список личностей"
-      title={'Настройка Личностей(NPC)'}
-      saveAction={handleSubmit(() => {})}
-      cancelAction={reset}>
+    <EditList
+      handleSubmit={handleSubmit}
+      reset={reset}
+      getValues={getValues}
+      queryHook={useGetGodListQuery}
+      createHook={useCreateGodMutation}
+      updateHook={useUpdateGodMutation}
+      removeHook={useDeleteGodMutation}
+      cancelAction={reset}
+      mapData={(data: God[] | undefined) => {
+        if (!data) return [];
+        return data?.map(({ id, name, shortDescription }) => ({
+          id,
+          title: name,
+          description: shortDescription,
+        }));
+      }}>
       <Input
         required
         placeholder="Галакхад Вишар"
@@ -93,6 +111,6 @@ export const EditNPC = () => {
       <TextareaMD hasMd required control={control} message="Описание" name="md_description" />
       <TextareaMD hasMd required control={control} message="История" name="md_history" />
       <TextareaMD hasMd required control={control} message="Фан факты" name="md_fun_facts" />
-    </EditWrapper>
+    </EditList>
   );
 };

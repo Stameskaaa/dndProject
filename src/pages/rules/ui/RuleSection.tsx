@@ -49,13 +49,13 @@ export const RulesSection = ({ rules, type }: RulesSectionPageProps) => {
                       className="w-full grid justify-items-center gap-6
              grid-cols-[repeat(auto-fit,_minmax(200px,1fr))]
              max-[1000px]:grid-cols-[repeat(auto-fit,_minmax(100%,1fr))]">
-                      {content.map(({ id, title, short_description, md_content }) => (
+                      {content.map(({ id, title, shortDescription, mdContent }) => (
                         <RuleCard
                           icon={ruleType?.icon}
                           key={id}
                           title={title}
-                          description={short_description}
-                          full_description={md_content}
+                          description={shortDescription}
+                          full_description={mdContent}
                         />
                       ))}
                     </div>
