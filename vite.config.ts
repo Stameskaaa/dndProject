@@ -10,10 +10,14 @@ export default defineConfig({
     port: 5173,
     allowedHosts: true,
   },
-  // base: '/dndProject/',
+  base: '/dndProject/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+  },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
   },
 });
