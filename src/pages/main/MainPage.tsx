@@ -12,6 +12,7 @@ export const MainPage = () => {
     <>
       <Section screen={true} className="flex justify-center flex-col items-center">
         {` `}
+        <MainButton />
       </Section>
 
       <Section paddingX="empty" screen>
@@ -28,7 +29,7 @@ export const MainPage = () => {
           </div>
         </div>
         <MainCarousel />
-        {/* <CardList /> */}
+        <CardList />
       </Section>
     </>
   );

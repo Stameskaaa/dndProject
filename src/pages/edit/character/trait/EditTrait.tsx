@@ -48,7 +48,7 @@ export const EditTrait = () => {
           message="Выберите тип черты"
           label="Черты"
           control={control}
-          name="trait_type_id"
+          name="featureTypeId"
           options={trait_types.map(({ id, name }) => ({ id, value: name }))}
         />
       </div>
@@ -60,7 +60,7 @@ export const EditTrait = () => {
         label="Миры"
         multiple
         control={control}
-        name="world_ids"
+        name="worldIds"
         options={trait_types.map(({ id, name }) => ({ id, value: name }))}
       />
 
@@ -72,13 +72,7 @@ export const EditTrait = () => {
         control={control}
       />
 
-      <TextareaMD
-        hasMd
-        required
-        control={control}
-        message="Описание умения"
-        name="md_description"
-      />
+      <TextareaMD hasMd required control={control} message="Описание умения" name="mdDescription" />
     </EditList>
   );
 };
