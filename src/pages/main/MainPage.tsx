@@ -1,11 +1,10 @@
-import { CardList } from './components/CardList';
-import { Carousel } from './components/Carousel';
+import { CardNavigation } from './components/CardNavigation';
 import { MainButton } from '../../components/wrappers/buttons/mainButton/MainButton';
-import { ExpandingCard } from '@/components/wrappers/cards/expandingCard/ExpandingCard';
 import { FAQ } from '@/components/wrappers/sections/FAQ/FAQ';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
 import { MainCarousel } from './components/MainCarousel';
+import { CatalogSection } from './components/CatalogSection';
 
 export const MainPage = () => {
   return (
@@ -29,7 +28,9 @@ export const MainPage = () => {
           </div>
         </div>
         <MainCarousel />
-        <CardList />
+        <CardNavigation />
+        <CatalogSection />
+        <FAQ />
       </Section>
     </>
   );

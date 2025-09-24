@@ -10,6 +10,7 @@ import { FreeMode, Pagination } from 'swiper/modules';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Text } from '@/components/wrappers/typography/Text';
 import { Section } from '@/components/wrappers/sections/section/Section';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 const slides = [
   {
@@ -55,72 +56,69 @@ export const MainCarousel = () => {
   return (
     <Section paddingX="empty" className="flex-1">
       <div className="bg-brand-300/70 flex">
-        <Swiper
-          className="mx-auto w-[1600px]"
-          slideToClickedSlide={true}
-          modules={[FreeMode]}
-          freeMode={{
-            enabled: true,
-            sticky: false,
+        <Carousel
+          opts={{
+            dragFree: true,
+            containScroll: 'trimSnaps',
           }}
-          slidesPerView="auto"
-          spaceBetween={10}>
-          {slides.map(({ title }, idx) => (
-            <SwiperSlide
-              key={idx}
-              className="cursor-pointer max-w-[400px]"
-              onClick={() => setActiveIndex(idx)}>
-              <Text
-                color={activeIndex === idx ? 'text-primary' : 'text-description'}
-                size="2xl"
-                className={classNames(
-                  'p-6 transition-colors flex justify-center',
-                  activeIndex === idx ? 'border-b-2 border-brand-100' : '',
-                )}>
+          className="mx-auto w-[1600px]">
+          <CarouselContent className="flex gap-2">
+            {slides.map(({ title }, idx) => (
+              <CarouselItem
+                key={idx}
+                className="cursor-pointer max-w-[400px] flex-shrink-0"
+                onClick={() => setActiveIndex(idx)}>
                 <Text
-                  as="span"
                   color={activeIndex === idx ? 'text-primary' : 'text-description'}
-                  className={'mr-2 mt-1'}>
-                  0{idx + 1}.
+                  size="2xl"
+                  className={classNames(
+                    'p-6 transition-colors flex justify-center duration-400 border-b-2 border-transparent',
+                    activeIndex === idx ? '!border-brand-100' : '',
+                  )}>
+                  <Text
+                    as="span"
+                    color={activeIndex === idx ? 'text-primary' : 'text-description'}
+                    className={'mr-2 mt-1 transition-colors duration-400'}>
+                    0{idx + 1}.
+                  </Text>
+                  {title}
                 </Text>
-                {title}
-              </Text>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
       <AnimatePresence mode="wait">
         <motion.div
-          className={'w-full max-w-[1600px] m-auto'}
+          className="w-full max-w-[1600px] m-auto"
           key={activeIndex}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}>
-          <Swiper
-            pagination={{ clickable: true }}
-            speed={600}
-            className={'w-full px-2'}
-            spaceBetween={16}
-            slidesPerView="auto"
-            freeMode={{
-              enabled: true,
-              sticky: false,
+          <Carousel
+            opts={{
+              dragFree: true,
+              containScroll: 'trimSnaps',
             }}
-            modules={[FreeMode, Pagination]}>
-            {slides?.[activeIndex].content.map(({ title, desc }, i) => (
-              <SwiperSlide key={`${activeIndex}${i}`} className="!w-auto">
-                <div className="max-w-[400px] min-w-[220px] min-h-[280px] p-6 bg-brand-500 rounded-lg">
-                  <Text weight="bold" size="2xl" className="mb-2">
-                    {title}
-                  </Text>
-                  <Text color="text-secondary" size="md">
-                    {desc}
-                  </Text>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            className="w-full px-2">
+            <CarouselContent className="flex gap-4">
+              {slides?.[activeIndex].content.map(({ title, desc }, i) => (
+                <CarouselItem
+                  key={`${activeIndex}-${i}`}
+                  className="flex-shrink-0 max-w-[400px] min-w-[220px] min-h-[280px]">
+                  <div className="p-6 bg-brand-500 rounded-lg flex flex-col">
+                    <Text weight="bold" size="2xl" className="mb-2">
+                      {title}
+                    </Text>
+                    <Text color="text-secondary" size="md">
+                      {desc}
+                    </Text>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </motion.div>
       </AnimatePresence>
     </Section>
