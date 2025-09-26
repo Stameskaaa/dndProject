@@ -47,6 +47,7 @@ export const DnDRules = () => {
             placeholder="Введите название"
           />
           <Selector
+            className="flex-1"
             placeholder="Введите тег"
             label="Список тегов"
             name="tag"

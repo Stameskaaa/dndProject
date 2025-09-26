@@ -1,5 +1,14 @@
 import React from 'react';
-import { ArmchairIcon, Heart, MapPin, Shield, Zap } from 'lucide-react';
+import {
+  ArmchairIcon,
+  BookOpen,
+  Heart,
+  MapPin,
+  Shield,
+  ShieldHalf,
+  Skull,
+  Zap,
+} from 'lucide-react';
 import type { NPC } from '@/features/npc/types';
 import { Button } from '@/components/ui/button';
 import type { God } from '@/features/gods/types';
@@ -49,11 +58,43 @@ export const CreatureCard: React.FC<CreatureCardProps> = ({ creatureData }) => {
 export const CreatureTopContent: React.FC<CreatureCardProps> = ({ creatureData }) => {
   if (!creatureData) return null;
 
+  const hp = 'hp' in creatureData ? creatureData.hp : undefined;
+  const armorClass = 'armorClass' in creatureData ? creatureData.armorClass : undefined;
+  const challenge = 'challenge' in creatureData ? creatureData.challenge : undefined;
+
   return (
     <div className="flex items-start justify-between gap-2 flex-1">
       <Text color="text-description" className="leading-5" size="lg">
         {creatureData.shortDescription}
       </Text>
+      <div className="flex-col flex gap-1 border-brand-300 pl-2">
+        {hp && (
+          <div className="flex items-center gap-2">
+            <Heart className="w-4 h-4 text-rose-400" />
+            <Text size="sm" color="text-description">
+              {hp}
+            </Text>
+          </div>
+        )}
+
+        {armorClass && (
+          <div className="flex items-center gap-2">
+            <ShieldHalf className="w-4 h-4 text-blue-400" />
+            <Text size="sm" color="text-description">
+              {armorClass}
+            </Text>
+          </div>
+        )}
+
+        {challenge !== undefined && (
+          <div className="flex items-center gap-2">
+            <Skull className="w-4 h-4 text-red-400" />
+            <Text size="sm" color="text-description">
+              {challenge}
+            </Text>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -65,15 +106,10 @@ export const CreatureBottomContent: React.FC<CreatureCardProps> = ({ creatureDat
 
   const hasShortDescription = Boolean(creatureData.shortDescription);
 
-  const challenge = 'challenge' in creatureData ? creatureData.challenge : undefined;
   const status = 'status' in creatureData ? creatureData.status : undefined;
   const locations = 'locations' in creatureData ? creatureData.locations : undefined;
 
-  const hp = 'hp' in creatureData ? creatureData.hp : undefined;
-  const armorClass = 'armorClass' in creatureData ? creatureData.armorClass : undefined;
-
-  const hasStats = Boolean(hp || armorClass);
-  const hasAnyInfo = Boolean(challenge || status || (locations && locations.length) || hasStats);
+  const hasAnyInfo = Boolean(status || (locations && locations.length));
   if (!hasAnyInfo) return null;
 
   return (
@@ -81,36 +117,9 @@ export const CreatureBottomContent: React.FC<CreatureCardProps> = ({ creatureDat
       {hasShortDescription && <Separator className="bg-brand-300" spacing="empty" />}
 
       <div className="flex flex-col gap-2">
-        {hp && (
-          <div className="flex items-center gap-2">
-            <Heart className="w-4 h-4 text-rose-400" />
-            <Text size="sm" color="text-description">
-              HP: {hp}
-            </Text>
-          </div>
-        )}
-
-        {armorClass && (
-          <div className="flex items-center gap-2">
-            <ArmchairIcon className="w-4 h-4 text-yellow-400" />
-            <Text size="sm" color="text-description">
-              AC: {armorClass}
-            </Text>
-          </div>
-        )}
-
-        {challenge !== undefined && (
-          <div className="flex items-center gap-2">
-            <Zap className="w-4 h-4 text-yellow-400" />
-            <Text size="sm" color="text-description">
-              Опасность: {challenge}
-            </Text>
-          </div>
-        )}
-
         {status && (
           <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-sky-400" />
+            <BookOpen className="w-4 h-4 text-brand-100" />
             <Text size="sm" color="text-description">
               Статус: {status}
             </Text>
@@ -119,7 +128,7 @@ export const CreatureBottomContent: React.FC<CreatureCardProps> = ({ creatureDat
 
         {locations && locations.length > 0 && (
           <div className="flex flex-wrap items-center gap-2">
-            <MapPin className="w-4 h-4 text-slate-400" />
+            <MapPin className="w-4 h-4 text-brand-100" />
             <Text size="sm" color="text-description" className="flex flex-wrap gap-1">
               {locations.map((loc) => loc.name).join(', ')}
             </Text>

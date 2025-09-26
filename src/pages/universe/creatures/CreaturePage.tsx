@@ -62,7 +62,7 @@ export const mockHostileCreature: HostileCreatures = {
   ],
   sizeId: 'large',
   typeId: 2,
-  hp: '168 (16d10 + 80)',
+  hp: '168',
   armorClass: 16,
   speed: '40 ft., climb 20 ft.',
   characteristicIds: [
@@ -134,7 +134,7 @@ export const mockHostileCreature2: HostileCreatures = {
   sizeId: 'large',
   mdStatblock: '',
   typeId: 2,
-  hp: '168 (16d10 + 80)',
+  hp: '168',
   armorClass: 16,
   speed: '40 ft., climb 20 ft.',
   characteristicIds: [

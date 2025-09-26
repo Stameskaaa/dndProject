@@ -48,6 +48,7 @@ import {
 import { RaidBossListPage } from '@/pages/universe/creatures/RaidBossListPage';
 import { BeastListPage } from '@/pages/universe/creatures/BeastListPage';
 import { NPCListPage } from '@/pages/universe/creatures/NPCListPage';
+import { WorldPage } from '@/pages/universe/worlds/WorldPage/WorldPage';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -289,6 +290,13 @@ export const ROUTES: RouteNode[] = [
             path: 'worlds',
             fullPath: '/universe/worlds',
             element: <WorldsPage />,
+          },
+          {
+            title: 'Мир',
+            path: 'worlds/:id',
+            fullPath: '/universe/worlds/:id',
+            element: <WorldPage />,
+            navigationIgnore: true,
           },
           {
             title: 'Локации',

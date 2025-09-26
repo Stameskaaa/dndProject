@@ -44,10 +44,16 @@ export const colorMap = {
 export const gradientMap = {
   none: '',
   'brand-gradient':
-    'bg-gradient-to-br from-[var(--color-brand-400)] to-[var(--color-brand-200)] bg-clip-text text-transparent',
-  'accent-gradient':
-    'bg-gradient-to-br from-[var(--color-accent-100)] to-[var(--color-accent-300)] bg-clip-text text-transparent',
-  'blue-orange': 'bg-gradient-to-br from-blue-600 to-orange-400 bg-clip-text text-transparent',
+    'bg-gradient-to-br from-[var(--color-brand-300)] to-[var(--color-brand-100)] bg-clip-text text-transparent',
+
+  'brand-bright':
+    'bg-gradient-to-br from-[var(--color-brand-bright-400)] to-[var(--color-brand-bright-100)] bg-clip-text text-transparent',
+
+  'brand-bright-contrast':
+    'bg-gradient-to-br from-[var(--color-brand-bright-500)] via-[var(--color-brand-bright-200)] to-[var(--color-brand-bright-50)] bg-clip-text text-transparent',
+
+  'brand-bright-alt':
+    'bg-gradient-to-br from-[var(--color-brand-bright-300)] to-[var(--color-brand-bright-50)] bg-clip-text text-transparent',
 } as const;
 
 // Типы из ключей констант
