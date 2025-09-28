@@ -18,8 +18,8 @@ export function Separator({
   decorative = true,
   spacing = 'default',
   edgeEffect = 'none',
-  edgeColor = 'brand-300',
-  edgeSide = 'left',
+  edgeColor = 'brand-500',
+  edgeSide = 'both',
   ...props
 }: SeparatorProps) {
   let marginClass = '';
@@ -40,55 +40,63 @@ export function Separator({
   }
 
   const colorVar = `var(--color-${edgeColor})`;
-
-  const renderGradient = (side: 'left' | 'right') => (
-    <div
-      className={cn(
-        'absolute top-0 h-full w-1/5',
-        side === 'left' && 'left-0',
-        side === 'right' && 'right-0',
-      )}
-      style={{
-        background:
-          side === 'left'
-            ? `linear-gradient(to right, ${colorVar}, transparent)`
-            : `linear-gradient(to left, ${colorVar}, transparent)`,
-      }}
-    />
-  );
-
-  const renderBlock = (side: 'left' | 'right') => (
-    <div
-      className={cn(
-        'absolute w-3 h-3 rotate-45 border-2 border-current bg-transparent',
-        side === 'left' && 'left-0 -translate-x-[calc(50%+1px)] top-1/2 -translate-y-1/2',
-        side === 'right' && 'right-0 translate-x-[calc(50%+1px)] top-1/2 -translate-y-1/2',
-      )}
-      style={{ borderColor: colorVar }}
-    />
-  );
+  const blockSize = 8; // ширина/высота ромбика до поворота
 
   const sides: Array<'left' | 'right'> = edgeSide === 'both' ? ['left', 'right'] : [edgeSide];
 
-  return (
-    <div className="relative w-full">
-      <SeparatorPrimitive.Root
-        data-slot="separator"
-        decorative={decorative}
-        orientation={orientation}
-        className={cn(
-          'bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full',
-          'bg-[var(--color-brand-200)]',
-          marginClass,
-          className,
-        )}
-        {...props}
-      />
+  // урезаем именно на полный blockSize
+  const leftOffset = sides.includes('left') && edgeEffect === 'block' ? blockSize : 0;
+  const rightOffset = sides.includes('right') && edgeEffect === 'block' ? blockSize : 0;
 
+  return (
+    <SeparatorPrimitive.Root
+      data-slot="separator"
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        'bg-border shrink-0 relative',
+        'bg-[var(--color-brand-200)]',
+        marginClass,
+        className,
+      )}
+      style={{
+        width: `calc(100% - ${leftOffset + rightOffset}px)`,
+        marginLeft: leftOffset ? `${leftOffset}px` : undefined,
+        marginRight: rightOffset ? `${rightOffset}px` : undefined,
+      }}
+      {...props}>
       {edgeEffect === 'gradient' &&
         orientation === 'horizontal' &&
-        sides.map((side) => renderGradient(side))}
-      {edgeEffect === 'block' && sides.map((side) => renderBlock(side))}
-    </div>
+        sides.map((side) => (
+          <div
+            key={side}
+            className="absolute top-0 h-full"
+            style={{
+              width: '20%',
+              [side]: 0,
+              background:
+                side === 'left'
+                  ? `linear-gradient(to right, ${colorVar}, transparent)`
+                  : `linear-gradient(to left, ${colorVar}, transparent)`,
+            }}
+          />
+        ))}
+
+      {edgeEffect === 'block' &&
+        sides.map((side) => (
+          <div
+            key={side}
+            className="absolute w-2 h-2 bg-transparent"
+            style={{
+              border: `2px solid ${colorVar}`,
+              top: '50%',
+              transform: `translateY(-50%) ${
+                side === 'left' ? 'translateX(-50%)' : 'translateX(50%)'
+              } rotate(45deg)`,
+              [side]: `-${blockSize / 2}px`,
+            }}
+          />
+        ))}
+    </SeparatorPrimitive.Root>
   );
 }

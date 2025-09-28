@@ -97,7 +97,7 @@ export const LocationsPage = () => {
             <PreviewCard
               name={name}
               src={src}
-              onClick={() => navigatePath(`/unverse/locations/${index}`)}
+              onClick={() => navigatePath(`/universe/locations/${index}`)}
             />
           </motion.div>
         ))}

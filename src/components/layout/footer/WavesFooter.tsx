@@ -18,7 +18,6 @@ export const WavesFooter = () => {
             {ButtList.map(({ text }, i) => (
               <React.Fragment key={i}>
                 <FooterButton key={text} text={text} />{' '}
-                {i !== ButtList.length - 1 && <Separator orientation="vertical" />}
               </React.Fragment>
             ))}
           </div>
