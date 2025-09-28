@@ -18,6 +18,7 @@ export const EditLocation = () => {
   // TODO
   return (
     <EditList
+      contentName="Локации"
       methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}

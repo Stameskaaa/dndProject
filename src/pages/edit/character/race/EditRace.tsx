@@ -26,6 +26,7 @@ export const EditRace = () => {
 
   return (
     <EditList<Race>
+      contentName="Виды/Расы"
       methods={methods}
       queryHook={useGetRaceListQuery}
       createHook={useCreateRaceMutation}

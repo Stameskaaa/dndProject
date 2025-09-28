@@ -17,6 +17,7 @@ export const EditCharacteristic = () => {
 
   return (
     <EditList<Characteristic>
+      contentName="Характеристики"
       methods={methods}
       queryHook={useGetCharacteristicListQuery}
       createHook={useCreateCharacteristicMutation}

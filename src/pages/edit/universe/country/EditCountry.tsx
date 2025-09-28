@@ -19,6 +19,7 @@ export const EditCountry = () => {
   // TODO
   return (
     <EditList
+      contentName="Страны"
       methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}

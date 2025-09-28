@@ -19,6 +19,7 @@ export const EditOrigin = () => {
 
   return (
     <EditList
+      contentName="Происхождения"
       methods={methods}
       queryHook={useGetOriginListQuery}
       createHook={useCreateOriginMutation}

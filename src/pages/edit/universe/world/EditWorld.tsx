@@ -20,6 +20,7 @@ export const EditWorld = () => {
   // TODO
   return (
     <EditList
+      contentName="Миры"
       methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}

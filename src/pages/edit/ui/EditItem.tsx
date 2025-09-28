@@ -22,6 +22,7 @@ interface EditListProps<T extends { id?: number | null } & FieldValues>
   extends UseEditableItemProps<T> {
   children: ReactNode;
   mapData: (data: T[] | undefined) => EditableItem[];
+  contentName: string;
 }
 
 export const EditList = <T extends { id?: number | null }>({
@@ -32,6 +33,7 @@ export const EditList = <T extends { id?: number | null }>({
   removeHook,
   mapData,
   methods,
+  contentName,
 }: EditListProps<T>) => {
   const {
     open,
@@ -44,6 +46,7 @@ export const EditList = <T extends { id?: number | null }>({
     editLoading,
     data,
     isLoading,
+    isFetching,
   } = useEditableForm<T>({
     queryHook,
     createHook,
@@ -57,8 +60,10 @@ export const EditList = <T extends { id?: number | null }>({
 
   const editableData = mapData(data?.data);
 
+  const fetching = isFetching && !isLoading;
+
   return (
-    <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 bg-brand-500 flex-1 h-full p-4 gap-3 min-h-0">
+    <div className="flex flex-col relative bg-brand-3 border-1 rounded-md border-brand-300 bg-brand-500 flex-1 h-full p-4 gap-3 min-h-0">
       <div className="flex flex-col flex-1 h-full gap-3">
         <div className="flex gap-2 h-[36px]">
           <Input
@@ -93,6 +98,12 @@ export const EditList = <T extends { id?: number | null }>({
           )}
         </div>
         {/* TODO */}
+
+        {fetching && (
+          <div className="absolute bottom-0 left-0 p-5">
+            <Spinner className="!text-brand-100" />
+          </div>
+        )}
         <div className="mt-auto">
           {data?.meta && (
             <Pagination
@@ -113,9 +124,12 @@ export const EditList = <T extends { id?: number | null }>({
         open={open}>
         <Section className="flex h-full max-h-full">
           <div className="flex-1 flex flex-col bg-brand-400 border-1 rounded-md border-brand-300 p-4">
-            <div className="flex justify-between gap-4 items-center">
-              <Text color="brand-100" className="p-2" size="xl">
-                {'Изменение / Создание контента'}
+            <div className="flex justify-between gap-4 items-center pb-2">
+              <Text size="2xl" weight="bold" color="brand-100">
+                {contentName}
+                <Text as="span" size="lg" color="brand-100" className="ml-2">
+                  - Изменение / Создание
+                </Text>
               </Text>
 
               {isDirty && <Badge className="!bg-blue-500">Изменения не сохранены</Badge>}

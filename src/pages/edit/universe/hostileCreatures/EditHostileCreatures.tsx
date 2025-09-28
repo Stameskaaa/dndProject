@@ -27,6 +27,7 @@ export const EditHostileCreatures = () => {
   // TODO
   return (
     <EditList
+      contentName="Враждебные существа"
       methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}

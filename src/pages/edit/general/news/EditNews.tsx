@@ -16,6 +16,7 @@ export const EditNews = () => {
 
   return (
     <EditList
+      contentName="Новости"
       methods={methods}
       queryHook={useGetNewsListQuery}
       createHook={useCreateNewsMutation}

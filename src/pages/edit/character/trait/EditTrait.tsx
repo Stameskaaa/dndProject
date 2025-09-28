@@ -18,6 +18,7 @@ export const EditTrait = () => {
 
   return (
     <EditList
+      contentName="Черты"
       methods={methods}
       queryHook={useGetTraitListQuery}
       createHook={useCreateTraitMutation}

@@ -19,6 +19,7 @@ export const EditNPC = () => {
   // TODO
   return (
     <EditList
+      contentName="Личности"
       methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}

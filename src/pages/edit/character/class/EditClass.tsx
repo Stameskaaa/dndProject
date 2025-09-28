@@ -18,6 +18,7 @@ export const EditClass = () => {
 
   return (
     <EditList
+      contentName="Классы"
       methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}

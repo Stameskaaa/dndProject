@@ -18,6 +18,7 @@ export const EditSpell = () => {
 
   return (
     <EditList<Spell>
+      contentName="Заклинания"
       methods={methods}
       queryHook={useGetSpellsListQuery}
       createHook={useCreateSpellMutation}

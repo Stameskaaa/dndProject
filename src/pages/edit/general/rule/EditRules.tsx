@@ -31,6 +31,7 @@ export const EditRules = () => {
 
   return (
     <EditList
+      contentName="Правила"
       methods={methods}
       getTransformedData={handleSave}
       queryHook={useGetRulesListQuery}
