@@ -13,14 +13,13 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditCountry = () => {
-  const { control, reset, handleSubmit, getValues } = useForm<God>();
+  const methods = useForm<God>();
+  const { control } = methods;
 
   // TODO
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}
@@ -40,9 +39,9 @@ export const EditCountry = () => {
         name="name"
         control={control}
       />
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Долина Гурван-Гол"
           message="Выберите мир"
           required
@@ -53,7 +52,7 @@ export const EditCountry = () => {
         />
         <Input
           required
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           message="Прикрепите фотографию"
           placeholder="https://image.png"
           name="src"
@@ -62,7 +61,7 @@ export const EditCountry = () => {
       </div>
 
       <Selector
-        className="flex-1"
+        className="w-full"
         placeholder="Долина лунных орхидей"
         message="Выберите локации"
         required

@@ -10,15 +10,14 @@ import { EditList } from '../ui/EditItem';
 import { Input } from '@/components/wrappers/forms/input/Input';
 
 export const EditCharacteristic = () => {
-  const { control, getValues, reset, handleSubmit } = useForm<Characteristic>({
+  const methods = useForm<Characteristic>({
     shouldUnregister: true,
   });
+  const { control } = methods;
 
   return (
     <EditList<Characteristic>
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetCharacteristicListQuery}
       createHook={useCreateCharacteristicMutation}
       updateHook={useUpdateCharacteristicMutation}

@@ -1,10 +1,4 @@
-import type { World } from '@/features/worlds/types';
 import { useForm } from 'react-hook-form';
-import { Input } from '@/components/wrappers/forms/input/Input';
-import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
-import { Selector } from '@/components/wrappers/forms/selector/Selector';
-import { trait_types } from '@/mock/mock';
-import { EditList } from '../../ui/EditItem';
 import {
   useCreateGodMutation,
   useDeleteGodMutation,
@@ -12,16 +6,21 @@ import {
   useUpdateGodMutation,
 } from '@/features/gods/api';
 import { God } from '@/features/gods/types';
+import type { World } from '@/features/worlds/types';
+import { EditList } from '../../ui/EditItem';
+import { trait_types } from '@/mock/mock';
+import { Input } from '@/components/wrappers/forms/input/Input';
+import { Selector } from '@/components/wrappers/forms/selector/Selector';
+import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditWorld = () => {
-  const { control, reset, handleSubmit, getValues } = useForm<God>();
+  const methods = useForm<God>();
+  const { control } = methods;
 
   // TODO
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}
@@ -43,9 +42,9 @@ export const EditWorld = () => {
         name="src"
         control={control}
       />
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Страна Сенкриф"
           message="Выберите страны"
           required
@@ -57,7 +56,7 @@ export const EditWorld = () => {
         />
 
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Долина лунных орхидей"
           message="Выберите локации"
           required

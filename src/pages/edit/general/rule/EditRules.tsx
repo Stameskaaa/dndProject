@@ -13,33 +13,26 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditRules = () => {
-  const {
-    control,
-    watch,
-    resetField,
-    getValues: getFormData,
-    reset,
-    handleSubmit,
-  } = useForm<Rule>({
+  const methods = useForm<Rule>({
     defaultValues: {
       type: 'dnd',
     },
   });
+  const { watch, control, getValues, resetField } = methods;
 
   const selectedTag = watch('type');
   const tagList = allTags?.[selectedTag];
 
   function handleSave() {
-    const { tags, ...rest } = getFormData();
+    const { tags, ...rest } = getValues();
     const newTags = Array.isArray(tags) ? tags : [tags || 'other'];
     return { ...rest, tags: newTags };
   }
 
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={handleSave}
+      methods={methods}
+      getTransformedData={handleSave}
       queryHook={useGetRulesListQuery}
       createHook={useCreateRuleMutation}
       updateHook={useUpdateRuleMutation}
@@ -54,7 +47,7 @@ export const EditRules = () => {
       }}>
       <div className="flex gap-2 flex-wrap items-end">
         <Input
-          className="w-auto flex-1 min-w-[260px]"
+          className="flex-2 min-w-[260px]"
           required
           placeholder="Введите название правила"
           message="Название правила"
@@ -63,6 +56,7 @@ export const EditRules = () => {
         />
 
         <Selector
+          className="flex-1"
           required
           onChangeAction={() => resetField('tags')}
           placeholder="Выберите тип правила"
@@ -73,6 +67,7 @@ export const EditRules = () => {
         />
 
         <Selector
+          className="flex-1"
           message="Теги зависят от выбранного типа"
           required
           disabled={!tagList}

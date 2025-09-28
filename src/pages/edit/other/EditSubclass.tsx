@@ -11,13 +11,12 @@ import { Input } from '@/components/wrappers/forms/input/Input';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditSubclass = () => {
-  const { control, reset, handleSubmit, getValues } = useForm<God>();
+  const methods = useForm<God>();
+  const { control } = methods;
 
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}

@@ -14,13 +14,12 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditOrigin = () => {
-  const { control, reset, handleSubmit, getValues } = useForm<Origin>();
+  const methods = useForm<Origin>();
+  const { control } = methods;
 
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetOriginListQuery}
       createHook={useCreateOriginMutation}
       updateHook={useUpdateOriginMutation}
@@ -40,9 +39,9 @@ export const EditOrigin = () => {
         name="name"
         control={control}
       />
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Input
-          className="flex-1"
+          className="flex-1 min-w-[260px]"
           required
           message="Ссылка на фото"
           placeholder="https://example.com/image.png"
@@ -50,7 +49,7 @@ export const EditOrigin = () => {
           control={control}
         />
         <Selector
-          className="flex-1"
+          className="flex-1 min-w-[260px]"
           placeholder="Долина Гурван-Гол"
           message="Выберите мир"
           required
@@ -71,9 +70,9 @@ export const EditOrigin = () => {
         name={'characteristic_ids'}
         options={characteristic.map(({ id, name }) => ({ id, value: name }))}
       />
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap items-end">
         <Input
-          className="flex-1"
+          className="flex-1 min-w-[260px]"
           required
           placeholder="Акробатика, выступления"
           message="Впишите навыки, которыми владеет"
@@ -81,7 +80,7 @@ export const EditOrigin = () => {
           control={control}
         />
         <Input
-          className="flex-1"
+          className="flex-1 min-w-[260px]"
           required
           placeholder="Инструменты стеклодува, воровские инструменты"
           message="Владение инструментами"
@@ -98,9 +97,9 @@ export const EditOrigin = () => {
         name="trait_ids"
         options={ruleOptions}
       />
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap items-end">
         <Input
-          className="w-auto flex-1 min-w-[260px]"
+          className="flex-1 min-w-[260px]"
           required
           message="Снаряжение - А"
           placeholder="Кольчуга, кинжал"
@@ -108,7 +107,7 @@ export const EditOrigin = () => {
           control={control}
         />
         <Input
-          className="w-auto flex-1 min-w-[260px]"
+          className="flex-1 min-w-[260px]"
           required
           message="Снаряжение - Б"
           placeholder="Проклепанный кожанный доспех, рапира"

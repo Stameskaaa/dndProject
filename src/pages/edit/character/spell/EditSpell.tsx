@@ -1,25 +1,24 @@
 import { useForm } from 'react-hook-form';
-import { schoolList } from '@/mock/mock';
-import type { Spell } from '@/features/spells/types';
-import { Input } from '@/components/wrappers/forms/input/Input';
-import { Selector } from '@/components/wrappers/forms/selector/Selector';
-import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
-import { EditList } from '../../ui/EditItem';
 import {
   useCreateSpellMutation,
   useDeleteSpellMutation,
   useGetSpellsListQuery,
   useUpdateSpellMutation,
 } from '@/features/spells/api';
+import type { Spell } from '@/features/spells/types';
+import { schoolList } from '@/mock/mock';
+import { EditList } from '../../ui/EditItem';
+import { Input } from '@/components/wrappers/forms/input/Input';
+import { Selector } from '@/components/wrappers/forms/selector/Selector';
+import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditSpell = () => {
-  const { control, reset, getValues, handleSubmit } = useForm<Spell>();
+  const methods = useForm<Spell>();
+  const { control } = methods;
 
   return (
     <EditList<Spell>
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetSpellsListQuery}
       createHook={useCreateSpellMutation}
       updateHook={useUpdateSpellMutation}
@@ -40,9 +39,9 @@ export const EditSpell = () => {
         control={control}
       />
 
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Selector
-          className="flex-2"
+          className="w-auto flex-2 min-w-[260px]"
           placeholder="Волшебник, жрец, следопыт"
           message="Выберите классы"
           required
@@ -53,7 +52,7 @@ export const EditSpell = () => {
           options={schoolList.map(({ id, title }) => ({ id, value: title }))}
         />
         <Selector
-          className="flex-1"
+          className="w-auto flex-2 min-w-[260px]"
           placeholder="Заговор"
           message="Выберите уровень"
           required
@@ -66,7 +65,7 @@ export const EditSpell = () => {
           }))}
         />
         <Selector
-          className="flex-1"
+          className="w-auto flex-2 min-w-[260px]"
           placeholder="Воплощение"
           message="Выберите школу"
           required
@@ -77,8 +76,9 @@ export const EditSpell = () => {
         />
       </div>
 
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Input
+          className="w-auto flex-1 min-w-[260px]"
           required
           placeholder="Действие"
           message="Время каста"
@@ -86,6 +86,7 @@ export const EditSpell = () => {
           control={control}
         />
         <Input
+          className="w-auto flex-1 min-w-[260px]"
           required
           placeholder="Мгновенное"
           message="Длительность"
@@ -93,8 +94,10 @@ export const EditSpell = () => {
           control={control}
         />
       </div>
-      <div className="flex gap-2 items-start">
+
+      <div className="flex gap-2 flex-wrap items-end">
         <Input
+          className="w-auto flex-1 min-w-[260px]"
           required
           placeholder="120 футов"
           message="Дистанция"
@@ -102,6 +105,7 @@ export const EditSpell = () => {
           control={control}
         />
         <Input
+          className="w-auto flex-1 min-w-[260px]"
           required
           placeholder="В,C,М (Перо василиска)"
           message="Список компонентов"

@@ -13,13 +13,12 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditTrait = () => {
-  const { control, reset, getValues, handleSubmit } = useForm<Trait>();
+  const methods = useForm<Trait>();
+  const { control } = methods;
 
   return (
     <EditList
-      reset={reset}
-      handleSubmit={handleSubmit}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetTraitListQuery}
       createHook={useCreateTraitMutation}
       updateHook={useUpdateTraitMutation}
@@ -31,7 +30,7 @@ export const EditTrait = () => {
           title: name,
         }));
       }}>
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Input
           className="flex-1"
           required

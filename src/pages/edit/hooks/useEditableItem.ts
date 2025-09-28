@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useForm, type FieldValues, type UseFormReset } from 'react-hook-form';
-import { usePagination } from '@/hooks/usePagination';
+import { useForm, UseFormReturn, type FieldValues, type UseFormReset } from 'react-hook-form';
 import type { GetList } from '@/features/types';
+import { usePagination } from '@/hooks/usePagination';
 
 type MutationHook<T> = () => readonly [(arg: T) => ReturnType<any>, { isLoading: boolean }];
 
+type FormMethods<T extends FieldValues> = Pick<
+  UseFormReturn<T>,
+  'handleSubmit' | 'reset' | 'getValues' | 'formState'
+>;
+
 export interface UseEditableItemProps<T extends FieldValues> {
   // TODO
-  handleSubmit: any;
+  methods: FormMethods<T>;
+  getTransformedData?: () => T;
   queryHook: (args: any) => { data?: GetList<T>; isLoading: boolean; isFetching?: boolean };
-  reset?: UseFormReset<T>;
-  getValues?: () => T;
   createHook: MutationHook<T>;
   updateHook: MutationHook<T>;
   removeHook: MutationHook<{ id: number }>;
@@ -18,18 +22,18 @@ export interface UseEditableItemProps<T extends FieldValues> {
 
 export function useEditableForm<T extends { id?: number | null } & FieldValues>({
   queryHook,
-  reset,
-  getValues,
   createHook,
   removeHook,
   updateHook,
-  handleSubmit,
+  getTransformedData,
+  methods,
 }: UseEditableItemProps<T>) {
   const { control, watch } = useForm<{ inputValue: string }>({ defaultValues: { inputValue: '' } });
   const [open, setOpen] = useState(false);
   const [loadDeletedId, setLoadDeletedId] = useState<number | null>(null);
   const [editableItem, setEditableItem] = useState<T | null>(null);
   const inputValue = watch('inputValue');
+  const { reset, getValues, handleSubmit } = methods;
   // TODO дебаунс сделат
 
   const [remove] = removeHook();
@@ -57,7 +61,7 @@ export function useEditableForm<T extends { id?: number | null } & FieldValues>(
   }
 
   async function submitAction() {
-    const payload = getValues?.();
+    const payload = getTransformedData ? getTransformedData() : getValues?.();
     if (!payload) return;
     if (editableItem) {
       await update({ ...editableItem, ...payload });

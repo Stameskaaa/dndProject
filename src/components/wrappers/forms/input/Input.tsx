@@ -72,7 +72,7 @@ export const Input = ({
               {!message && placeholder && (
                 <motion.span
                   initial={'rest'}
-                  className={'absolute inset-0 leading-[16px] pointer-events-none'}
+                  className={'absolute inset-0 leading-[16px] truncate pointer-events-none'}
                   animate={isActive ? 'active' : 'rest'}
                   variants={{
                     rest: { y: 6, x: 12 },

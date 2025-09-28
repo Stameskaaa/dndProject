@@ -21,14 +21,13 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditHostileCreatures = () => {
-  const { control, reset, handleSubmit, getValues } = useForm<God>();
+  const methods = useForm<God>({ defaultValues: {} });
+  const { control } = methods;
 
   // TODO
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}
@@ -50,9 +49,9 @@ export const EditHostileCreatures = () => {
         name="src"
         control={control}
       />
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Долина Гурван-Гол"
           message="Выберите миры"
           required
@@ -62,7 +61,7 @@ export const EditHostileCreatures = () => {
           options={trait_types.map(({ id, name }) => ({ id, value: name }))}
         />
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Страна Сенкриф"
           message="Выберите страну"
           required
@@ -74,7 +73,7 @@ export const EditHostileCreatures = () => {
         />
 
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Долина лунных орхидей"
           message="Выберите локации"
           required
@@ -87,7 +86,7 @@ export const EditHostileCreatures = () => {
       </div>
 
       <div className="flex gap-2 flex-wrap">
-        <div className="flex flex-col gap-2 flex-3 justify-start border border-brand-200 p-3 rounded-md">
+        <div className="flex flex-col gap-2 min-w-[350px] flex-3 justify-start border border-brand-200 p-3 rounded-md">
           <Text color="brand-100" size="lg">
             Общие описания
           </Text>
@@ -142,7 +141,7 @@ export const EditHostileCreatures = () => {
 
         <CharacteristicForm
           control={control}
-          className="flex-1"
+          className="flex-1 min-w-[350px]"
           name="characteristic"
           title="Характеристики"
         />
@@ -194,14 +193,14 @@ export const EditHostileCreatures = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 items-start  border border-brand-200 p-3 rounded-md">
+      <div className="flex flex-col gap-2 items-start min-w-[350px] border border-brand-200 p-3 rounded-md">
         <Text color="brand-100" size="lg">
           Владения
         </Text>
-        <div className="flex gap-2 items-end w-full">
+        <div className="w-full flex gap-2 flex-wrap items-end">
           <Input
             required
-            className="flex-2"
+            className="w-auto flex-2 min-w-[260px]"
             message="Укажи выбор навыков"
             placeholder="Атлетика +8, акробатика  +20"
             name="skills"
@@ -209,7 +208,7 @@ export const EditHostileCreatures = () => {
           />
           <Input
             required
-            className="flex-2"
+            className="w-auto flex-2 min-w-[260px]"
             message="Укажи какими спасбросками владеет"
             placeholder="Сила +10, ловкость +1"
             name="saving_throws"
@@ -217,7 +216,7 @@ export const EditHostileCreatures = () => {
           />
           <Input
             required
-            className="flex-1"
+            className="w-auto flex-1 min-w-[260px]"
             message="Бонус мастерства"
             placeholder="2"
             name="proficiency_bonus"

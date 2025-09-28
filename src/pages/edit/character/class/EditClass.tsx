@@ -13,13 +13,12 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { armors, characteristic, dice_hits, trait_types } from '@/mock/mock';
 
 export const EditClass = () => {
-  const { control, reset, handleSubmit, getValues } = useForm<God>();
+  const methods = useForm<God>();
+  const { control } = methods;
 
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}

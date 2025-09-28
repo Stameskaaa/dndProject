@@ -1,20 +1,20 @@
 import { useForm } from 'react-hook-form';
-import type { Race } from '@/features/races/types';
-import { EditList } from '../../ui/EditItem';
-import { creature_sizes, creature_types, trait_types } from '@/mock/mock';
-import { Text } from '@/components/wrappers/typography/Text';
-import { Input } from '@/components/wrappers/forms/input/Input';
-import { Selector } from '@/components/wrappers/forms/selector/Selector';
-import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 import {
   useCreateRaceMutation,
   useDeleteRaceMutation,
   useGetRaceListQuery,
   useUpdateRaceMutation,
 } from '@/features/races/api';
+import type { Race } from '@/features/races/types';
+import { EditList } from '../../ui/EditItem';
+import { Text } from '@/components/wrappers/typography/Text';
+import { Input } from '@/components/wrappers/forms/input/Input';
+import { Selector } from '@/components/wrappers/forms/selector/Selector';
+import { creature_sizes, creature_types, trait_types } from '@/mock/mock';
+import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditRace = () => {
-  const { control, reset, handleSubmit, getValues } = useForm<Race>({
+  const methods = useForm<Race>({
     defaultValues: {
       features: {
         type: 'Humanoid',
@@ -22,12 +22,11 @@ export const EditRace = () => {
       },
     },
   });
+  const { control } = methods;
 
   return (
     <EditList<Race>
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetRaceListQuery}
       createHook={useCreateRaceMutation}
       updateHook={useUpdateRaceMutation}
@@ -43,9 +42,9 @@ export const EditRace = () => {
         name="name"
         control={control}
       />
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Input
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           required
           message="Ссылка на фото"
           placeholder="https://example.com/image.png"
@@ -53,7 +52,7 @@ export const EditRace = () => {
           control={control}
         />
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Долина Гурван-Гол"
           message="Выберите мир"
           required
@@ -70,9 +69,9 @@ export const EditRace = () => {
         <Text size="lg" className="border-b border-brand-200 pb-1">
           Особенности
         </Text>
-        <div className="flex gap-2 items-start">
+        <div className="flex gap-2 flex-wrap items-end">
           <Selector
-            className="flex-1"
+            className="w-auto flex-1 min-w-[260px]"
             required
             message="Тип существа"
             label="Типы"
@@ -82,7 +81,7 @@ export const EditRace = () => {
             options={creature_types}
           />
           <Selector
-            className="flex-1"
+            className="w-auto flex-1 min-w-[260px]"
             required
             message="Размер"
             label="Размеры"
@@ -92,7 +91,7 @@ export const EditRace = () => {
             options={creature_sizes}
           />
           <Input
-            className="flex-2"
+            className="w-auto flex-2 min-w-[260px]"
             required
             message="Скорость"
             placeholder="30 футов, лазая 20 футов"

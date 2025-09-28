@@ -11,13 +11,12 @@ import { Input } from '@/components/wrappers/forms/input/Input';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditNews = () => {
-  const { control, getValues, reset, handleSubmit } = useForm<News>({ shouldUnregister: true });
+  const methods = useForm<News>({ shouldUnregister: true });
+  const { control } = methods;
 
   return (
     <EditList
-      reset={reset}
-      handleSubmit={handleSubmit}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetNewsListQuery}
       createHook={useCreateNewsMutation}
       updateHook={useUpdateNewsMutation}
@@ -30,12 +29,23 @@ export const EditNews = () => {
           description: shortDescription,
         }));
       }}>
-      <Input
-        message="Название новости"
-        placeholder="Украли кубики"
-        name="title"
-        control={control}
-      />
+      <div className="flex gap-2 flex-wrap items-end">
+        <Input
+          className="flex-1 min-w-[260px]"
+          message="Название новости"
+          placeholder="Украли кубики"
+          name="title"
+          control={control}
+        />
+        <Input
+          className="flex-1 min-w-[260px]"
+          message="Ссылка на фото"
+          placeholder="https://example.com/image.png"
+          name="image"
+          control={control}
+        />
+      </div>
+
       <Input
         message="Краткое описание (1–2 предложения, используется в превью)"
         placeholder="Краткое описание"
@@ -46,12 +56,6 @@ export const EditNews = () => {
         control={control}
         name="mdDescription"
         placeholder="Напишите основной текст новости в формате Markdown"
-      />
-      <Input
-        message="Ссылка на фото"
-        placeholder="https://example.com/image.png"
-        name="image"
-        control={control}
       />
     </EditList>
   );

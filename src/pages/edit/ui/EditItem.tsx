@@ -10,6 +10,7 @@ import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindo
 import { useEditableForm, type UseEditableItemProps } from '../hooks/useEditableItem';
 import { Pagination } from '@/components/wrappers/navigation/pagination/Pagination';
 import { Section } from '@/components/wrappers/sections/section/Section';
+import { Badge } from '@/components/wrappers/badge/Badge';
 
 interface EditableItem {
   id: number;
@@ -29,10 +30,8 @@ export const EditList = <T extends { id?: number | null }>({
   createHook,
   updateHook,
   removeHook,
-  reset,
-  getValues,
   mapData,
-  handleSubmit,
+  methods,
 }: EditListProps<T>) => {
   const {
     open,
@@ -46,14 +45,15 @@ export const EditList = <T extends { id?: number | null }>({
     data,
     isLoading,
   } = useEditableForm<T>({
-    handleSubmit,
     queryHook,
     createHook,
     updateHook,
     removeHook,
-    reset,
-    getValues,
+    methods,
   });
+  const {
+    formState: { isDirty },
+  } = methods;
 
   const editableData = mapData(data?.data);
 
@@ -113,9 +113,13 @@ export const EditList = <T extends { id?: number | null }>({
         open={open}>
         <Section className="flex h-full max-h-full">
           <div className="flex-1 flex flex-col bg-brand-400 border-1 rounded-md border-brand-300 p-4">
-            <Text color="brand-100" className="p-2" size="xl">
-              {'Изменение / Создание контента'}
-            </Text>
+            <div className="flex justify-between gap-4 items-center">
+              <Text color="brand-100" className="p-2" size="xl">
+                {'Изменение / Создание контента'}
+              </Text>
+
+              {isDirty && <Badge className="!bg-blue-500">Изменения не сохранены</Badge>}
+            </div>
             <Separator spacing="empty" />
             <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-4">{children}</div>
             <div className="flex gap-2 pt-2 justify-end">

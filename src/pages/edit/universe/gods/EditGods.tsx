@@ -13,13 +13,12 @@ import { Selector } from '@/components/wrappers/forms/selector/Selector';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 
 export const EditGods = () => {
-  const { control, reset, getValues, handleSubmit } = useForm<God>();
+  const methods = useForm<God>();
+  const { control } = methods;
 
   return (
     <EditList
-      handleSubmit={handleSubmit}
-      reset={reset}
-      getValues={getValues}
+      methods={methods}
       queryHook={useGetGodListQuery}
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}
@@ -33,9 +32,9 @@ export const EditGods = () => {
         }));
       }}>
       <Input required placeholder="Кайдор" message="Имя бога" name="name" control={control} />
-      <div className="flex gap-2 items-start">
+      <div className="flex gap-2 flex-wrap items-end">
         <Selector
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           placeholder="Долина Гурван-Гол"
           message="Выберите миры"
           required
@@ -47,7 +46,7 @@ export const EditGods = () => {
         />
         <Input
           required
-          className="flex-1"
+          className="w-auto flex-1 min-w-[260px]"
           message="Прикрепите фотографию"
           placeholder="https://image.png"
           name="src"
