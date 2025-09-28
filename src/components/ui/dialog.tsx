@@ -26,9 +26,10 @@ function DialogClose({ ...props }: ComponentProps<typeof DialogPrimitive.Close>)
 type MotionDivProps = HTMLMotionProps<'div'> & {
   open: boolean;
   setOpen: (state: boolean) => void;
+  zIndex?: number;
 };
 
-function DialogContent({ className, children, open, ...props }: MotionDivProps) {
+function DialogContent({ className, children, open, zIndex, ...props }: MotionDivProps) {
   const id = useId();
   useScrollLock(id, open);
   const { setOpen } = props;
@@ -41,7 +42,7 @@ function DialogContent({ className, children, open, ...props }: MotionDivProps) 
             duration={0.2}
             onClick={() => setOpen(false)}
             key="blanket"
-            style={{ zIndex: ModalIndex - 1 }}
+            style={{ zIndex: zIndex ? zIndex - 1 : ModalIndex - 1 }}
           />
           <motion.div
             {...props}
@@ -49,7 +50,7 @@ function DialogContent({ className, children, open, ...props }: MotionDivProps) 
             animate={{ scale: 1, filter: 'blur(0px)', opacity: 1 }}
             exit={{ scale: 0.95, filter: 'blur(12px)', opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            style={{ ...props.style, zIndex: ModalIndex }}
+            style={{ ...props.style, zIndex: zIndex ? zIndex : ModalIndex }}
             data-slot="dialog-content"
             className={cn(
               'bg-background fixed top-[50%] left-[50%] grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg sm:max-w-lg',

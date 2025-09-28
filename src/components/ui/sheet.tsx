@@ -28,9 +28,11 @@ function SheetContent({
   side = 'right',
   setOpen,
   style,
+  zIndex,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: 'top' | 'right' | 'bottom' | 'left';
+  zIndex?: number;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
@@ -39,7 +41,7 @@ function SheetContent({
         duration={0.2}
         onClick={() => setOpen?.(false)}
         key="blanket"
-        style={{ zIndex: SidePanelIndex - 1 }}
+        style={{ zIndex: zIndex ? zIndex - 1 : SidePanelIndex - 1 }}
       />
 
       <SheetPrimitive.Content
@@ -56,7 +58,7 @@ function SheetContent({
             'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t',
           className,
         )}
-        style={{ ...style, zIndex: SidePanelIndex }}
+        style={{ ...style, zIndex: zIndex ? zIndex : SidePanelIndex }}
         {...props}>
         {children}
         <SheetPrimitive.Close

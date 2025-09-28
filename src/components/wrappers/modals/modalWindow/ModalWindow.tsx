@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 interface ModalDialogProps {
   buttonTrigger?: ReactNode;
+  zIndex?: number;
   contentClassname?: string;
   children?: ReactNode;
   open?: boolean;
@@ -24,6 +25,7 @@ export const ModalWindow: FC<ModalDialogProps> = ({
   buttonTrigger,
   children,
   contentClassname,
+  zIndex,
   open: externalOpen,
   setOpen: externalSetOpen,
   contentStyle,
@@ -42,6 +44,7 @@ export const ModalWindow: FC<ModalDialogProps> = ({
         </DialogTrigger>
       )}
       <DialogContent
+        zIndex={zIndex}
         open={open}
         setOpen={setOpen}
         style={contentStyle}

@@ -10,6 +10,7 @@ import { Textarea, type TextareaProps } from './Textarea';
 import { MarkDownText } from '../../typography/MarkDownText';
 import { SidePanel } from '../../modals/sidePanel/SidePanel';
 import { ModalWindow } from '../../modals/modalWindow/ModalWindow';
+import { ModalIndex, SidePanelIndex } from '@/constants/zIndex';
 
 export const TextareaMD: React.FC<TextareaProps> = ({ control, name, className, ...props }) => {
   const {
@@ -25,10 +26,11 @@ export const TextareaMD: React.FC<TextareaProps> = ({ control, name, className, 
         name={name}
         actions={[
           <ModalWindow
+            zIndex={ModalIndex + 2}
             key={1}
             contentClassname="h-[fit-content] overflow-hidden"
             buttonTrigger={
-              <Button size="sm" onClick={() => onChange((value || '') + '\n# Заголвооку')}>
+              <Button size="sm">
                 <FileOutput />
               </Button>
             }>
@@ -38,6 +40,7 @@ export const TextareaMD: React.FC<TextareaProps> = ({ control, name, className, 
             {isShowed ? <Eye /> : <EyeOff />}
           </Button>,
           <SidePanel
+            zIndex={ModalIndex + 2}
             key={3}
             buttonTrigger={
               <Button size="sm">
@@ -49,6 +52,7 @@ export const TextareaMD: React.FC<TextareaProps> = ({ control, name, className, 
             </div>
           </SidePanel>,
           <ModalWindow
+            zIndex={ModalIndex + 2}
             key={4}
             contentClassname="h-[fit-content] overflow-hidden"
             buttonTrigger={
