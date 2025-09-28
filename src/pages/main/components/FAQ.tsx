@@ -93,7 +93,7 @@ export function FAQ() {
         </Text>
         <Section
           fixedWidth
-          className="flex flex-col min-h-[500px] max-w-[1600px] lg:flex-row gap-8 w-full p-5">
+          className="flex flex-col min-h-[500px] max-w-[1600px] xl:flex-row gap-8 w-full p-5">
           {FAQData.map(({ title, content }, i) => (
             <motion.div
               initial="hidden"
@@ -101,7 +101,7 @@ export function FAQ() {
               whileInView="visible"
               viewport={{ amount: 0.3, once: true }}
               custom={i}
-              className="flex-1 min-w-[350px] "
+              className="flex-1"
               key={i}>
               <Text as="h1" color="brand-100" size="2xl" className="text-center py-4">
                 {title}

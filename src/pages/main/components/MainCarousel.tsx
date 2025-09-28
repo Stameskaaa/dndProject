@@ -57,22 +57,22 @@ export const MainCarousel = () => {
     <Section paddingX="empty" className="flex-1">
       <div className="bg-brand-300/70 flex">
         <Carousel
+          className="w-full overflow-x-auto max-w-[2000px] mx-auto"
           opts={{
             dragFree: true,
             containScroll: 'trimSnaps',
-          }}
-          className="mx-auto w-[1600px]">
-          <CarouselContent className="flex gap-2">
+          }}>
+          <CarouselContent className="flex gap-2 justify-start">
             {slides.map(({ title }, idx) => (
               <CarouselItem
                 key={idx}
-                className="cursor-pointer max-w-[400px] flex-shrink-0"
+                className="cursor-pointer flex-shrink-0 min-w-[220px] max-w-[400px]"
                 onClick={() => setActiveIndex(idx)}>
                 <Text
                   color={activeIndex === idx ? 'text-primary' : 'text-description'}
                   size="2xl"
                   className={classNames(
-                    'p-6 transition-colors flex justify-center duration-400 border-b-2 border-transparent',
+                    'p-6 transition-colors flex justify-center  truncate duration-400 border-b-2 border-transparent',
                     activeIndex === idx ? '!border-brand-100' : '',
                   )}>
                   <Text
