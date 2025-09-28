@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { Accordion } from '../../navigation/accordion/Accordion';
-import { Text } from '../../typography/Text';
-import { Section } from '../section/Section';
+import { Text } from '@/components/wrappers/typography/Text';
+import { Section } from '@/components/wrappers/sections/section/Section';
+import { Accordion } from '@/components/wrappers/navigation/accordion/Accordion';
 
 interface FAQData {
   title: string;

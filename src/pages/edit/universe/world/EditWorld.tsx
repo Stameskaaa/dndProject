@@ -1,6 +1,5 @@
 import type { World } from '@/features/worlds/types';
 import { useForm } from 'react-hook-form';
-import { EditWrapper } from '../../ui/EditContainer';
 import { Input } from '@/components/wrappers/forms/input/Input';
 import { TextareaMD } from '@/components/wrappers/forms/textarea/TextareaMD';
 import { Selector } from '@/components/wrappers/forms/selector/Selector';
@@ -27,7 +26,6 @@ export const EditWorld = () => {
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}
       removeHook={useDeleteGodMutation}
-      cancelAction={reset}
       mapData={(data: God[] | undefined) => {
         if (!data) return [];
         return data?.map(({ id, name, shortDescription }) => ({

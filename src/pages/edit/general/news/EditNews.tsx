@@ -22,7 +22,6 @@ export const EditNews = () => {
       createHook={useCreateNewsMutation}
       updateHook={useUpdateNewsMutation}
       removeHook={useDeleteNewsMutation}
-      cancelAction={reset}
       mapData={(data: News[] | undefined) => {
         if (!data) return [];
         return data?.map(({ id, title, shortDescription }) => ({

@@ -26,8 +26,7 @@ export const EditCharacteristic = () => {
       mapData={(data: Characteristic[] | undefined) => {
         if (!data) return [];
         return data?.map(({ id, name }) => ({ id, title: name }));
-      }}
-      cancelAction={() => {}}>
+      }}>
       <Input
         required
         placeholder="Рассудок"

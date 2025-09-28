@@ -49,6 +49,7 @@ import { RaidBossListPage } from '@/pages/universe/creatures/RaidBossListPage';
 import { BeastListPage } from '@/pages/universe/creatures/BeastListPage';
 import { NPCListPage } from '@/pages/universe/creatures/NPCListPage';
 import { WorldPage } from '@/pages/universe/worlds/WorldPage/WorldPage';
+import ErrorBoundary from '@/components/wrappers/errorBoundary/errorBoundary';
 
 export const ROUTES_AUTH: RouteObject[] = [
   {
@@ -73,6 +74,7 @@ export const routesWrapper = (routes: RouteNode[]): RouteObject[] => {
     return {
       path: node.path,
       element: node.element,
+      errorElement: node.errorElement,
       loader: node.loader ? delayLoader(SHOW_TRANSITION * 1000) : undefined,
       children,
     };
@@ -85,6 +87,7 @@ export type RouteNode = {
   path?: string;
   fullPath: string;
   element?: ReactNode;
+  errorElement?: ReactNode;
   children?: RouteNode[];
   loader?: boolean;
   src?: string;
@@ -97,6 +100,7 @@ const LAYOUT: RouteNode = {
   path: '',
   fullPath: '',
   element: <Layout key="layout" />,
+  errorElement: <ErrorBoundary />,
 };
 
 //  TODO errorElement

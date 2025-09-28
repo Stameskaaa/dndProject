@@ -51,8 +51,7 @@ export const EditRules = () => {
           title,
           description: shortDescription,
         }));
-      }}
-      cancelAction={() => {}}>
+      }}>
       <div className="flex gap-2 flex-wrap items-end">
         <Input
           className="w-auto flex-1 min-w-[260px]"

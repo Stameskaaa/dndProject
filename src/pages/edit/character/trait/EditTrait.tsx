@@ -24,7 +24,6 @@ export const EditTrait = () => {
       createHook={useCreateTraitMutation}
       updateHook={useUpdateTraitMutation}
       removeHook={useDeleteTraitMutation}
-      cancelAction={reset}
       mapData={(data: Trait[] | undefined) => {
         if (!data) return [];
         return data?.map(({ id, name }) => ({

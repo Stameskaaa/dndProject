@@ -1,10 +1,10 @@
 import { CardNavigation } from './components/CardNavigation';
-import { MainButton } from '../../components/wrappers/buttons/mainButton/MainButton';
-import { FAQ } from '@/components/wrappers/sections/FAQ/FAQ';
-import { Text } from '@/components/wrappers/typography/Text';
-import { Section } from '@/components/wrappers/sections/section/Section';
+import { FAQ } from './components/FAQ';
 import { MainCarousel } from './components/MainCarousel';
 import { CatalogSection } from './components/CatalogSection';
+import { Text } from '@/components/wrappers/typography/Text';
+import { Section } from '@/components/wrappers/sections/section/Section';
+import { MainButton } from '../../components/wrappers/buttons/mainButton/MainButton';
 
 export const MainPage = () => {
   return (

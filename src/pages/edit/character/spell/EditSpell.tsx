@@ -31,8 +31,7 @@ export const EditSpell = () => {
           title: name,
           description: shortDescription,
         }));
-      }}
-      cancelAction={() => {}}>
+      }}>
       <Input
         required
         placeholder="Огненный шар"

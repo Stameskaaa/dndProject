@@ -22,7 +22,6 @@ export const EditSubclass = () => {
       createHook={useCreateGodMutation}
       updateHook={useUpdateGodMutation}
       removeHook={useDeleteGodMutation}
-      cancelAction={reset}
       mapData={(data: God[] | undefined) => {
         if (!data) return [];
         return data?.map(({ id, name, shortDescription }) => ({

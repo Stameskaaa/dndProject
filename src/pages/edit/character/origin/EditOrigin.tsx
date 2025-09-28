@@ -25,7 +25,6 @@ export const EditOrigin = () => {
       createHook={useCreateOriginMutation}
       updateHook={useUpdateOriginMutation}
       removeHook={useDeleteOriginMutation}
-      cancelAction={reset}
       mapData={(data: Origin[] | undefined) => {
         if (!data) return [];
         return data?.map(({ id, name }) => ({

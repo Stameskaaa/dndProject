@@ -35,8 +35,7 @@ export const EditRace = () => {
       mapData={(data: Race[] | undefined) => {
         if (!data) return [];
         return data?.map(({ id, name }) => ({ id, title: name }));
-      }}
-      cancelAction={() => {}}>
+      }}>
       <Input
         required
         placeholder="Эльф"

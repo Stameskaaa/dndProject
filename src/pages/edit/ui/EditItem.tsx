@@ -9,6 +9,7 @@ import { Spinner } from '@/components/wrappers/loaders/spinner/Spinner';
 import { ModalWindow } from '@/components/wrappers/modals/modalWindow/ModalWindow';
 import { useEditableForm, type UseEditableItemProps } from '../hooks/useEditableItem';
 import { Pagination } from '@/components/wrappers/navigation/pagination/Pagination';
+import { Section } from '@/components/wrappers/sections/section/Section';
 
 interface EditableItem {
   id: number;
@@ -19,13 +20,11 @@ interface EditableItem {
 interface EditListProps<T extends { id?: number | null } & FieldValues>
   extends UseEditableItemProps<T> {
   children: ReactNode;
-  cancelAction: () => void;
   mapData: (data: T[] | undefined) => EditableItem[];
 }
 
 export const EditList = <T extends { id?: number | null }>({
   children,
-  cancelAction,
   queryHook,
   createHook,
   updateHook,
@@ -59,7 +58,7 @@ export const EditList = <T extends { id?: number | null }>({
   const editableData = mapData(data?.data);
 
   return (
-    <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 flex-1 h-full p-4 gap-3 min-h-0">
+    <div className="flex flex-col bg-brand-3 border-1 rounded-md border-brand-300 bg-brand-500 flex-1 h-full p-4 gap-3 min-h-0">
       <div className="flex flex-col flex-1 h-full gap-3">
         <div className="flex gap-2 h-[36px]">
           <Input
@@ -109,24 +108,23 @@ export const EditList = <T extends { id?: number | null }>({
         </div>
       </div>
       <ModalWindow
-        contentClassname="w-[95%] h-[95%] max-h-[900px] block !max-w-[1600px] p-0"
+        contentClassname="w-[95%] h-[95%] max-h-[900px] block !max-w-[1600px] p-0 bg-transparent"
         setOpen={setOpen}
         open={open}>
-        <div className="flex h-full max-h-full flex-col bg-brand-3 border-1 rounded-md border-brand-300 p-2">
-          <Text color="brand-100" className="p-2" size="xl">
-            {'Изменение / Создание контента'}
-          </Text>
-          <Separator spacing="empty" />
-          <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-4">{children}</div>
-          <div className="flex gap-2 pt-2 justify-end">
-            <Button isLoading={editLoading} onClick={submitAction} variant="success">
-              Сохранить
-            </Button>
-            <Button disabled={editLoading} onClick={cancelAction} variant="secondary">
-              Отменить изменения
-            </Button>
+        <Section className="flex h-full max-h-full">
+          <div className="flex-1 flex flex-col bg-brand-400 border-1 rounded-md border-brand-300 p-4">
+            <Text color="brand-100" className="p-2" size="xl">
+              {'Изменение / Создание контента'}
+            </Text>
+            <Separator spacing="empty" />
+            <div className="flex-1 overflow-y-auto p-2 flex flex-col gap-4">{children}</div>
+            <div className="flex gap-2 pt-2 justify-end">
+              <Button isLoading={editLoading} onClick={submitAction} variant="success">
+                Сохранить
+              </Button>
+            </div>
           </div>
-        </div>
+        </Section>
       </ModalWindow>
     </div>
   );
