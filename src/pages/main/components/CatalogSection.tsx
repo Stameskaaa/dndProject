@@ -43,7 +43,7 @@ export const CatalogSection = () => {
         <CloseButt />
         {activeIndex !== null && (
           <div className="flex max-[687px]:flex-col gap-4">
-            <div className="flex-1 min-w-[290px] h-full overflow-hidden rounded-md max-h-[800px] max-[687px]:max-h-[400px]">
+            <div className="flex-1 min-w-[250px] h-full overflow-hidden rounded-md max-h-[800px] max-[687px]:max-h-[400px]">
               <img
                 src={MOCK_PRODUCTS[activeIndex].image}
                 alt={MOCK_PRODUCTS[activeIndex].title}
@@ -87,7 +87,7 @@ const ProductCard = ({ product, onClick }: ProductCardProps) => {
   return (
     <div
       onClick={onClick}
-      className="relative flex flex-col min-w-[300px] rounded-sm overflow-hidden flex-1 h-[440px] cursor-pointer hover:shadow-lg transition-shadow group">
+      className="relative flex flex-col min-w-[250px] rounded-sm overflow-hidden flex-1 h-[440px] cursor-pointer hover:shadow-lg transition-shadow group">
       <div className=" w-full flex-1 overflow-hidden">
         <img src={product.image} alt={product.title} className="w-full h-full object-cover" />
       </div>

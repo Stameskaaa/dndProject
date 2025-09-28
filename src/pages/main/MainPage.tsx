@@ -17,8 +17,8 @@ export const MainPage = () => {
       <Section paddingX="empty" screen>
         <div className="h-[70vh] flex bg-brand-400/70">
           <div className="m-auto text-center flex flex-col gap-4">
-            <Text size="2xl">НАШИ ПРИНЦИПЫ</Text>
-            <Text className="!text-6xl">
+            <Text className="text-lg lg:text-2xl">НАШИ ПРИНЦИПЫ</Text>
+            <Text className="!text-4xl lg:text-6xl">
               МЫ ИГРАЕМ <br /> ВДОЛГУЮ
             </Text>
             <Text size="lg" className="max-w-[700px]">
